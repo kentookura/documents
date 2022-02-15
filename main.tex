@@ -1,0 +1,65 @@
+\documentclass[11pt]{memoir}
+\usepackage[utf8]{inputenc}
+\usepackage{newtxtext}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage[hidelinks]{hyperref}
+%\usepackage{showframe}
+\usepackage[textwidth=5.5in,textheight=9.2in,centering,a4paper]{geometry}
+
+\setlength{\abovedisplayskip}{0pt}
+\setlength{\belowdisplayskip}{0pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+
+\setlength{\parindent}{0pt}
+
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+\newcommand{\Top}{\mathsf{Top}}
+\newcommand{\Set}{\mathsf{Set}}
+\newcommand{\Disc}{\mathsf{Disc}}
+\newcommand{\CoDisc}{\mathsf{CoDisc}}
+\newcommand{\Hom}{\mathsf{Hom}}
+
+\newtheorem{proposition}{Proposition}
+
+\begin{document}
+
+  \chapter*{Abstract}
+  \input{chapters/abstract}
+  
+  \tableofcontents
+
+  \chapter{Introduction}
+  \input{chapters/introduction}
+
+  \chapter{Axiomatic Cohesion}
+  \input{chapters/cohesion}
+
+  \chapter{Cohomology in Topology}
+  \input{chapters/cohomology}
+
+  \chapter{\'Etale Cohomology}
+  \input{chapters/etale}
+
+  \chapter{Conclusion}
+  \input{chapters/conclusion}
+
+  \appendix
+  \chapter{Review of categorical notions}
+  \input{chapters/categories}
+  \chapter{The definition of a Scheme}
+  \input{chapters/scheme}
+
+  \bibliographystyle{plain}
+  \bibliography{refs}
+\end{document}

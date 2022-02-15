@@ -1,0 +1,21 @@
+The notion of cohesion is supposed to be formalise what it means for a category $\mathcal{E}$ to be a category of spaces consisting of basic shapes of a category $\mathcal{S}$.
+In defining cohesion, Lawvere was guided by the central example of topological spaces and sets. We will outline this example before giving the abstract defintion of cohesion.\\
+
+\section{The cohesion of topological spaces}
+Let $\Top$ and $\Set$ denote the category of locally connected topological spaces\footnote{The construction does not technically work for the category of \textit{all} topological spaces, but it is fine to ignore this technicality.} and sets respectively. There is the evident forgetful functor from $\Top$ to $\Set$, which we will denote by $\Gamma$. It assigns to each topological space $X$ the underlying set $\Gamma(X)$. There are also two functors $\Disc$ and $\CoDisc$, going from $\Set$ to $\Top$. The functor $\Disc$ assigns to a set $S$ the topological space $\Disc(S)$ with underlying set $S$ and the discrete topology, while $\CoDisc(S)$ is the space with the trivial topology. Lastly, there is also a functor $\Pi_0$ which takes a topological space to its set of connected components.
+\begin{proposition}
+  The functors described above form an adjoint quadruple \[\Pi_0 \dashv\ \Disc \dashv\ \Gamma \dashv\ \CoDisc.\]
+\end{proposition}
+\begin{proof}
+  Let $S$ be a set and consider a set function $f: S \to \Gamma(X)$. Since any subset of $\Disc(S)$ is open, there exists a continuous function $\tilde{f}: \Disc(S) \to X$ such that the underlying set function is $f$. Conversely, any continuous function $\tilde{f} : \Disc(S) \to X$ gives rise to a set function $ f: S \to \Gamma(X)$. These assignments are clearly inverse to each other. (Naturality missing from proof). This shows that $\Disc \dashv\ \Gamma$.\\
+  Next, for $g: X \to \CoDisc(S)$ a continous function, continuity just means that that $g^{-1}(S)$ is open since the only open subsets of $\CoDisc(S)$ are $\varnothing$ and $S$.
+  But $g^{-1}(S)$ is just $X$. This implies that any set function from $\Gamma(X)$ to $S$ gives rise to a continuous function from $X$ to $\CoDisc(S)$. This shows that $\Gamma \dashv\ \CoDisc$.\\
+  Finally, any continuous function into a discrete space must be locally constant, which means $\Hom(\Pi_0(X), S) \simeq \Hom(X, \Disc(S))$. This proves the last adjunction
+\end{proof}
+
+\section{Axiomatic Cohesion}
+\section{Cohesion for gros Topoi}
+\section{Cohesion for petit Topoi}
+\section{WIP/Notes}
+Cohesion is usually formulated in the "gros" perspective. I will now try to elaborate on a "petit" cohesion.
+Let $X$ be a topological space. The global sections functor $\Gamma$ takes any open set $U \subset X$ to its underlying set. This can be seen as a sort of trivial structure sheaf. For any set $S$, there is an associated constant sheaf $\Delta(S)$. It takes an open set $U$ to the set of continuous functions $\{U \to \Disc(S)\}$
