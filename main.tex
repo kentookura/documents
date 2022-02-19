@@ -1,12 +1,13 @@
 \documentclass[11pt]{memoir}
 \usepackage[utf8]{inputenc}
-\usepackage{newtxtext}
+\usepackage[T1]{fontenc}
+\usepackage{stix2}
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{amsthm}
-\usepackage{amssymb}
 \usepackage[hidelinks]{hyperref}
-%\usepackage{showframe}
+\usepackage{titlesec} %title formatting
+\usepackage{color}
 \usepackage[textwidth=5.5in,textheight=9.2in,centering,a4paper]{geometry}
 
 \setlength{\abovedisplayskip}{0pt}
@@ -31,6 +32,32 @@
 \newcommand{\Hom}{\mathsf{Hom}}
 
 \newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{construction}{Construction}
+
+\makeatletter
+\newcommand{\colim@}[2]{%
+  \vtop{\m@th\ialign{##\cr
+    \hfil$#1\operator@font lim$\hfil\cr
+    \noalign{\nointerlineskip\kern1.5\ex@}#2\cr
+    \noalign{\nointerlineskip\kern-\ex@}\cr}}%
+}
+\newcommand{\colim}{%
+  \mathop{\mathpalette\colim@{\rightarrowfill@\textstyle}}\nmlimits@
+}
+\newcommand{\op}{
+  o\kern-0.10em p
+}
+\newcommand{\Ext}{
+  E\kern-0.06em x\kern-0.02em t
+}
+\makeatother
+
+% title formatting
+\definecolor{gray75}{gray}{0.75}
+\titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter\hspace{20pt}\textcolor{gray75}{|}\hspace{20pt}}{0pt}{\Huge\bfseries}
+%\renewcommand{\chapterheadstartvskip}{\vspace*{-2\baselineskip}}
+\titlespacing*{\chapter}{0pt}{-2\baselineskip}{1em}
 
 \begin{document}
 
@@ -41,6 +68,9 @@
 
   \chapter{Introduction}
   \input{chapters/introduction}
+
+  \chapter{Sites, Sheaves and Grothendieck Topoi}
+  \input{chapters/sheaves}
 
   \chapter{Axiomatic Cohesion}
   \input{chapters/cohesion}
