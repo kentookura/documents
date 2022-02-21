@@ -1,28 +1,59 @@
-Much of modern geometry may be formulated in the language of sheaves. Sheaves are data that are given on a topological space that may be glued. One may more generally define sheaves on a category equipped with a so-called Grothendieck topology.
+Much of modern geometry can be formulated in the language of sheaves. Sheaves are data that are given on a topological space that may be glued. One may more generally define sheaves on a category equipped with a so-called Grothendieck topology.
 
-\begin{construction} 
-  Let $X$ be a topological space with a topology $\tau \subseteq \mathcal{P}(X)$. The open sets of $\tau$ are partially ordered by inclusion: \[V \le W \quad \text{iff} \quad V \subseteq W.\]
-  We may thus consider the category of open sets of $X$, denoted by $\mathcal{O}(X)$.
-
+\begin{construction}\label{def:opens}
+  Let $X$ be a topological space. The open sets of $X$ are partially ordered by inclusion: \[V \le W \quad \text{iff} \quad V \subseteq W.\]
+  We may thus consider the category of open sets of $X$, denoted by $\Op(X)$.
 \end{construction}
+A key observation is the following: In the category $\Op(X)$ pullbacks correspond to intersections and pushouts correspond to unions. By the definition of topological space, this means that $\Op(X)$ has finite pullbacks and arbitrary pushouts.
 
-
-\begin{definition}[Preheaves and Sheaves]
-  Let $X$ be a topological space. A presheaf $\mathcal{F}$ (of sets) is a rule which assings
+\begin{definition}[Presheaves] 
+  Let $X$ be a topological space. A \textit{presheaf of sets} $\mathcal{F}$  is a map which assings
   \begin{enumerate}
-    \item to each open subset $U$ of $X$ a set $\mathcal{F}(U)$.
-    \item to each inclusion of open sets $U \subseteq V$ a \textbf{restriction map}
+    \item to each open subset $U$ of $X$ a set $\mathcal{F}(U)$. We call the elements of $\mathcal{F}(U)$ the \textit{sections of $\mathcal{F}$ over $U$}.
+    \item to each inclusion of open sets $U \subseteq V$ a \textit{restriction map}
     \[res_{V\kern-0.1em , U}: \mathcal{F}(V) \longrightarrow\mathcal{F}(U).\]
   \end{enumerate}
-    The restriction map needs to have the following properties: 
+    The restriction maps need to have the following properties: 
     \begin{enumerate}
       \item The restriction along the identity $V \subseteq V$ is the identity, so 
             \[res_{V\kern-0.1em , V} = id.\]
-      \item For a sequence of inclusions $U \subseteq V \subseteq W$, the restricion maps need to adhere to the identity 
+      \item For two inclusions $U \subseteq V \subseteq W$, the restricion maps adhere to the identity 
             \[res_{W\kern-0.1em , V}\ \circ\ res_{V\kern-0.1em , U} = res_{W\kern-0.1em , U}.\]
     \end{enumerate}
+  One may more slickly define a presheaf as a functor $\mathcal{F}: \Op(X)^{\op}\longrightarrow \Set$. To supress notation we will write $s|_V$ instead of $res_{V\kern-0.1em , U}(s).$ Here $s$ is a section over $U$.\\
+\end{definition}
+\begin{definition}[Sheaves]
+  A presheaf $\mathcal{F}$ is a \textit{sheaf} if one can uniquely glue sections. Precisely, this means:
+  \begin{enumerate}
+    \item For an open set $U$, an open cover $\{U_i\}_{\indexset{i}{I}}$ of $U$ and $s, t \in \mathcal{F}(U)$, if $s|_{U_i} = t|_{U_i}$ for all $i \in I$, then $s = t$.
+    \item For an open set $U$, an open cover $\{U_i\}_{\indexset{i}{I}}$ of $U$ and a family of sections
+    \[\{s_i \in \mathcal{F}(U_i)\}_{\indexset{i}{I}},\]
+     if $s_i|_{U_i \cap U_j} = s_j|_{U_i \cap U_j}$ for all $i,j \in I$, then there exists a section $s \in \mathcal{F}(U)$ such that $s|_{U_i} = s_i$ for all $i \in I$.
+  \end{enumerate}
+  In words this says that if we have a a cover $\{U_i\}$ of $U$ and a family of sections $\{s_i\}$ which agree on all intersections, we may glue these sections to a section over $U$. Moreover, this section is unique.
 \end{definition}
 
+% TODO: Examples: constant sheaves, sheaves of rings
+The definition for presheaves and sheaves are given almost entirely in categorical language. The notion of presheaf on a category $C$ is readily defined as a functor 
+\[\mathcal{F}: C^{\op}\longrightarrow \Set.\]
+What is required for the definition of sheaves to work is the notion of covering in a category. To motivate the definition of a Grothendieck topology, we review the proerties of coverings in the language introduced in Definition \ref{def:opens}.
+ \begin{enumerate}
+  \item The identity $U \to U$ is an open cover of $U$.
+  \item Coverings are stable under composition. Precisely this means: Given a covering \\$\{U_i \to U\}_{i \in I}$ and for each $U_i$ a covering $\{V_{ij} \to U_i\}_{j \in J}$, the composition
+        \[\{V_{ij} \to U\}\]
+        should be a covering of $U$.
+   \item  Coverings are stable under pullback: If we have an inclusion $V \hookrightarrow U$ and a covering $\{U_i \to U\}$, the open sets $\{U_i \times_U V\}$ cover $V$ with the induced projection maps:
+   % https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXHtVX2kgXFx0aW1lc19VIFZcXH0iXSxbMCwxLCJWIl0sWzEsMCwiXFx7VV9pXFx9Il0sWzEsMSwiVSJdLFswLDFdLFswLDJdLFsyLDNdLFsxLDMsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV1d
+      \[\begin{tikzcd}
+      	{\{U_i \times_U V\}} & {\{U_i\}} \\
+      	V & U.
+      	\arrow[from=1-1, to=2-1]
+      	\arrow[from=1-1, to=1-2]
+      	\arrow[from=1-2, to=2-2]
+      	\arrow[hook, from=2-1, to=2-2]
+      \end{tikzcd}\]
+      Here the fiber product is to be interpreted as the intersection.
+\end{enumerate}
 \begin{definition}[bases for Grothendieck topologies]
   
 \end{definition}
@@ -34,5 +65,3 @@ The atomic site is subcaonical if and only if every morphism in the category is 
 
 Taken from \cite{barr/diaconescu:1980}. \\
 Fix a perfect field $k$. We denote by $k_{Ext}$ the category of separable field extensions of $k$. If $L_1$ and $L_2$ are two extensions of $k$, then $L_1 \otimes_k L_2$ is a product of a finite number of separable extensions of $k$. Thus $k_{Ext}$ is dual to an atomic site. A sheaf on this site is given by a morphism of sites $f\colon k_{Ext}^{\op} \longrightarrow \Set$. This is just a presheaf on $k_{Ext}$, and is thus a colimit of representables $f(K) = \colim(K, K_i)$. ...\\
-
-$k_{\Ext}^{\op}$ vs. $k_{Ext}^{op}$

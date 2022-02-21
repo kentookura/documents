@@ -9,6 +9,9 @@
 \usepackage{titlesec} %title formatting
 \usepackage{color}
 \usepackage[textwidth=5.5in,textheight=9.2in,centering,a4paper]{geometry}
+\usepackage{nth}
+\usepackage{quiver}
+
 
 \setlength{\abovedisplayskip}{0pt}
 \setlength{\belowdisplayskip}{0pt}
@@ -31,9 +34,13 @@
 \newcommand{\CoDisc}{\mathsf{CoDisc}}
 \newcommand{\Hom}{\mathsf{Hom}}
 
+
+\theoremstyle{definition}
 \newtheorem{proposition}{Proposition}
 \newtheorem{definition}{Definition}
 \newtheorem{construction}{Construction}
+\newtheorem{example}{Example}
+\newtheorem{lemma}{Lemma}
 
 \makeatletter
 \newcommand{\colim@}[2]{%
@@ -48,8 +55,14 @@
 \newcommand{\op}{
   o\kern-0.10em p
 }
+\newcommand{\Op}{
+  O\kern-0.10em p
+}
 \newcommand{\Ext}{
   E\kern-0.06em x\kern-0.02em t
+}
+\newcommand{\indexset}[2]{
+  \, #1\, \in \, #2
 }
 \makeatother
 

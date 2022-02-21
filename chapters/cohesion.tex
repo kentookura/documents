@@ -17,9 +17,21 @@ Let $\Top$ and $\Set$ denote the category of locally connected topological space
 \section{Cohesion for gros Topoi}
 \section{Cohesion for petit Topoi}
 \section{WIP/Notes}
-Cohesion is usually formulated in the "gros" perspective. I will now try to elaborate on a "petit" cohesion.
-Let $X$ be a topological space. The global sections functor $\Gamma$ takes any open set $U \subset X$ to its underlying set. This can be seen as a sort of trivial structure sheaf. For any set $S$, there is an associated constant sheaf $\Delta(S)$. It takes an open set $U$ to the set of continuous functions $\{U \to \Disc(S)\}$. We thus have an adjoint pair $\Delta \dashv\ \Gamma$
 
-Schemes are in general not locally connected, so they are not cohesive over set. I suspect, however that I can leverage the adjunction $\Gamma: \text{LRSp} \dashv \text{CRing} : \text{Spec}$ by restricting it to nice enough schemes and rings so that it works out.
+\subsection{Sufficient Cohesion over Galois topoi}
+\begin{definition}[finitely presented $k$-algebra]
+  Let $k$ be a field. A $k$-algebra is a \textit{finitely presented $k$-algebra} if it is a quotient of a polynomial ring $k[x_1, \dots, x_n]$
+\end{definition}
 
-Schemes are sober
+\begin{definition}
+  Let $k$ be a field. A $k$-algebra is \textit{connected} if its only idempotent elements are $0$ and $1$. An element $a \in k$ is idempotent if $a^2 = a$.
+\end{definition}
+Fix a field $k$.  We denote by $\mathsf{Ext}$ the category of separable extensions of $k$, and by $\mathsf{Con}$ the category of finitely presented and connected $k$-algebras.
+
+\begin{lemma}
+  The inclusion $\mathsf{Ext} \longrightarrow \mathsf{Con}$ has a right adjoint.
+\end{lemma}
+
+\begin{proof}
+  Let $A$ be a finitely presented and conneted $k$-algebra and choose a maximal ideal $M$ in $A$. 
+\end{proof}
