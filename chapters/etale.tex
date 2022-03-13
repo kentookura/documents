@@ -1,3 +1,33 @@
-\section{\'Etale Cohomology}
 The \'etale cohomology of a scheme was defined by Alexandre Grothendieck, Michael Artin and Jean-Luis Verdier in the late 50's. Andr\'e Weil had conjectured the existence of a cohomology theory for varieties over finite fields, from which his famous Weil conjectures could be deduced.
-Their goal was to find a cohomology theory that is suited for arithmetic applications.
+
+\section{\'Etale Morphisms}
+
+\subsubsection{Local homeomorphisms}
+In topology, a continuous map $f: X \to Y$ is called a local homeomorphism if $f$ restricts to a homeomorphism around any point $x \in X$. More precisely, for any point $x \in X$ there is a neighborhood $U$ of $x$ such that $f(U)$ is open in $Y$ and $p|_U: U \to p(U)$ is a homeomorphism. In this situation one also says that $X$ is an \'etale space over $Y$.
+In the case of manifolds, this concept is easy to picture, since locally a manifold looks like $\mathbb{R}^n$ for some $n \in \mathbb{N}$. In the case of schemes, however, this is trickier.
+
+\subsubsection{\'Etale morphsims of nonsingular varieties}
+For varieties defined over an algebraically closed field $k$, one may use a formalism in direct analogy to smooth manifolds to define \'etale morphsims, namely the formalism of tangent spaces. However, instead of defining the tangent space at a point $p \in X$ analytically, we define it algebraically.
+
+\subsubsection{\'Etale morphisms of affine schemes}
+\begin{definition}
+  A morphism $f: Y \to X$ is called an \'etale morphism if for every $y \in Y$ there exist open affine neighborhoods $V = spec B$ of $y$ and $Y = spec A$ of $f(y)$ such that 
+  \[B = A[x_1, \dots, x_n]/(P_1, \dots, P_n)\]
+  and $det(\partial P_i /\partial T_j)$ is a unit in $B$.
+\end{definition}
+This is not the standard definition of \'etale morphisms, but it is equivalent and according to the author the most intuitive.
+
+\begin{proposition}
+  The composite of two \'etale morphisms and base change of an \'etale morphims are \'etale.
+\end{proposition}
+
+Computing sheaf cohomology on a topological space using the formalism of derived functors is often unfeasable. Calculations are often done using Cech cohomology. The same is possible for \'etale cohomology. The definition of Cech cohomology for \'etale sheaves works with basically no modifications.
+\section{\'Etale sheaves}
+Examples of \'Etale sheaves:
+
+The structure sheaf $\mathcal{O}_{X_{\text{\'et}}}(U) = \Gamma(U, \mathcal{O}_U)$
+\par
+Representables $\mathcal{F}: \mathsf{Et}/X \to \Set , \mathcal{F}(U) = \Hom_X(U,Z)$ for any $X$-scheme $Z$. In particular this means that the \'etale topology is subcanonical.
+\par
+
+It is a theorem that any category of sheaves on a site (in particular a topological space) is an elementary topos. As such it carries a lot of structure

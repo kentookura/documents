@@ -1,4 +1,4 @@
-\documentclass[11pt]{memoir}
+\documentclass[11pt, openany]{memoir}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{stix2}
@@ -41,6 +41,7 @@
 \newtheorem{construction}{Construction}
 \newtheorem{example}{Example}
 \newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
 
 \makeatletter
 \newcommand{\colim@}[2]{%
@@ -73,6 +74,7 @@
 \titlespacing*{\chapter}{0pt}{-2\baselineskip}{1em}
 
 \begin{document}
+  \nocite{*}
 
   \chapter*{Abstract}
   \input{chapters/abstract}
@@ -82,21 +84,24 @@
   \chapter{Introduction}
   \input{chapters/introduction}
 
-  \chapter{Sites, Sheaves and Grothendieck Topoi}
-  \input{chapters/sheaves}
-
-  \chapter{Axiomatic Cohesion}
-  \input{chapters/cohesion}
-
   \chapter{Cohomology in Topology}
   \input{chapters/cohomology}
+
+  \chapter{Sites, Sheaves and Grothendieck Topoi}
+  \input{chapters/sheaves}
 
   \chapter{\'Etale Cohomology}
   \input{chapters/etale}
 
+  \chapter{Simplicial Methods}
+  \input{chapters/simplicial}
+
+  \chapter{\'Etale Homotopy}
+
   \chapter{Conclusion}
   \input{chapters/conclusion}
 
+  % I will roughly follow sheaves in geometry and logic, their review of category theory is good
   \appendix
   \chapter{Review of categorical notions}
   \input{chapters/categories}

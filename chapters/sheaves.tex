@@ -58,10 +58,24 @@ What is required for the definition of sheaves to work is the notion of covering
   
 \end{definition}
 
-\begin{definition}[the atomic site]
+%\begin{definition}[the atomic site]
+%
+%\end{definition}
+%The atomic site is subcaonical if and only if every morphism in the category is a regular epimorphism. This means that every morphism is the coequalizer of some parallel pair of morphisms.
+%
+%%Taken from \cite{barr/diaconescu:1980}. \\
+%Fix a perfect field $k$. We denote by $k_{Ext}$ the category of separable field extensions of $k$. If $L_1$ and $L_2$ are two extensions of $k$, then $L_1 \otimes_k L_2$ is a product of a finite number of separable extensions of $k$. Thus $k_{Ext}$ is dual to an atomic site. A sheaf on this site is given by a morphism of sites $f\colon k_{Ext}^{\op} \longrightarrow \Set$. This is just a presheaf on $k_{Ext}$, and is thus a colimit of representables $f(K) = \colim(K, K_i)$. ...\\
 
+There are a number of properties of sheaves which are important for applications. These properties govern the behavior of the cohomology.
+
+\begin{definition}
+  A sheaf is called
+  \begin{enumerate}
+    \item flabby if the restriction maps are surjective,
+    \item soft if any section over a closed subset can be extended to a global section,
+    \item acyclic if the higher cohomology of the sheaf vanishes. 
+  \end{enumerate} 
 \end{definition}
-The atomic site is subcaonical if and only if every morphism in the category is a regular epimorphism. This means that every morphism is the coequalizer of some parallel pair of morphisms.
 
-Taken from \cite{barr/diaconescu:1980}. \\
-Fix a perfect field $k$. We denote by $k_{Ext}$ the category of separable field extensions of $k$. If $L_1$ and $L_2$ are two extensions of $k$, then $L_1 \otimes_k L_2$ is a product of a finite number of separable extensions of $k$. Thus $k_{Ext}$ is dual to an atomic site. A sheaf on this site is given by a morphism of sites $f\colon k_{Ext}^{\op} \longrightarrow \Set$. This is just a presheaf on $k_{Ext}$, and is thus a colimit of representables $f(K) = \colim(K, K_i)$. ...\\
+\section{Sheaf Semantics}
+It is possible to interpret intuitionistic first-order logic in an arbitrary topos. In the case of sheaves, this is done using the following rules
