@@ -1,4 +1,4 @@
-Much of modern geometry can be formulated in the language of sheaves. Sheaves are data that are given on a topological space that may be glued. One may more generally define sheaves on a category equipped with a so-called Grothendieck topology.
+Much of modern geometry can be formulated in the language of sheaves. Sheaves are data that are given on a topological space that may be glued. One may more generally define sheaves on a category equipped with a so-called Grothendieck topology. A sheaf is a geometric gadget that relates local data (say, on a topological space) to global data. Sheaf theory gives us tools to systematically analyse local-global phenomena which are fundamental in geometry and topology. 
 
 \begin{construction}\label{def:opens}
   Let $X$ be a topological space. The open sets of $X$ are partially ordered by inclusion: \[V \le W \quad \text{iff} \quad V \subseteq W.\]
@@ -8,18 +8,18 @@ A key observation is the following: In the category $\Op(X)$ pullbacks correspon
 
 \begin{definition}[Presheaves] 
   Let $X$ be a topological space. A \textit{presheaf of sets} $\mathcal{F}$  is a map which assings
-  \begin{enumerate}
+  \begin{itemize}
     \item to each open subset $U$ of $X$ a set $\mathcal{F}(U)$. We call the elements of $\mathcal{F}(U)$ the \textit{sections of $\mathcal{F}$ over $U$}.
     \item to each inclusion of open sets $U \subseteq V$ a \textit{restriction map}
     \[res_{V\kern-0.1em , U}: \mathcal{F}(V) \longrightarrow\mathcal{F}(U).\]
-  \end{enumerate}
+  \end{itemize}
     The restriction maps need to have the following properties: 
-    \begin{enumerate}
+    \begin{itemize}
       \item The restriction along the identity $V \subseteq V$ is the identity, so 
             \[res_{V\kern-0.1em , V} = id.\]
       \item For two inclusions $U \subseteq V \subseteq W$, the restricion maps adhere to the identity 
             \[res_{W\kern-0.1em , V}\ \circ\ res_{V\kern-0.1em , U} = res_{W\kern-0.1em , U}.\]
-    \end{enumerate}
+    \end{itemize}
   One may more slickly define a presheaf as a functor $\mathcal{F}: \Op(X)^{\op}\longrightarrow \Set$. To supress notation we will write $s|_V$ instead of $res_{V\kern-0.1em , U}(s).$ Here $s$ is a section over $U$.\\
 \end{definition}
 \begin{definition}[Sheaves]
@@ -52,11 +52,18 @@ What is required for the definition of sheaves to work is the notion of covering
       	\arrow[from=1-2, to=2-2]
       	\arrow[hook, from=2-1, to=2-2]
       \end{tikzcd}\]
-      Here the fiber product is to be interpreted as the intersection.
+      Here the fiber product may often be interpreted as the intersection.
 \end{enumerate}
 \begin{definition}[bases for Grothendieck topologies]
   
 \end{definition}
+
+\begin{example}
+  We obtain a sheaf on $\R^n$ by associating to any open set $U\subseteq \R^n$ the set \[C(U) = \{f: U \to \R\}\]. The restriction maps are the usual ones. The other properties are also clear.
+\end{example}
+\begin{example}
+  Let $X$ be a topological space. For any abelian group $A$ there is the so called \textit{constant sheaf} $X_A$. To any open set $U \subseteq X$ associate the set \[X_A(U) = \{f: U \to A | f \text{ is locally constant.} \}\]
+\end{example}
 
 %\begin{definition}[the atomic site]
 %

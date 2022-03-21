@@ -1,17 +1,7 @@
-Cohomology is an important invariant in geometry and topology. It is a tool which associates to each space $X$ a sequence of abelian groups $H^i(X)$, $i \ge 0$, the so-called cohomology groups of $X$. For each map $f: X \to Y$ of spaces there are homomorphisms $f^*: H^i(Y) \to H^i(X)$. We can deduce many interesting properties of spaces from their cohomology groups and the associated homomorphisms.
-
-Various notions of space, such as schemes, smooth manifolds and sheaves have properties that allow us to define cohomology which makes use of the particulars of this kind of space. Smooth manifolds, for instance, are topological spaces with additional “differentiable” structure.  We may use this structure to define de Rham cohomology via differential forms.
-
-This section will give an overview of some important cohomology theories to indicate their importance in geometry, but we will not be proving any theorems.
-We will see theorems which relate these cohomology theories to each other so that we may often choose an appropriate method for computation. For example, de Rham's theorem states that the de Rham cohomology associated to smooth manifolds is isomorphic to singular cohomology with coefficients in $\mathbb{R}$. 
-
-A central tenent of geometry and topology is that in order to understand a space $X$, one may study functions $\varphi: X \to S$. Here, $S$ could be an algebraic structure or another space. Let us now consider for a moment the case $S=\mathbb{R}$. The simplest kind of functions are the constant ones. This does not yield any interesting information, as the set of constant functions into $\mathbb{R}$ is always isomorphic to $\mathbb{R}$. The second simplest case are locally constant functions. Let us denote the set of all locally constant functios from $X$ to $\mathbb{R}$ by $H^0(X,\mathbb{R})$. This set is a real vector space, whose dimension is the number of connected components of $X$. In the section on de Rham cohomology we will define higher dimensional analogues $H^i_{dR}(X)$ of this vector space.
-
-Another central notion of modern geometry is that one thinks of spaces as being “glued together” from simple building blocks. A manifold is locally modelled on $\mathbb{R}^n$. A simplicial complex and more generally simplicial sets and simplicial objects are geometric objects that are modeled on the standard simplices $\Delta^n$, depicted below for $n = 1,2,3$.
 
 \section{De Rham Cohomology}
 
-An important version of cohomology arises from the theory of integration on manifolds. Stoke's theorem, Gauß's theorem and Green's theorem are all special cases of cohomological phenomena.
+An important version of cohomology arises from the theory of integration on manifolds. Stoke's theorem, Gauß's theorem and Green's theorem from analysis are all special cases of cohomological phenomena. The idea behind it is that the differential forms that can arise on a manifold are closely related to its topology. 
 
 \section{The Mayer-Vietoris Sequence}
 
@@ -60,8 +50,11 @@ and in particular
 
 %To get a first taste of cohomology we consider a directed graph $X$. The set of all functions from the set of vertices of $X$to $\mathbb{Z}$ is an abelian group by pointwise addition. We will denote this group by $C^1_*(X)$ and call it the group of $1$-cochains. Likewise there is a group $C^2_*(X)$, consisting of functions from the edges of $X$ to $\mathbb{Z}$. We can interpret the vertices of $X$ to lie on a map, and an element $\varphi \in C^1_*(X)$ to assign an elevation to each vertex. There is then a natural map
 
+
 \section{Brouwer fixed-point theorem}
 
 \section{Lefschetz fixed-point theorem}
 
 The Lefschetz fixed-point theorem generalizes the Brouwer fixed-point theorem
+
+The definition of derived functor cohomology is very general but for computations it is more feasible to use an approximation tool called \v{C}ech cohomology.

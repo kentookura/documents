@@ -5,3 +5,21 @@
 %For varieties over the complex numbers $\textbf{C}$, one can use the topology inherited from $\textbf{C}$ to define cohomology. In more general settings this topology is not available. The natural topology defined on varietes and schemes, the Zariski topology is rather course. In the Zariski topology, every open set is dense. A theorem of grothendieck implies that constant sheaves on an irreducible variety has no cohomology. This problem was fixed by the definition of a Grothendieck topology. Here one replaces the open subsets $U \hookrightarrow X$ by a more general class of morphisms $V \to X$. In the case of \'etale cohomology, we consider the class of \'etale morphisms into $X$. 
 %\cite{milneLEC}
 
+\section{Cohomology}
+Cohomology is an important invariant in geometry and topology. It is a tool which associates to each space $X$ a sequence of abelian groups $H^i(X)$, $i \ge 0$, the so-called cohomology groups of $X$. For each map $f: X \to Y$ of spaces there are homomorphisms $f^*: H^i(Y) \to H^i(X)$. We can deduce many interesting properties of spaces from their cohomology groups and the associated homomorphisms.
+
+Various notions of space, such as schemes, smooth manifolds and sheaves have properties that allow us to define cohomology which makes use of the particulars of this kind of space. Smooth manifolds, for instance, are topological spaces with additional “differentiable” structure.  We may use this structure to define de Rham cohomology via differential forms.
+
+This section will give an overview of some important cohomology theories to indicate their importance in geometry, but we will not be proving any theorems.
+We will see theorems which relate these cohomology theories to each other so that we may often choose an appropriate method for computation. For example, de Rham's theorem states that the de Rham cohomology associated to smooth manifolds is isomorphic to singular cohomology with coefficients in $\mathbb{R}$. 
+
+A central tenent of geometry and topology is that in order to understand a space $X$, one may study functions $\varphi: X \to S$. Here, $S$ could be an algebraic structure or another space. Let us now consider for a moment the case $S=\mathbb{R}$. The simplest kind of functions are the constant ones. This does not yield any interesting information, as the set of constant functions into $\mathbb{R}$ is always isomorphic to $\mathbb{R}$. The second simplest case are locally constant functions. Let us denote the set of all locally constant functios from $X$ to $\mathbb{R}$ by $H^0(X,\mathbb{R})$. This set is a real vector space, whose dimension is the number of connected components of $X$. In the section on de Rham cohomology we will define higher dimensional analogues $H^i_{dR}(X)$ of this vector space.
+
+Another central notion of modern geometry is that one thinks of spaces as being “glued together” from simple building blocks. A manifold is locally modelled on $\mathbb{R}^n$. A simplicial complex and more generally simplicial sets and simplicial objects are geometric objects that are modeled on the standard simplices $\Delta^n$, depicted below for $n = 1,2,3$.
+
+% missing figure
+
+Because a manifold $X$ is locally modelled on euclidian space, it comes equpped with a so-called sheaf of of rings $\mathcal{O}_X$, which is inherited from the ring structure on $\R$. In particular there is the ring of \textit{global} sections
+\[\{f: X \to \R \} \coloneqq  \Gamma(\mathcal{O}, X).\]
+Can we interpret an arbitrary commutative ring as a ring of functions on a geometric object?
+Alexander Grothendieck's definition of schemes now provide an answer: For any ring $R$ there is a locally ringed space $(X, \mathcal{O}_X) = (\Spec(R), \mathcal{O}_\Spec(R)$ such that $\Gamma(X, \mathcal{O}_X) \cong$

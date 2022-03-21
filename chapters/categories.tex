@@ -1,2 +1,16 @@
-\section{Appendix}
-appendix bla bla
+\section{Categories, Functors and Natural Transformations}
+
+\section{Diagrams, Cones, Limits and Colimits}
+  Let $J$ be a small category (often called index category). A diagram $D$ of shape $J$ in $C$ is a functor $D: J \to C$. A cone over $D$ is an object $A$ with morphsism $\varphi_X: A \to D(X)$ for every object $X \in J$ such that for every morphism $f: X \to Y$ in $J$ the diagram 
+  % https://q.uiver.app/?q=WzAsNCxbMSwwLCJBIl0sWzAsMSwiRChYKSJdLFsxLDJdLFsyLDEsIkQoWSkiXSxbMCwxLCJcXHZhcnBoaV9YIiwyXSxbMCwzLCJcXHZhcnBoaV9ZIl0sWzEsMywiRChmKSJdXQ==
+\[\begin{tikzcd}
+	& A \\
+	{D(X)} && {D(Y)} \\
+	& {}
+	\arrow["{\varphi_X}"', from=1-2, to=2-1]
+	\arrow["{\varphi_Y}", from=1-2, to=2-3]
+	\arrow["{D(f)}", from=2-1, to=2-3]
+\end{tikzcd}\]
+  commutes.
+
+\section{Adjunctions}

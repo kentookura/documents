@@ -1,9 +1,36 @@
-\section{Simplicial Complexes}
+\section{Simplicial Objects}
 
-Simplicial complexes are a generalization of directed graphs (among other things). They are widely used in algebraic topology because they provide a combinatorial model for "nice" topological spaces. Every covering $\mathcal{U}$ of a space $X$ gives rise to a simplicial complex $\mathcal{N(U)}$, the nerve of $\mathcal{U}$. The nerve theorem asserts that if a covering is "sufficiently nice", this simplicial complex is a good approximation for $X$, in the sense that $\mathcal{N(U)}$ presents the homotopy type of $X$.\\
+%Simplicial complexes are a generalization of directed graphs. While a graph has 0- and 1-dimensional components, a simplicial complex may have components of arbitrary dimension. We give first an abstract definition, which we will then interpret geometrically. The abstract definition then lends itself well to the generalization of simplicial set.
+%\marginnote{it might not pay off to do this fully formally}
+%\begin{definition}
+%  An abstract simplicial complex is a family of sets $\Sigma$ that are closed under taking subsets. That is, if $\sigma \in \Sigma$, then every nonempty subset of $\sigma$ is again in $\Sigma$.
+%\end{definition}
+
+Simplicial sets are widely used in algebraic topology. There are many reasons for this, one of them is that they provide a combinatorial model for "nice" topological spaces and their homotopy theory. Another is that very covering $\mathcal{U}$ of a space $X$ gives rise to a simplicial complex $\mathcal{N(U)}$, the nerve of $\mathcal{U}$. The nerve theorem asserts that if a covering is "sufficiently nice", this simplicial complex is a good approximation for $X$, in the sense that $\mathcal{N(U)}$ presents the homotopy type of $X$.\\
+
+They arise in other contexts as well. For instance, any category $C$ has an associated simplicial set, also called the nerve of $C$.
+
+\subsection{Simplicial Sets}
+Let $\Delta$ be the category whose objects are finite non-empty totally ordered sets 
+\[ [n] = \{0<1<\dots<n\}\]
+and whose morphism are (non-strict) order-preserving maps. These sets have the following relationship to their "neighbors":
+\begin{itemize}
+  \item There are $n+1$ injections $d^i: [n-1] \to [n]$, which "skips" the $i^{\text{th}}$ member
+  \item There are $n+1$ surjections $s^i: [n+1] \to [n]$ which maps two elemnts to $i$.
+\end{itemize}
+
+A simplicial set $X$ is a presheaf of sets on $\Delta$. More generally, a simplicial object of any category $C$ is a presheaf with values in $C$.  Explicitly, a simplicial object consists of:
+\begin{enumerate}
+  \item For each integer $n$ an object $X_n$ of $C$.
+  \item For each morphism $f: [n] \to [m]$ in $\Delta$ a map $X(f) : X_m \to X_n$
+  \item For each pair of compatible morphism $f: [n] \to [m]$ and $g: [m] \to [k]$ in $\Delta$ we have $X(g \circ f) = X(f) \circ X(g)$.
+\end{enumerate}
+To every simplicial set $X$ there is an associated topological space $|X|$, called its \textit{geometric realization}.
+
+
+
+
 Let $\mathcal{U} = \{U_\alpha\} = \{U_\alpha\}_{\alpha \in A}$ be a covering of a topological space or an object of a site $X$. For any finite set $l = \{a_0, \dots a_n\} \subseteq A$ we write $U_l$ or $U_{a_0 \cdots a_n}$ instead of $U_{a_0} \cap \cdots \cap U_{a_n}$ or $U_{a_0} \times_X \cdots \times_X U_{a_n}$.
-
-
 
 \begin{theorem}[Nerve Theorem]
   Let $X$ be a paracompact space and $\mathcal{U}$ an open cover of $X$ such that every nonempty intersection of finitely many $U_i \in \mathcal{U}$ is contractible. Then $X$ is homotopy equivalent to $\mathcal{N(U)}$.
@@ -12,3 +39,8 @@ Let $\mathcal{U} = \{U_\alpha\} = \{U_\alpha\}_{\alpha \in A}$ be a covering of 
   By a previous lemma. %4.G.2 in Hatcher, will try to a implement
 
 \end{proof}
+
+Related to the previous theorem is the following
+\begin{theorem}[Leray's theorem]
+  Let $\mathcal{F}$ be a sheaf on a topological space $X$ and $\mathfrak{U}$ an open cover of $X$. If $\mathcal{F}$ is acyclic on every finite intersection of elements of $\mathfrak{U}$, then \v{C}ech cohomology is equal to sheaf cohomology
+\end{theorem}

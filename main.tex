@@ -11,7 +11,11 @@
 \usepackage[textwidth=5.5in,textheight=9.2in,centering,a4paper]{geometry}
 \usepackage{nth}
 \usepackage{quiver}
+\usepackage{marginnote}
+\usepackage{tikz}
+\usepackage{mathtools} % \coloneqq
 
+\usetikzlibrary{patterns} 
 
 \setlength{\abovedisplayskip}{0pt}
 \setlength{\belowdisplayskip}{0pt}
@@ -33,6 +37,7 @@
 \newcommand{\Disc}{\mathsf{Disc}}
 \newcommand{\CoDisc}{\mathsf{CoDisc}}
 \newcommand{\Hom}{\mathsf{Hom}}
+\newcommand{\R}{\mathbb{R}}
 
 
 \theoremstyle{definition}
@@ -78,8 +83,10 @@
 
   \chapter*{Abstract}
   \input{chapters/abstract}
-  
+
+  \begin{KeepFromToc} 
   \tableofcontents
+  \end{KeepFromToc} 
 
   \chapter{Introduction}
   \input{chapters/introduction}
