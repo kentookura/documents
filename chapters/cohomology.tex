@@ -1,3 +1,11 @@
+\section{Betti numbers and singular cohomology}
+Betti numbers are invariants of topological spaces that, roughly speaking, quantify the number of "holes" that a topological space has in each dimension. For instance, the circle has 1 one-dimensional hole while the torus has 2. The sphere has 1 two-dimensional hole but no one-dimensional holes. 
+
+We now provide a rigorous justification of this intuitive picture.
+
+Let $X$ be a topological space and recall the definition of the standard simplices $\Delta^n$. The $\Hom$-functor $\Hom(\Delta^n, -)$ induces a simplicial set
+\[\Sigma X: [n] \mapsto \Hom(\Delta^n, X).\]
+A map $\sigma : \Delta^n \to X$ is called a singular $n$-simplex. One should think of $\Sigma X$ as a sort of triangulation of the space $X$. We now take for each $n$ the free abelian group $S_n(X)$ with basis $\Sigma X[n]$. An element $x$ of $S_n(X)$ is a formal linear combination $x = \sum_\sigma n_\sigma \sigma$ of $n$-simplices. 
 
 \section{De Rham Cohomology}
 
@@ -7,9 +15,9 @@ An important version of cohomology arises from the theory of integration on mani
 
 The Mayer-Vietoris sequence is an important tool for computing cohomology. It relates the cohomology of a space to the cohomology of its parts. To be more precise, suppose $U$ and $V$ are two subspaces of $X$ such that their interior covers $X$. Then, roughly speaking, there is an exact sequence
 
-$$
-\cdots \to H^n(X) \to H^n(U) \oplus  H^n(V) \to H^n(U\cap V) \to H^{n+1}(X) \to \cdots      
-$$
+\[
+\cdots \to H^n(X) \to H^n(U) \oplus  H^n(V) \to H^n(U\cap V) \to H^{n+1}(X) \to \cdots
+\]
 
 If the cohomology of $U$ and $V$ are known or easier to compute than the cohomology of$X$, this exact sequence provides a lot of information.
 
@@ -43,7 +51,7 @@ and in particular
             \right\}
             \stackrel{\sim}{\longrightarrow}
             \parbox[c]{0.5in}{\centering
-                $H^1(B, \mathcal{O}_B^\times)$}
+                $H^1(B, \OO_B^\times)$}
 \end{align}
 
 %TODO construct simplicial cohomology, follow Hatcher

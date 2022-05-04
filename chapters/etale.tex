@@ -1,5 +1,6 @@
 The \'etale cohomology of a scheme was defined by Alexandre Grothendieck, Michael Artin and Jean-Luis Verdier in the late 50's. Andr\'e Weil had conjectured the existence of a cohomology theory for varieties over finite fields, from which his famous Weil conjectures could be deduced.
 
+The topology that arises naturally in algebraic geometry is the Zariski topology. It is
 \section{\'Etale Morphisms}
 
 \subsubsection{Local homeomorphisms}
@@ -15,7 +16,14 @@ For varieties defined over an algebraically closed field $k$, one may use a form
   \[B = A[x_1, \dots, x_n]/(P_1, \dots, P_n)\]
   and $det(\partial P_i /\partial T_j)$ is a unit in $B$.
 \end{definition}
-This is not the standard definition of \'etale morphisms, but it is equivalent and according to the author the most intuitive.
+This is not the standard definition of \'etale morphisms. Usually, an \'etale morphism is defined to be a flat and unramified morphism. In differential geometry, these notions correspond to
+
+
+
+
+
+
+It formally mimics the notion of local homeomorphism in calculus. 
 
 \begin{proposition}
   The composite of two \'etale morphisms and base change of an \'etale morphims are \'etale.
@@ -25,9 +33,47 @@ Computing sheaf cohomology on a topological space using the formalism of derived
 \section{\'Etale sheaves}
 Examples of \'Etale sheaves:
 
-The structure sheaf $\mathcal{O}_{X_{\text{\'et}}}(U) = \Gamma(U, \mathcal{O}_U)$
+The structure sheaf $\OO_{X_{\text{\'et}}}(U) = \Gamma(U, \OO_U)$
 \par
 Representables $\mathcal{F}: \mathsf{Et}/X \to \Set , \mathcal{F}(U) = \Hom_X(U,Z)$ for any $X$-scheme $Z$. In particular this means that the \'etale topology is subcanonical.
 \par
 
-It is a theorem that any category of sheaves on a site (in particular a topological space) is an elementary topos. As such it carries a lot of structure
+%It is a theorem that any category of sheaves on a site (in particular a topological space) is a topos. As such it carries a lot of structure
+
+\begin{definition}
+  Let $X$ be a scheme and $x$ a point of $X$. An \'etale neighborhood of $x$ is defined to be a pair $(U, u)$ together with an \'etale morphism $\varphi: U \to X$ such that $\varphi(u) = x$. A morphism of \'etale neighborhoods $f: (V,v) \to (U,u)$ is a morphism of $X$-schemes $f: V \to U$ such that $f(v) = u$.
+\end{definition}
+We obtain the category of \'etale neigborhoods of $x$ for each $x \in X$.
+
+\begin{construction}
+  Let $S$ be a topological space and let $O(S)$ be its lattice of open sets. Consider the sublattice $O_x(S) = \{ U \in O(S) | x \in U \}$. For two open sets $U, V \in O_x(S)$, the intersection $U \cap V$ is contained in both $U$ and $V$.
+  A generalization of this situation is that of a \textit{cofiltered category}. We say that a category is \textit{cofilterd} if
+  % finish this
+\end{construction}
+
+\begin{definition}
+  Let $\varphi: X \to Y$ be a morphism of schemes over a field $k$. We say $\varphi$ is an affine map if every open affine subscheme $U = \Spec(R) \subseteq Y$ has as preimage an affine open subscheme $f^{-1}(U) = \Spec(S)$ of $X$. If, in addition, the corresponding map $R \to S$ makes $S$ into a finitely generated $R$-module, we say that $\varphi$ is finite.
+\end{definition}
+
+\begin{proposition}
+Let $k$ be a field. Then $X$ is finite \'etale over $\Spec(k)$ iff $X$ is isomorphic do a disjoint union $\amalg \Spec(K_i)$, where each $K_i$ is a finite separable extension of $k$
+\end{proposition}
+\begin{proof}
+  Consider first the case that $X$ is connected. It follows that $X = \Spec(A)$ and that $A$ is a vector space of finite dimension over $k$. If $A$ is not a field then it has a
+\end{proof}
+
+
+\section{The \'Etale Fundamental Group}
+\subsection{The Fundamental Group in Topology}
+\subsection{Classical Galois Theory}
+Recall the main theorem of classical Galois theory:
+\begin{theorem}[Main Theorem of Galois theory for finite extensions]
+  Let $L/k$ be a finite Galois extension with Galois group $G$. There is an inclusion reversing bijection between subextension $ L \supset M \supset k$ and subgroups $H \subset G$. It is given by the maps
+  \begin{align*}
+    M &\mapsto \text{Aut}(L/M) \\
+    H &\mapsto L^H.
+  \end{align*}
+  %missing some explanation
+\end{theorem}
+This theorem fails for infinite Galois extensions, as the following example shows:
+% missing example

@@ -1,7 +1,6 @@
 \documentclass[11pt, openany]{memoir}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{stix2}
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{amsthm}
@@ -14,6 +13,9 @@
 \usepackage{marginnote}
 \usepackage{tikz}
 \usepackage{mathtools} % \coloneqq
+%\usepackage{stix2}
+\usepackage{newtxtext}
+\usepackage{newtxmath}
 
 \usetikzlibrary{patterns} 
 
@@ -32,12 +34,15 @@
     urlcolor=black
 }
 
-\newcommand{\Top}{\mathsf{Top}}
+\renewcommand{\Top}{\mathsf{Top}}
 \newcommand{\Set}{\mathsf{Set}}
 \newcommand{\Disc}{\mathsf{Disc}}
 \newcommand{\CoDisc}{\mathsf{CoDisc}}
 \newcommand{\Hom}{\mathsf{Hom}}
 \newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\OO}{\mathcal{O}}
+\DeclareMathOperator{\Spec}{Spec}
 
 
 \theoremstyle{definition}
@@ -91,29 +96,24 @@
   \chapter{Introduction}
   \input{chapters/introduction}
 
+  \chapter{Simplicial Methods}
+  \input{chapters/simplicial}
+
   \chapter{Cohomology in Topology}
+  \label{chap:cohomology}
   \input{chapters/cohomology}
 
-  \chapter{Sites, Sheaves and Grothendieck Topoi}
+  \chapter{Sites and Sheaves}
   \input{chapters/sheaves}
 
   \chapter{\'Etale Cohomology}
+  \input{chapters/scheme}
   \input{chapters/etale}
-
-  \chapter{Simplicial Methods}
-  \input{chapters/simplicial}
 
   \chapter{\'Etale Homotopy}
 
   \chapter{Conclusion}
   \input{chapters/conclusion}
-
-  % I will roughly follow sheaves in geometry and logic, their review of category theory is good
-  \appendix
-  \chapter{Review of categorical notions}
-  \input{chapters/categories}
-  \chapter{The definition of a Scheme}
-  \input{chapters/scheme}
 
   \bibliographystyle{plain}
   \bibliography{refs}

@@ -1,3 +1,13 @@
+\subsection{The cochain complex}
+\begin{definition}
+  The $n$-dimensional standard simplex is the set
+  \[
+    \Delta^n \coloneqq \Big\{ (t_0, \dots , t_n) \in \R^{n+1} \ \Big\vert \ \sum_{i = 0}^n t_i = 1, t_i \ge 0 \Big\} .
+  \]
+  Explicitly, $\Delta^1$ is a closed interval, $\Delta^2$ is an equilateral triangle and $\Delta^3$ is a tetrahedon.
+  
+\end{definition}
+
 \section{Simplicial Objects}
 
 %Simplicial complexes are a generalization of directed graphs. While a graph has 0- and 1-dimensional components, a simplicial complex may have components of arbitrary dimension. We give first an abstract definition, which we will then interpret geometrically. The abstract definition then lends itself well to the generalization of simplicial set.
@@ -11,9 +21,9 @@ Simplicial sets are widely used in algebraic topology. There are many reasons fo
 They arise in other contexts as well. For instance, any category $C$ has an associated simplicial set, also called the nerve of $C$.
 
 \subsection{Simplicial Sets}
-Let $\Delta$ be the category whose objects are finite non-empty totally ordered sets 
+Let $\Delta$ be the category (sometimes called the order category) whose objects are finite non-empty totally ordered sets 
 \[ [n] = \{0<1<\dots<n\}\]
-and whose morphism are (non-strict) order-preserving maps. These sets have the following relationship to their "neighbors":
+and whose morphism are (non-strict) order-preserving maps. This cateogry has the following nice generating set of morphisms:
 \begin{itemize}
   \item There are $n+1$ injections $d^i: [n-1] \to [n]$, which "skips" the $i^{\text{th}}$ member
   \item There are $n+1$ surjections $s^i: [n+1] \to [n]$ which maps two elemnts to $i$.
@@ -27,7 +37,7 @@ A simplicial set $X$ is a presheaf of sets on $\Delta$. More generally, a simpli
 \end{enumerate}
 To every simplicial set $X$ there is an associated topological space $|X|$, called its \textit{geometric realization}.
 
-
+The category $\Delta$ has for every $n \ge 0$ a full subcategory $\Delta_{\le n}$ consisting of objects $[k]$ for $k \le n$. Because of contravariance, we can truncate a simplicial object $X: \Delta \to C$ to an $n$-truncated simplicial object.
 
 
 Let $\mathcal{U} = \{U_\alpha\} = \{U_\alpha\}_{\alpha \in A}$ be a covering of a topological space or an object of a site $X$. For any finite set $l = \{a_0, \dots a_n\} \subseteq A$ we write $U_l$ or $U_{a_0 \cdots a_n}$ instead of $U_{a_0} \cap \cdots \cap U_{a_n}$ or $U_{a_0} \times_X \cdots \times_X U_{a_n}$.
@@ -44,3 +54,6 @@ Related to the previous theorem is the following
 \begin{theorem}[Leray's theorem]
   Let $\mathcal{F}$ be a sheaf on a topological space $X$ and $\mathfrak{U}$ an open cover of $X$. If $\mathcal{F}$ is acyclic on every finite intersection of elements of $\mathfrak{U}$, then \v{C}ech cohomology is equal to sheaf cohomology
 \end{theorem}
+
+\subsection{The coskeleton functors}
+
