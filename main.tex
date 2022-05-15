@@ -10,12 +10,13 @@
 \usepackage[textwidth=5.5in,textheight=9.2in,centering,a4paper]{geometry}
 \usepackage{nth}
 \usepackage{quiver}
-\usepackage{marginnote}
 \usepackage{tikz}
 \usepackage{mathtools} % \coloneqq
+\usepackage{extpfeil} % stacked arrows
+\usepackage{lmodern}
 %\usepackage{stix2}
-\usepackage{newtxtext}
-\usepackage{newtxmath}
+%\usepackage{newtxtext}
+%\usepackage{newtxmath}
 
 \usetikzlibrary{patterns} 
 
@@ -34,7 +35,7 @@
     urlcolor=black
 }
 
-\renewcommand{\Top}{\mathsf{Top}}
+\newcommand{\Top}{\mathsf{Top}}
 \newcommand{\Set}{\mathsf{Set}}
 \newcommand{\Disc}{\mathsf{Disc}}
 \newcommand{\CoDisc}{\mathsf{CoDisc}}
@@ -52,22 +53,31 @@
 \newtheorem{example}{Example}
 \newtheorem{lemma}{Lemma}
 \newtheorem{theorem}{Theorem}
+\newtheorem{remark}{Remark}
+
+\newextarrow{\xbigtoto}{{20}{20}{20}{20}}
+   {\bigRelbar\bigRelbar{\bigtwoarrowsleft\rightarrow\rightarrow}}
 
 \makeatletter
-\newcommand{\colim@}[2]{%
-  \vtop{\m@th\ialign{##\cr
-    \hfil$#1\operator@font lim$\hfil\cr
-    \noalign{\nointerlineskip\kern1.5\ex@}#2\cr
-    \noalign{\nointerlineskip\kern-\ex@}\cr}}%
-}
+%\newcommand{\colim@}[2]{%
+%  \vtop{\m@th\ialign{##\cr
+%    \hfil$#1\operator@font lim$\hfil\cr
+%    \noalign{\nointerlineskip\kern1.5\ex@}#2\cr
+%    \noalign{\nointerlineskip\kern-\ex@}\cr}}%
+%}
+%\newcommand{\colim}{%
+%  \mathop{\mathpalette\colim@{\rightarrowfill@\textstyle}}\nmlimits@
+%}
 \newcommand{\colim}{%
-  \mathop{\mathpalette\colim@{\rightarrowfill@\textstyle}}\nmlimits@
+  \mathop{\mathpalette\varlim@{\rightarrowfill@\scriptscriptstyle}}\nmlimits@
 }
 \newcommand{\op}{
-  o\kern-0.10em p
+  %o\kern-0.10em p
+  op
 }
 \newcommand{\Op}{
-  O\kern-0.10em p
+  %O\kern-0.10em p
+  Op
 }
 \newcommand{\Ext}{
   E\kern-0.06em x\kern-0.02em t
@@ -96,19 +106,17 @@
   \chapter{Introduction}
   \input{chapters/introduction}
 
-  \chapter{Simplicial Methods}
-  \input{chapters/simplicial}
 
-  \chapter{Cohomology in Topology}
-  \label{chap:cohomology}
-  \input{chapters/cohomology}
-
-  \chapter{Sites and Sheaves}
+  \chapter{Sheaves}
   \input{chapters/sheaves}
 
   \chapter{\'Etale Cohomology}
   \input{chapters/scheme}
   \input{chapters/etale}
+
+  \chapter{Simplicial Methods}
+  \input{chapters/simplicial}
+
 
   \chapter{\'Etale Homotopy}
 
