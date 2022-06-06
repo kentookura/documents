@@ -1,7 +1,7 @@
 %Much of modern geometry can be formulated in the language of sheaves. Sheaves are data that are given on a topological space that may be glued. One may more generally define sheaves on a category equipped with a so-called Grothendieck topology. A sheaf is a geometric gadget that relates local data (say, on a topological space) to global data. Sheaf theory gives us tools to systematically analyse local-global phenomena which are fundamental in geometry and topology.
 
 \begin{construction}\label{def:opens}
-  Let $X$ be a topological space. The open sets of $X$ are partially ordered by inclusion: \[V \le W \quad \text{iff} \quad V \subseteq W.\]
+  Let $X$ be a topological space. The open sets of $X$ are partially ordered by inclusion: \[V \le W \quad \text{when} \quad V \subseteq W.\]
   We may thus, as with any poset, consider the category of open sets of $X$, sometimes denoted by $\Op(X)$. By abuse of notation, we will often write $X$ instead of $\Op(X)$.
 \end{construction}
 
@@ -10,33 +10,54 @@
 \end{remark}
 
 \begin{definition}[Presheaves] 
-  Let $X$ be a topological space. A \textit{presheaf of sets} $\mathcal{F}$ on $X$ is a functor $X^{op} \to \Set$. 
+  Let $X$ be a topological space. A \textit{presheaf of sets} $\mathcal{F}$ on $X$ is a functor $X^{op} \to \Set$. Given an inclusion of open sets $U \subseteq V$, the corresponding map $\mathcal{F}(V) \to \mathcal{F}(U)$ is called the \textit{restriction map}. The elements of $\mathcal{F}(U)$ are called the sections of $\mathcal{F}$ over $U$. On sections one often denotes the map by $s \mapsto s|_U$.
 \end{definition}
 
 \begin{definition}[Sheaves]
-  A presheaf $\mathcal{F}$ on $X$ is a \textit{sheaf}, if for any covering ${U_i}$ of $U$, the following diagram is an equalizer:
-  \[\mathcal{F}(U) \to \prod_{i} \mathcal{F}(U_i) \xbigtoto{} \prod_{i,j} \mathcal{F}(U_i \cap U_j)\]
+  A presheaf $\mathcal{F}$ on $X$ is a \textit{sheaf}, if for any covering $\{U_i\}$ of $U$, the following diagram is an equalizer:
+  \begin{equation} \label{equalizer:1}
+    \mathcal{F}(U) \to \prod_{i} \mathcal{F}(U_i) \xbigtoto{} \prod_{i,j} \mathcal{F}(U_i \cap U_j)
+  \end{equation}
 \end{definition}
 
-We need to explain the above diagram. First, note that for two subsets $U_i$ and $U_j$, there are the inclusions
+We need to explain the above diagram. First, note that if two subsets $U_1$ and $U_2$ form a cover of $X$, there are the inclusions
 
-% https://q.uiver.app/?q=WzAsMyxbMSwwLCJVX3tpan0iXSxbMCwxLCJVX2kiXSxbMiwxLCJVX2oiXSxbMCwxXSxbMCwyXV0=
+% https://q.uiver.app/?q=WzAsNCxbMSwwLCJVX3sxMn0iXSxbMCwxLCJVXzEiXSxbMiwxLCJVXzIiXSxbMSwyLCJYIl0sWzAsMV0sWzAsMl0sWzEsM10sWzIsM11d
 \[\begin{tikzcd}
-	& {U_{ij}} \\
-	{U_i} && {U_j}
+	& {U_{12}} \\
+	{U_1} && {U_2} \\
+	& X,
 	\arrow[from=1-2, to=2-1]
-	\arrow[from=1-2, to=2-3].
+	\arrow[from=1-2, to=2-3]
+	\arrow[from=2-1, to=3-2]
+	\arrow[from=2-3, to=3-2]
 \end{tikzcd}\]
+where $U_{12}$ is shorthand for $U_1 \times_X U_2 = U_1 \cap U_2$.
 
 By the contravariance of $\mathcal{F}$, there is a corresponding diagram
 
-% https://q.uiver.app/?q=WzAsMyxbMCwxLCJcXG1hdGhjYWx7Rn0oVV9pKSJdLFsxLDAsIlxcbWF0aGNhbHtGfShVX3tpan0pIl0sWzIsMSwiXFxtYXRoY2Fse0Z9KFVfaikiXSxbMCwxXSxbMiwxXV0=
+% https://q.uiver.app/?q=WzAsNCxbMCwxLCJcXG1hdGhjYWx7Rn0oVV9pKSJdLFsxLDAsIlxcbWF0aGNhbHtGfShVX3tpan0pIl0sWzIsMSwiXFxtYXRoY2Fse0Z9KFVfaikiXSxbMSwyLCJcXG1hdGhjYWx7Rn0oWCkiXSxbMCwxXSxbMiwxXSxbMywwXSxbMywyXV0=
 \[\begin{tikzcd}
-	& {\mathcal{F}(U_{ij})} \\
-	{\mathcal{F}(U_i)} && {\mathcal{F}(U_j)}
+	& {\mathcal{F}(U_{12})} \\
+	{\mathcal{F}(U_1)} && {\mathcal{F}(U_2)} \\
+	& {\mathcal{F}(X)}.
 	\arrow[from=2-1, to=1-2]
 	\arrow[from=2-3, to=1-2]
-\end{tikzcd}.\]
+	\arrow[from=3-2, to=2-1]
+	\arrow[from=3-2, to=2-3]
+\end{tikzcd}\]
+
+When taking the product in the middle row, we obtain the diagram 
+% https://q.uiver.app/?q=WzAsMyxbMiwwLCJcXG1hdGhjYWx7Rn0oVV97MTJ9KSJdLFswLDAsIlxcbWF0aGNhbHtGfShYKSJdLFsxLDAsIlxcbWF0aGNhbHtGfShVXzEpXFx0aW1lc1xcbWF0aGNhbHtGfShVXzIpIl0sWzEsMl0sWzIsMCwiIiwwLHsib2Zmc2V0IjoxfV0sWzIsMCwiIiwwLHsib2Zmc2V0IjotMX1dXQ==
+\[\begin{tikzcd}
+	{\mathcal{F}(X)} & {\mathcal{F}(U_1)\times\mathcal{F}(U_2)} & {\mathcal{F}(U_{12})}.
+	\arrow[from=1-1, to=1-2]
+	\arrow[shift right=1, from=1-2, to=1-3]
+	\arrow[shift left=1, from=1-2, to=1-3]
+\end{tikzcd}\]
+
+Given two section $s_1 \in \mathcal{F}(U_1)$ and $s_2 \in \mathcal{F}(U_2)$, the two parallel arrows map $(s_1, s_2)$ to $s_1|_{U_{12}}$ and $s_2|_{U_{12}}$. To say that $\mathcal{F}(X)$ is an equalizer in the above diagram amounts to saying that the sections of $\mathcal{F}(X)$ are recoverable from those sections on the sets $U_1$ and $U_2$ which agree on the overlap $U_{12}$.
+
 
 \begin{remark}
   Recall that a category $\mathcal{C}$ is \textit{cofiltered} if the following holds:
@@ -49,8 +70,34 @@ By the contravariance of $\mathcal{F}$, there is a corresponding diagram
 
 The purpose of the next definition is to capture the local behavior of a sheaf around a point.
 \begin{definition}
-  Let $x \in X$ be a point. The stalk of $\mathcal{F}$ at $x$ is defined to be \[ \mathcal{F}_x \coloneqq \colim_{U \ni x}\mathcal{F}(U)\]
+  Let $x \in X$ be a point. The stalk of $\mathcal{F}$ at $x$ is defined to be \[ \mathcal{F}_x \coloneqq \colim_{U \ni x}\mathcal{F}(U).\]
 \end{definition}
+
+\begin{example}
+  Consider a manifold $M$, together with the sheaf which sends an open set $U$ to the set of real valued functions $f: U \to \R$. The stalks $\mathcal{F}_x$ of this sheaf are local rings. Explicitly, the stalk $\mathcal{F}_x$ is  $\{ (U,s) | x \in U,  s \in \mathcal{F}(U) \}/\sim$, where $(U,s)$ and $(V, t)$ are equivalent if there is an open set $W \subseteq U \cap V$ with $s|_W = t|_w$.
+
+\end{example}
+
+\begin{example}
+  The stalk of the structure sheaf of $\Spec(R)$ at a point $p$ is the localization $R_p$. Its maximal ideal is generated by $p$.
+\end{example}
+
+
+\section{Maps of sheaves}
+Since sheaves are presheaves, we define a map of sheaves $\varphi: \mathcal{F} \to \mathcal{G}$ as a natural transformation $\mathcal{F} \to \mathcal{G}$ between functors. Explicitly this natural transformation consists of a group homomorphism $\varphi_U: \mathcal{F}(U) \to \mathcal{G}(U)$ for each $U \in X$ that is compatible with the restrictions in the sense that the following diagram commutes:
+
+% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXG1hdGhjYWx7Rn0oVikiXSxbMCwxLCJcXG1hdGhjYWx7Rn0oVSkiXSxbMSwwLCJcXG1hdGhjYWx7R30oVikiXSxbMSwxLCJcXG1hdGhjYWx7R30oVSkiXSxbMCwxLCJyZXNfe1YsVX0iLDJdLFswLDIsIlxcdmFycGhpX1YiXSxbMiwzLCJyZXNfe1YsVX0iXSxbMSwzLCJcXHZhcnBoaV9VIl1d
+\[\begin{tikzcd}
+	{\mathcal{F}(V)} & {\mathcal{G}(V)} \\
+	{\mathcal{F}(U)} & {\mathcal{G}(U)}
+	\arrow["{\cdot|_U}"', from=1-1, to=2-1]
+	\arrow["{\varphi_V}", from=1-1, to=1-2]
+	\arrow["{\cdot|_U}", from=1-2, to=2-2]
+	\arrow["{\varphi_U}", from=2-1, to=2-2]
+\end{tikzcd}\]
+
+Let $\varphi : \mathcal{F} \to \mathcal{G}$ be a morphism sheaves of abelian groups on $X$. The sheaf kernel of the map $\varphi$ is the presheaf $U \mapsto ker(\varphi)$. The sheaf condition on $\mathcal{G}$ ensures that this presheaf is in fact a sheaf.
+
 
 %% TODO: replace res with id
 %
