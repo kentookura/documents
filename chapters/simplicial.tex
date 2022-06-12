@@ -16,16 +16,16 @@
 %  An abstract simplicial complex is a family of sets $\Sigma$ that are closed under taking subsets. That is, if $\sigma \in \Sigma$, then every nonempty subset of $\sigma$ is again in $\Sigma$.
 %\end{definition}
 
-Simplicial sets are widely used in algebraic topology. There are many reasons for this, one of them is that they provide a combinatorial model for "nice" topological spaces and their homotopy theory. Another is that very covering $\mathcal{U}$ of a space $X$ gives rise to a simplicial complex $\mathcal{N(U)}$, the nerve of $\mathcal{U}$. The nerve theorem asserts that if a covering is "sufficiently nice", this simplicial complex is a good approximation for $X$, in the sense that $\mathcal{N(U)}$ presents the homotopy type of $X$.\\
+Simplicial sets are widely used in algebraic topology. There are many reasons for this, one of them is that they provide a combinatorial model for ``nice'' topological spaces and their homotopy theory. Another is that very covering $\mathcal{U}$ of a space $X$ gives rise to a simplicial complex $\mathcal{N(U)}$, the nerve of $\mathcal{U}$. The nerve theorem asserts that if a covering is ``sufficiently nice'', this simplicial complex is a good approximation for $X$, in the sense that $\mathcal{N(U)}$ presents the homotopy type of $X$.\\
 
 They arise in other contexts as well. For instance, any category $C$ has an associated simplicial set, also called the nerve of $C$.
 
 \subsection{Simplicial Sets}
 Let $\Delta$ be the category (sometimes called the order category) whose objects are finite non-empty totally ordered sets 
-\[ [n] = \{0<1<\dots<n\}\]
+\[ [n] = \{0<1<\cdots<n\}\]
 and whose morphism are (non-strict) order-preserving maps. This cateogry has the following nice generating set of morphisms:
 \begin{itemize}
-  \item There are $n+1$ injections $d^i: [n-1] \to [n]$, which "skips" the $i^{\text{th}}$ member
+  \item There are $n+1$ injections $d^i: [n-1] \to [n]$, which ``skips'' the $i^{\text{th}}$ member
   \item There are $n+1$ surjections $s^i: [n+1] \to [n]$ which maps two elemnts to $i$.
 \end{itemize}
 

@@ -4,17 +4,31 @@
   Let $X$ be a topological space. The open sets of $X$ are partially ordered by inclusion: \[V \le W \quad \text{when} \quad V \subseteq W.\]
   We may thus, as with any poset, consider the category of open sets of $X$, sometimes denoted by $\Op(X)$. By abuse of notation, we will often write $X$ instead of $\Op(X)$.
 \end{construction}
-
 \begin{remark}
  In the category $\Op(X)$ pullbacks correspond to intersections and pushouts correspond to unions. By the definition of topological space, this means that $\Op(X)$ has finite pullbacks and arbitrary pushouts. 
 \end{remark}
 
+\begin{definition}
+	Let $\mathcal{C}$ be a category. A Grothendieck topology on $C$ is given by a set $\text{Cov}(\mathcal{C})$ of families of morphisms ${U_i \to U}$ for each object $U$ of $C$ with the following properties:
+	\begin{enumerate}
+		\item If $V \to U$ is an isomorphism, then $\{V \to U\} \in \mathcal{C}$
+		\item If $\{U_i \to U\} \in \text{Cov}(\mathcal(C))$, and for each $U_i$ we have $\{V_{ij} \to Ui\}$, the composition $\{V_{ij} \to U\}$ is in $\text{Cov}(\mathcal{C})$.
+		\item If $\{U_i \to U\} \in \text{Cov}(\mathcal(C))$, and $V \to U$ is a morphism, then $U_i \times_U V$ exists and 
+		$\{U_i \times_U V \to V\}$ is in $\text{Cov}(\mathcal{C})$.
+	\end{enumerate}	
+	An element $\{U_i \to U\}$ of $\text{Cov}(\mathcal{C})$ is called a cover of $U$. A category $C$ together with a Grothendieck topology is called a \textit{site}.
+\end{definition}
+\begin{remark}
+	A topological space $X$ may be equipped with the structure of a site by declaring the coverings of open sets $U \subseteq X$ to be those families of open sets $\{U_i\}$ such that $\bigcup U_i = U$.
+\end{remark}
+
+
 \begin{definition}[Presheaves] 
-  Let $X$ be a topological space. A \textit{presheaf of sets} $\mathcal{F}$ on $X$ is a functor $X^{op} \to \Set$. Given an inclusion of open sets $U \subseteq V$, the corresponding map $\mathcal{F}(V) \to \mathcal{F}(U)$ is called the \textit{restriction map}. The elements of $\mathcal{F}(U)$ are called the sections of $\mathcal{F}$ over $U$. On sections one often denotes the map by $s \mapsto s|_U$.
+  Let $X$ be a category. A \textit{presheaf of sets} $\mathcal{F}$ on $X$ is a functor $X^{op} \to \Set$. Given an morphism $U \subseteq V$, the corresponding map $\mathcal{F}(V) \to \mathcal{F}(U)$ is called the \textit{restriction map}. The elements of $\mathcal{F}(U)$ are called the sections of $\mathcal{F}$ over $U$. On sections one often denotes the map by $s \mapsto s|_U$.
 \end{definition}
 
 \begin{definition}[Sheaves]
-  A presheaf $\mathcal{F}$ on $X$ is a \textit{sheaf}, if for any covering $\{U_i\}$ of $U$, the following diagram is an equalizer:
+  Let $(C,J)$ be a site.  A presheaf $\mathcal{F}$ on $C$ is a \textit{sheaf}, if for any covering $\{U_i\}$ of $U$, the following diagram is an equalizer:
   \begin{equation} \label{equalizer:1}
     \mathcal{F}(U) \to \prod_{i} \mathcal{F}(U_i) \xbigtoto{} \prod_{i,j} \mathcal{F}(U_i \cap U_j)
   \end{equation}
@@ -56,22 +70,18 @@ When taking the product in the middle row, we obtain the diagram
 	\arrow[shift left=1, from=1-2, to=1-3]
 \end{tikzcd}\]
 
-Given two section $s_1 \in \mathcal{F}(U_1)$ and $s_2 \in \mathcal{F}(U_2)$, the two parallel arrows map $(s_1, s_2)$ to $s_1|_{U_{12}}$ and $s_2|_{U_{12}}$. To say that $\mathcal{F}(X)$ is an equalizer in the above diagram amounts to saying that the sections of $\mathcal{F}(X)$ are recoverable from those sections on the sets $U_1$ and $U_2$ which agree on the overlap $U_{12}$.
+Given two section $s_1 \in \mathcal{F}(U_1)$ and $s_2 \in \mathcal{F}(U_2)$, the two parallel arrows map $(s_1, s_2)$ to $s_1|_{U_{12}}$ and $s_2|_{U_{12}}$. To say that $\mathcal{F}(X)$ is an equalizer in the above diagram amounts to saying that the sections of $\mathcal{F}(X)$ are recoverable from those sections on the sets $U_1$ and $U_2$ which agree on the overlap $U_{12}$. The diagram\eqref{equalizer:1} is the straightforward generalisation of the preceding discussion for a cover consisting of more than 2 open sets.
 
 
-\begin{remark}
-  Recall that a category $\mathcal{C}$ is \textit{cofiltered} if the following holds:
-  \begin{enumerate}
-    \item For any pair of objects $a_1$ and $a_2$, there is an object $b$ with maps $b \to a_1$ and $b \to a_2$.
-    \item Every pair of morphisms $f,g: a \to b$, there is an equalizer $h: c \to a$. This means that $f \circ h = g \circ h$.
-  \end{enumerate} 
-  Let $x$ be a point of $X$. The subcategory of $\Op(X)$ consisting of all sets containing $x$ is cofilterd. This means for two open sets $U$ and $V$, there is an open set contained in both of them, namely $U \cap V$. The second condition does not need to be verified, since there is at most one morphism between any two open sets.
-\end{remark}
+
 
 The purpose of the next definition is to capture the local behavior of a sheaf around a point.
 \begin{definition}
-  Let $x \in X$ be a point. The stalk of $\mathcal{F}$ at $x$ is defined to be \[ \mathcal{F}_x \coloneqq \colim_{U \ni x}\mathcal{F}(U).\]
+  Let $X$ be a topological space and  $x \in X$ be a point. The stalk of $\mathcal{F}$ at $x$ is defined to be \[ \mathcal{F}_x \coloneqq \colim_{U \ni x}\mathcal{F}(U).\]
 \end{definition}
+\begin{proposition}
+	Let $\mathcal{F}$ be a sheaf and $s,t$ be two sections of $\mathcal{F}(U)$. Then $s = t$ if and only if $s_x = t_x$ for all
+\end{proposition}
 
 \begin{example}
   Consider a manifold $M$, together with the sheaf which sends an open set $U$ to the set of real valued functions $f: U \to \R$. The stalks $\mathcal{F}_x$ of this sheaf are local rings. Explicitly, the stalk $\mathcal{F}_x$ is  $\{ (U,s) | x \in U,  s \in \mathcal{F}(U) \}/\sim$, where $(U,s)$ and $(V, t)$ are equivalent if there is an open set $W \subseteq U \cap V$ with $s|_W = t|_w$.
@@ -96,8 +106,21 @@ Since sheaves are presheaves, we define a map of sheaves $\varphi: \mathcal{F} \
 	\arrow["{\varphi_U}", from=2-1, to=2-2]
 \end{tikzcd}\]
 
-Let $\varphi : \mathcal{F} \to \mathcal{G}$ be a morphism sheaves of abelian groups on $X$. The sheaf kernel of the map $\varphi$ is the presheaf $U \mapsto ker(\varphi)$. The sheaf condition on $\mathcal{G}$ ensures that this presheaf is in fact a sheaf.
+We obtain the category $\mathsf{Sh}(C,J)$ of sheaves on $C$ with respect to the topology $J$. This is in fact a full subcategory of presheaves $\Set^{C^{op}}$. 
 
+Let $\varphi : \mathcal{F} \to \mathcal{G}$ be a morphism sheaves of abelian groups on $X$. The sheaf kernel of the map $\varphi$ is the presheaf $U \mapsto \ker(\varphi)$. The sheaf condition on $\mathcal{G}$ ensures that this presheaf is in fact a sheaf. 
+The map $U \to \text{im}\varphi(U)$ does not in general define a sheaf, but there is an "optimal way" to turn a presheaf into a sheaf. This is the associated sheaf functor.
+
+\begin{theorem}
+  Given a presheaf $\mathcal{F}$ there is a unique morphism of presheaves $a : \mathcal{F} \to \mathcal{F}^{+}$ with the property that for any sheaf $\mathcal{G}$ and 
+\end{theorem}
+
+The terminal object in the category of sheaves is the constant sheaf associated to the one points set $*$.
+
+\begin{definition}
+  A sequence of sheaves $\to \mathcal{F}_{i-1} \to \mathcal{F}_{i} \to \mathcal{F}_{i+1} \to$
+	is exact if for each $i$, $\ker \varphi_i = im \varpi_{i-1}$.
+\end{definition}
 
 %% TODO: replace res with id
 %

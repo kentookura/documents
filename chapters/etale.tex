@@ -1,85 +1,178 @@
-The \'etale cohomology of a scheme was defined by Alexandre Grothendieck, Michael Artin and Jean-Luis Verdier in the late 50's. Andr\'e Weil had conjectured the existence of a cohomology theory for varieties over finite fields, from which his famous Weil conjectures could be deduced.
-
 The topology that arises naturally in algebraic geometry is the Zariski topology.
 
 \begin{theorem}
   If $X$ is an irreducible topological space and $\mathcal{F}$ is a constant sheaf, then $H^r(X, \mathcal{F})$ for all $r>0$.
 \end{theorem}
-
-
-\section{\'Etale Morphisms}
-
-\subsubsection{Local homeomorphisms}
-In topology, a continuous map $f: X \to Y$ is called a local homeomorphism if $f$ restricts to a homeomorphism around any point $x \in X$. More precisely, for any point $x \in X$ there is a neighborhood $U$ of $x$ such that $f(U)$ is open in $Y$ and $p|_U: U \to p(U)$ is a homeomorphism. In this situation one also says that $X$ is an \'etale space over $Y$.
-In the case of manifolds, this concept is easy to picture, since locally a manifold looks like $\mathbb{R}^n$ for some $n \in \mathbb{N}$. In the case of schemes, however, this is trickier.
-
-\subsubsection{\'Etale morphsims of nonsingular varieties}
-For varieties defined over an algebraically closed field $k$, one may use a formalism in direct analogy to smooth manifolds to define \'etale morphsims, namely the formalism of tangent spaces. However, instead of defining the tangent space at a point $p \in X$ analytically, we define it algebraically.
-
-\subsubsection{\'Etale morphisms of affine schemes}
-\begin{definition}
-  A morphism $f: Y \to X$ is called an \'etale morphism if for every $y \in Y$ there exist open affine neighborhoods $V = spec B$ of $y$ and $Y = spec A$ of $f(y)$ such that 
-  \[B = A[x_1, \dots, x_n]/(P_1, \dots, P_n)\]
-  and $det(\partial P_i /\partial T_j)$ is a unit in $B$.
-\end{definition}
-This is not the standard definition of \'etale morphisms. Usually, an \'etale morphism is defined to be a flat and unramified morphism. In differential geometry, these notions correspond to
-
-
-
-
-
-
-It formally mimics the notion of local homeomorphism in calculus. 
-
-\begin{proposition}
-  The composite of two \'etale morphisms and base change of an \'etale morphims are \'etale.
-\end{proposition}
-
-Computing sheaf cohomology on a topological space using the formalism of derived functors is often unfeasable. Calculations are often done using Cech cohomology. The same is possible for \'etale cohomology. The definition of Cech cohomology for \'etale sheaves works with basically no modifications.
-\section{\'Etale sheaves}
-Examples of \'Etale sheaves:
-
-The structure sheaf $\OO_{X_{\text{\'et}}}(U) = \Gamma(U, \OO_U)$
-\par
-Representables $\mathcal{F}: \mathsf{Et}/X \to \Set , \mathcal{F}(U) = \Hom_X(U,Z)$ for any $X$-scheme $Z$. In particular this means that the \'etale topology is subcanonical.
-\par
-
-%It is a theorem that any category of sheaves on a site (in particular a topological space) is a topos. As such it carries a lot of structure
-
-\begin{definition}
-  Let $X$ be a scheme and $x$ a point of $X$. An \'etale neighborhood of $x$ is defined to be a pair $(U, u)$ together with an \'etale morphism $\varphi: U \to X$ such that $\varphi(u) = x$. A morphism of \'etale neighborhoods $f: (V,v) \to (U,u)$ is a morphism of $X$-schemes $f: V \to U$ such that $f(v) = u$.
-\end{definition}
-We obtain the category of \'etale neigborhoods of $x$ for each $x \in X$.
-
-\begin{construction}
-  Let $S$ be a topological space and let $O(S)$ be its lattice of open sets. Consider the sublattice $O_x(S) = \{ U \in O(S) | x \in U \}$. For two open sets $U, V \in O_x(S)$, the intersection $U \cap V$ is contained in both $U$ and $V$.
-  A generalization of this situation is that of a \textit{cofiltered category}. We say that a category is \textit{cofilterd} if
-  % finish this
-\end{construction}
-
-\begin{definition}
-  Let $\varphi: X \to Y$ be a morphism of schemes over a field $k$. We say $\varphi$ is an affine map if every open affine subscheme $U = \Spec(R) \subseteq Y$ has as preimage an affine open subscheme $f^{-1}(U) = \Spec(S)$ of $X$. If, in addition, the corresponding map $R \to S$ makes $S$ into a finitely generated $R$-module, we say that $\varphi$ is finite.
-\end{definition}
-
-\begin{proposition}
-Let $k$ be a field. Then $X$ is finite \'etale over $\Spec(k)$ iff $X$ is isomorphic do a disjoint union $\amalg \Spec(K_i)$, where each $K_i$ is a finite separable extension of $k$
-\end{proposition}
 \begin{proof}
-  Consider first the case that $X$ is connected. It follows that $X = \Spec(A)$ and that $A$ is a vector space of finite dimension over $k$. If $A$ is not a field then it has a
+  Since any open set $U \subseteq X$ is connected, $\mathcal{F}(U) = G$ if $\mathcal{F}$ is the constant sheaf defined by the group $G$ and $U$ is nonempty. This means that $\mathcal{F}$ is flasque, hence $H^r(X, \mathcal{F})$ for all $r>0$.
+\end{proof}
+It follows that constant sheaves on varieties have no higher cohomology. The reason ist that there are not enought open sets in the Zariski topology. In order to fix this, we introduce the notion of \'etale morphism, which will allow us to consider sheaves on a larger category $\acute{Et}/X$ instead of the category of open sets of $X$. This category bears a strong resemblence to the category of open sets, but contains as objects not open sets but \textit{local homeomorphisms}.
+
+\subsection{Local homeomorphisms}
+In topology, a continuous map $f: X \to Y$ is called a local homeomorphism if $f$ restricts to a homeomorphism around any point $x \in X$. More precisely, for any point $x \in X$ there is a neighborhood $U$ of $x$ such that $f(U)$ is open in $Y$ and $p|_U: U \to p(U)$ is a homeomorphism. In this situation one also says that $X$ is an \'etale space over $Y$. Suppose $f: Y \to X$ is a \textit{surjective} local homeomorphism with finite fibers. Then the preimage $f^{-1}(U)$ of a sufficiently small open set will be homeomorphic to a disjoint union of the open sets $f^{-1}(U) \cong \amalg_{i=1}^n U_i$ such that $f$ induces a homeomorphism $f|_{U_i} : U_i \tilde{\longrightarrow} U$ for each $i$.
+%\begin{tikzpicture}[declare function={f(\x)=0.2*sin(\x)+\x/1000;},
+%  rubout/.style={/utils/exec=\tikzset{rubout/.cd,#1},
+%  decoration={show path construction,
+%       curveto code={
+%        \draw [white,line width=\pgfkeysvalueof{/tikz/rubout/line width}+2*\pgfkeysvalueof{/tikz/rubout/halo}] 
+%         (\tikzinputsegmentfirst) .. controls
+%         (\tikzinputsegmentsupporta) and (\tikzinputsegmentsupportb)  ..(\tikzinputsegmentlast); 
+%        \draw [line width=\pgfkeysvalueof{/tikz/rubout/line width},shorten <=-0.1pt,shorten >=-0.1pt] (\tikzinputsegmentfirst) .. controls
+%         (\tikzinputsegmentsupporta) and (\tikzinputsegmentsupportb) ..(\tikzinputsegmentlast);  
+%       }}},rubout/.cd,line width/.initial=2pt,halo/.initial=0.5pt]
+%  \draw[rubout={line width=2pt,halo=0.5pt},decorate] 
+%    plot[variable=\x,domain=-50:970,samples=55,smooth] ({cos(\x)},{f(\x)}) to[out=0,in=195] cycle;
+%  \draw[line width=2pt] (0,-2) arc(-90:270:1cm and 0.2cm);
+%  \draw[thick,-stealth]  (0,-0.4) -- (0,-1.4) node[midway,right]{$p$};
+% \end{tikzpicture} 
+%
+We would like to have notion of \'etale map for schemes. Schemes are not merely topological spaces because they carry algebraic information through their structure sheaf. This is why we cannot expect the above definition to be well behaved for schemes. The definition must make use of some nontrivial algebra. 
+
+\subsection{\'Etale Morphisms}
+We begin our discussion with the simple case of \'etale covers of $X = \Spec(k)$, where $k$ is a field. In order for a map $f: Y \to X$ to have finite fibers, the underlying topological space of $Y$ must consist of a finite number of points. If we restrict our attention to the case that $Y$ is affine, it follows that $Y = \Spec(L_i)$ where each $L_i$ is an extension of field of $k$. 
+
+\begin{definition}
+  A finite dimensional $k$-algebra $A$ is \'etale over $k$ if it is isomorphic to a product of separable extensions of $k$. We define $\Spec(A) \to \Spec(k)$ to be \'etale if $A$ is an \'etale algebra over $k$.
+\end{definition}
+Recall that an extension $L/k$ is separable if its minimal polynomial $p(x)$ has no multiple roots (in a splitting field of $p(x)$). It follows from basic algebra that a polynomial $p(x)$ is separable if and only if it is coprime to its formal derivative $p'(x)$. This menas that $p'(x)$ gets mapped to a unit under the canonical map $k[x] \longrightarrow k[x]/(p(x)) \simeq L$. This is in effect a smoothness condition, reminiscent of the conditions under which the inverse mapping theorem from analysis holds. This idea will reappear when we define \'etale morphisms in a more general condition.
+
+We require separability of the extensions because of their good categorical properties. Grothendieck's reformulation of Galois theory is in fact a statement about finite \'etale algebras and establishes a strong analogy with the theory of covering spaces and of fundamental groups. This connection allows us to define the fundamental group of a scheme. We refer to\cite{Szamuely} for more details.
+
+\begin{theorem}
+  Let $A$ be a finite dimensional commutative $k$-algebra. Then $A$ is \'etale if and only if $A \otimes_k \overline{k}$ is isomorphic to a finite product of copies of $\overline{k}$.
+\end{theorem}
+\begin{proof}
+  Suppose that $L$ is a finite separable extension of $k$. This means that $L = k[x]/(f)$, where $f$ is a polynomial of degree $n$ which splits into $n$ distinct factors, say $(x-\alpha_i)$ in $\overline{k}$. By the chinese remainder theorem we have
+  \[L \otimes_k \overline{k} \cong \overline{k}[x]/(f) = \overline{k}[x](x-\alpha_1)\cdots(x-\alpha_n) \cong \prod_{i=1}^n \overline{k}[x]/(x-\alpha_i) \cong \prod_{i=1}^n \overline{k},\] from which the first direction follows.
+  %TODO finish the proof
 \end{proof}
 
+\begin{definition}
+A morphism of schemes $f: X \to Y$ is called \textit{affine} if there is an open affine cover by subsets $U_i$ such that $f^{-1}(U_i)$ is affine for each $i$.
+A morphism of schemes $f: X \to Y$ is called \textit{finite} if there is an affine cover by subsets $U_i = \Spec(A)$ such that $f^{-1}(U_i) = \Spec(B_i)$ is a finitely generated $A_i$-module.
+We say that $f: X \to S$ is finite locally free if $f$ is affine and $f_* \mathcal{O}_X$ is locally free and of finite rank. If each fibre $X_p$ of $f$ is the spectrum of a finite \'etale $\kappa(p)$-algebra, then we say $f$ is an \'etale morphism.
+\end{definition}
 
-\section{The \'Etale Fundamental Group}
-\subsection{The Fundamental Group in Topology}
-\subsection{Classical Galois Theory}
-Recall the main theorem of classical Galois theory:
-\begin{theorem}[Main Theorem of Galois theory for finite extensions]
-  Let $L/k$ be a finite Galois extension with Galois group $G$. There is an inclusion reversing bijection between subextension $ L \supset M \supset k$ and subgroups $H \subset G$. It is given by the maps
-  \begin{align*}
-    M &\mapsto \text{Aut}(L/M) \\
-    H &\mapsto L^H.
-  \end{align*}
-  %missing some explanation
+\begin{lemma}
+  \begin{enumerate}
+    \item The composition of affine morphisms is affine.
+    \item The composition of finite locally free morphisms is finite locally free.
+    \item The composition of \'etale morphisms is \'etale.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  The first statement follows immediately from the fact that a morphism $f: X \to Y$ is affine if and only if for \textit{every} affine open $V \subseteq X$, $f^{-1}(V)$ is affine, see \cite{Hartshorne}.
+
+\end{proof}
+
+\begin{theorem}
+  If $f: Y \to X$ is \'etale, then the base change $U \times_X Y$ along any morphism $U \to X$ is \'etale.
 \end{theorem}
-This theorem fails for infinite Galois extensions, as the following example shows:
-% missing example
+
+\begin{remark}
+  If we have an \'etale cover $f: Y \longrightarrow X$ and consider a geometric point $\overline{x} : \Spec(\Omega) \longrightarrow X$ of $X$, then the fiber of $f$ over $\overline{x}$ arises from the pullback
+    % https://q.uiver.app/?q=WzAsNCxbMCwwLCJTcGVjKFxcT21lZ2EpXFx0aW1lc19YIFkiXSxbMCwxLCJTcGVjKFxcT21lZ2EpIl0sWzEsMCwiWSJdLFsxLDEsIlgiXSxbMCwxXSxbMCwyXSxbMiwzXSxbMSwzXV0=
+    \[\begin{tikzcd}
+    	{\Spec(\Omega)\times_X Y} & Y \\
+    	{\Spec(\Omega)} & X
+    	\arrow[from=1-1, to=2-1]
+    	\arrow[from=1-1, to=1-2]
+    	\arrow[from=1-2, to=2-2]
+    	\arrow[from=2-1, to=2-2]
+    \end{tikzcd}\]
+  Since $\Spec(\Omega)\times_X Y$ is \'etale over $\Spec(\Omega)$ and $\Omega$ is algebraically closed, it follows that $\Spec(\Omega)\times_X Y \cong \amalg \Spec(\Omega)$
+\end{remark}
+
+\begin{remark}
+  Recall that a category $\mathcal{C}$ is \textit{cofiltered} if the following holds:
+  \begin{enumerate}
+    \item For any pair of objects $a_1$ and $a_2$, there is an object $b$ with maps $b \to a_1$ and $b \to a_2$.
+    \item Every pair of morphisms $f,g: a \to b$, there is an equalizer $h: c \to a$. This means that $f \circ h = g \circ h$.
+  \end{enumerate} 
+  Let $x$ be a point of $X$. The subcategory of $\Op(X)$ consisting of all sets containing $x$ is cofilterd. This means for two open sets $U$ and $V$, there is an open set contained in both of them, namely $U \cap V$. The second condition does not need to be verified, since there is at most one morphism between any two open sets.
+\end{remark}
+
+\begin{theorem}
+  A presheaf $\mathcal{F}$ on $\text{\'Et}/X$ is a sheaf if and only if $\mathcal{F}$ satisfies the sheaf condition for Zariski open coverings and for \'etale coverings consisting of a single map $V \to U$, where $V$ and $U$ are affine.
+\end{theorem}
+\begin{proof}
+  \cite{milneLEC}.
+\end{proof}
+\begin{corollary}
+  Every presheaf represented by an $X$-scheme $U \to \Hom_X(U,Z)$ is a sheaf. 
+\end{corollary}
+\begin{proof}
+  It is obviously a sheaf for the Zariski topology. 
+\end{proof}
+%
+%\subsubsection{\'Etale morphsims of nonsingular varieties}
+%For varieties defined over an algebraically closed field $k$, one may use a formalism in direct analogy to smooth manifolds to define \'etale morphsims, namely the formalism of tangent spaces. However, instead of defining the tangent space at a point $p \in X$ analytically, we define it algebraically.
+%
+%\subsubsection{\'Etale morphisms of affine schemes}
+%\begin{definition}
+%  A morphism $f: Y \to X$ is called an \'etale morphism if for every $y \in Y$ there exist open affine neighborhoods $V = spec B$ of $y$ and $Y = spec A$ of $f(y)$ such that 
+%  \[B = A[x_1, \dots, x_n]/(P_1, \dots, P_n)\]
+%  and $det(\partial P_i /\partial T_j)$ is a unit in $B$.
+%\end{definition}
+%This is not the standard definition of \'etale morphisms. Usually, an \'etale morphism is defined to be a flat and unramified morphism. In differential geometry, these notions correspond to
+%
+%
+%
+%
+%
+%
+%It formally mimics the notion of local homeomorphism in calculus. 
+%
+%\begin{proposition}
+%  The composite of two \'etale morphisms and base change of an \'etale morphims are \'etale.
+%\end{proposition}
+%
+%Computing sheaf cohomology on a topological space using the formalism of derived functors is often unfeasable. Calculations are often done using Cech cohomology. The same is possible for \'etale cohomology. The definition of Cech cohomology for \'etale sheaves works with basically no modifications.
+%\section{\'Etale sheaves}
+%Examples of \'Etale sheaves:
+%
+%The structure sheaf $\OO_{X_{\text{\'et}}}(U) = \Gamma(U, \OO_U)$
+%\par
+%Representables $\mathcal{F}: \mathsf{Et}/X \to \Set , \mathcal{F}(U) = \Hom_X(U,Z)$ for any $X$-scheme $Z$. In particular this means that the \'etale topology is subcanonical.
+%\par
+%
+%%It is a theorem that any category of sheaves on a site (in particular a topological space) is a topos. As such it carries a lot of structure
+%
+%\begin{definition}
+%  Let $X$ be a scheme and $x$ a point of $X$. An \'etale neighborhood of $x$ is defined to be a pair $(U, u)$ together with an \'etale morphism $\varphi: U \to X$ such that $\varphi(u) = x$. A morphism of \'etale neighborhoods $f: (V,v) \to (U,u)$ is a morphism of $X$-schemes $f: V \to U$ such that $f(v) = u$.
+%\end{definition}
+%We obtain the category of \'etale neigborhoods of $x$ for each $x \in X$.
+%
+%\begin{construction}
+%  Let $S$ be a topological space and let $O(S)$ be its lattice of open sets. Consider the sublattice $O_x(S) = \{ U \in O(S) | x \in U \}$. For two open sets $U, V \in O_x(S)$, the intersection $U \cap V$ is contained in both $U$ and $V$.
+%  A generalization of this situation is that of a \textit{cofiltered category}. We say that a category is \textit{cofilterd} if
+%  % finish this
+%\end{construction}
+%
+%\begin{definition}
+%  Let $\varphi: X \to Y$ be a morphism of schemes over a field $k$. We say $\varphi$ is an affine map if every open affine subscheme $U = \Spec(R) \subseteq Y$ has as preimage an affine open subscheme $f^{-1}(U) = \Spec(S)$ of $X$. If, in addition, the corresponding map $R \to S$ makes $S$ into a finitely generated $R$-module, we say that $\varphi$ is finite.
+%\end{definition}
+%
+%\begin{proposition}
+%Let $k$ be a field. Then $X$ is finite \'etale over $\Spec(k)$ iff $X$ is isomorphic do a disjoint union $\amalg \Spec(K_i)$, where each $K_i$ is a finite separable extension of $k$
+%\end{proposition}
+%\begin{proof}
+%  Consider first the case that $X$ is connected. It follows that $X = \Spec(A)$ and that $A$ is a vector space of finite dimension over $k$. If $A$ is not a field then it has a
+%\end{proof}
+%
+%
+%\section{The \'Etale Fundamental Group}
+%\subsection{The Fundamental Group in Topology}
+%\subsection{Classical Galois Theory}
+%Recall the main theorem of classical Galois theory:
+%\begin{theorem}[Main Theorem of Galois theory for finite extensions]
+%  Let $L/k$ be a finite Galois extension with Galois group $G$. There is an inclusion reversing bijection between subextension $ L \supset M \supset k$ and subgroups $H \subset G$. It is given by the maps
+%  \begin{align*}
+%    M &\mapsto \text{Aut}(L/M) \\
+%    H &\mapsto L^H.
+%  \end{align*}
+%  %missing some explanation
+%\end{theorem}
+%This theorem fails for infinite Galois extensions, as the following example shows:
+%% missing example
+%
