@@ -1,0 +1,67 @@
+
+\section{Cohomology in Topology}
+Cohomology is an important invariant in geometry and topology which associates to each space $X$ a sequence of abelian groups $H^i(X)$, $i \ge 0$, the so-called cohomology groups of $X$. For each map $f: X \to Y$ of spaces there are homomorphisms $f^*: H^i(Y) \to H^i(X)$. We can deduce many interesting properties of spaces from their cohomology groups and the associated homomorphisms.
+
+Different notions of space, such as schemes, smooth manifolds and sheaves have properties that allow us to define cohomology which makes use of the particulars of this kind of space. Smooth manifolds, for instance, are topological spaces with additional “differentiable” structure. We may use this structure to define de Rham cohomology via differential forms.\\
+
+There are theorems which relate these cohomology theories to each other.For example, de Rham's theorem states that the de Rham cohomology associated to smooth manifolds is isomorphic to singular cohomology with coefficients in $\mathbb{R}$. Another example of this is the fact that if $X$ is a locally contractible space, the singular cohomology $H_{\text{sing}}^i(X)$ of $X$ is isomorphic to the sheaf cohomology $H^i(X, \Z_X)$ of the constant sheaf $\Z_X$ on $X$. One of the main motivations for the \'etale topology and \'etale cohomology is that one would like a replacment for singular cohomology for schemes. For example, let $X$ be an irreducible scheme with generic point $\eta \in X$. Then $X$ is contractible, since $f: X \times I \to X$ defined by $f(x,0) = x$ and $f(x,t) = \eta$ for $t > 0$ is a contraction of $X$ to $\eta$.\\
+
+A central tenent of geometry and topology is that in order to understand a space $X$, one may study functions $\varphi: X \to S$. Here, $S$ could be an algebraic structure or another space. Let us now consider for a moment the case $S=\mathbb{R}$. The simplest kind of functions are the constant ones. This does not yield any interesting information, as the set of constant functions into $\mathbb{R}$ is always isomorphic to $\mathbb{R}$. The second simplest case are locally constant functions. Let us denote the set of all locally constant functions from $X$ to $\mathbb{R}$ by $H^0(X,\mathbb{R})$. This set is a real vector space, whose dimension is the number of connected components of $X$. Cohomology
+
+We briefly review some aspects of cohomology theory. This will serve as a model for what we expect of cohomology in the \'etale setting.
+
+\subsection{Betti numbers and singular cohomology}
+Betti numbers are invariants of topological spaces that, roughly speaking, quantify the number of ``holes'' that a topological space has in each dimension. For instance, the circle has 1 one-dimensional hole while the torus has 2. The sphere has 1 two-dimensional hole but no one-dimensional holes. 
+
+We now provide a rigorous justification of this intuitive picture.
+
+Let $X$ be a topological space and recall the definition of the standard simplices $\Delta^n$. The $\Hom$-functor $\Hom(\Delta^n, -)$ induces a simplicial set
+\[\Sigma X: [n] \mapsto \Hom(\Delta^n, X).\]
+A map $\sigma : \Delta^n \to X$ is called a singular $n$-simplex. One should think of $\Sigma X$ as a sort of triangulation of the space $X$. We now take for each $n$ the free abelian group $S_n(X)$ with basis $\Sigma X[n]$. An element $x$ of $S_n(X)$ is a formal linear combination $x = \sum_\sigma n_\sigma \sigma$ of $n$-simplices. 
+
+%\subsection{De Rham Cohomology}
+%
+%An important version of cohomology arises from the theory of integration on manifolds. Stoke's theorem, Gauß's theorem and Green's theorem from analysis are all special cases of cohomological phenomena. The idea behind it is that the differential forms that can arise on a manifold are closely related to its topology. 
+%
+\subsection{The Mayer-Vietoris Sequence}
+
+The Mayer-Vietoris sequence is an important tool for computing cohomology. It relates the cohomology of a space to the cohomology of its parts. To be more precise, suppose $U$ and $V$ are two subspaces of $X$ such that their interior covers $X$. Then, roughly speaking, there is an exact sequence
+
+\[
+\cdots \to H^n(X) \to H^n(U) \oplus  H^n(V) \to H^n(U\cap V) \to H^{n+1}(X) \to \cdots
+\]
+
+If the cohomology of $U$ and $V$ are known or easier to compute than the cohomology of$X$, this exact sequence provides a lot of information.
+
+\subsection{Interpretation of Cohomology}
+Cohomology groups are not just of interest in their own right. In many cases, one can show that the cohomology classes $[\gamma] \in H^n(X, \Sh{A})$ correspond bijectively to some other kind of geometrical construction involving $X$.
+
+For instance, when $p:Z \to B$ is a map of topological spaces and $\Sh{G}$  is a sheaf of subgroups of $Aut_B(Z)$, one can define a notion of “twist of $p$ with structure sheaf $\Sh{G}$”. One obtains the bijection
+\begin{align}
+            \left\{ \parbox[c]{1.1in}{\centering
+                       Isomorphism classes of twists of $p$
+                       with structure sheaf $\Sh{G}$}
+            \right\}
+            \stackrel{\sim}{\to}
+            \parbox[c]{0.5in}{\centering
+                       $H^1(B, \Sh{G})$}
+\end{align}
+
+There is also a bijection
+\begin{align}
+            \left\{ \parbox[c]{1.1in}{\centering
+              Isomorphism classes of vector bundles of rank $n$ with basis $B$}
+            \right\}
+            \stackrel{\sim}{\to}
+            \parbox[c]{0.5in}{\centering
+            $H^1(B, GL_{n,B})$}
+\end{align}
+and in particular
+\begin{align}
+            \left\{ \parbox[c]{1.1in}{\centering
+            Isomorphism classes of line bundles with basis $B$}
+            \right\}
+            \stackrel{\sim}{\to}
+            \parbox[c]{0.5in}{\centering
+                $H^1(B, \Ring(O)_B^\times)$}
+\end{align}

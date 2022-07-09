@@ -1,130 +1,26 @@
 \documentclass[11pt, openany]{memoir}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{amsfonts}
-\usepackage{amsmath}
-\usepackage{amsthm}
-\usepackage[hidelinks]{hyperref}
-\usepackage{titlesec} %title formatting
-\usepackage{color}
-\usepackage[textwidth=5.5in,textheight=9.2in,centering,a4paper]{geometry}
-\usepackage{nth}
-\usepackage{quiver}
-\usepackage{tikz}
-\usepackage{mathtools} % \coloneqq
-\usepackage{extpfeil} % stacked arrows
-\usepackage{lmodern}
-\usetikzlibrary{decorations.pathreplacing}
+\usepackage{preamble}
 
-%\usepackage{stix2}
-%\usepackage{newtxtext}
-%\usepackage{newtxmath}
+\title{The \'etale Topos of a Scheme}
+\author{Kento Okura}
 
-\usetikzlibrary{patterns} 
-
-\setlength{\abovedisplayskip}{0pt}
-\setlength{\belowdisplayskip}{0pt}
-\setlength{\abovedisplayshortskip}{0pt}
-\setlength{\belowdisplayshortskip}{0pt}
-
-\setlength{\parindent}{0pt}
-
-\hypersetup{
-    colorlinks,
-    citecolor=black,
-    filecolor=black,
-    linkcolor=black,
-    urlcolor=black
-}
-
-\newcommand{\Top}{\mathsf{Top}}
-\newcommand{\Set}{\mathsf{Set}}
-\newcommand{\Disc}{\mathsf{Disc}}
-\newcommand{\CoDisc}{\mathsf{CoDisc}}
-\newcommand{\Hom}{\mathsf{Hom}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\OO}{\mathcal{O}}
-\DeclareMathOperator{\Spec}{Spec}
-
-
-\theoremstyle{definition}
-\newtheorem{proposition}{Proposition}
-\newtheorem{definition}{Definition}
-\newtheorem{construction}{Construction}
-\newtheorem{example}{Example}
-\newtheorem{lemma}{Lemma}
-\newtheorem{theorem}{Theorem}
-\newtheorem{remark}{Remark}
-\newtheorem{corollary}{Remark}
-
-\newextarrow{\xbigtoto}{{20}{20}{20}{20}}
-   {\bigRelbar\bigRelbar{\bigtwoarrowsleft\rightarrow\rightarrow}}
-
-\makeatletter
-%\newcommand{\colim@}[2]{%
-%  \vtop{\m@th\ialign{##\cr
-%    \hfil$#1\operator@font lim$\hfil\cr
-%    \noalign{\nointerlineskip\kern1.5\ex@}#2\cr
-%    \noalign{\nointerlineskip\kern-\ex@}\cr}}%
-%}
-%\newcommand{\colim}{%
-%  \mathop{\mathpalette\colim@{\rightarrowfill@\textstyle}}\nmlimits@
-%}
-\newcommand{\colim}{%
-  \mathop{\mathpalette\varlim@{\rightarrowfill@\scriptscriptstyle}}\nmlimits@
-}
-\newcommand{\op}{
-  %o\kern-0.10em p
-  op
-}
-\newcommand{\Op}{
-  %O\kern-0.10em p
-  Op
-}
-\newcommand{\Ext}{
-  E\kern-0.06em x\kern-0.02em t
-}
-\newcommand{\indexset}[2]{
-  \, #1\, \in \, #2
-}
-\makeatother
-
-% title formatting
 \definecolor{gray75}{gray}{0.75}
 \titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter\hspace{20pt}\textcolor{gray75}{|}\hspace{20pt}}{0pt}{\Huge\bfseries}
 %\renewcommand{\chapterheadstartvskip}{\vspace*{-2\baselineskip}}
 \titlespacing*{\chapter}{0pt}{-2\baselineskip}{1em}
 
 \begin{document}
-  \nocite{*}
-
-  \chapter*{Abstract}
-  \input{chapters/abstract}
-
-  \begin{KeepFromToc} 
-  \tableofcontents
-  \end{KeepFromToc} 
-
   \chapter{Introduction}
-  \input{chapters/introduction}
-
+  \import{chapters/}{introduction.tex}
 
   \chapter{Sheaves}
-  \input{chapters/sheaves}
+  \import{chapters/}{sheaves.tex}
+
+  \chapter{\'Etale Morphisms}
+  \import{chapters/}{etale.tex}
 
   \chapter{\'Etale Cohomology}
-  \input{chapters/scheme}
-  \input{chapters/etale}
-
-  \chapter{Simplicial Methods}
-  \input{chapters/simplicial}
-
-
-  \chapter{\'Etale Homotopy}
-
-  \chapter{Conclusion}
-  \input{chapters/conclusion}
+  \import{chapters/}{cohomology.tex}
 
   \bibliographystyle{plain}
   \bibliography{refs}

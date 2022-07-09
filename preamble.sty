@@ -1,0 +1,110 @@
+\ProvidesPackage{preamble}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec} %title formatting
+\usepackage{color}
+\usepackage[textwidth=5.5in,textheight=9.2in,centering,a4paper]{geometry}
+\usepackage{nth}
+\usepackage{quiver}
+\usepackage{tikz}
+\usepackage{mathtools} % \coloneqq
+\usepackage{mathrsfs} % fancy maths latters
+\usepackage{extpfeil} % stacked arrows
+\usepackage{lmodern}
+\let\newfloat\undefined
+\usepackage{floatrow}
+\usepackage{caption} %customises captions
+\usepackage{subcaption} %side by side diagrams
+\usepackage{titling}
+\usepackage{pgfplots}
+\usepackage{asymptote}
+\usepackage[]{import}
+
+\usetikzlibrary{decorations.pathreplacing}
+
+%\usepackage{stix2}
+%\usepackage{newtxtext}
+%\usepackage{newtxmath}
+
+\usetikzlibrary{patterns} 
+
+\setlength{\abovedisplayskip}{0pt}
+\setlength{\belowdisplayskip}{0pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+
+\setlength{\parindent}{0pt}
+
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+\newcommand{\Top}{\mathsf{Top}}
+\newcommand{\Set}{\mathsf{Set}}
+\newcommand{\Disc}{\mathsf{Disc}}
+\newcommand{\CoDisc}{\mathsf{CoDisc}}
+\newcommand{\Hom}{\mathsf{Hom}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\DeclareMathOperator{\Spec}{Spec}
+
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Remark}
+\newtheorem{definition}{Definition}
+\newtheorem{construction}{Construction}
+\newtheorem{example}{Example}
+\newtheorem{remark}{Remark}
+
+\newextarrow{\xbigtoto}{{20}{20}{20}{20}}
+   {\bigRelbar\bigRelbar{\bigtwoarrowsleft\rightarrow\rightarrow}}
+
+\makeatletter
+%\newcommand{\colim@}[2]{%
+%  \vtop{\m@th\ialign{##\cr
+%    \hfil$#1\operator@font lim$\hfil\cr
+%    \noalign{\nointerlineskip\kern1.5\ex@}#2\cr
+%    \noalign{\nointerlineskip\kern-\ex@}\cr}}%
+%}
+%\newcommand{\colim}{%
+%  \mathop{\mathpalette\colim@{\rightarrowfill@\textstyle}}\nmlimits@
+%}
+\newcommand{\colim}{%
+  \mathop{\mathpalette\varlim@{\rightarrowfill@\scriptscriptstyle}}\nmlimits@
+}
+\newcommand{\op}{
+  op
+}
+\newcommand{\Op}{
+  Op
+}
+\newcommand{\Ext}{
+  E\kern-0.06em x\kern-0.02em t
+}
+\newcommand{\indexset}[2]{
+  \, #1\, \in \, #2
+}
+\makeatother
+
+\newcommand{\Sh}[1]{\mathcal{#1}}
+\newcommand{\Ring}[1]{\mathcal{#1}}
+\renewcommand{\to}{\longrightarrow}
+\renewcommand{\hat}{\widehat}
+
+\newcommand{\Implies}[2]{$\text{\ref{#1}}\implies\text{\ref{#2}}$}% X => Y
+

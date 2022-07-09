@@ -1,100 +1,27 @@
-% Mention names: Poincare, Brouwer, Betti, Vietoris, Cech, Grothendieck, Lawvere
+\input{chapters/introduction/schemes}
 
-%this is a complete mess
-%\section*{History of \'Etale Cohomology}
-%For varieties over the complex numbers $\textbf{C}$, one can use the topology inherited from $\textbf{C}$ to define cohomology. In more general settings this topology is not available. The natural topology defined on varietes and schemes, the Zariski topology is rather course. In the Zariski topology, every open set is dense. A theorem of grothendieck implies that constant sheaves on an irreducible variety has no cohomology. This problem was fixed by the definition of a Grothendieck topology. Here one replaces the open subsets $U \hookrightarrow X$ by a more general class of morphisms $V \to X$. In the case of \'etale cohomology, we consider the class of \'etale morphisms into $X$. 
-%\cite{milneLEC}
+\input{chapters/introduction/cohomology.tex}
 
-The starting point of classical algebraic geometry is the study of solutions of systems of polynomial equations. The solution sets are called varieties and are considered as geometric subsets of $k^n$, where $k$ is a field. The scope of algebraic geometry was widened drastically in the 60's with Grothendieck's definition of schemes. This new kind of geometric object allowed for the application of geometric techniques to number-theoretic problems. 
+\begin{figure}[h]
+\centering
+\subimport{introduction/}{mobius.tex}
+\caption{The gluing data of the mobius strip.}
+\end{figure}
 
-Schemes are constructed out of prime spectra of rings\footnote{As a set, the prime spectrum of a ring $R$ is just the set of prime ideals of $R$}. As topological spaces, schemes are not well behaved. The techniques of algebraic topology, in particular those of cohomology and homotopy theory are not immediately applicable to the study of schemes. In order to get satisfactory analogues of these techniques, vast generalizations of known constructions were needed. The purpose of this text is to motivate these constructions.
-
-\section{Cohomology in Topology}
-Cohomology is an important invariant in geometry and topology. It is a tool which associates to each space $X$ a sequence of abelian groups $H^i(X)$, $i \ge 0$, the so-called cohomology groups of $X$. For each map $f: X \to Y$ of spaces there are homomorphisms $f^*: H^i(Y) \to H^i(X)$. We can deduce many interesting properties of spaces from their cohomology groups and the associated homomorphisms.
-
-Various notions of space, such as schemes, smooth manifolds and sheaves have properties that allow us to define cohomology which makes use of the particulars of this kind of space. Smooth manifolds, for instance, are topological spaces with additional “differentiable” structure.  We may use this structure to define de Rham cohomology via differential forms.
-
-There are theorems which relate these cohomology theories to each other so that we may often choose an appropriate method for computation. For example, de Rham's theorem states that the de Rham cohomology associated to smooth manifolds is isomorphic to singular cohomology with coefficients in $\mathbb{R}$. Another example of this is the fact that if $X$ is a locally contractible space, the singular cohomology $H_{\text{sing}}^i(X)$ of $X$ is isomorphic to the sheaf cohomology $H^i(X, \Z_X)$ of the constant sheaf $\Z_X$ on $X$.
-
-A central tenent of geometry and topology is that in order to understand a space $X$, one may study functions $\varphi: X \to S$. Here, $S$ could be an algebraic structure or another space. Let us now consider for a moment the case $S=\mathbb{R}$. The simplest kind of functions are the constant ones. This does not yield any interesting information, as the set of constant functions into $\mathbb{R}$ is always isomorphic to $\mathbb{R}$. The second simplest case are locally constant functions. Let us denote the set of all locally constant functions from $X$ to $\mathbb{R}$ by $H^0(X,\mathbb{R})$. This set is a real vector space, whose dimension is the number of connected components of $X$. De Rham cohomology provides higher dimensional analogues $H^i_{dR}(X)$ of this vector space.
-
-We briefly review some aspects of cohomology theory. This will serve as a model for what we expect of cohomology in the \'etale setting.
-
-\subsection{Betti numbers and singular cohomology}
-Betti numbers are invariants of topological spaces that, roughly speaking, quantify the number of ``holes'' that a topological space has in each dimension. For instance, the circle has 1 one-dimensional hole while the torus has 2. The sphere has 1 two-dimensional hole but no one-dimensional holes. 
-
-We now provide a rigorous justification of this intuitive picture.
-
-Let $X$ be a topological space and recall the definition of the standard simplices $\Delta^n$. The $\Hom$-functor $\Hom(\Delta^n, -)$ induces a simplicial set
-\[\Sigma X: [n] \mapsto \Hom(\Delta^n, X).\]
-A map $\sigma : \Delta^n \to X$ is called a singular $n$-simplex. One should think of $\Sigma X$ as a sort of triangulation of the space $X$. We now take for each $n$ the free abelian group $S_n(X)$ with basis $\Sigma X[n]$. An element $x$ of $S_n(X)$ is a formal linear combination $x = \sum_\sigma n_\sigma \sigma$ of $n$-simplices. 
-
-%\subsection{De Rham Cohomology}
-%
-%An important version of cohomology arises from the theory of integration on manifolds. Stoke's theorem, Gauß's theorem and Green's theorem from analysis are all special cases of cohomological phenomena. The idea behind it is that the differential forms that can arise on a manifold are closely related to its topology. 
-%
-\subsection{The Mayer-Vietoris Sequence}
-
-The Mayer-Vietoris sequence is an important tool for computing cohomology. It relates the cohomology of a space to the cohomology of its parts. To be more precise, suppose $U$ and $V$ are two subspaces of $X$ such that their interior covers $X$. Then, roughly speaking, there is an exact sequence
-
-\[
-\cdots \to H^n(X) \to H^n(U) \oplus  H^n(V) \to H^n(U\cap V) \to H^{n+1}(X) \to \cdots
-\]
-
-If the cohomology of $U$ and $V$ are known or easier to compute than the cohomology of$X$, this exact sequence provides a lot of information.
-
-\subsection{Interpretation of Cohomology}
-Cohomology groups are not just of interest in their own right. In many cases, one can show that the cohomology classes $[\gamma] \in H^n(X, \mathcal{A})$ correspond bijectively to some other kind of geometrical construction involving $X$.
-
-For instance, when $p:Z \to B$ is a map of topological spaces and $\mathcal{G}$  is a sheaf of subgroups of $Aut_B(Z)$, one can define a notion of “twist of $p$ with structure sheaf $\mathcal{G}$”. One obtains the bijection
-\begin{align}
-            \left\{ \parbox[c]{1.1in}{\centering
-                       Isomorphism classes of twists of $p$
-                       with structure sheaf $\mathcal{G}$}
-            \right\}
-            \stackrel{\sim}{\longrightarrow}
-            \parbox[c]{0.5in}{\centering
-                       $H^1(B, \mathcal{G})$}
-\end{align}
-
-There is also a bijection
-\begin{align}
-            \left\{ \parbox[c]{1.1in}{\centering
-              Isomorphism classes of vector bundles of rank $n$ with basis $B$}
-            \right\}
-            \stackrel{\sim}{\longrightarrow}
-            \parbox[c]{0.5in}{\centering
-            $H^1(B, GL_{n,B})$}
-\end{align}
-and in particular
-\begin{align}
-            \left\{ \parbox[c]{1.1in}{\centering
-            Isomorphism classes of line bundles with basis $B$}
-            \right\}
-            \stackrel{\sim}{\longrightarrow}
-            \parbox[c]{0.5in}{\centering
-                $H^1(B, \OO_B^\times)$}
-\end{align}
-
-%TODO construct simplicial cohomology, follow Hatcher
-
-%To get a first taste of cohomology we consider a directed graph $X$. The set of all functions from the set of vertices of $X$to $\mathbb{Z}$ is an abelian group by pointwise addition. We will denote this group by $C^1_*(X)$ and call it the group of $1$-cochains. Likewise there is a group $C^2_*(X)$, consisting of functions from the edges of $X$ to $\mathbb{Z}$. We can interpret the vertices of $X$ to lie on a map, and an element $\varphi \in C^1_*(X)$ to assign an elevation to each vertex. There is then a natural map
-
-
-
-\section{Sheaves}
-Sheaves are geometric gadgets that were initially defined for applications in complex geometry. Serre was the first to introduce sheaves into algebraic geometry and since then sheaf-theoretic techniques have been at the core of many advances in algebraic geometry.  Sheaf theory provides tools for relating local data to global data on a topological space. In particular, the question of whether or not global solutions to certain problems exist can be studied using sheaf cohomology. For example, the ``hairy ball theorem'' states that there  A theorem of Grothendieck states
 
 \section{The \'etale topology}
 The natural topology one has available in algebraic geometry is the Zariski topology. For some purposes this topology is insufficient. In particular, by a theorem of Grothendieck, higher cohomology for constant sheaves vanishes, so we can not use sheaf cohomology to define Betti numbers. The reason is that the open sets of the Zariski topology are very large. However, instead of considering Zariski-open sets, one may use the notion of \'etale open sets. These are not really open sets of a topological space, but formally share many properties of open sets. In particular, they have all the properties one needs to define sheaves and their cohomology. This, in turn, yields satisfactory analogues from algebraic topology. 
+
+\section{prerequisites}
+We assume aqcuaintance with the basics of category theory including limits and adjoint functors. We will make free use of results from algebra but will provide references wherever needed. We will also use basic notions of scheme theory.
 
 %\section{WIP}
 %Another central notion of modern geometry is that one thinks of spaces as being “glued together” from simple building blocks. A manifold is locally modelled on $\mathbb{R}^n$. A simplicial complex and more generally simplicial sets and simplicial objects are geometric objects that are modeled on the standard simplices $\Delta^n$, depicted below for $n = 1,2,3$.
 %
 %% missing figure
 %
-%Because a manifold $X$ is locally modelled on euclidian space, it comes equipped with a so-called sheaf of of rings $\mathcal{O}_X$, which is inherited from the ring structure on $\R$. In particular there is the ring of \textit{global} sections
-%\[\{f: X \to \R \} \coloneqq  \Gamma(\mathcal{O}, X).\]
+%Because a manifold $X$ is locally modelled on euclidian space, it comes equipped with a so-called sheaf of of rings $\Sh{O}_X$, which is inherited from the ring structure on $\R$. In particular there is the ring of \textit{global} sections
+%\[\{f: X \to \R \} \coloneqq  \Gamma(\Sh{O}, X).\]
 %Can we interpret an arbitrary commutative ring as a ring of functions on a geometric object?
-%Alexander Grothendieck's definition of schemes provide an answer: For any ring $R$ there is a locally ringed space $(X, \mathcal{O}_X) = (\Spec(R), \mathcal{O}_{\Spec(R)})$ such that $\Gamma(X, \mathcal{O}_X) \cong R$
+%Alexander Grothendieck's definition of schemes provide an answer: For any ring $R$ there is a locally ringed space $(X, \Sh{O}_X) = (\Spec(R), \Sh{O}_{\Spec(R)})$ such that $\Gamma(X, \Sh{O}_X) \cong R$
 %

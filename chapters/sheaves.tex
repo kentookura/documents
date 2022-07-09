@@ -1,4 +1,5 @@
-%Much of modern geometry can be formulated in the language of sheaves. Sheaves are data that are given on a topological space that may be glued. One may more generally define sheaves on a category equipped with a so-called Grothendieck topology. A sheaf is a geometric gadget that relates local data (say, on a topological space) to global data. Sheaf theory gives us tools to systematically analyse local-global phenomena which are fundamental in geometry and topology.
+Sheaves are geometric gadgets that were initially defined for applications in complex geometry. Serre was the first to introduce sheaves into algebraic geometry and since then sheaf-theoretic techniques have been at the core of many advances in algebraic geometry.  Sheaf theory provides tools for relating local data to global data on a topological space. In particular, the question of whether or not global solutions to certain problems exist can be studied using sheaf cohomology. 
+
 
 \begin{construction}\label{def:opens}
   Let $X$ be a topological space. The open sets of $X$ are partially ordered by inclusion: \[V \le W \quad \text{when} \quad V \subseteq W.\]
@@ -13,190 +14,165 @@
 	\begin{enumerate}
 		\item If $V \to U$ is an isomorphism, then $\{V \to U\} \in \mathcal{C}$
 		\item If $\{U_i \to U\} \in \text{Cov}(\mathcal(C))$, and for each $U_i$ we have $\{V_{ij} \to Ui\}$, the composition $\{V_{ij} \to U\}$ is in $\text{Cov}(\mathcal{C})$.
-		\item If $\{U_i \to U\} \in \text{Cov}(\mathcal(C))$, and $V \to U$ is a morphism, then $U_i \times_U V$ exists and 
+		\item If $\{U_i \to U\} \in \text{Cov}(\mathcal{C})$, and $V \to U$ is a morphism, then $U_i \times_U V$ exists and 
 		$\{U_i \times_U V \to V\}$ is in $\text{Cov}(\mathcal{C})$.
 	\end{enumerate}	
 	An element $\{U_i \to U\}$ of $\text{Cov}(\mathcal{C})$ is called a cover of $U$. A category $C$ together with a Grothendieck topology is called a \textit{site}.
 \end{definition}
 \begin{remark}
-	A topological space $X$ may be equipped with the structure of a site by declaring the coverings of open sets $U \subseteq X$ to be those families of open sets $\{U_i\}$ such that $\bigcup U_i = U$.
+	A topological space $X$ may be equipped with the structure of a site by declaring the coverings of open sets $U \subseteq X$ to be those families of open sets $\{U_i\}$ contained in $U$ such that $\bigcup U_i = U$.
 \end{remark}
 
 
 \begin{definition}[Presheaves] 
-  Let $X$ be a category. A \textit{presheaf of sets} $\mathcal{F}$ on $X$ is a functor $X^{op} \to \Set$. Given an morphism $U \subseteq V$, the corresponding map $\mathcal{F}(V) \to \mathcal{F}(U)$ is called the \textit{restriction map}. The elements of $\mathcal{F}(U)$ are called the sections of $\mathcal{F}$ over $U$. On sections one often denotes the map by $s \mapsto s|_U$.
+  Let $C$ be a category. A \textit{presheaf of sets} $\Sh{F}$ on $C$ is a functor $C^{op} \to \Set$. Given an morphism $U \to V$, the corresponding map $\Sh{F}(V) \to \Sh{F}(U)$ is called the \textit{restriction map}. The elements of $\Sh{F}(U)$ are called the sections of $\Sh{F}$ over $U$. On sections one often denotes the map by $s \mapsto s|_U$.
 \end{definition}
 
 \begin{definition}[Sheaves]
-  Let $(C,J)$ be a site.  A presheaf $\mathcal{F}$ on $C$ is a \textit{sheaf}, if for any covering $\{U_i\}$ of $U$, the following diagram is an equalizer:
+  Let $(C,J)$ be a site.  A presheaf $\Sh{F}$ on $C$ is a \textit{sheaf}, if for any covering $\{U_i\}$ of $U$, the following diagram is an equalizer:
   \begin{equation} \label{equalizer:1}
-    \mathcal{F}(U) \to \prod_{i} \mathcal{F}(U_i) \xbigtoto{} \prod_{i,j} \mathcal{F}(U_i \cap U_j)
+    \Sh{F}(U) \to \prod_{i} \Sh{F}(U_i) \xbigtoto{} \prod_{i,j} \Sh{F}(U_i \cap U_j)
   \end{equation}
 \end{definition}
 
-We need to explain the above diagram. First, note that if two subsets $U_1$ and $U_2$ form a cover of $X$, there are the inclusions
+We need to explain the above diagram. In the case that $X$ is covered by two objects $U_1$ and $U_2$, there are the morphisms $U_{12} \to U_1 \to X$ and $U_{12} \to U_2 \to X$, fitting into  where $U_{12}$ is shorthand for $U_1 \times_X U_2$. By the contravariance of $\Sh{F}$, there obtain two diagrams~\ref{cover} and~\ref{restriction}
 
-% https://q.uiver.app/?q=WzAsNCxbMSwwLCJVX3sxMn0iXSxbMCwxLCJVXzEiXSxbMiwxLCJVXzIiXSxbMSwyLCJYIl0sWzAsMV0sWzAsMl0sWzEsM10sWzIsM11d
-\[\begin{tikzcd}
-	& {U_{12}} \\
-	{U_1} && {U_2} \\
-	& X,
-	\arrow[from=1-2, to=2-1]
-	\arrow[from=1-2, to=2-3]
-	\arrow[from=2-1, to=3-2]
-	\arrow[from=2-3, to=3-2]
-\end{tikzcd}\]
-where $U_{12}$ is shorthand for $U_1 \times_X U_2 = U_1 \cap U_2$.
+\begin{figure}[h!]
+    \tikzset{column sep=small, ampersand replacement=\&}
+	\begin{floatrow}
+    \centering
+    \ffigbox{
+		% https://q.uiver.app/?q=WzAsNCxbMSwwLCJVX3sxMn0iXSxbMCwxLCJVXzEiXSxbMiwxLCJVXzIiXSxbMSwyLCJYIl0sWzAsMV0sWzAsMl0sWzEsM10sWzIsM11d
+			\begin{tikzcd}
+				\& {U_{12}} \\
+				{U_1} \& \& {U_2} \\
+				\& X
+				\arrow[from=1-2, to=2-1]
+				\arrow[from=1-2, to=2-3]
+				\arrow[from=2-1, to=3-2]
+				\arrow[from=2-3, to=3-2]
+		    \end{tikzcd}
+		}{\caption{A covering of $X$}\label{cover}}
 
-By the contravariance of $\mathcal{F}$, there is a corresponding diagram
+    \ffigbox{
+		% https://q.uiver.app/?q=WzAsNCxbMCwxLCJcXG1hdGhjYWx7Rn0oVV9pKSJdLFsxLDAsIlxcbWF0aGNhbHtGfShVX3tpan0pIl0sWzIsMSwiXFxtYXRoY2Fse0Z9KFVfaikiXSxbMSwyLCJcXG1hdGhjYWx7Rn0oWCkiXSxbMCwxXSxbMiwxXSxbMywwXSxbMywyXV0=
+		\begin{tikzcd}
+			\& {\Sh{F} (U_{12})} \\
+			{\Sh{F} (U_1)} \& \& {\Sh{F} (U_2)} \\
+			\& {\Sh{F} (X)}.
+			\arrow[from=2-1, to=1-2]
+			\arrow[from=2-3, to=1-2]
+			\arrow[from=3-2, to=2-1]
+			\arrow[from=3-2, to=2-3]
+		\end{tikzcd}} {\caption{Restrictions}\label{restriction}}
+    \end{floatrow}
+    \tikzset{column sep=small, ampersand replacement=&}
+\end{figure}
 
-% https://q.uiver.app/?q=WzAsNCxbMCwxLCJcXG1hdGhjYWx7Rn0oVV9pKSJdLFsxLDAsIlxcbWF0aGNhbHtGfShVX3tpan0pIl0sWzIsMSwiXFxtYXRoY2Fse0Z9KFVfaikiXSxbMSwyLCJcXG1hdGhjYWx7Rn0oWCkiXSxbMCwxXSxbMiwxXSxbMywwXSxbMywyXV0=
-\[\begin{tikzcd}
-	& {\mathcal{F}(U_{12})} \\
-	{\mathcal{F}(U_1)} && {\mathcal{F}(U_2)} \\
-	& {\mathcal{F}(X)}.
-	\arrow[from=2-1, to=1-2]
-	\arrow[from=2-3, to=1-2]
-	\arrow[from=3-2, to=2-1]
-	\arrow[from=3-2, to=2-3]
-\end{tikzcd}\]
-
-When taking the product in the middle row, we obtain the diagram 
+When taking the product in the middle row of~\ref{restriction}, we obtain the diagram 
 % https://q.uiver.app/?q=WzAsMyxbMiwwLCJcXG1hdGhjYWx7Rn0oVV97MTJ9KSJdLFswLDAsIlxcbWF0aGNhbHtGfShYKSJdLFsxLDAsIlxcbWF0aGNhbHtGfShVXzEpXFx0aW1lc1xcbWF0aGNhbHtGfShVXzIpIl0sWzEsMl0sWzIsMCwiIiwwLHsib2Zmc2V0IjoxfV0sWzIsMCwiIiwwLHsib2Zmc2V0IjotMX1dXQ==
-\[\begin{tikzcd}
-	{\mathcal{F}(X)} & {\mathcal{F}(U_1)\times\mathcal{F}(U_2)} & {\mathcal{F}(U_{12})}.
-	\arrow[from=1-1, to=1-2]
-	\arrow[shift right=1, from=1-2, to=1-3]
-	\arrow[shift left=1, from=1-2, to=1-3]
-\end{tikzcd}\]
+\[
+	\begin{tikzcd}
+		{\Sh{F}(X)} & {\Sh{F}(U_1)\times\Sh{F}(U_2)} & {\Sh{F}(U_{12})}.
+		\arrow[from=1-1, to=1-2]
+		\arrow[shift right=1, from=1-2, to=1-3]
+		\arrow[shift left=1, from=1-2, to=1-3]
+	\end{tikzcd}
+\]
 
-Given two section $s_1 \in \mathcal{F}(U_1)$ and $s_2 \in \mathcal{F}(U_2)$, the two parallel arrows map $(s_1, s_2)$ to $s_1|_{U_{12}}$ and $s_2|_{U_{12}}$. To say that $\mathcal{F}(X)$ is an equalizer in the above diagram amounts to saying that the sections of $\mathcal{F}(X)$ are recoverable from those sections on the sets $U_1$ and $U_2$ which agree on the overlap $U_{12}$. The diagram\eqref{equalizer:1} is the straightforward generalisation of the preceding discussion for a cover consisting of more than 2 open sets.
+Given two section $s_1 \in \Sh{F}(U_1)$ and $s_2 \in \Sh{F}(U_2)$, the two parallel arrows map $(s_1, s_2)$ to $s_1|_{U_{12}}$ and $s_2|_{U_{12}}$. To say that $\Sh{F}(X)$ is an equalizer in the above diagram amounts to saying that the sections of $\Sh{F}(X)$ are recoverable from those sections on the sets $U_1$ and $U_2$ which agree on the overlap $U_{12}$. The diagram\eqref{equalizer:1} is the straightforward generalisation of the preceding discussion for a cover consisting of more than 2 open sets.
 
-
-
-
-The purpose of the next definition is to capture the local behavior of a sheaf around a point.
-\begin{definition}
-  Let $X$ be a topological space and  $x \in X$ be a point. The stalk of $\mathcal{F}$ at $x$ is defined to be \[ \mathcal{F}_x \coloneqq \colim_{U \ni x}\mathcal{F}(U).\]
-\end{definition}
-\begin{proposition}
-	Let $\mathcal{F}$ be a sheaf and $s,t$ be two sections of $\mathcal{F}(U)$. Then $s = t$ if and only if $s_x = t_x$ for all
-\end{proposition}
-
-\begin{example}
-  Consider a manifold $M$, together with the sheaf which sends an open set $U$ to the set of real valued functions $f: U \to \R$. The stalks $\mathcal{F}_x$ of this sheaf are local rings. Explicitly, the stalk $\mathcal{F}_x$ is  $\{ (U,s) | x \in U,  s \in \mathcal{F}(U) \}/\sim$, where $(U,s)$ and $(V, t)$ are equivalent if there is an open set $W \subseteq U \cap V$ with $s|_W = t|_w$.
-
-\end{example}
-
-\begin{example}
-  The stalk of the structure sheaf of $\Spec(R)$ at a point $p$ is the localization $R_p$. Its maximal ideal is generated by $p$.
-\end{example}
-
-
-\section{Maps of sheaves}
-Since sheaves are presheaves, we define a map of sheaves $\varphi: \mathcal{F} \to \mathcal{G}$ as a natural transformation $\mathcal{F} \to \mathcal{G}$ between functors. Explicitly this natural transformation consists of a group homomorphism $\varphi_U: \mathcal{F}(U) \to \mathcal{G}(U)$ for each $U \in X$ that is compatible with the restrictions in the sense that the following diagram commutes:
+Since sheaves are presheaves, we define a map of sheaves $\varphi: \Sh{F} \to \Sh{G}$ as a natural transformation $\Sh{F} \to \Sh{G}$ between functors. Explicitly this natural transformation consists of a group homomorphism $\varphi_U: \Sh{F}(U) \to \Sh{G}(U)$ for each $U \in X$ that is compatible with the restrictions in the sense that the following diagram commutes:
 
 % https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXG1hdGhjYWx7Rn0oVikiXSxbMCwxLCJcXG1hdGhjYWx7Rn0oVSkiXSxbMSwwLCJcXG1hdGhjYWx7R30oVikiXSxbMSwxLCJcXG1hdGhjYWx7R30oVSkiXSxbMCwxLCJyZXNfe1YsVX0iLDJdLFswLDIsIlxcdmFycGhpX1YiXSxbMiwzLCJyZXNfe1YsVX0iXSxbMSwzLCJcXHZhcnBoaV9VIl1d
 \[\begin{tikzcd}
-	{\mathcal{F}(V)} & {\mathcal{G}(V)} \\
-	{\mathcal{F}(U)} & {\mathcal{G}(U)}
+	{\Sh{F}(V)} & {\Sh{G}(V)} \\
+	{\Sh{F}(U)} & {\Sh{G}(U)}
 	\arrow["{\cdot|_U}"', from=1-1, to=2-1]
 	\arrow["{\varphi_V}", from=1-1, to=1-2]
 	\arrow["{\cdot|_U}", from=1-2, to=2-2]
 	\arrow["{\varphi_U}", from=2-1, to=2-2]
 \end{tikzcd}\]
 
-We obtain the category $\mathsf{Sh}(C,J)$ of sheaves on $C$ with respect to the topology $J$. This is in fact a full subcategory of presheaves $\Set^{C^{op}}$. 
 
-Let $\varphi : \mathcal{F} \to \mathcal{G}$ be a morphism sheaves of abelian groups on $X$. The sheaf kernel of the map $\varphi$ is the presheaf $U \mapsto \ker(\varphi)$. The sheaf condition on $\mathcal{G}$ ensures that this presheaf is in fact a sheaf. 
-The map $U \to \text{im}\varphi(U)$ does not in general define a sheaf, but there is an "optimal way" to turn a presheaf into a sheaf. This is the associated sheaf functor.
+We obtain the category $\mathsf{Sh}(C,J)$ of sheaves on $C$ with respect to the topology $J$. This is in fact a full subcategory of presheaves $\Set^{C^{op}}$.
+
+\section{Some functors related to sheaves}
+The main result of this section is the existence of two pairs of adjoint functors. Since right adjoint functors preserve limits and left adjoint functors preserve colimits, many convenient results about sheaves will follow easily from these adjunctions.
 
 \begin{theorem}
-  Given a presheaf $\mathcal{F}$ there is a unique morphism of presheaves $a : \mathcal{F} \to \mathcal{F}^{+}$ with the property that for any sheaf $\mathcal{G}$ and 
+	The global sections functor $\Gamma: \Sh(C,J) \to \Set, \Gamma(F) = \Hom(1,F)$ is right adjoint to the constant sheaf functor $\Delta: \Set \to \Sh(C,J)$.
 \end{theorem}
 
-The terminal object in the category of sheaves is the constant sheaf associated to the one points set $*$.
+\begin{theorem}
+	The forgetful functor $\mathsf{Sh}(C,J) \to \Set^{C^{op}}$ admits a limit-preserving left adjoint
+	\[a : \Set^{C^{op}} \to \mathsf{Sh}(C,J).\]
+\end{theorem}
+
+The functor $a$ is the \textit{associated sheaf functor}, also known as \textit{sheafification}. As the name suggests, it provides universal way to turn a presheaf into a sheaf.
+Note that there are two ways a presheaf can fail to be a sheaf: 
+\begin{itemize}
+	\item 
+		Local sections may fail to patch to a global section. An example of a presheaf whose local sections fail to patch is the presheaf of bounded continuous functions on $\R$. If we cover $\R$ by bounded intervals $\{U_i\}$, the identity function is bounded on each $U_i$ but is obviously not globally bounded. 
+	\item 
+		Sections that agree locally may not agree globally. We construct an example. $S$ be the a discrete topological space with two points $0$ and $1$. We define a presheaf $\Sh{F}$ by setting $\Sh{F}(\varnothing) = \{*\}$ and $\Sh{F}(U) = \R^U$. We define the restriction maps to send a section $s \in \Sh{F}(U)$ to the constant function $s|_V \equiv 0$ when $V \subseteq U$ is nonempty. Now let $s,t \in \Sh{F}(S)$ be defined by $s \equiv 1$ and $t \equiv -1$. Then $\{\{0\}, \{1\}\}$ is an open cover of $S$ and $s|_{0} = t|_{0}$ and $s|_{1} = t|_{1}$, but $s \neq t$.
+		This cannot happen if the map
+		\[
+			i: \Sh{F}(U) \to \mathsf{eq}(\prod_{i} \Sh{F}(U_i) \xbigtoto{} \prod_{i,j} \Sh{F}(U_i \cap U_j))
+		\]
+		is injective. Such a presheaf is called separated.
+\end{itemize} 
+
+Thus, sheafification proceeds in two steps. The first step removes sections that agree locally but not globally, making a presheaf into a separated presheaf.  The second step adds the sections of matching local sections. 
+
+For the proof, it will be useful to give an alternative description of Grothendieck topologies.  For an object $A$ of $C$, a \textit{sieve} on $C$ is a set $S$ of morphisms with codomain $C$ such that $f \circ h \in S$ whenever $f \in S$ and $f \circ h$ is defined. Note that the set of sieves is ordered by inclusion.
+
+\begin{proof}
+\end{proof}
+
+Consider the terminal object $1$ in the category $\Set^{C^{op}}$. It is the presheaf defined by $1(X) = \{*\}$ for all $X \in C$. A morphism of presheaves $\gamma: 1 \to P$ picks an element $\gamma_U$ for each object $U$ of $C$ such that the following diagram commutes for each $f: U \to U'$:
+% https://q.uiver.app/?q=WzAsMyxbMSwwLCJcXHsqXFx9Il0sWzAsMSwiXFxTaHtGfShVJykiXSxbMiwxLCJcXFNoe0Z9KFUpIl0sWzAsMV0sWzEsMiwiZl8qIl0sWzAsMl1d
+\[ \begin{tikzcd}
+	& {\{*\}} \\
+	{\Sh{F}(U')} && {\Sh{F}(U)}
+	\arrow[from=1-2, to=2-1]
+	\arrow["{f_*}", from=2-1, to=2-3]
+	\arrow[from=1-2, to=2-3]
+\end{tikzcd}
+\]
+We obtain a functor $\Gamma: \Set^{C^{op}} \to \Set, \Gamma(P) = \Hom(1, P)$. Conversely, we can assign to each set $S$ the constant presheaf $\Delta C$ by setting $\Delta C(U) = S$ and letting all restrictions be identities. There are natural isomorphisms
+\[\Hom_{\hat{C}}(\Delta C, P) \cong \Hom(S, \Gamma P),\]
+so the global sections functor is left adjoint to the constant presheaf functor.
+Since the inclusion of sheaves into presheaves has a left adjoint it preserves limits. In particular, terminal object $1$ is also a sheaf. Since adjoint functors compose, it follows that the functor $\Gamma : \mathsf{Sh}(C,J) \to \Set$ is right adjoint to the composition $a \circ \Delta: \Set \to \mathsf{Sh}(C,J)$. 
+
+
+For example, when $X$ is a topological space, $\Hom(1,F)(X)$ consists of all global sections of the sheaf $\Sh{F}$. Here $\Hom(1,F)$ is in the category $\mathsf{Sh}(C,J)$
+
+
+\begin{theorem}
+  Given a presheaf $\Sh{F}$ there is a unique morphism of presheaves $a : \Sh{F} \to \Sh{F}^{+}$ with the property that for any sheaf $\Sh{G}$ and 
+\end{theorem}
+
+\begin{remark}
+	An \textit{abelian category} is a category $\mathcal{A}$ such that
+	\begin{enumerate}
+		\item for any two objects $A,B$ of $\mathcal{A}$, $\Hom(A,B)$ is an abelian group,
+		\item every morphism has a kernel and cokernel,
+		\item every monomorphism is a kernel,
+		\item every epimorphism is a cokernel.
+	\end{enumerate}
+\end{remark}
 
 \begin{definition}
-  A sequence of sheaves $\to \mathcal{F}_{i-1} \to \mathcal{F}_{i} \to \mathcal{F}_{i+1} \to$
+  A sequence of sheaves $\to \Sh{F}_{i-1} \to \Sh{F}_{i} \to \Sh{F}_{i+1} \to$
 	is exact if for each $i$, $\ker \varphi_i = im \varpi_{i-1}$.
 \end{definition}
 
-%% TODO: replace res with id
-%
-%  One may more slickly define a presheaf as a functor $\mathcal{F}: \Op(X)^{\op}\longrightarrow \Set$. To supress notation we will write $s|_V$ instead of $res_{V\kern-0.1em , U}(s).$ Here $s$ is a section over $U$.\\
-%\end{definition}
-%\begin{definition}[Sheaves]
-%  A presheaf $\mathcal{F}$ is a \textit{sheaf} if one can uniquely glue sections. Precisely, this means:
-%  \begin{enumerate}
-%    \item For an open set $U$, an open cover $\{U_i\}_{\indexset{i}{I}}$ of $U$ and $s, t \in \mathcal{F}(U)$, if $s|_{U_i} = t|_{U_i}$ for all $i \in I$, then $s = t$.
-%    \item For an open set $U$, an open cover $\{U_i\}_{\indexset{i}{I}}$ of $U$ and a family of sections
-%    \[\{s_i \in \mathcal{F}(U_i)\}_{\indexset{i}{I}},\]
-%     if $s_i|_{U_i \cap U_j} = s_j|_{U_i \cap U_j}$ for all $i,j \in I$, then there exists a section $s \in \mathcal{F}(U)$ such that $s|_{U_i} = s_i$ for all $i \in I$.
-%  \end{enumerate}
-%  In words this says that if we have a a cover $\{U_i\}$ of $U$ and a family of sections $\{s_i\}$ which agree on all intersections, we may glue these sections to a section over $U$. Moreover, this section is unique.
-%\end{definition}
-%
-%% TODO: Examples: constant sheaves, sheaves of rings
-%The definition for presheaves and sheaves are given almost entirely in categorical language. The notion of presheaf on a category $C$ is readily defined as a functor 
-%\[\mathcal{F}: C^{\op}\longrightarrow \Set.\]
-%The missing piece is the notion of a covering in arbitrary categories.. To motivate the definition of a Grothendieck topology, we review the proerties of coverings in the language introduced in Definition \ref{def:opens}.
-% \begin{enumerate}
-%  \item The identity $U \to U$ is an open cover of $U$.
-%  \item Coverings are stable under composition. Precisely this means: Given a covering \\$\{U_i \to U\}_{i \in I}$ and for each $U_i$ a covering $\{V_{ij} \to U_i\}_{j \in J}$, the composition
-%        \[\{V_{ij} \to U\}\]
-%        should be a covering of $U$.
-%   \item  Coverings are stable under pullback: If we have an inclusion $V \hookrightarrow U$ and a covering $\{U_i \to U\}$, the open sets $\{U_i \times_U V\}$ cover $V$ with the induced projection maps:
-%   % https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXHtVX2kgXFx0aW1lc19VIFZcXH0iXSxbMCwxLCJWIl0sWzEsMCwiXFx7VV9pXFx9Il0sWzEsMSwiVSJdLFswLDFdLFswLDJdLFsyLDNdLFsxLDMsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV1d
-%      \[\begin{tikzcd}
-%      	{\{U_i \times_U V\}} & {\{U_i\}} \\
-%      	V & U.
-%      	\arrow[from=1-1, to=2-1]
-%      	\arrow[from=1-1, to=1-2]
-%      	\arrow[from=1-2, to=2-2]
-%      	\arrow[hook, from=2-1, to=2-2]
-%      \end{tikzcd}\]
-%      Here the fiber product may often be interpreted as the intersection.
-%\end{enumerate}
-%\begin{definition}[bases for Grothendieck topologies]
-%  
-%\end{definition}
-%
-%\begin{example}
-%  We obtain a sheaf on $\R^n$ by associating to any open set $U\subseteq \R^n$ the set \[C(U) = \{f: U \to \R\}\]. The restriction maps are the usual ones. The other properties are also clear.
-%\end{example}
-%\begin{example}
-%  Let $X$ be a topological space. For any abelian group $A$ there is the so called \textit{constant sheaf} $X_A$. To any open set $U \subseteq X$ associate the set \[X_A(U) = \{f: U \to A | f \text{ is locally constant.} \}\]
-%\end{example}
-%
-%\section{Maps of sheaves}
-%Since sheaves are presheaves, we define a map of sheaves $\varphi: \mathcal{F} \to \mathcal{G}$ as a natural transformation $\mathcal{F} \to \mathcal{G}$ between functors. Explicitly this natural transformation consists of a group homomorphism $\varphi_U: \mathcal{F}(U) \to \mathcal{G}(U)$ for each $U \in X$ that is compatible with the restrictions in the sense that the following diagram commutes:
-%
-%% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXG1hdGhjYWx7Rn0oVikiXSxbMCwxLCJcXG1hdGhjYWx7Rn0oVSkiXSxbMSwwLCJcXG1hdGhjYWx7R30oVikiXSxbMSwxLCJcXG1hdGhjYWx7R30oVSkiXSxbMCwxLCJyZXNfe1YsVX0iLDJdLFswLDIsIlxcdmFycGhpX1YiXSxbMiwzLCJyZXNfe1YsVX0iXSxbMSwzLCJcXHZhcnBoaV9VIl1d
-%\[\begin{tikzcd}
-%	{\mathcal{F}(V)} & {\mathcal{G}(V)} \\
-%	{\mathcal{F}(U)} & {\mathcal{G}(U)}
-%	\arrow["{res_{V,U}}"', from=1-1, to=2-1]
-%	\arrow["{\varphi_V}", from=1-1, to=1-2]
-%	\arrow["{res_{V,U}}", from=1-2, to=2-2]
-%	\arrow["{\varphi_U}", from=2-1, to=2-2]
-%\end{tikzcd}\]
-%
-%Let $\varphi : \mathcal{F} \to \mathcal{G}$ be a morphism sheaves of abelian groups on $X$. The sheaf kernel of the map $\varphi$ is the presheaf $U \mapsto ker(\varphi)$. The sheaf condition on $\mathcal{G}$ ensures that this is in fact a sheaf.
-%
-%
-%
-%There are a number of properties of sheaves which are important for applications. These properties govern the behavior of the cohomology.
-%
-%\begin{definition}
-%  A sheaf is called
-%  \begin{enumerate}
-%    \item flabby if the restriction maps are surjective,
-%    \item soft if any section over a closed subset can be extended to a global section,
-%    \item acyclic if the higher cohomology of the sheaf vanishes. 
-%  \end{enumerate} 
-%\end{definition}
-%
-%\section{The \'Etale site of a Scheme}
-%%\section{Sheaf Semantics}
-%%It is possible to interpret intuitionistic first-order logic in an arbitrary topos. In the case of sheaves, this is done using the following rules
+% https://q.uiver.app/?q=WzAsMyxbMSwwLCJcXHsqXFx9Il0sWzAsMSwiXFxTaHtGfShVJykiXSxbMiwxLCJcXFNoe0Z9KFUpIl0sWzAsMV0sWzEsMiwiZl8qIl0sWzAsMl1d
+\begin{tikzcd}
+	& {\{*\}} \\
+	{\Sh{F}(U')} && {\Sh{F}(U)}
+	\arrow[from=1-2, to=2-1]
+	\arrow["{f_*}", from=2-1, to=2-3]
+	\arrow[from=1-2, to=2-3]
+\end{tikzcd}

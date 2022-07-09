@@ -1,57 +1,42 @@
-The topology that arises naturally in algebraic geometry is the Zariski topology.
-
-\begin{theorem}
-  If $X$ is an irreducible topological space and $\mathcal{F}$ is a constant sheaf, then $H^r(X, \mathcal{F})$ for all $r>0$.
-\end{theorem}
-\begin{proof}
-  Since any open set $U \subseteq X$ is connected, $\mathcal{F}(U) = G$ if $\mathcal{F}$ is the constant sheaf defined by the group $G$ and $U$ is nonempty. This means that $\mathcal{F}$ is flasque, hence $H^r(X, \mathcal{F})$ for all $r>0$.
-\end{proof}
-It follows that constant sheaves on varieties have no higher cohomology. The reason ist that there are not enought open sets in the Zariski topology. In order to fix this, we introduce the notion of \'etale morphism, which will allow us to consider sheaves on a larger category $\acute{Et}/X$ instead of the category of open sets of $X$. This category bears a strong resemblence to the category of open sets, but contains as objects not open sets but \textit{local homeomorphisms}.
-
 \subsection{Local homeomorphisms}
-In topology, a continuous map $f: X \to Y$ is called a local homeomorphism if $f$ restricts to a homeomorphism around any point $x \in X$. More precisely, for any point $x \in X$ there is a neighborhood $U$ of $x$ such that $f(U)$ is open in $Y$ and $p|_U: U \to p(U)$ is a homeomorphism. In this situation one also says that $X$ is an \'etale space over $Y$. Suppose $f: Y \to X$ is a \textit{surjective} local homeomorphism with finite fibers. Then the preimage $f^{-1}(U)$ of a sufficiently small open set will be homeomorphic to a disjoint union of the open sets $f^{-1}(U) \cong \amalg_{i=1}^n U_i$ such that $f$ induces a homeomorphism $f|_{U_i} : U_i \tilde{\longrightarrow} U$ for each $i$.
-%\begin{tikzpicture}[declare function={f(\x)=0.2*sin(\x)+\x/1000;},
-%  rubout/.style={/utils/exec=\tikzset{rubout/.cd,#1},
-%  decoration={show path construction,
-%       curveto code={
-%        \draw [white,line width=\pgfkeysvalueof{/tikz/rubout/line width}+2*\pgfkeysvalueof{/tikz/rubout/halo}] 
-%         (\tikzinputsegmentfirst) .. controls
-%         (\tikzinputsegmentsupporta) and (\tikzinputsegmentsupportb)  ..(\tikzinputsegmentlast); 
-%        \draw [line width=\pgfkeysvalueof{/tikz/rubout/line width},shorten <=-0.1pt,shorten >=-0.1pt] (\tikzinputsegmentfirst) .. controls
-%         (\tikzinputsegmentsupporta) and (\tikzinputsegmentsupportb) ..(\tikzinputsegmentlast);  
-%       }}},rubout/.cd,line width/.initial=2pt,halo/.initial=0.5pt]
-%  \draw[rubout={line width=2pt,halo=0.5pt},decorate] 
-%    plot[variable=\x,domain=-50:970,samples=55,smooth] ({cos(\x)},{f(\x)}) to[out=0,in=195] cycle;
-%  \draw[line width=2pt] (0,-2) arc(-90:270:1cm and 0.2cm);
-%  \draw[thick,-stealth]  (0,-0.4) -- (0,-1.4) node[midway,right]{$p$};
-% \end{tikzpicture} 
-%
+In topology, a continuous map $f: X \to Y$ is called a local homeomorphism if $f$ restricts to a homeomorphism around any point $x \in X$. More precisely, for any point $x \in X$ there is a neighborhood $U$ of $x$ such that $f(U)$ is open in $Y$ and $p|_U: U \to p(U)$ is a homeomorphism. In this situation one also says that $X$ is an \'etale space over $Y$. Suppose $f: Y \to X$ is a \textit{surjective} local homeomorphism with finite fibers. Then the preimage $f^{-1}(U)$ of a sufficiently small open set will be homeomorphic to a finite disjoint union of the open sets $f^{-1}(U) \cong \coprod U_i$ such that $f$ induces a homeomorphism $f|_{U_i} : U_i \tilde{\to} U$ for each $i$. Surjective local homeomorphisms are also called \textit{covering spaces} or simply \textit{coverings}. A trivial covering is one of the form $p: \coprod X \to X$, where $p$ restricts to the identity on each component. Using this terminology one can also say that a covering is a \textit{locally trivial local homemorphism}.
 We would like to have notion of \'etale map for schemes. Schemes are not merely topological spaces because they carry algebraic information through their structure sheaf. This is why we cannot expect the above definition to be well behaved for schemes. The definition must make use of some nontrivial algebra. 
 
-\subsection{\'Etale Morphisms}
-We begin our discussion with the simple case of \'etale covers of $X = \Spec(k)$, where $k$ is a field. In order for a map $f: Y \to X$ to have finite fibers, the underlying topological space of $Y$ must consist of a finite number of points. If we restrict our attention to the case that $Y$ is affine, it follows that $Y = \Spec(L_i)$ where each $L_i$ is an extension of field of $k$. 
+\subsection{\'Etale Algebras}
+We begin our discussion with the simple case of \'etale covers of $X = \Spec(k)$, where $k$ is a field. In order to model the notion of local homeomorphism, it is reasonable to demand that for $f: Y \to X$ to be a local homeomorphism,  the underlying topological space of $Y$ should consist of a finite number of disjoint points. If we restrict our attention to the case that $Y$ is affine, it follows that $Y = \Spec(\prod L_i)$ where each $L_i$ is a field extension of $k$. 
 
 \begin{definition}
   A finite dimensional $k$-algebra $A$ is \'etale over $k$ if it is isomorphic to a product of separable extensions of $k$. We define $\Spec(A) \to \Spec(k)$ to be \'etale if $A$ is an \'etale algebra over $k$.
 \end{definition}
-Recall that an extension $L/k$ is separable if its minimal polynomial $p(x)$ has no multiple roots (in a splitting field of $p(x)$). It follows from basic algebra that a polynomial $p(x)$ is separable if and only if it is coprime to its formal derivative $p'(x)$. This menas that $p'(x)$ gets mapped to a unit under the canonical map $k[x] \longrightarrow k[x]/(p(x)) \simeq L$. This is in effect a smoothness condition, reminiscent of the conditions under which the inverse mapping theorem from analysis holds. This idea will reappear when we define \'etale morphisms in a more general condition.
 
-We require separability of the extensions because of their good categorical properties. Grothendieck's reformulation of Galois theory is in fact a statement about finite \'etale algebras and establishes a strong analogy with the theory of covering spaces and of fundamental groups. This connection allows us to define the fundamental group of a scheme. We refer to\cite{Szamuely} for more details.
+Recall that an extension $L/k$ is separable if its minimal polynomial $p(x)$ has no multiple roots (in a splitting field of $p(x)$). It follows from basic algebra that a polynomial $p(x)$ is separable if and only if it is coprime to its formal derivative $p'(x)$. This menas that $p'(x)$ gets mapped to a unit under the canonical map $k[x] \to k[x]/(p(x)) \simeq L$. This is in effect a smoothness condition, reminiscent of the conditions under which the inverse mapping theorem from analysis holds. This idea will reappear when we define \'etale morphisms in a more general condition.
+
+We require separability of the extensions because of their good categorical properties. Grothendieck's reformulation of Galois theory is in fact a statement about finite \'etale algebras and establishes a strong analogy with the theory of covering spaces and of fundamental groups. This connection allows us to define the fundamental group of a scheme. We refer to~\cite{Szamuely} for more details.
 
 \begin{theorem}
-  Let $A$ be a finite dimensional commutative $k$-algebra. Then $A$ is \'etale if and only if $A \otimes_k \overline{k}$ is isomorphic to a finite product of copies of $\overline{k}$.
+  Let $A$ be a finite dimensional commutative $k$-algebra and denote by $\overline{A}$ the $\overline{k}$-algebra $A \otimes_k \overline{k}$. The following are equivalent:
+  \begin{enumerate}
+    \item $A$ is \'etale over $k$.\label{etale}
+    \item $A \otimes_k \overline{k}$ is isomorphic to a finite product of copies of $\overline{k}$, hence \'etale over $\overline{k}$.\label{product}
+    \item The discriminant of any basis of $A$ over $k$ is nonzero.\label{trace}
+    %The trace pairing $A \times A \to k, (x,y) \to \text{Tr}(xy)$ is nondegenerate.
+  \end{enumerate}
 \end{theorem}
 \begin{proof}
   Suppose that $L$ is a finite separable extension of $k$. This means that $L = k[x]/(f)$, where $f$ is a polynomial of degree $n$ which splits into $n$ distinct factors, say $(x-\alpha_i)$ in $\overline{k}$. By the chinese remainder theorem we have
-  \[L \otimes_k \overline{k} \cong \overline{k}[x]/(f) = \overline{k}[x](x-\alpha_1)\cdots(x-\alpha_n) \cong \prod_{i=1}^n \overline{k}[x]/(x-\alpha_i) \cong \prod_{i=1}^n \overline{k},\] from which the first direction follows.
+  \[L \otimes_k \overline{k} \cong \overline{k}[x]/(f) = \overline{k}[x]/(x-\alpha_1)\cdots(x-\alpha_n) \cong \prod_{i=1}^n \overline{k}[x] / (x-\alpha_i) \cong \prod_{i=1}^n \overline{k},\] from which the first direction follows.
+  \Implies{etale}{trace} If $A = \prod k_i$  where each $k_i$ is a separable field extension of $k$, then $\text{disc}(A) = \prod \text{disc}(k_i)$ which is nonzero by the fact that $\text{disc}(k_i) \neq 0$ if $k_i$ is a separable extension.
   %TODO finish the proof
 \end{proof}
+We generalise this definition to an algebra over a ring. Let $R$ be a ring, $A$ an $R$-algebra that is free and of finite rank. The map $m_a: A \to A$ defined by left multiplication $x \to ax$ is $R$-linear, so we may consider its trace. Define an bilinear map $\varphi: B \times B \to A$ by $\varphi(x,y) = \text{Tr}(xy)$. We define $A$ to be separable over $R$ if $\varphi$ is an isomorphism. It turns out that this definition agrees with the previous one in the case that $R$ is a field.
 
+\subsection{\'Etale morphisms of schemes}
 \begin{definition}
-A morphism of schemes $f: X \to Y$ is called \textit{affine} if there is an open affine cover by subsets $U_i$ such that $f^{-1}(U_i)$ is affine for each $i$.
-A morphism of schemes $f: X \to Y$ is called \textit{finite} if there is an affine cover by subsets $U_i = \Spec(A)$ such that $f^{-1}(U_i) = \Spec(B_i)$ is a finitely generated $A_i$-module.
-We say that $f: X \to S$ is finite locally free if $f$ is affine and $f_* \mathcal{O}_X$ is locally free and of finite rank. If each fibre $X_p$ of $f$ is the spectrum of a finite \'etale $\kappa(p)$-algebra, then we say $f$ is an \'etale morphism.
+A morphism of schemes $f: X \to Y$ is called \textit{affine} if there is an open affine cover by subsets $U_i$ such that $f^{-1}(U_i)$ is affine for each $i$.  A morphism of schemes $f: X \to Y$ is called \textit{finite} if there is an affine cover by subsets $U_i = \Spec(A)$ such that $f^{-1}(U_i) = \Spec(B_i)$ is a finitely generated $A_i$-module.  If moreover each $B_i$ is a fee separable $A_i$-algebra, it is said to be \'etale.
+%We say that $f: X \to S$ is finite locally free if $f$ is affine and $f_* \Sh{O}_X$ is locally free and of finite rank.
+%If each fibre $X_p$ of $f$ is the spectrum of a finite \'etale $\kappa(p)$-algebra, then we say $f$ is an \'etale morphism.
 \end{definition}
+It follows that $f: \Spec(B) \to \Spec(A)$ is an \'etale morphism if and only if $B$ is an \'etale $A$-algebra.
 
 \begin{lemma}
   \begin{enumerate}
@@ -61,16 +46,72 @@ We say that $f: X \to S$ is finite locally free if $f$ is affine and $f_* \mathc
   \end{enumerate}
 \end{lemma}
 \begin{proof}
-  The first statement follows immediately from the fact that a morphism $f: X \to Y$ is affine if and only if for \textit{every} affine open $V \subseteq X$, $f^{-1}(V)$ is affine, see \cite{Hartshorne}.
-
+  The first statement follows immediately from the fact that a morphism $f: X \to Y$ is affine if and only if for \textit{every} affine open $V \subseteq X$, $f^{-1}(V)$ is affine, see\cite{Hartshorne}.
 \end{proof}
 
-\begin{theorem}
-  If $f: Y \to X$ is \'etale, then the base change $U \times_X Y$ along any morphism $U \to X$ is \'etale.
-\end{theorem}
 
+\begin{lemma}
+  If $f: Y \to X$ is \'etale, then the base change $U \times_X Y$ along any morphism $U \to X$ is \'etale.
+\end{lemma}
+\begin{definition}
+  A surjective finite \'etale morphism is called an \'etale cover. An \'etale cover $\varphi : Y \to X$ is claled trivial if $Y$ is isomorphic do a finite disjoint union of copies of $X$ $Y \cong \coprod X$ and $\varphi$ restricts to the identity on each component.
+\end{definition}
+
+\begin{theorem} 
+  \label{locallyTrivial}
+  Let $X$ be a connected scheme and $\varphi : Y \to X$ an affine surjective morphism. Then $\varphi$ is finite \'etale if and only if there is a finite, locally free and surjective morphism $f: S \to X$ such that $Y \times_X S$ is a trivial cover of $S$.
+\end{theorem}
+\begin{proof}
+  For the ``if'' part, we first show that $\varphi$ is finite and locally free. Since $f$ is locally free, each point of $X$ has an affine open neighborhood $U = \Spec(R)$ such that $f$ restricts to a morphism $\Spec(A) \to \Spec(R)$ where $A$ is a finitely generated and free $R$-module. Since $\varphi$ is affine, it restricts to $\Spec(B) \to \Spec(R)$ over $U$ and the basechange $S \times_X Y$ restricts to $\Spec(A \otimes_R B)$ over $\Spec(R)$. By assumption $A \otimes_R B$ is a finitely generated and free $A$-module, so it is also fnitely generated and free as an $R$-module. It is also isomorphic to a finite direct sum of copies of $A$. This can only happen if $B$ is finitely generated and free over $R$.
+    \[
+    % https://q.uiver.app/?q=WzAsOCxbMCwxLCJTIl0sWzEsMCwiWSJdLFsxLDEsIlgiXSxbMCwwLCJTIFxcdGltZXNfWCBZIl0sWzIsMCwiXFxTcGVjKEEgXFxvdGltZXNfUkIpIl0sWzIsMSwiXFxTcGVjKEEpIl0sWzMsMSwiXFxTcGVjKFIpIl0sWzMsMCwiXFxTcGVjKEIpIl0sWzEsMiwiXFx2YXJwaGkiXSxbMCwyLCJmIiwyXSxbMywxXSxbMywwXSxbNCw1XSxbNSw2XSxbNCw3XSxbNyw2XV0=
+    \begin{tikzcd}
+    	{S \times_X Y} & Y & {\Spec(A \otimes_RB)} & {\Spec(B)} \\
+    	S & X & {\Spec(A)} & {\Spec(R)}
+    	\arrow["\varphi", from=1-2, to=2-2]
+    	\arrow["f"', from=2-1, to=2-2]
+    	\arrow[from=1-1, to=1-2]
+    	\arrow[from=1-1, to=2-1]
+    	\arrow[from=1-3, to=2-3]
+    	\arrow[from=2-3, to=2-4]
+    	\arrow[from=1-3, to=1-4]
+    	\arrow[from=1-4, to=2-4]
+    \end{tikzcd}
+    \]
+  Now let $\overline{x} : \Spec(\overline{k}) \to S$ be a geometric point of $S$. By composition with $f$ we get a geometric point of $X$. Now the geometric fibers $Y_{(f \circ \overline{x})}$ and $(S \times_X Y)_{\overline{x}}$  are isomorphic by the universal property of pullbacks. 
+  \[
+  % https://q.uiver.app/?q=WzAsOSxbMiwxLCJYIl0sWzIsMCwiWSJdLFsxLDAsIllfeyhmIFxcY2lyYyBcXG92ZXJsaW5le3h9KX0iXSxbMSwxLCJcXG92ZXJsaW5le2t9Il0sWzMsMCwiKFMgXFx0aW1lc19YIFkpX3tcXG92ZXJsaW5le3h9fSJdLFszLDEsIlxcb3ZlcmxpbmV7a30iXSxbNCwwLCJTIFxcdGltZXNfWCBZIl0sWzQsMSwiUyJdLFswLDJdLFsxLDBdLFsyLDFdLFszLDAsImYgXFxjaXJjIFxcb3ZlcmxpbmV7eH0iLDJdLFsyLDNdLFs0LDVdLFs0LDZdLFs2LDddLFs1LDcsIlxcb3ZlcmxpbmV7eH0iLDJdXQ==
+\begin{tikzcd}
+	& {Y_{(f \circ \overline{x})}} & Y & {(S \times_X Y)_{\overline{x}}} & {S \times_X Y} \\
+	& {\overline{k}} & X & {\overline{k}} & S \\
+	{}
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-2, to=1-3]
+	\arrow["{f \circ \overline{x}}"', from=2-2, to=2-3]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=1-4, to=2-4]
+	\arrow[from=1-4, to=1-5]
+	\arrow[from=1-5, to=2-5]
+	\arrow["{\overline{x}}"', from=2-4, to=2-5]
+\end{tikzcd}
+\]
+By assumption, $(S\times_X Y)_{\overline{x}} \cong \prod \Spec(\overline{k})$ and since $f$ is surjective, all of the ribres of $\varphi$ are also \'etale.
+\end{proof}
+Theorem \ref{locallyTrivial} shows that \'etale morphsism are locally trivial in the \'etale topology.
+The previous results allow us to consider the \textit{\'etale site} of a scheme $X$. It has as objects \'etale morphisms $f: S \to X$ and as morphisms commutative triangles
+\[
+% https://q.uiver.app/?q=WzAsMyxbMCwwLCJTIl0sWzIsMCwiUyciXSxbMSwxLCJYIl0sWzAsMSwiXFx2YXJwaGkiXSxbMSwyLCJmJyJdLFswLDIsImYiLDJdXQ==
+\begin{tikzcd}
+	S && {S'} \\
+	& X
+	\arrow["\varphi", from=1-1, to=1-3]
+	\arrow["{f'}", from=1-3, to=2-2]
+	\arrow["f"', from=1-1, to=2-2]
+\end{tikzcd}
+\]
+ such that $f = f' \circ \varphi$. 
 \begin{remark}
-  If we have an \'etale cover $f: Y \longrightarrow X$ and consider a geometric point $\overline{x} : \Spec(\Omega) \longrightarrow X$ of $X$, then the fiber of $f$ over $\overline{x}$ arises from the pullback
+  If we have an \'etale cover $f: Y \to X$ and consider a geometric point $\overline{x} : \Spec(\Omega) \to X$ of $X$, then the fiber of $f$ over $\overline{x}$ arises from the pullback
     % https://q.uiver.app/?q=WzAsNCxbMCwwLCJTcGVjKFxcT21lZ2EpXFx0aW1lc19YIFkiXSxbMCwxLCJTcGVjKFxcT21lZ2EpIl0sWzEsMCwiWSJdLFsxLDEsIlgiXSxbMCwxXSxbMCwyXSxbMiwzXSxbMSwzXV0=
     \[\begin{tikzcd}
     	{\Spec(\Omega)\times_X Y} & Y \\
@@ -80,7 +121,7 @@ We say that $f: X \to S$ is finite locally free if $f$ is affine and $f_* \mathc
     	\arrow[from=1-2, to=2-2]
     	\arrow[from=2-1, to=2-2]
     \end{tikzcd}\]
-  Since $\Spec(\Omega)\times_X Y$ is \'etale over $\Spec(\Omega)$ and $\Omega$ is algebraically closed, it follows that $\Spec(\Omega)\times_X Y \cong \amalg \Spec(\Omega)$
+  Since $\Spec(\Omega)\times_X Y$ is \'etale over $\Spec(\Omega)$ and $\Omega$ is algebraically closed, it follows that $\Spec(\Omega)\times_X Y \cong \coprod \Spec(\Omega)$
 \end{remark}
 
 \begin{remark}
@@ -93,7 +134,7 @@ We say that $f: X \to S$ is finite locally free if $f$ is affine and $f_* \mathc
 \end{remark}
 
 \begin{theorem}
-  A presheaf $\mathcal{F}$ on $\text{\'Et}/X$ is a sheaf if and only if $\mathcal{F}$ satisfies the sheaf condition for Zariski open coverings and for \'etale coverings consisting of a single map $V \to U$, where $V$ and $U$ are affine.
+  A presheaf $\Sh{F}$ on $\text{\'Et}/X$ is a sheaf if and only if $\Sh{F}$ satisfies the sheaf condition for Zariski open coverings and for \'etale coverings consisting of a single map $V \to U$, where $V$ and $U$ are affine.
 \end{theorem}
 \begin{proof}
   \cite{milneLEC}.
@@ -104,6 +145,10 @@ We say that $f: X \to S$ is finite locally free if $f$ is affine and $f_* \mathc
 \begin{proof}
   It is obviously a sheaf for the Zariski topology. 
 \end{proof}
+
+% This leads to the correspondence between locally constant sheaves and etale covers
+
+
 %
 %\subsubsection{\'Etale morphsims of nonsingular varieties}
 %For varieties defined over an algebraically closed field $k$, one may use a formalism in direct analogy to smooth manifolds to define \'etale morphsims, namely the formalism of tangent spaces. However, instead of defining the tangent space at a point $p \in X$ analytically, we define it algebraically.
@@ -133,7 +178,7 @@ We say that $f: X \to S$ is finite locally free if $f$ is affine and $f_* \mathc
 %
 %The structure sheaf $\OO_{X_{\text{\'et}}}(U) = \Gamma(U, \OO_U)$
 %\par
-%Representables $\mathcal{F}: \mathsf{Et}/X \to \Set , \mathcal{F}(U) = \Hom_X(U,Z)$ for any $X$-scheme $Z$. In particular this means that the \'etale topology is subcanonical.
+%Representables $\Sh{F}: \mathsf{Et}/X \to \Set , \Sh{F}(U) = \Hom_X(U,Z)$ for any $X$-scheme $Z$. In particular this means that the \'etale topology is subcanonical.
 %\par
 %
 %%It is a theorem that any category of sheaves on a site (in particular a topological space) is a topos. As such it carries a lot of structure
