@@ -1,9 +1,6 @@
-Sheaves are geometric gadgets that were initially defined for applications in complex geometry. Serre was the first to introduce sheaves into algebraic geometry and since then sheaf-theoretic techniques have been at the core of many advances in algebraic geometry.  Sheaf theory provides tools for relating local data to global data on a topological space. In particular, the question of whether or not global solutions to certain problems exist can be studied using sheaf cohomology. 
-
 
 \begin{construction}\label{def:opens}
-  Let $X$ be a topological space. The open sets of $X$ are partially ordered by inclusion: \[V \le W \quad \text{when} \quad V \subseteq W.\]
-  We may thus, as with any poset, consider the category of open sets of $X$, sometimes denoted by $\Op(X)$. By abuse of notation, we will often write $X$ instead of $\Op(X)$.
+  Let $X$ be a topological space. The open sets of $X$ are partially ordered by inclusion: $V \le W \quad \text{when} \quad V \subseteq W$.  We may thus, as with any poset, consider the category of open sets of $X$, sometimes denoted by $\Op(X)$. By abuse of notation, we will often write $X$ instead of $\Op(X)$.
 \end{construction}
 \begin{remark}
  In the category $\Op(X)$ pullbacks correspond to intersections and pushouts correspond to unions. By the definition of topological space, this means that $\Op(X)$ has finite pullbacks and arbitrary pushouts. 
@@ -13,15 +10,17 @@ Sheaves are geometric gadgets that were initially defined for applications in co
 	Let $\mathcal{C}$ be a category. A Grothendieck topology on $C$ is given by a set $\text{Cov}(\mathcal{C})$ of families of morphisms ${U_i \to U}$ for each object $U$ of $C$ with the following properties:
 	\begin{enumerate}
 		\item If $V \to U$ is an isomorphism, then $\{V \to U\} \in \mathcal{C}$
-		\item If $\{U_i \to U\} \in \text{Cov}(\mathcal(C))$, and for each $U_i$ we have $\{V_{ij} \to Ui\}$, the composition $\{V_{ij} \to U\}$ is in $\text{Cov}(\mathcal{C})$.
+		\item If $\{U_i \to U\} \in \text{Cov}(\mathcal{C})$, and for each $U_i$ we have $\{V_{ij} \to Ui\}$, the composition $\{V_{ij} \to U\}$ is in $\text{Cov}(\mathcal{C})$.
 		\item If $\{U_i \to U\} \in \text{Cov}(\mathcal{C})$, and $V \to U$ is a morphism, then $U_i \times_U V$ exists and 
 		$\{U_i \times_U V \to V\}$ is in $\text{Cov}(\mathcal{C})$.
 	\end{enumerate}	
 	An element $\{U_i \to U\}$ of $\text{Cov}(\mathcal{C})$ is called a cover of $U$. A category $C$ together with a Grothendieck topology is called a \textit{site}.
 \end{definition}
+
 \begin{remark}
-	A topological space $X$ may be equipped with the structure of a site by declaring the coverings of open sets $U \subseteq X$ to be those families of open sets $\{U_i\}$ contained in $U$ such that $\bigcup U_i = U$.
+	A topological space $X$ may be equipped with the structure of a site by declaring the coverings of open sets $U \subseteq X$ to be those families of open sets $\{U_i\}$ contained in $U$ such that $\bigcup U_i = U$.  In (...) we will define the notion of \'etale morphism. We will show the category $\acute{E}t/X$ of schemes \'etale over $X$ carries the structure of a Grothendieck topology. This topology is finer than the Zariski topology in the sense that an open immersion $U \to X$ is always \'etale, so each open set $U \in X$ may be thought of as an \'etale morphism.
 \end{remark}
+
 
 
 \begin{definition}[Presheaves] 
@@ -82,7 +81,8 @@ When taking the product in the middle row of~\ref{restriction}, we obtain the di
 
 Given two section $s_1 \in \Sh{F}(U_1)$ and $s_2 \in \Sh{F}(U_2)$, the two parallel arrows map $(s_1, s_2)$ to $s_1|_{U_{12}}$ and $s_2|_{U_{12}}$. To say that $\Sh{F}(X)$ is an equalizer in the above diagram amounts to saying that the sections of $\Sh{F}(X)$ are recoverable from those sections on the sets $U_1$ and $U_2$ which agree on the overlap $U_{12}$. The diagram\eqref{equalizer:1} is the straightforward generalisation of the preceding discussion for a cover consisting of more than 2 open sets.
 
-Since sheaves are presheaves, we define a map of sheaves $\varphi: \Sh{F} \to \Sh{G}$ as a natural transformation $\Sh{F} \to \Sh{G}$ between functors. Explicitly this natural transformation consists of a group homomorphism $\varphi_U: \Sh{F}(U) \to \Sh{G}(U)$ for each $U \in X$ that is compatible with the restrictions in the sense that the following diagram commutes:
+\subsection{Maps of Sheaves and Sheaves with Algebraic Structure}
+Since sheaves are presheaves, we define a map of sheaves $\varphi: \Sh{F} \to \Sh{G}$ as a natural transformation $\Sh{F} \to \Sh{G}$ between functors. Explicitly this natural transformation consists of a map of sets $\varphi_U: \Sh{F}(U) \to \Sh{G}(U)$ for each $U \in X$ such that the following diagram commutes:
 
 % https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXG1hdGhjYWx7Rn0oVikiXSxbMCwxLCJcXG1hdGhjYWx7Rn0oVSkiXSxbMSwwLCJcXG1hdGhjYWx7R30oVikiXSxbMSwxLCJcXG1hdGhjYWx7R30oVSkiXSxbMCwxLCJyZXNfe1YsVX0iLDJdLFswLDIsIlxcdmFycGhpX1YiXSxbMiwzLCJyZXNfe1YsVX0iXSxbMSwzLCJcXHZhcnBoaV9VIl1d
 \[\begin{tikzcd}
@@ -94,22 +94,51 @@ Since sheaves are presheaves, we define a map of sheaves $\varphi: \Sh{F} \to \S
 	\arrow["{\varphi_U}", from=2-1, to=2-2]
 \end{tikzcd}\]
 
+\begin{definition}
+Algebraic structures like groups and rings may be described in terms commutative diagrams. Let $\mathcal{C}$ be a category with finite products and a terminal object $1$. A \textit{group object} in $\mathcal{C}$ consists of an object $A$ of $\mathcal{C}$ together with morphisms
+\[e: * \to A,\ m : A \times A \to A,\ \iota: A \to A \]
 
-We obtain the category $\mathsf{Sh}(C,J)$ of sheaves on $C$ with respect to the topology $J$. This is in fact a full subcategory of presheaves $\Set^{C^{op}}$.
+\[
+	% https://q.uiver.app/?q=WzAsMyxbMCwwLCIxIFxcdGltZXMgQSJdLFsxLDAsIkEgXFx0aW1lcyBBIl0sWzEsMSwiQSJdLFswLDEsIlxcaW90YSBcXHRpbWVzIGlkX0EiXSxbMSwyLCJtIl0sWzAsMiwiXFx0aWxkZSIsMl1d
+\begin{tikzcd}
+	{1 \times A} & {A \times A} \\
+	& A
+	\arrow["{\iota \times \mathsf{id}_A}", from=1-1, to=1-2]
+	\arrow["m", from=1-2, to=2-2]
+	\arrow["\sim", from=1-1, to=2-2, sloped]
+\end{tikzcd}
+% https://q.uiver.app/?q=WzAsNCxbMCwwLCJBIFxcdGltZXMgQSBcXHRpbWVzIEEiXSxbMSwwLCJBIl0sWzEsMSwiQSJdLFswLDEsIkEiXSxbMCwxLCJpZCBcXHRpbWVzIG0iLDJdLFsxLDIsIm0iLDJdLFswLDMsIm0gXFx0aW1lcyBpZCJdLFszLDIsIm0iXV0=
+\begin{tikzcd}
+	{A \times A \times A} & A \\
+	A & A
+	\arrow["{id \times m}"', from=1-1, to=1-2]
+	\arrow["m"', from=1-2, to=2-2]
+	\arrow["{m \times id}", from=1-1, to=2-1]
+	\arrow["m", from=2-1, to=2-2]
+\end{tikzcd}
+\]
 
-\section{Some functors related to sheaves}
-The main result of this section is the existence of two pairs of adjoint functors. Since right adjoint functors preserve limits and left adjoint functors preserve colimits, many convenient results about sheaves will follow easily from these adjunctions.
+\end{definition}
 
-\begin{theorem}
-	The global sections functor $\Gamma: \Sh(C,J) \to \Set, \Gamma(F) = \Hom(1,F)$ is right adjoint to the constant sheaf functor $\Delta: \Set \to \Sh(C,J)$.
-\end{theorem}
+We obtain the category $\mathsf{Sh}(C,J)$ of sheaves on $C$ with respect to the topology $J$. This is in fact a full subcategory of presheaves $\Set^{C^{op}}$. The category of sheaves $\Sh(X, \'Et_X)$ on the \'etale toplogy of a scheme $X$ bears a special name: it is the \'etale topos of $X$. We have seen that a number of geometric constructions from algebraic topology fail in the Zariski topology. The \'etale topology captures these phenomena. In this sense the \'etale topos topos enables us to reason about schemes more geometrically. So if we want to understand the geometry a scheme $X$, we should also study the \'etale topos of $X$.
+
+\section{Some categories and functors related to sheaves}
+
+\subsection{Sheafification}
 
 \begin{theorem}
 	The forgetful functor $\mathsf{Sh}(C,J) \to \Set^{C^{op}}$ admits a limit-preserving left adjoint
 	\[a : \Set^{C^{op}} \to \mathsf{Sh}(C,J).\]
 \end{theorem}
+\begin{corollary}
+	The cateogry of sheaves on $X$ is a full reflective subcategory of the category of presheaves on $X$.
+\end{corollary}
 
-The functor $a$ is the \textit{associated sheaf functor}, also known as \textit{sheafification}. As the name suggests, it provides universal way to turn a presheaf into a sheaf.
+\begin{proof}
+	See \cite{MacLane/Moerdijk:1994}.
+\end{proof}
+
+The functor $a$ is the \textit{associated sheaf functor}, also called \textit{sheafification}. As the name suggests, it provides universal way to turn a presheaf into a sheaf.
 Note that there are two ways a presheaf can fail to be a sheaf: 
 \begin{itemize}
 	\item 
@@ -120,15 +149,28 @@ Note that there are two ways a presheaf can fail to be a sheaf:
 		\[
 			i: \Sh{F}(U) \to \mathsf{eq}(\prod_{i} \Sh{F}(U_i) \xbigtoto{} \prod_{i,j} \Sh{F}(U_i \cap U_j))
 		\]
-		is injective. Such a presheaf is called separated.
+		is injective. A presheaf for which $i$ is injective is called separated.
 \end{itemize} 
 
 Thus, sheafification proceeds in two steps. The first step removes sections that agree locally but not globally, making a presheaf into a separated presheaf.  The second step adds the sections of matching local sections. 
 
 For the proof, it will be useful to give an alternative description of Grothendieck topologies.  For an object $A$ of $C$, a \textit{sieve} on $C$ is a set $S$ of morphisms with codomain $C$ such that $f \circ h \in S$ whenever $f \in S$ and $f \circ h$ is defined. Note that the set of sieves is ordered by inclusion.
 
-\begin{proof}
-\end{proof}
+
+\subsection{The global sections functor}
+The main result of this section is the existence of two pairs of adjoint functors. Since right adjoint functors preserve limits and left adjoint functors preserve colimits, many convenient results about sheaves will follow easily from these adjunctions.
+\begin{theorem}
+	There is an adjoint pair of functors
+	% https://q.uiver.app/?q=WzAsMixbMCwwLCJcXG1hdGhzZntTaH0oQyxKKSJdLFsxLDAsIlxcU2V0Il0sWzEsMCwiXFxEZWx0YSIsMCx7Im9mZnNldCI6LTF9XSxbMCwxLCJcXEdhbW1hIiwwLHsib2Zmc2V0IjotMX1dXQ==
+	\[
+		\begin{tikzcd}
+			{\mathsf{Sh}(C,J)} & \Set
+			\arrow["\Delta", shift left=1, from=1-2, to=1-1]
+			\arrow["\Gamma", shift left=1, from=1-1, to=1-2]
+		\end{tikzcd}
+	\]
+	The global sections functor $\Gamma: \mathsf{Sh}(C,J) \to \Set,\ \Gamma(F) = \Hom(1,F)$ is right adjoint to the constant sheaf functor $\Delta: \Set \to \Sh(C,J)$.
+\end{theorem}
 
 Consider the terminal object $1$ in the category $\Set^{C^{op}}$. It is the presheaf defined by $1(X) = \{*\}$ for all $X \in C$. A morphism of presheaves $\gamma: 1 \to P$ picks an element $\gamma_U$ for each object $U$ of $C$ such that the following diagram commutes for each $f: U \to U'$:
 % https://q.uiver.app/?q=WzAsMyxbMSwwLCJcXHsqXFx9Il0sWzAsMSwiXFxTaHtGfShVJykiXSxbMiwxLCJcXFNoe0Z9KFUpIl0sWzAsMV0sWzEsMiwiZl8qIl0sWzAsMl1d
@@ -141,17 +183,21 @@ Consider the terminal object $1$ in the category $\Set^{C^{op}}$. It is the pres
 \end{tikzcd}
 \]
 We obtain a functor $\Gamma: \Set^{C^{op}} \to \Set, \Gamma(P) = \Hom(1, P)$. Conversely, we can assign to each set $S$ the constant presheaf $\Delta C$ by setting $\Delta C(U) = S$ and letting all restrictions be identities. There are natural isomorphisms
-\[\Hom_{\hat{C}}(\Delta C, P) \cong \Hom(S, \Gamma P),\]
+\[\Hom_{\widehat{C}}(\Delta C, P) \cong \Hom(S, \Gamma P),\]
 so the global sections functor is left adjoint to the constant presheaf functor.
 Since the inclusion of sheaves into presheaves has a left adjoint it preserves limits. In particular, terminal object $1$ is also a sheaf. Since adjoint functors compose, it follows that the functor $\Gamma : \mathsf{Sh}(C,J) \to \Set$ is right adjoint to the composition $a \circ \Delta: \Set \to \mathsf{Sh}(C,J)$. 
 
 
 For example, when $X$ is a topological space, $\Hom(1,F)(X)$ consists of all global sections of the sheaf $\Sh{F}$. Here $\Hom(1,F)$ is in the category $\mathsf{Sh}(C,J)$
 
-
-\begin{theorem}
-  Given a presheaf $\Sh{F}$ there is a unique morphism of presheaves $a : \Sh{F} \to \Sh{F}^{+}$ with the property that for any sheaf $\Sh{G}$ and 
-\end{theorem}
+\subsection{Sheaf Cohomology}
+Since right adjoints preserve limits, the functor $\Gamma$ is left exact. This means that applying $\Gamma$ to an exact sequence of sheaves 
+\[0 \to F \to G \to H \to 0,\]
+yields an exact sequence
+\[0 \to F(X) \to G(X) \to E(X).\]
+We would like to ``fill in'' the exact sequence using functors $H^i$ like so:
+\[0 \to F(X) \to G(X) \to E(X) \to H^1(X, F) \to H^1(X,G) \to\cdots \]
+The functors $H^i$ are implemented using so called derived functors. More precisely, the functors $H^i$ are the right derived functors of $\Gamma$.
 
 \begin{remark}
 	An \textit{abelian category} is a category $\mathcal{A}$ such that
