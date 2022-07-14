@@ -1,11 +1,7 @@
-\subsection{Local homeomorphisms}
-In topology, a continuous map $f: X \to Y$ is called a local homeomorphism if $f$ restricts to a homeomorphism around any point $x \in X$. More precisely, for any point $x \in X$ there is a neighborhood $U$ of $x$ such that $f(U)$ is open in $Y$ and $p|_U: U \to p(U)$ is a homeomorphism. In this situation one also says that $X$ is an \'etale space over $Y$. Suppose $f: Y \to X$ is a \textit{surjective} local homeomorphism with finite fibers. Then the preimage $f^{-1}(U)$ of a sufficiently small open set will be homeomorphic to a finite disjoint union of the open sets $f^{-1}(U) \cong \coprod U_i$ such that $f$ induces a homeomorphism $f|_{U_i} : U_i \tilde{\to} U$ for each $i$. Surjective local homeomorphisms are also called \textit{covering spaces} or simply \textit{coverings}. A trivial covering is one of the form $p: \coprod X \to X$, where $p$ restricts to the identity on each component. Using this terminology one can also say that a covering is a \textit{locally trivial local homemorphism}.
-We would like to have notion of \'etale map for schemes. Schemes are not merely topological spaces because they carry algebraic information through their structure sheaf. This is why we cannot expect the above definition to be well behaved for schemes. The definition must make use of some nontrivial algebra. 
-
 \subsection{\'Etale Algebras}
 We begin our discussion with the simple case of \'etale covers of $X = \Spec(k)$, where $k$ is a field. In order to model the notion of local homeomorphism, it is reasonable to demand that for $f: Y \to X$ to be a local homeomorphism,  the underlying topological space of $Y$ should consist of a finite number of disjoint points. If we restrict our attention to the case that $Y$ is affine, it follows that $Y = \Spec(\prod L_i)$ where each $L_i$ is a field extension of $k$. 
 
-\begin{definition}
+\begin{definition}[finite \'etale algebras]
   A finite dimensional $k$-algebra $A$ is \'etale over $k$ if it is isomorphic to a product of separable extensions of $k$. We define $\Spec(A) \to \Spec(k)$ to be \'etale if $A$ is an \'etale algebra over $k$.
 \end{definition}
 
@@ -37,6 +33,15 @@ A morphism of schemes $f: X \to Y$ is called \textit{affine} if there is an open
 %If each fibre $X_p$ of $f$ is the spectrum of a finite \'etale $\kappa(p)$-algebra, then we say $f$ is an \'etale morphism.
 \end{definition}
 It follows that $f: \Spec(B) \to \Spec(A)$ is an \'etale morphism if and only if $B$ is an \'etale $A$-algebra.
+
+\subsection{Galois theory for \'etale covers}
+\begin{definition}[The fiber functor $F_x$]
+  
+\end{definition}
+
+\begin{definition}[Galois covers]
+  A connected finite \'etale cover $Y \to X$ is \textit{Galois} if its group of $X$-automorphism acts transitively on geometric fibers.
+\end{definition}
 
 \begin{lemma}
   \begin{enumerate}
@@ -95,7 +100,7 @@ It follows that $f: \Spec(B) \to \Spec(A)$ is an \'etale morphism if and only if
 	\arrow["{\overline{x}}"', from=2-4, to=2-5]
 \end{tikzcd}
 \]
-By assumption, $(S\times_X Y)_{\overline{x}} \cong \prod \Spec(\overline{k})$ and since $f$ is surjective, all of the ribres of $\varphi$ are also \'etale.
+By assumption, $(S\times_X Y)_{\overline{x}} \cong \prod \Spec(\overline{k})$ and since $f$ is surjective, all of the fibers of $\varphi$ are also \'etale.
 \end{proof}
 Theorem \ref{locallyTrivial} shows that \'etale morphsism are locally trivial in the \'etale topology.
 The previous results allow us to consider the \textit{\'etale site} of a scheme $X$. It has as objects \'etale morphisms $f: S \to X$ and as morphisms commutative triangles
@@ -110,6 +115,8 @@ The previous results allow us to consider the \textit{\'etale site} of a scheme 
 \end{tikzcd}
 \]
  such that $f = f' \circ \varphi$. 
+
+
 \begin{remark}
   If we have an \'etale cover $f: Y \to X$ and consider a geometric point $\overline{x} : \Spec(\Omega) \to X$ of $X$, then the fiber of $f$ over $\overline{x}$ arises from the pullback
     % https://q.uiver.app/?q=WzAsNCxbMCwwLCJTcGVjKFxcT21lZ2EpXFx0aW1lc19YIFkiXSxbMCwxLCJTcGVjKFxcT21lZ2EpIl0sWzEsMCwiWSJdLFsxLDEsIlgiXSxbMCwxXSxbMCwyXSxbMiwzXSxbMSwzXV0=
@@ -146,65 +153,22 @@ The previous results allow us to consider the \textit{\'etale site} of a scheme 
   It is obviously a sheaf for the Zariski topology. 
 \end{proof}
 
-% This leads to the correspondence between locally constant sheaves and etale covers
+\begin{definition}[\'Etale neighborhoods]
+  Let $X$ be a scheme and $x$ a point of $X$. An \'etale neighborhood of $x$ is defined to be a pair $(U, u)$ together with an \'etale morphism $\varphi: U \to X$ such that $\varphi(u) = x$. A morphism of \'etale neighborhoods $f: (V,v) \to (U,u)$ is a morphism of $X$-schemes $f: V \to U$ such that $f(v) = u$.
+\end{definition}
+We obtain the category of \'etale neigborhoods of $x$ for each $x \in X$.
 
+\begin{definition}[Affine maps of schemes]
+  Let $\varphi: X \to Y$ be a morphism of schemes over a field $k$. We say $\varphi$ is an affine map if every open affine subscheme $U = \Spec(R) \subseteq Y$ has as preimage an affine open subscheme $f^{-1}(U) = \Spec(S)$ of $X$. If, in addition, the corresponding map $R \to S$ makes $S$ into a finitely generated $R$-module, we say that $\varphi$ is finite.
+\end{definition}
 
-%
-%\subsubsection{\'Etale morphsims of nonsingular varieties}
-%For varieties defined over an algebraically closed field $k$, one may use a formalism in direct analogy to smooth manifolds to define \'etale morphsims, namely the formalism of tangent spaces. However, instead of defining the tangent space at a point $p \in X$ analytically, we define it algebraically.
-%
-%\subsubsection{\'Etale morphisms of affine schemes}
-%\begin{definition}
-%  A morphism $f: Y \to X$ is called an \'etale morphism if for every $y \in Y$ there exist open affine neighborhoods $V = spec B$ of $y$ and $Y = spec A$ of $f(y)$ such that 
-%  \[B = A[x_1, \dots, x_n]/(P_1, \dots, P_n)\]
-%  and $det(\partial P_i /\partial T_j)$ is a unit in $B$.
-%\end{definition}
-%This is not the standard definition of \'etale morphisms. Usually, an \'etale morphism is defined to be a flat and unramified morphism. In differential geometry, these notions correspond to
-%
-%
-%
-%
-%
-%
-%It formally mimics the notion of local homeomorphism in calculus. 
-%
-%\begin{proposition}
-%  The composite of two \'etale morphisms and base change of an \'etale morphims are \'etale.
-%\end{proposition}
-%
-%Computing sheaf cohomology on a topological space using the formalism of derived functors is often unfeasable. Calculations are often done using Cech cohomology. The same is possible for \'etale cohomology. The definition of Cech cohomology for \'etale sheaves works with basically no modifications.
-%\section{\'Etale sheaves}
-%Examples of \'Etale sheaves:
-%
-%The structure sheaf $\OO_{X_{\text{\'et}}}(U) = \Gamma(U, \OO_U)$
-%\par
-%Representables $\Sh{F}: \mathsf{Et}/X \to \Set , \Sh{F}(U) = \Hom_X(U,Z)$ for any $X$-scheme $Z$. In particular this means that the \'etale topology is subcanonical.
-%\par
-%
-%%It is a theorem that any category of sheaves on a site (in particular a topological space) is a topos. As such it carries a lot of structure
-%
-%\begin{definition}
-%  Let $X$ be a scheme and $x$ a point of $X$. An \'etale neighborhood of $x$ is defined to be a pair $(U, u)$ together with an \'etale morphism $\varphi: U \to X$ such that $\varphi(u) = x$. A morphism of \'etale neighborhoods $f: (V,v) \to (U,u)$ is a morphism of $X$-schemes $f: V \to U$ such that $f(v) = u$.
-%\end{definition}
-%We obtain the category of \'etale neigborhoods of $x$ for each $x \in X$.
-%
-%\begin{construction}
-%  Let $S$ be a topological space and let $O(S)$ be its lattice of open sets. Consider the sublattice $O_x(S) = \{ U \in O(S) | x \in U \}$. For two open sets $U, V \in O_x(S)$, the intersection $U \cap V$ is contained in both $U$ and $V$.
-%  A generalization of this situation is that of a \textit{cofiltered category}. We say that a category is \textit{cofilterd} if
-%  % finish this
-%\end{construction}
-%
-%\begin{definition}
-%  Let $\varphi: X \to Y$ be a morphism of schemes over a field $k$. We say $\varphi$ is an affine map if every open affine subscheme $U = \Spec(R) \subseteq Y$ has as preimage an affine open subscheme $f^{-1}(U) = \Spec(S)$ of $X$. If, in addition, the corresponding map $R \to S$ makes $S$ into a finitely generated $R$-module, we say that $\varphi$ is finite.
-%\end{definition}
-%
-%\begin{proposition}
-%Let $k$ be a field. Then $X$ is finite \'etale over $\Spec(k)$ iff $X$ is isomorphic do a disjoint union $\amalg \Spec(K_i)$, where each $K_i$ is a finite separable extension of $k$
-%\end{proposition}
-%\begin{proof}
-%  Consider first the case that $X$ is connected. It follows that $X = \Spec(A)$ and that $A$ is a vector space of finite dimension over $k$. If $A$ is not a field then it has a
-%\end{proof}
-%
+\begin{proposition}
+Let $k$ be a field. Then $X$ is finite \'etale over $\Spec(k)$ if and only f $X$ is isomorphic do a disjoint union $\amalg \Spec(K_i)$, where each $K_i$ is a finite separable extension of $k$
+\end{proposition}
+\begin{proof}
+  Consider first the case that $X$ is connected. It follows that $X = \Spec(A)$ and that $A$ is a vector space of finite dimension over $k$. If $A$ is not a field then it has a
+\end{proof}
+
 %
 %\section{The \'Etale Fundamental Group}
 %\subsection{The Fundamental Group in Topology}
