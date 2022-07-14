@@ -1,4 +1,6 @@
 \documentclass[11pt, openany]{memoir}
+\usepackage{operators}
+\usepackage{theorems}
 \usepackage{preamble}
 
 \title{The \'etale Topos of a Scheme}
@@ -9,15 +11,21 @@
 %\renewcommand{\chapterheadstartvskip}{\vspace*{-2\baselineskip}}
 \titlespacing*{\chapter}{0pt}{-2\baselineskip}{1em}
 
+\DeclareMathOperator{\Spec}{Spec}
+
 \begin{document}
+  \frontmatter
+  \import{./}{front.tex}
+
+  \mainmatter
   \chapter{Introduction}
   \import{chapters/}{introduction.tex}
 
-  \chapter{Sheaves}
-  \import{chapters/}{sheaves.tex}
-
   \chapter{\'Etale Morphisms}
   \import{chapters/}{etale.tex}
+
+  \chapter{Sheaves}
+  \import{chapters/}{sheaves.tex}
 
   \chapter{\'Etale Cohomology}
   \import{chapters/}{cohomology.tex}

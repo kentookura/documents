@@ -1,2 +1,7 @@
 out/
 sources/
+.DS_Store
+.obsidian/
+main.*
+.latexrun*
+latex.out

@@ -24,12 +24,9 @@
 \usepackage{pgfplots}
 \usepackage{asymptote}
 \usepackage[]{import}
+\usepackage{etoolbox}
 
 \usetikzlibrary{decorations.pathreplacing}
-
-%\usepackage{stix2}
-%\usepackage{newtxtext}
-%\usepackage{newtxmath}
 
 \usetikzlibrary{patterns} 
 
@@ -48,42 +45,11 @@
     urlcolor=black
 }
 
-\newcommand{\Top}{\mathsf{Top}}
-\newcommand{\Set}{\mathsf{Set}}
-\newcommand{\Disc}{\mathsf{Disc}}
-\newcommand{\CoDisc}{\mathsf{CoDisc}}
-\newcommand{\Hom}{\mathsf{Hom}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\C}{\mathbb{C}}
-\DeclareMathOperator{\Spec}{Spec}
-
-
-\theoremstyle{definition}
-\newtheorem{theorem}{Theorem}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{corollary}[theorem]{Remark}
-\newtheorem{definition}{Definition}
-\newtheorem{construction}{Construction}
-\newtheorem{example}{Example}
-\newtheorem{remark}{Remark}
-
 \newextarrow{\xbigtoto}{{20}{20}{20}{20}}
    {\bigRelbar\bigRelbar{\bigtwoarrowsleft\rightarrow\rightarrow}}
 
 \makeatletter
-%\newcommand{\colim@}[2]{%
-%  \vtop{\m@th\ialign{##\cr
-%    \hfil$#1\operator@font lim$\hfil\cr
-%    \noalign{\nointerlineskip\kern1.5\ex@}#2\cr
-%    \noalign{\nointerlineskip\kern-\ex@}\cr}}%
-%}
-%\newcommand{\colim}{%
-%  \mathop{\mathpalette\colim@{\rightarrowfill@\textstyle}}\nmlimits@
-%}
+
 \newcommand{\colim}{%
   \mathop{\mathpalette\varlim@{\rightarrowfill@\scriptscriptstyle}}\nmlimits@
 }
@@ -101,10 +67,15 @@
 }
 \makeatother
 
-\newcommand{\Sh}[1]{\mathcal{#1}}
-\newcommand{\Ring}[1]{\mathcal{#1}}
-\renewcommand{\to}{\longrightarrow}
-\renewcommand{\hat}{\widehat}
 
-\newcommand{\Implies}[2]{$\text{\ref{#1}}\implies\text{\ref{#2}}$}% X => Y
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}{Definition}
+\newtheorem{construction}{Construction}
+\newtheorem{example}{Example}
+\newtheorem{remark}{Remark}
 
+\pagestyle{plain}
