@@ -1,13 +1,23 @@
+The issues we encountered in the introduction all stem from the fact that the Zariski topology is very coarse. Grothendieck found a natural generalisation of the notion of topology, allowing not only open subsets $U \subseteq X$ but more generally morphisms of schemes $Y \to X$ to play the role of open set. Specifically, he defined the \textit{\'etale site of $X$}, a generalised topology on $X$, consisting of the following:
+
+\begin{itemize}
+  \item The category of \'etale schemes $\text{\'Et}/X$ over $X$. This category consists of schemes $S$ together with an \'etale morphism $f: S \to X$. These morphisms formally behave like local homeomorphisms. 
+  \item A notion of covering. In this case a covering of $X$ is a family of \'etale morphisms $\{\varphi_i: U_i \to X\}$ such that they are jointly surjective, $\bigcup_i im(\varphi_i) = X$. We will make this more precise later.
+\end{itemize}
+It will turn out that surjective \'etale maps give us the right notion for covering space theory for schemes. In particular they will allow us to define fundamental groups. Furthermore, the \'etale site will fix the issues we had in defining cohomology as well.
+
+The \'etale topos $\mathsf{Sh}(X)$ of a scheme $X$ is the category of sheaves on the \'etale site of $X$.  The \'etale topos $\mathsf{Sh}(X)$ may be thought of as a generalised space, locally modeled on $X$, with a close relation to the geometric properties of $X$. 
+
+Because \'etale morphisms behave like local homeomorphisms, it is possible to realise the theory of covering spaces for schemes. In particular this means that we get a good notion the fundamental groups $\pi_1(X)$. Furthermore, the \'etale topos $\mathsf{Sh}(X)$ also allows us to compute cohomology for sheaves which have vanishing cohomology in the Zariski setting. In this sense the \'etale site of a scheme is a much finer topology than the Zariski topology.
+
 \subsection{\'Etale Algebras}
-We begin our discussion with the simple case of \'etale covers of $X = \Spec(k)$, where $k$ is a field. In order to model the notion of local homeomorphism, it is reasonable to demand that for $f: Y \to X$ to be a local homeomorphism,  the underlying topological space of $Y$ should consist of a finite number of disjoint points. If we restrict our attention to the case that $Y$ is affine, it follows that $Y = \Spec(\prod L_i)$ where each $L_i$ is a field extension of $k$. 
+We begin our discussion with the simple case of \'etale covers of $X = \Spec(k)$, where $k$ is a field. In order to model the notion of local homeomorphism, it is reasonable to demand that for $f: Y \to \Spec(k)$ to be a local homeomorphism,  the underlying topological space of $Y$ should consist of a finite number of disjoint points. If we restrict our attention to the case that $Y$ is affine, it follows that $Y = \Spec(\prod L_i)$ where each $L_i$ is a field extension of $k$. 
 
 \begin{definition}[finite \'etale algebras]
   A finite dimensional $k$-algebra $A$ is \'etale over $k$ if it is isomorphic to a product of separable extensions of $k$. We define $\Spec(A) \to \Spec(k)$ to be \'etale if $A$ is an \'etale algebra over $k$.
 \end{definition}
 
 Recall that an extension $L/k$ is separable if its minimal polynomial $p(x)$ has no multiple roots (in a splitting field of $p(x)$). It follows from basic algebra that a polynomial $p(x)$ is separable if and only if it is coprime to its formal derivative $p'(x)$. This menas that $p'(x)$ gets mapped to a unit under the canonical map $k[x] \to k[x]/(p(x)) \simeq L$. This is in effect a smoothness condition, reminiscent of the conditions under which the inverse mapping theorem from analysis holds. This idea will reappear when we define \'etale morphisms in a more general condition.
-
-We require separability of the extensions because of their good categorical properties. Grothendieck's reformulation of Galois theory is in fact a statement about finite \'etale algebras and establishes a strong analogy with the theory of covering spaces and of fundamental groups. This connection allows us to define the fundamental group of a scheme. We refer to~\cite{Szamuely} for more details.
 
 \begin{theorem}
   Let $A$ be a finite dimensional commutative $k$-algebra and denote by $\overline{A}$ the $\overline{k}$-algebra $A \otimes_k \overline{k}$. The following are equivalent:
@@ -33,15 +43,6 @@ A morphism of schemes $f: X \to Y$ is called \textit{affine} if there is an open
 %If each fibre $X_p$ of $f$ is the spectrum of a finite \'etale $\kappa(p)$-algebra, then we say $f$ is an \'etale morphism.
 \end{definition}
 It follows that $f: \Spec(B) \to \Spec(A)$ is an \'etale morphism if and only if $B$ is an \'etale $A$-algebra.
-
-\subsection{Galois theory for \'etale covers}
-\begin{definition}[The fiber functor $F_x$]
-  
-\end{definition}
-
-\begin{definition}[Galois covers]
-  A connected finite \'etale cover $Y \to X$ is \textit{Galois} if its group of $X$-automorphism acts transitively on geometric fibers.
-\end{definition}
 
 \begin{lemma}
   \begin{enumerate}
@@ -116,6 +117,9 @@ The previous results allow us to consider the \textit{\'etale site} of a scheme 
 \]
  such that $f = f' \circ \varphi$. 
 
+\begin{theorem}
+  
+\end{theorem}
 
 \begin{remark}
   If we have an \'etale cover $f: Y \to X$ and consider a geometric point $\overline{x} : \Spec(\Omega) \to X$ of $X$, then the fiber of $f$ over $\overline{x}$ arises from the pullback
@@ -128,8 +132,44 @@ The previous results allow us to consider the \textit{\'etale site} of a scheme 
     	\arrow[from=1-2, to=2-2]
     	\arrow[from=2-1, to=2-2]
     \end{tikzcd}\]
-  Since $\Spec(\Omega)\times_X Y$ is \'etale over $\Spec(\Omega)$ and $\Omega$ is algebraically closed, it follows that $\Spec(\Omega)\times_X Y \cong \coprod \Spec(\Omega)$
+  Since $\Spec(\Omega)\times_X Y$ is \'etale over $\Spec(\Omega)$ and $\Omega$ is algebraically closed, it follows that $\Spec(\Omega)\times_X Y \cong \coprod \Spec(\Omega)$.
 \end{remark}
+
+\subsection{Galois theory for \'etale covers}
+\begin{definition}[The fiber functor $F_x$]
+  Let $x: \Spec(\Omega) \to X$ be a geometric point, where $\Omega$ is an algebraically field. The fiber functor at $x$ associates to each \'etale cover $f: Y \to X$ the underlying set of $\Spec(\Omega) \times_X Y$.
+\end{definition}
+
+\begin{remark}
+  In topology, the fiber functor is representable if $X$ is a connected and locally simply connected space. The representing object $\tilde{X}$ is called the universal covering. In algebraic geometry this functor is usually not representable. It is however pro-representable:
+\end{remark}
+
+\begin{definition}[Pro-representability]
+  Let $C$ be a category and $F: C \to \Set$ a functor. We say that $F$ is \textit{pro-representable} if there exists an \Gls{inverse system} $(A_\alpha,\varphi_{\alpha \beta})$ in $C$ such that 
+  \[
+    \varinjlim \Hom(A_\alpha, X) \cong F(X)
+    \]
+  for each $X$ in $C$.
+\end{definition}
+\begin{lemma}
+  Let $f: Y \to X$ be a connected finite \'etale cover. There is a morphism $\varphi: S \to Y$ such that $f \circ \varphi: S \to X$ is a finite \'etale cover. Moreover every morphism over $X$ from a Galois cover to $Y$ factors through $\varphi$.
+\end{lemma}
+
+\begin{theorem}\label{thm:pro_rep}
+  The fiber functor $F_{\overline{x}}$ is prorepresentable.
+\end{theorem}
+\begin{proof}[Proof of theorem \ref{thm:pro_rep}]
+  We need to construct an inverse system in $Fet/X$ such that the above isomorphism holds. Take as index set $I$ all finite \'etale Galois covers $A_\alpha$ of $X$. This set is directed under the order $A_\alpha \le A_\beta$, since the connected components fiber product
+\end{proof}
+
+\begin{theorem}
+  Let $X$ be a scheme and $\overline{x} : \Spec(\Omega) \to X$ a geometric point.
+\end{theorem}
+
+\begin{definition}[Galois covers]
+  A connected finite \'etale cover $Y \to X$ is \textit{Galois} if its group of $X$-automorphism acts transitively on geometric fibers.
+\end{definition}
+
 
 \begin{remark}
   Recall that a category $\mathcal{C}$ is \textit{cofiltered} if the following holds:
@@ -139,19 +179,6 @@ The previous results allow us to consider the \textit{\'etale site} of a scheme 
   \end{enumerate} 
   Let $x$ be a point of $X$. The subcategory of $\Op(X)$ consisting of all sets containing $x$ is cofilterd. This means for two open sets $U$ and $V$, there is an open set contained in both of them, namely $U \cap V$. The second condition does not need to be verified, since there is at most one morphism between any two open sets.
 \end{remark}
-
-\begin{theorem}
-  A presheaf $\Sh{F}$ on $\text{\'Et}/X$ is a sheaf if and only if $\Sh{F}$ satisfies the sheaf condition for Zariski open coverings and for \'etale coverings consisting of a single map $V \to U$, where $V$ and $U$ are affine.
-\end{theorem}
-\begin{proof}
-  \cite{milneLEC}.
-\end{proof}
-\begin{corollary}
-  Every presheaf represented by an $X$-scheme $U \to \Hom_X(U,Z)$ is a sheaf. 
-\end{corollary}
-\begin{proof}
-  It is obviously a sheaf for the Zariski topology. 
-\end{proof}
 
 \begin{definition}[\'Etale neighborhoods]
   Let $X$ be a scheme and $x$ a point of $X$. An \'etale neighborhood of $x$ is defined to be a pair $(U, u)$ together with an \'etale morphism $\varphi: U \to X$ such that $\varphi(u) = x$. A morphism of \'etale neighborhoods $f: (V,v) \to (U,u)$ is a morphism of $X$-schemes $f: V \to U$ such that $f(v) = u$.
@@ -168,6 +195,7 @@ Let $k$ be a field. Then $X$ is finite \'etale over $\Spec(k)$ if and only f $X$
 \begin{proof}
   Consider first the case that $X$ is connected. It follows that $X = \Spec(A)$ and that $A$ is a vector space of finite dimension over $k$. If $A$ is not a field then it has a
 \end{proof}
+
 
 %
 %\section{The \'Etale Fundamental Group}
