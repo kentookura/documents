@@ -1,3 +1,42 @@
+We will now consider sheaf cohomology on the \'etale site. 
+
+\begin{theorem}
+  A presheaf $\Sh{F}$ on $\text{\'Et}/X$ is a sheaf if and only if $\Sh{F}$ satisfies the sheaf condition for Zariski open coverings and for \'etale coverings consisting of a single map $V \to U$, where $V$ and $U$ are affine.
+\end{theorem}
+\begin{proof}
+  See \cite{milneLEC}, .
+\end{proof}
+\begin{corollary}
+  Every presheaf represented by an $X$-scheme $U \to \Hom_X(U,Z)$ is a sheaf. 
+\end{corollary}
+\begin{proof}
+  It is obviously a sheaf for the Zariski topology. (...)
+\end{proof}
+
+\begin{definition}[Constant sheaves]
+  Let $X$ be a quasi-compact scheme. 
+\end{definition}
+
+\begin{definition}[Locally constant sheaves]
+  A sheaf $F$ on $X$ is locally constant if there is an \'etale covering $\{U_i\}$ of $X$ such that $F|_{U_i}$ is a constant sheaf for each $U_i$.
+\end{definition}
+
+\begin{proposition}
+  Let $X$ be a connected scheme and $x$ a geometric point of $X$. The functor $F \to F_{\overline{x}}$ induces an equivalence between the category of locally constant sheaves of sets with finite stalks on $X$ and the category of finite $\pi_1^{\acute{e}t}(X,\overline{x})$-sets.
+\end{proposition}
+\begin{proof}
+  
+\end{proof}
+
+\subsection{Galois theory for \'etale covers}
+\begin{definition}[The fiber functor $F_x$]
+  Let $x: \Spec(\Omega) \to X$ be a geometric point, where $\Omega$ is an algebraically field. The fiber functor at $x$ associates to each \'etale cover $f: Y \to X$ the underlying set of $\Spec(\Omega) \times_X Y$.
+\end{definition}
+
+\begin{definition}[Galois covers]
+  A connected finite \'etale cover $Y \to X$ is \textit{Galois} if its group of $X$-automorphism acts transitively on geometric fibers.
+\end{definition}
+
 \begin{theorem}
   If $X$ is an irreducible topological space and $\Sh{F}$ is a constant sheaf, then $H^r(X, \Sh{F})$ for all $r>0$.
 \end{theorem}
