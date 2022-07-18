@@ -25,6 +25,7 @@
 \usepackage{asymptote}
 \usepackage[]{import}
 \usepackage{etoolbox}
+\usepackage{glossaries}
 
 \usetikzlibrary{decorations.pathreplacing}
 
@@ -69,13 +70,20 @@
 
 
 \theoremstyle{definition}
-\newtheorem{theorem}{Theorem}
+\newtheorem{theorem}{Theorem}[section]
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{corollary}{Corollary}[theorem]
 \newtheorem{definition}{Definition}
-\newtheorem{construction}{Construction}
+\newtheorem{construction}[theorem]{Construction}
 \newtheorem{example}{Example}
 \newtheorem{remark}{Remark}
 
+\newenvironment{delayedproof}[1]
+ {\begin{proof}[\raisedtarget{#1}Proof of \Cref{#1}]}
+ {\end{proof}}
+\newcommand{\raisedtarget}[1]{%
+  \raisebox{\fontcharht\font`P}[0pt][0pt]{\hypertarget{#1}{}}%
+}
+\newcommand{\proofref}[1]{\hyperlink{#1}{proof}}
 \pagestyle{plain}
