@@ -1,10 +1,118 @@
-We will now consider sheaf cohomology on the \'etale site. 
+\subsection{Homological algebra in $\mathsf{Ab}(X)$}
+
+We will now define the notion of injectivity and surjectivity for maps of sheaves. The categorification of injective mpas are monomorphisms, while surjective maps correspond to epimorphisms. Epimorphisms of sheaves are tricky and the reason why sheaf cohomology is a non-trivial invariant. The general frameworks in which to study (co-)homology are abelian categories. The notion of an abelian category is an abstraction of the category of abelian groups. Abelian categories are the general settings in which to do homological algebra.
+
+\begin{definition}[Monomorphisms and Epimorphisms]
+	Let $f: X \to Y$ be a morphism (in any category). We say that $f$ is a \textit{monomorphism} if $f \circ g_1 = f \circ g_2 \implies g_1 = g_2$.
+	We say that $f$ is a \textit{epimorphism} if $g_1 \circ  f  = g_2 \circ f \implies g_1 = g_2$.
+\end{definition}
+
+\begin{proposition}[Monomorphisms in $\sh(C,J)$]
+	Let $\varphi: F \to G$ be a morphism of sheaves on a site $(C,J)$. We say that $\varphi$ is injective if for each object $U$ of $C$, the map $\varphi: F(U) \to G(U)$ is injective.
+\end{proposition}
+
+\begin{proposition}[Epimorphisms in $\sh(C,J)$]
+	A morphism of sheaves $\varphi: F \to G$ is an epimorphism in $\Sh(C,J)$ if and only if for every object $U$ and every section $s \in G(U)$ there exists a covering $\{U_i \to U\}$ such that the restriction $s|_{U_i}$ is contained in the image of $\varphi: F(U_i) \to G(U_i)$. We also say that \textit{$\varphi$ is locally surjective}.
+\end{proposition}
+
+\begin{proof}
+	$(\implies)$ Suppose that $\varphi$ is locally surjective. For any object $U$ of $C$ and any $s \in G(U)$ choose a cover $\{f_i: U_i \to U\}$ as stated in the proposition. Let $\alpha_1, \alpha_2: G \to H$ be morphisms such that $\alpha_1 \circ \varphi = \alpha_2 \circ \varphi$. 
+	\[
+		% https://q.uiver.app/?q=WzAsMyxbMCwwLCJGIl0sWzEsMCwiRyJdLFsyLDAsIkgiXSxbMCwxLCJcXHZhcnBoaSJdLFsxLDIsIlxcYWxwaGFfMiIsMix7Im9mZnNldCI6MX1dLFsxLDIsIlxcYWxwaGFfMSIsMCx7Im9mZnNldCI6LTF9XV0=
+		\begin{tikzcd}
+			F & G & H
+			\arrow["\varphi", from=1-1, to=1-2]
+			\arrow["{\alpha_2}"', shift right=1, from=1-2, to=1-3]
+			\arrow["{\alpha_1}", shift left=1, from=1-2, to=1-3]
+		\end{tikzcd}\]
+	We need to show that $\alpha_1 = \alpha_2$.  Now for each $f_i: U_i \to U$ and each section $s \in F(U)$ we have $(\alpha_1 \circ f_i)(s) = (\alpha_2 \circ f_i)(s)$ or equivalently  $\alpha_1(s)|_{U_i} = \alpha_2(s)|_{U_i}$. This means that $\alpha_1$ agrees with $\alpha_2$ for the cover $\{U_i\}$. Since $H$ is a sheaf it follows that $\alpha_1 = \alpha_2$.\par
+	$(\impliedby)$ 
+\end{proof}
+
+\begin{definition}[Additive categories]
+	An \textit{additive category} is a category $C$ with finite direct sums such that the sets $\Hom(A,B)$ have the structure of an abelian group 
+\end{definition}
+
+\begin{definition}[Kernels]
+	Let $C$ be a category with an initial object $0$ and pullbacks. The kernel of a morphism $f: A \to B$ is the pullback
+	\[
+		% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXGtlciBmIl0sWzAsMSwiQSJdLFsxLDAsIjAiXSxbMSwxLCJCIl0sWzAsMV0sWzAsMl0sWzEsMywiZiIsMl0sWzIsM11d
+		\begin{tikzcd}
+			{\ker f} & 0 \\
+			A & B
+			\arrow[from=1-1, to=2-1]
+			\arrow[from=1-1, to=1-2]
+			\arrow["f"', from=2-1, to=2-2]
+			\arrow[from=1-2, to=2-2]
+		\end{tikzcd}.
+	\]
+	If $C$ is enriched over abelian groups, meaning that $\Hom(A,B)$ has the structure of an abelian group for all objects $A,B \in C$, there is a distinguished morphism $0_{A,B} : A \to B$. This morphism factors through the initial object $0$. In this case, the kernel of $f$ may be realized as the equalizer of the diagram
+	\[
+		% https://q.uiver.app/?q=WzAsMixbMCwwLCJBIl0sWzEsMCwiQiJdLFswLDEsImYiLDIseyJvZmZzZXQiOjF9XSxbMCwxLCIwX3tBLEJ9IiwwLHsib2Zmc2V0IjotMX1dXQ==
+		\begin{tikzcd}
+			A & B
+			\arrow["f"', shift right=1, from=1-1, to=1-2]
+			\arrow["{0_{A,B}}", shift left=1, from=1-1, to=1-2]
+		\end{tikzcd}		
+	\]
+\end{definition}
+
+\begin{definition}[Exact sequences]
+	Fix an abelian category $C$.  A sequence 
+	\[ \cdots \xrightarrow{\varphi_{i-1}} A_{i-1} \xrightarrow{\varphi_{i}} A_{i} \xrightarrow{\varphi_{i+1}} A_{i+1} \to \cdots\]
+	in $C$ is called \textit{exact} if the map from $A \to B$ is a monomorphism
+\end{definition}
+
+\subsection{Sheaf Cohomology}
+Since right adjoints preserve limits, the functor $\Gamma$ is left exact. This means that applying $\Gamma$ to an exact sequence of sheaves 
+\[0 \to F \to G \to H \to 0,\]
+yields an exact sequence
+\[0 \to F(X) \to G(X) \to E(X).\]
+We would like to ``fill in'' the exact sequence using functors $H^i$ like so:
+\[0 \to F(X) \to G(X) \to E(X) \to H^1(X, F) \to H^1(X,G) \to\cdots \]
+The functors $H^i$ are implemented using so called derived functors. More precisely, the functors $H^i$ are the right derived functors of $\Gamma$.
+
+\begin{remark}
+	An \textit{abelian category} is a category $\mathcal{A}$ such that
+	\begin{enumerate}
+		\item for any two objects $A,B$ of $\mathcal{A}$, $\Hom(A,B)$ is an abelian group,
+		\item every morphism has a kernel and cokernel,
+		\item every monomorphism is a kernel,
+		\item every epimorphism is a cokernel.
+	\end{enumerate}
+\end{remark}
+
+\begin{definition}
+  A sequence of sheaves $\to \Sh{F}_{i-1} \to \Sh{F}_{i} \to \Sh{F}_{i+1} \to$
+	is exact if for each $i$, $\ker \varphi_i = im \varphi_{i-1}$.
+\end{definition}
+
+\[
+	% https://q.uiver.app/?q=WzAsMyxbMSwwLCJcXHsqXFx9Il0sWzAsMSwiXFxTaHtGfShVJykiXSxbMiwxLCJcXFNoe0Z9KFUpIl0sWzAsMV0sWzEsMiwiZl8qIl0sWzAsMl1d
+	\begin{tikzcd}
+		& {\{*\}} \\
+		{\Sh{F}(U')} && {\Sh{F}(U)}
+		\arrow[from=1-2, to=2-1]
+		\arrow["{f_*}", from=2-1, to=2-3]
+		\arrow[from=1-2, to=2-3]
+	\end{tikzcd}
+\]
+
+\begin{remark}
+ We can associate to a cover $\{U_i \to U\}_{i \in I}$ a cover consisting of a single morphism $\coprod_i U_i \to U$. Since
+  \[
+    \bigl(\coprod U_i \bigr) \times_U \bigl( \coprod U_j \bigr) = \coprod_{i,j} U_i \times_U U_j
+  \], the sheaf condition for the covering $\{U_i \to U\}$ is equivalent to the sheaf condition for the covering $\coprod_i U_i \to U$. If the indexing set $I$ is affine each $U_i$ is affine, $\coprod U_i$ is again affine.
+\end{remark}
 
 \begin{theorem}
   A presheaf $\Sh{F}$ on $\text{\'Et}/X$ is a sheaf if and only if $\Sh{F}$ satisfies the sheaf condition for Zariski open coverings and for \'etale coverings consisting of a single map $V \to U$, where $V$ and $U$ are affine.
 \end{theorem}
+
 \begin{proof}
-  See \cite{milneLEC}, .
+  $(\implies)$: Clear.\par
+  $(\impliedby)$: The fact that $F$ is a sheaf for the Zariski topology implies that $F(\coprod U_i) = \prod F(U_i)$.
+
 \end{proof}
 \begin{corollary}
   Every presheaf represented by an $X$-scheme $U \to \Hom_X(U,Z)$ is a sheaf. 

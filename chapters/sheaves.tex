@@ -3,7 +3,7 @@
   Let $X$ be a topological space. The open sets of $X$ are partially ordered by inclusion: $V \le W \quad \text{when} \quad V \subseteq W$.  We may thus, as with any poset, consider the category of open sets of $X$, sometimes denoted by $\Op(X)$. By abuse of notation, we will often write $X$ instead of $\Op(X)$.
 \end{construction}
 \begin{remark}
- In the category $\Op(X)$ pullbacks correspond to intersections and pushouts correspond to unions. By the definition of topological space, this means that $\Op(X)$ has finite pullbacks and arbitrary pushouts. 
+  In the category $\Op(X)$ pullbacks correspond to intersections and pushouts correspond to unions. By the definition of topological space, this means that $\Op(X)$ has finite pullbacks and arbitrary pushouts. 
 \end{remark}
 
 \begin{definition}
@@ -17,16 +17,14 @@
 	An element $\{U_i \to U\}$ of $\text{Cov}(\mathcal{C})$ is called a cover of $U$. A category $C$ together with a Grothendieck topology is called a \textit{site}.
 \end{definition}
 
-\begin{remark}
-	A topological space $X$ may be equipped with the structure of a site by declaring the coverings of open sets $U \subseteq X$ to be those families of open sets $\{U_i\}$ contained in $U$ such that $\bigcup U_i = U$.  In (...) we will define the notion of \'etale morphism. We will show the category $\acute{E}t/X$ of schemes \'etale over $X$ carries the structure of a Grothendieck topology. This topology is finer than the Zariski topology in the sense that an open immersion $U \to X$ is always \'etale, so each open set $U \in X$ may be thought of as an \'etale morphism.
-\end{remark}
-\begin{remark}
-	The main site we will consider is the \'etale site of a scheme $X$. From (...) it follows that the set of families jointly surjective \'etale morphisms form a site.
-\end{remark}
+\begin{itemize}
+	\item	A topological space $X$ may be equipped with the structure of a site by declaring the coverings of open sets $U \subseteq X$ to be those families of open sets $\{U_i\}$ contained in $U$ such that $\bigcup U_i = U$. We have seen that the category $\acute{E}t/X$ of schemes \'etale over $X$ carries the structure of a Grothendieck topology. This topology is finer than the Zariski topology in the sense that an open immersion $U \to X$ is always \'etale, so each open set $U \in X$ may be thought of as an \'etale morphism.
+	\item The main site we will consider is the \'etale site of a scheme $X$. From (...) it follows that the set of families jointly surjective \'etale morphisms form a site.
+\end{itemize}
 
 
 \begin{definition}[Presheaves] 
-  Let $C$ be a category. A \textit{presheaf of sets} $\Sh{F}$ on $C$ is a functor $C^{op} \to \Set$. Given an morphism $U \to V$, the corresponding map $\Sh{F}(V) \to \Sh{F}(U)$ is called the \textit{restriction map}. The elements of $\Sh{F}(U)$ are called the sections of $\Sh{F}$ over $U$. On sections one often denotes the map by $s \mapsto s|_U$.
+  Let $C$ be a category. A \textit{presheaf of sets} $F$ on $C$ is a functor $C^{op} \to \Set$. Given an morphism $f: U \to V$, the corresponding map $F(V) \to F(U)$ is called the \textit{restriction map}. The elements of $F(U)$ are called the sections of $F$ over $U$. If the map $f: U \to V$ we are restricting along is clear from context, we will denote the action of the induced map on $s \in F(V)$ by $s \mapsto s|_U$.
 \end{definition}
 
 \begin{definition}[Sheaves]
@@ -98,6 +96,8 @@ Since sheaves are presheaves, we define a map of sheaves $\varphi: \Sh{F} \to \S
 	\end{tikzcd}
 \]
 
+We obtain the category $\mathsf{Sh}(C,J)$ of sheaves on $C$ with respect to the topology $J$. This is in fact a full subcategory of presheaves $\Set^{C^{op}}$.\par
+
 \begin{definition}
 Algebraic structures like groups and rings may be described in terms commutative diagrams. Let $\mathcal{C}$ be a category with finite products and a terminal object $1$. A \textit{group object} in $\mathcal{C}$ consists of an object $A$ of $\mathcal{C}$ together with morphisms
 \[e: * \to A,\ m : A \times A \to A,\ \iota: A \to A \]
@@ -127,9 +127,55 @@ such that the following diagrams commute:
 \]
 \end{definition}
 
-We obtain the category $\mathsf{Sh}(C,J)$ of sheaves on $C$ with respect to the topology $J$. This is in fact a full subcategory of presheaves $\Set^{C^{op}}$. The category of sheaves $\Sh(X, \acute{E}t_X)$ on the \'etale toplogy of a scheme $X$ bears a special name: it is the \'etale topos of $X$. We have seen that a number of geometric constructions from algebraic topology fail in the Zariski topology. The \'etale topology captures these phenomena. In this sense the \'etale topos topos enables us to reason about schemes more geometrically. So if we want to understand the geometry a scheme $X$, we should also study the \'etale topos of $X$.
+The category of sheaves $\Sh(X, \acute{E}t_X)$ on the \'etale toplogy of a scheme $X$ bears a special name: it is the \'etale topos of $X$. We have seen that a number of geometric constructions from algebraic topology fail in the Zariski topology. The \'etale topology captures these phenomena. In this sense the \'etale topos topos enables us to reason about schemes more geometrically. So if we want to understand the geometry a scheme $X$, we should also study the \'etale topos of $X$.
 
 \section{Some categories and functors related to sheaves}
+
+Rough draft \par
+Sheaves are closely related to bundles. Because bundles are not locally trivial, we define vector bundles on schemes via sheaves. We prove that there is the sheaf-bundle adjunction and hopefully apply it.
+
+\subsection{Bundles and sheaves}
+
+A map $f: Y \to X$ of topological spaces is also called a bundle over $X$. Every bundle gives rise to the sheaf $Gamma_f$, defined by
+\[
+    \Gamma_f(U)	= \{ s : U \to f^{-1}(U) \mid f \circ s = id \}.
+\]
+This sheaf is called the \textit{sheaf of sections of $f$}. Each map $f \to g$ of bundles over $X$ induces a map of sheaves.
+\begin{remark}
+	It is not the case that the \'espace \'etale of an \'etale sheaf is again a scheme. I have heard this is a reason to consider algebraic spaces
+\end{remark}
+
+\begin{proposition}
+	Let $f: X \to Y$ be a morphism of schemes. The presheaf $\Gamma_f$ is a sheaf in the \'etale topology.
+\end{proposition}
+\begin{proof}
+	
+\end{proof}
+
+\begin{definition}[Fiber bundles]
+	Let $X$ be a topological space. A \textit{fiber bundle over $X$ with fiber $F$} is a space $p: B \to X$ over $X$ such that for each point $x \in X$ there is an open neighborhood $U$ of $x$ such that $p^{-1}(U) \cong U \times F$. A cover $\{U_i\}$ is called \textit{a trivialization of $B$} if $p^{-1}(U_i) \cong U_i \times F$ for each $i$. We will write $U_{ij}$ instead of $U_i \cap U_j$ and similarly for $U_i \cap U_j \cap U_k$.
+\end{definition}
+\begin{remark}
+	Suppose we are given a cover $\{U_i\}$ of $X$. Under which conditions can we construct a fiber bundle $p: B \to X$ with fiber $F$ such that $\{U_i\}$ is a trivialization of $B$? We know that we want $B_i \coloneqq p^{-1}(U_i)\cong U_i \times F $, so $B$ should be glued together from the $B_i$. In order to do this we need to specify isomorphisms $\phi_{ij} : U_i \to U_j$ subject to the \textit{cocycle condition}:
+	\[(...)\]
+	.
+\end{remark}
+
+\begin{construction}
+	Each fiber bundle $B$ over $X$ with projection $p$ gives rise to a sheaf. For each open set $U$ of $X$ we can consider the set of sections 
+	\[
+		\{s \in \mathcal{M}(U) \mid p \circ s = \text{id}\}.
+	\]
+	This forms a sheaf on $X$. We have seen (...) that fibre bundles are not locally trivial in the Zariski topology. For this reason the analogs of fibre bundles in algebraic geometry are defined using sheaves with a local triviality condition.
+\end{construction}
+\begin{example}
+	Let $p : M \to S^1$ be the M\"obius strip with fiber $[-1,1]$ from the introduction. Let $\mathcal{M}$ be the sheaf of sections of this bundle. There is a subsheaf $\mathcal{N}$ which consists of those sections which vanish nowhere:
+	\[
+		\mathcal{N}(U) = \{s : U \to U \times [-1,1] \mid \pi_1(s) \neq 0 \text{ for all } s \in U\}.
+	\]
+	This subsheaf has no global sections. This is because of the non-orientability of the M\"obius strip. We may choose a trivialisation $\{U_1, U_2, U_3\}$ of $M$ such that each $U_i$ is connected. Then the sign of sections $s_i: U_i \to U_i \times [-1,1]$ must be constant. 
+\end{example}
+
 
 \subsection{Sheafification}
 
@@ -164,30 +210,6 @@ Thus, sheafification proceeds in two steps. The first step removes sections that
 \subsection{The global sections functor}
 Let $X$ be a topological space and $F$ a sheaf on $X$. The elements of $F(X)$ are called \textit{global sections of $F$}. It is helpful to view the elements $x \in F(X)$ as \textit{global solutions} to some sort of geometric question. We begin this section with an intuitive and instructive example.
 
-\subsubsection{Bundles and sheaves}
-\begin{definition}[Fiber bundles]
-	Let $X$ be a topological space. A \textit{fiber bundle over $X$ with fiber $F$} is a space $p: B \to X$ over $X$ such that for each point $x \in X$ there is an open neighborhood $U$ of $x$ such that $p^{-1}(U) \cong U \times F$. A cover $\{U_i\}$ is called \textit{a trivialization of $B$} if $p^{-1}(U_i) \cong U_i \times F$ for each $i$. We will write $U_{ij}$ instead of $U_i \cap U_j$ and similarly for $U_i \cap U_j \cap U_k$.
-\end{definition}
-\begin{remark}
-	Suppose we are given a cover $\{U_i\}$ of $X$. Under which conditions can we construct a fiber bundle $p: B \to X$ with fiber $F$ such that $\{U_i\}$ is a trivialization of $B$? We know that we want $B_i \coloneqq p^{-1}(U_i)\cong U_i \times F $, so $B$ should be glued together from the $B_i$. In order to do this we need to specify isomorphisms $\phi_{ij} : U_i \to U_j$ subject to the \textit{cocycle condition}:
-	.
-\end{remark}
-
-\begin{construction}
-	Each fiber bundle $B$ over $X$ with projectin $p$ gives rise to a sheaf. For each open set $U$ of $X$ we can consider the set of sections 
-	\[
-		\{s \in \mathcal{M}(U) \mid p \circ s = \text{id}\}.
-	\]
-	This forms a sheaf on $X$. We have seen (...) that fibre bundles are not locally trivial in the Zariski topology. For this reason the analogs of fibre bundles in algebraic geometry are defined using sheaves with a local triviality condition.
-\end{construction}
-\begin{example}
-	Let $p : M \to S^1$ be the M\"obius strip with fiber $[-1,1]$ from the introduction. Let $\mathcal{M}$ be the sheaf of sections of this bundle. There is a subsheaf $\mathcal{N}$ which consists of those sections which vanish nowhere:
-	\[
-		\mathcal{N}(U) = \{s : U \to U \times [-1,1] \mid \pi_1(s) \neq 0 \text{ for all } s \in U\}.
-	\]
-	This subsheaf has no global sections. This is because of the non-orientability of the M\"obius strip. We may choose a trivialisation $\{U_1, U_2\}$ of $M$ such that $U_1$ and $U_2$ are connected. Then the sign of sections $s_1: U_1 \to U_1 \times [-1,1]$ must be constant.
-\end{example}
-
 \begin{theorem}
 	There is an adjoint pair of functors
 	% https://q.uiver.app/?q=WzAsMixbMCwwLCJcXG1hdGhzZntTaH0oQyxKKSJdLFsxLDAsIlxcU2V0Il0sWzEsMCwiXFxEZWx0YSIsMCx7Im9mZnNldCI6LTF9XSxbMCwxLCJcXEdhbW1hIiwwLHsib2Zmc2V0IjotMX1dXQ==
@@ -218,38 +240,3 @@ Since the inclusion of sheaves into presheaves has a left adjoint it preserves l
 
 
 For example, when $X$ is a topological space, $\Hom(1,F)(X)$ consists of all global sections of the sheaf $\Sh{F}$. Here $\Hom(1,F)$ is in the category $\mathsf{Sh}(C,J)$
-\subsection{Locally constant sheaves}
-\subsection{Sheaf Cohomology}
-Since right adjoints preserve limits, the functor $\Gamma$ is left exact. This means that applying $\Gamma$ to an exact sequence of sheaves 
-\[0 \to F \to G \to H \to 0,\]
-yields an exact sequence
-\[0 \to F(X) \to G(X) \to E(X).\]
-We would like to ``fill in'' the exact sequence using functors $H^i$ like so:
-\[0 \to F(X) \to G(X) \to E(X) \to H^1(X, F) \to H^1(X,G) \to\cdots \]
-The functors $H^i$ are implemented using so called derived functors. More precisely, the functors $H^i$ are the right derived functors of $\Gamma$.
-
-\begin{remark}
-	An \textit{abelian category} is a category $\mathcal{A}$ such that
-	\begin{enumerate}
-		\item for any two objects $A,B$ of $\mathcal{A}$, $\Hom(A,B)$ is an abelian group,
-		\item every morphism has a kernel and cokernel,
-		\item every monomorphism is a kernel,
-		\item every epimorphism is a cokernel.
-	\end{enumerate}
-\end{remark}
-
-\begin{definition}
-  A sequence of sheaves $\to \Sh{F}_{i-1} \to \Sh{F}_{i} \to \Sh{F}_{i+1} \to$
-	is exact if for each $i$, $\ker \varphi_i = im \varphi_{i-1}$.
-\end{definition}
-
-\[
-	% https://q.uiver.app/?q=WzAsMyxbMSwwLCJcXHsqXFx9Il0sWzAsMSwiXFxTaHtGfShVJykiXSxbMiwxLCJcXFNoe0Z9KFUpIl0sWzAsMV0sWzEsMiwiZl8qIl0sWzAsMl1d
-	\begin{tikzcd}
-		& {\{*\}} \\
-		{\Sh{F}(U')} && {\Sh{F}(U)}
-		\arrow[from=1-2, to=2-1]
-		\arrow["{f_*}", from=2-1, to=2-3]
-		\arrow[from=1-2, to=2-3]
-	\end{tikzcd}
-\]
