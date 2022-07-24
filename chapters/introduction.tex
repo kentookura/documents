@@ -46,8 +46,8 @@ We can deduce many interesting properties of spaces from their cohomology groups
 An important and intuitive cohomology is \textit{singular cohomology}. It provides a rigorous way for counting ``holes'' in a topological space.  For instance, the circle $S^1$ has 1 one-dimensional hole while the torus $T^2$ has 2. The sphere $S^2$ has 1 two-dimensional hole but no one-dimensional holes, in symbols 
 \footnote{$\Z$ appears here because it is the free group on one generator.}
 \begin{align*}
-  H^1_{sing}(S^1) \cong \Z,\quad &H^1_{sing}(T^2) \cong \Z \oplus \Z,\\
-  H^1_{sing}(S^2) \cong  0,\quad &H^2_{sing}(S^2) \cong \Z.
+  H^1_{sing}(S^1) \simeq \Z,\quad &H^1_{sing}(T^2) \simeq \Z \oplus \Z,\\
+  H^1_{sing}(S^2) \simeq  0,\quad &H^2_{sing}(S^2) \simeq \Z.
 \end{align*}
 One very general approach to cohomology is to use sheaves on a topological space as ``coefficients''. Sheaves consist of local data on a space that is glueable. A basic example consists of functions on a space: If we have an open cover $\{ U_i\}$ for a manifold $M$ and functions $f_i: M \to \R$ that agree on all intersections $U_i \cap U_j$ we may patch it together to a function $f: M \to \R$.
  For any space $X$ and any sheaf $\Sh{F}$ on $X$ we can define $H^i(X, \Sh{F})$. Many examples of cohomology theories turn out to stem from the cohomology of a particular sheaf. For example, if $X$ is a locally contractible space, the singular cohomology $H_{\text{sing}}^i(X)$ of $X$ is isomorphic to the sheaf cohomology $H^i(X, \Z_X)$ of the constant sheaf $\Z_X$ on $X$.
@@ -131,10 +131,10 @@ We would like to have a notion of fundamental group for schemes. As before, ther
         This map \textit{should} be local homeomorphism, but this is false in the Zariski topology. There do not exist nonempty open subsets $V$ and $U$ such that $x \to x^n$ maps $V$ isomorphically onto $U$. The theory of \'etale coverings will give us a good notion of covering which we will use to define the analog of universal coverings
 \end{itemize}
 
-The \'etale topology will provide a solution for the problems we have with both cohomology and fundamental groups. The \'etale topology is not a topology in the classical sense, but a category equipped with a notion of covering (in the sense of point-set topology). The analog of open sets of a scheme $X$ will be so called \'etale morphisms $U \to X$. \'Etale morphisms are the natural analogs of local homeomorphisms in scheme theory, so they provide a finer topology than the Zarisiki topology, giving rise to a better sheaf theory. Furthermore, surjective \'etale morphisms share a lot of formal properties with covering spaces, allowing us to define the \'etale fundamental group $\pi_1^{\acute{e}t}$.
+The \'etale topology will provide a solution for the problems we have with both cohomology and fundamental groups. The \'etale topology is not a topology in the classical sense, but a category equipped with a notion of covering (in the sense of point-set topology). The analog of open sets of a scheme $X$ will be so called \'etale morphisms $U \to X$. \'Etale morphisms are the natural analogs of local homeomorphisms in scheme theory, so they provide a finer topology than the Zarisiki topology, giving rise to a better sheaf theory. Furthermore, surjective \'etale morphisms share a lot of formal properties with covering spaces, allowing us to define the \'etale fundamental group $\pi_1^{\et}$.
 
 \subsection{Overview}
-We first develop the theory of \'etale maps and their Galois theory. This theory generalises classical Galois theory from fields to schemes and will allow us to define the fundamental group $\pi_1^{\acute{e}t}(X)$ of a connected scheme $X$. Then we introduce the notion of site and define sheaves on sites as a direct generalisation of sheaves on a topological space. We then take a closer look at sheaves on the \'etale site of a scheme and study their cohomology.
+We first develop the theory of \'etale maps and their Galois theory. This theory generalises classical Galois theory from fields to schemes and will allow us to define the fundamental group $\pi_1^{\et}(X)$ of a connected scheme $X$. Then we introduce the notion of site and define sheaves on sites as a direct generalisation of sheaves on a topological space. We then take a closer look at sheaves on the \'etale site of a scheme and study their cohomology.
 \subsection{Prerequisites}
 We assume aqcuaintance with the basics of category theory including limits and adjoint functors. We will make free use of results from algebra but will provide references wherever needed. We will also use basic notions of scheme theory.
 
