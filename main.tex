@@ -2,7 +2,7 @@
 \usepackage{operators}
 \usepackage{preamble}
 
-\title{The \'etale Topos of a Scheme}
+\title{Galois Representations from \'Etale Cohomlogy}
 \author{Kento Okura}
 
 \definecolor{gray75}{gray}{0.75}
@@ -10,6 +10,8 @@
 \titlespacing*{\chapter}{0pt}{-2\baselineskip}{1em}
 
 \patchcmd{\chapter}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}
+
+\renewenvironment{proof}{{\bfseries Proof:}}{}
 
 \DeclareMathOperator{\Spec}{Spec}
 \DeclareMathOperator{\Hom}{Hom}
@@ -37,7 +39,7 @@
   \import{chapters/}{sheaves.tex}
 
   \chapter{\'Etale Cohomology}
-  \import{chapters/}{cohomology.tex}
+  \import{chapters/}{etale_cohomology.tex}
 
   \bibliographystyle{plain}
   \bibliography{refs}
