@@ -155,13 +155,17 @@ Recall that a category $\mathcal{C}$ is \textit{cofiltered} if the following hol
 \end{example}
 
 \begin{definition}[Stalks]
-	Let $X$ be a topological space and $x \in X$ a point. Let $F$ be a presheaf of sets on $X$. The stalk of $F$ at $x$ is the set $F_x = \varprojlim_{U \ni x} F(U)$, where the colimit runs over the set of open neighborhoods of $x$.\\
+	Let $X$ be a topological space and $x \in X$ a point. Let $F$ be a presheaf of sets on $X$. The stalk of $F$ at $x$ is the set $F_x = \colim_{U \ni x} F(U)$, where the colimit runs over the set of open neighborhoods of $x$.\\
+
+
+
 	We can also form stalks of sheaves on the \'etale toplogy. Let $X$ be a scheme and $x$ a point of $X$. An \'etale neighborhood of $x$ is defined to be a pair $(U, y)$ together with an \'etale morphism $\varphi: U \to X$ such that $\varphi(y) = x$. A morphism of \'etale neighborhoods $f: (V,z) \to (U,y)$ is a morphism of $X$-schemes $f: V \to U$ such that $f(v) = u$. The stalks of sheaves are defined as a colimit over all \'etale neighborhoods.
 \end{definition}
 
 \begin{example}
-	Let $X$ be a scheme and consider the structure sheaf $\mathcal{O}_X$ in the Zariski topology. The stalks of this sheaf, written $\mathcal{O}_{X,x}$ for $x \in X$ are local rings.\par
-	In the \'Etale topology, the limits $\varprojlim_{U \ni x} \mathcal{O}(U)$ turn out to be the strictly henselizations of the local rings $\mathcal{O}_{X,x}$.
+	Let $X$ be a scheme and consider the structure sheaf $\mathcal{O}_X$ in the Zariski topology. The stalks of this sheaf, written $\mathcal{O}_{X,x}$ for $x \in X$ are local rings: By definition each point $x \in X$ is contained in an affine neighorhood $\Spec(A) \subset X$. We define a map from the stalk $\Sh{O}_p$ to the ring $A_p$, where $p$ is the localisation of $A$ at the the multiplicative subset $A\setminus (p)$ by sending a section of .
+	\par
+	In the \'Etale topology, the limits $\varprojlim_{U \ni x} \mathcal{O}(U)$ turn out to be the strict henselizations of the local rings $\mathcal{O}_{X,x}$.
 \end{example}
 
 \begin{lemma}\label{sheaf:disjoint}
@@ -224,9 +228,9 @@ For a locally small category $C$, we write $\widehat{c}$ for the functor from $C
 \end{align*}
 We will also write $\widehat{C}$ instead of $[C^{\op}, \Set]$ for the functor category. In algebraic geometry the approach to studying schemes via the Yoneda lemma bears a special name. It is the ``functor of points approach'': Let $\widehat{Z}$ be the set-valued functor represented by the scheme $Z$. We call the functor $\widehat{Z}: \text{Sch} \to \Set,\ X \to \Hom(X,Z)$ the functor of points of $Z$. Set $\widehat{Z}(Y)$ the $Y$-valued points of $Z$. If the scheme $Z = \Spec(A)$ is affine, we also call them the $A$-valued points of $Z$.
 
-\begin{corollary}
+\begin{theorem}
   Every presheaf $\widehat{Z}$ represented by an $X$-scheme $Z$ given by $U \to \Hom_X(U,Z)$ is a sheaf. We will often omit the notation and simply write $Z(U)$ instead of $\widehat{Z}(U)$.
-\end{corollary}
+\end{theorem}
 
 \begin{proof}
   It is obviously a sheaf for the Zariski topology. By the previous theorem, it is sufficient to show exactness of the sequence 
@@ -248,12 +252,52 @@ Recall the statement of the Yoneda lemma:
 \begin{theorem}[The Yoneda lemma]
 	Let $C$ b a locally small category and $[C^{\op}, \Set]$ its presheaf category. For every presheaf $F: C^{\op} \to \Set$ there is a canonical isomorphism
 	\[
-		\Hom_{[C^{\op}, \Set]}(\widehat{c}, F) \simeq F(c)
+		\Hom_{\widehat{C}}(\widehat{c}, F) \simeq F(c)
 	\] between natural transformations from $\widehat{c}$ to $F$ and the elements of $F(c)$
 \end{theorem}
 
+\begin{definition}
+	A functor $F: C^{\op} \to \Set$ is representable if there is a natural isomorphism $F \cong \widehat{c}$ for some object $c$ of $C$.
+\end{definition}
+
+\subsection{Abelian Sheaves and Group Schemes}
+Abelian sheaves consists of the subcategory $\Ab(X) \subset \sh_\et(X)$
 \begin{example}
-	Consider the scheme $\Ga = \Spec(\Z[x])$. It has morphisms $\Gm \times \Gm \to \Gm$ induced by the maps
+	The functor $(-)^\times: \Rng \to \Set$ that sends a ring to its set of invertible elements is represented by the ring $\Z[x,x^{-1}]$ of Laurent polynomials. This means that a ring homomorphism $\Z[x,x^{-1}] \to R$ may be defined by sending $x$ to any unit of $R$, and this morphism is completeley determined by this choice, so we have $R^\times \cong \Hom(\Z[x,x^{-1}], R)$.\par
+	The sheaf represented by the scheme $\Gm \coloneqq \Spec(\Z[x, x^{-1}])$ is a group scheme over $\Z$, with the multiplication $\Gm \times \Gm \to \Gm$ given by the algebra map
+
+	\[
+		\begin{array}{c @{{}\to{}} c @{{}{}} c}
+		\Z[x,x^{-1}]  & \centermathcell{\Z[x,x^{-1}]\otimes_\Z \Z[x,x^{-1}]}\\
+		x   	      & \centermathcell{x\otimes x}.
+		\end{array}
+	\]
+	Evaluating the functor of points $\Gm$ on a scheme $X$ yields 
+	\[
+		\Gm(X) = \Hom(X, \Spec(\Z[x,x^{-1}])) \cong \Hom(\Z[x,x^{-1}], \Gamma(Y, \Sh{O}_Y)) \cong \Sh{O}_Y^\times.
+	\]
+	Let $S = \Spec(A)$ be an affine scheme. The base change of $\Gm$ along $S \to \Z$ is $\Spec(A \otimes \Z[x,x^{-1}]) = \Spec(A[x,x^{-1}])$
+	In order to consider $\Gm$ as a sheaf on the \'etale site consider $\mathbf{G}_{m,S}$, the base change of $\Gm$ along $X \to \Spec(\Z)$. By the universal property of pullbacks we have 
+	\[
+		\Hom_X(U, \mathbf{G}_{m,X}) = \Hom_{\Spec(\Z)}(U, \Spec(\Z[x,x^{-1}])) = \Gm(U),
+	\]
+	so $\Gm$ defines a sheaf on $\Et/X$. If $X = \Spec(A)$ is affine, then $\mathbf{G}_{m,X} = \Spec(A[x])$.
+	\[
+	 %https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXG1hdGhiZntHfV97bSxTfSJdLFsxLDAsIlxcR20iXSxbMSwxLCJcXFNwZWMoXFxaKSJdLFswLDEsIlMiXSxbMCwxXSxbMSwyXSxbMywyXSxbMCwzXV0=
+		\begin{tikzcd}
+			{\mathbf{G}_{m,S}} & \Gm \\
+			S & {\Spec(\Z)}
+			\arrow[from=1-1, to=1-2]
+			\arrow[from=1-2, to=2-2]
+			\arrow[from=2-1, to=2-2]
+			\arrow[from=1-1, to=2-1]
+		\end{tikzcd}.
+	\]
+\end{example}
+
+
+\begin{example}
+	Similarly consider the scheme $\Ga = \Spec(\Z[x])$. It is a group scheme over $\Z$, with multiplication $\Ga \times \Ga \to \Ga$ induced by the maps
 	\[
 		\begin{array}{c @{{}\to{}} c @{{}{}} c}
 		\Z[x]  & \centermathcell{\Z[x]\otimes_\Z \Z[x]}\\
@@ -262,16 +306,17 @@ Recall the statement of the Yoneda lemma:
 	\]
 	Evaluating the base change of $\Ga$ along any scheme $S$
 	\[
-	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXG1hdGhiZntHfV97bSxTfSJdLFsxLDAsIlxcR2EiXSxbMSwxLCJcXFNwZWMoXFxaKSJdLFswLDEsIlMiXSxbMCwxXSxbMSwyXSxbMywyXSxbMCwzXV0=
-	\begin{tikzcd}
-		{\mathbf{G}_{a,S}} & \Ga \\
-		S & {\Spec(\Z)}
-		\arrow[from=1-1, to=1-2]
-		\arrow[from=1-2, to=2-2]
-		\arrow[from=2-1, to=2-2]
-		\arrow[from=1-1, to=2-1]
-	\end{tikzcd},
+		% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXG1hdGhiZntHfV97YSxTfSJdLFsxLDAsIlxcR2EiXSxbMSwxLCJcXFNwZWMoXFxaKSJdLFswLDEsIlMiXSxbMCwxXSxbMSwyXSxbMywyXSxbMCwzXV0=
+		\begin{tikzcd}
+			{\mathbf{G}_{a,S}} & \Ga \\
+			S & {\Spec(\Z)}
+			\arrow[from=1-1, to=1-2]
+			\arrow[from=1-2, to=2-2]
+			\arrow[from=2-1, to=2-2]
+			\arrow[from=1-1, to=2-1]
+		\end{tikzcd}
 	\]
+
 
 	we obtain the functor which sends an $S$-scheme $X$ to $\mathbf{G}_{a,S}(X)=\Gamma(X, \mathcal{O}_X)$. Consider the case when $S = \Spec(A)$ is affine. The above diagram becomes equivalent to
 
@@ -287,32 +332,18 @@ Recall the statement of the Yoneda lemma:
 		\end{tikzcd},
 	\]
 	but $A \otimes \Z[x]$ is just $A[x]$, so $\mathbf{G}_{a,S}$ is just $\Spec(A[x])$.
+	\[
+		\Ga(X) = \Hom(X, \Spec(\Z[x])) \cong \Hom(\Z[x], \Gamma(Y, \Sh{O}_Y)) \cong \Sh{O}_Y
+	\]
 \end{example}
 
+\begin{example}
+	The functor sending a ring $R$ to the set of its roots of unity $\mu_n(R) = \{f \in R \mid f^n = 1\}$ is represented by the ring $\Z[x]/(x^n-1)$, so $\Hom(\Z[x]/(x^n-1),R) = \mu_n(R)$. Consider the scheme $\mu_n = \Spec(\Z[x]/(x^n-1))$. Using similar arguments as before we obtain the sheaf of roots of unity $\mu_n$ on the \'etale site $\Et/X$ by base changing along $X \to \Spec(\Z)$.
+\end{example}
 
 \begin{example}
 	Let $R=\Z[x_z, \dots, x_n]/(f_1, \dots , f_m)$ and $X = \Spec(R)$. What are the $\Z$-valued points of $R$? Specifying a morphism from $\Spec(\Z)$ to $X$ is equivalent to specifying a morphism $\varphi: R \to \Z$, which is equivalent to specifying images $a_i$ of the generators $x_i$ of $R$ such that $f_j(a_1, \dots, a_n) = 0$ for all $j$. In other words, the $\Z$-valued points are the integral solutions to the equation $f_j = 0$
 \end{example}
-
-\begin{example}
-	Consider the scheme $\mu_n = \Spec(\Z[x]/(x^n-1))$. 
-\end{example}
-
-\begin{example}
-	The sheaf represented by the scheme $\mathbf{G}_m \coloneqq \Spec(\Z[x, x^{-1}])$ is a group scheme over $\Z$, with the multiplication given by the algebra map
-
-	\[
-		\begin{array}{c @{{}\to{}} c @{{}{}} c}
-		\Z[x,x^{-1}]  & \centermathcell{\Z[x,x^{-1}]\otimes_\Z \Z[x,x^{-1}]}\\
-		x   	      & \centermathcell{x\otimes x}.
-		\end{array}
-	\]
-	The functor of points is 
-\end{example}
-
-\begin{definition}
-	Let $S$ be a scheme. An $S$-group scheme is a scheme $G$ over $S$ together with a morphism $\widehat{G}(T) \to \widehat{G}$
-\end{definition}
 
 \begin{definition}
 Algebraic structures like groups and rings may be described in terms commutative diagrams. Let $\mathcal{C}$ be a category with finite products and a terminal object $1$. A \textit{group object} in $\mathcal{C}$ consists of an object $A$ of $\mathcal{C}$ together with morphisms
@@ -399,6 +430,7 @@ This sheaf is called the \textit{sheaf of sections of $f$}. Each map $f \to g$ o
 	The forgetful functor $\mathsf{Sh}(C,J) \to \Set^{C^{op}}$ admits a limit-preserving left adjoint
 	\[a : \Set^{C^{op}} \to \mathsf{Sh}(C,J).\]
 \end{theorem}
+
 \begin{corollary}
 	The cateogry of sheaves on $X$ is a full reflective subcategory of the category of presheaves on $X$.
 \end{corollary}
