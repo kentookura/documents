@@ -1,32 +1,33 @@
 The issues we encountered in the introduction all stem from the fact that the Zariski topology is very coarse. Grothendieck found a natural generalisation of the notion of topology, allowing not only open subsets $U \subseteq X$ but more generally morphisms of schemes $Y \to X$ to play the role of open set. Specifically, he defined the \textit{\'etale site of $X$}, a generalised topology on $X$, consisting of the following:
 
 \begin{itemize}
-  \item The category of \'etale schemes $\text{\'Et}/X$ over $X$. This category consists of schemes $S$ together with an \'etale morphism $f: S \to X$. These morphisms formally behave like local homeomorphisms. 
+  \item The category of \'etale schemes $\text{\'Et}/X$ over $X$. Its objects are schemes $f:S \to X$ \'etale over $X$. 
   \item A notion of covering. In this case a covering of $X$ is a family of \'etale morphisms $\{\varphi_i: U_i \to X\}$ such that they are jointly surjective, $\bigcup_i im(\varphi_i) = X$. 
 \end{itemize}
 
-In this section we will define and study \'etale morphisms.  Because \'etale morphisms behave like local homeomorphisms, it is possible to realise the theory of covering spaces for schemes. In particular this means that we get a good notion the fundamental groups $\pi_1(X)$. The definition of a sheaf carries over seamlessly from the classical case of topological spaces to the case of sheaves on sites. The \'etale topos $\mathsf{Sh}(X)$ of a scheme $X$ is the category of sheaves on the \'etale site of $X$.  The \'etale topos of $X$ may be thought of as a generalised space, locally modeled on $X$, with a close relation to the geometric properties of $X$.  Furthermore, the \'etale topos $\mathsf{Sh}(X)$ also allows us to compute cohomology for sheaves which have vanishing cohomology in the Zariski setting. In this sense the \'etale site of a scheme is a much finer topology than the Zariski topology.
+In this section we will define and study \'etale morphisms.  Because \'etale morphisms behave like local homeomorphisms, they yield a good theory of covering spaces for schemes. In particular this means that we can define the notion of the \'etale fundamental groups $\pi_1^{\et}(X)$. The definition of a sheaf carries over seamlessly from the classical case of topological spaces to the case of sheaves on sites. A category of sheaves on a site is called a topos.  The \'etale topos $\mathsf{Sh}_{\et}(X)$ of $X$ may be thought of as a generalised space, locally modeled on $X$, with a close relation to the geometric properties of $X$. 
+%Furthermore, the \'etale topos $\mathsf{Sh}(X)$ also allows us to compute cohomology for sheaves which have vanishing cohomology in the Zariski setting. In this sense the \'etale site of a scheme is a much finer topology than the Zariski topology.
 
-\subsection{\'Etale Algebras}
-We begin our discussion with the simple case of \'etale covers of $X = \Spec(k)$, where $k$ is a field. In order to model the notion of local homeomorphism, it is reasonable to demand that for $f: Y \to \Spec(k)$ to be a local homeomorphism, the underlying topological space of $Y$ should consist of a finite number of disjoint points, so $Y = \Spec(\prod L_i)$ where each $L_i$ is a field extension of $k$. 
+\section{\'Etale Algebras}
+We begin our discussion with the simple case of \'etale covers of $X = \Spec(k)$, where $k$ is a field. It is reasonable to demand that for $f: Y \to \Spec(k)$ to be a local homeomorphism, the underlying topological space of $Y$ should consist of a finite number of disjoint points, so $Y = \Spec(\prod L_i)$ where each $L_i$ is a field extension of $k$. 
 
-\begin{definition}[finite \'etale algebras]
-  A $k$-algebra $A$ is \'etale over $k$ if it is isomorphic to a product of separable extensions of $k$. If $A$ is finite dimensional over $k$ we say that $A$ is \'etale over $k$. We define $\Spec(A) \to \Spec(k)$ to be \'etale (resp. finite \'etale) if $A$ is a (finite) \'etale algebra over $k$.
+\begin{definition}[Finite \'etale algebras]
+  A $k$-algebra $A$ is \'etale over $k$ if it is isomorphic to a product of separable extensions of $k$. If $A$ is finite dimensional over $k$ we say that $A$ is finite \'etale over $k$. We define $\Spec(A) \to \Spec(k)$ to be \'etale (resp. finite \'etale) if $A$ is a (finite) \'etale algebra over $k$.
 \end{definition}
 
 Recall that an extension $L/k$ is separable if its minimal polynomial $p(x)$ has no multiple roots (in a splitting field of $p(x)$). It follows from basic algebra that a polynomial $p(x)$ is separable if and only if it is coprime to its derivative $p'(x)$. This means that $p'(x)$ gets mapped to a unit under the canonical map $k[x] \to k[x]/(p(x)) \simeq L$. This is in effect a smoothness condition, reminiscent of the conditions under which the inverse mapping theorem from analysis holds. This idea will reappear when we define \'etale morphisms in a more general condition.
 
-\subsubsection{Galois theory for finite \'etale algebras}
+\subsection{Galois theory for finite \'etale algebras}
 We recall the basics of Galois theory as Grothendieck formulated them.
 
 \begin{construction}[Reminder on Galois theory]
-  Let $k$ be a field and fix once and for all separable and algebraic closures $k_s \subset \overline{k}$.  An algebraic extension $L$ of $k$ is a \textit{Galois extension} if the elements of $L$ that are fixed under the automorphism group $\Aut_k(L)$ are precisely the elements of $k$. In this case we call $\Aut_k(L)$ the \textit{Galois group} of $L$ over $k$ and denote it by $\Gal(L/k)$. A separable extension $L/k$ is Galois if and only if the minimal polynomial of each element $a \in L$ splits into linear factors in $L$. In particular $k_s$ is a Galois extension. We call its Galois grouop the \textit{absolute Galois group of $k$} and denote it by $\Gal(k)$. If $k_s$ is an infinte extension, $\Gal(k)$ is a profinite group and hence carries a totally disconnected topology. Let $L$ be a finite separable extension of $k$. The set $\Hom_k(L, k_s)$ is finite and equal to $[L:k]$. This set is endowed with a left action of $\Gal(k_s/k)$ given by $\varphi \to g \circ \varphi$ for $g \in \Gal(k)$ and $\varphi \in \Hom_k(L, k_s)$. The action of $\Gal(k)$ is continuous if $\Hom(L, k_s)$ is given the discrete topology. In this case, we can verify continuity by checking that each stabilizer 
-  \[G_x = \{ g \in G \mid g \circ \varphi =  \varphi \forall\ \varphi \in \Hom_k(L, k_s)\}, \]
+  Let $k$ be a field and fix once and for all separable and algebraic closures $k_s \subset \overline{k}$.  An algebraic extension $L$ of $k$ is a \textit{Galois extension} if the elements of $L$ that are fixed under the automorphism group $\Aut_k(L)$ are precisely the elements of $k$. In this case we call $\Aut_k(L)$ the \textit{Galois group} of $L$ over $k$ and denote it by $\Gal(L/k)$. A separable extension $L/k$ is Galois if and only if the minimal polynomial of each element $a \in L$ splits into linear factors in $L$. In particular $k_s$ is a Galois extension. We call its Galois grouop the \textit{absolute Galois group of $k$} and denote it by $\Gal(k)$. If $k_s$ is an infinte extension, $\Gal(k)$ is a profinite group and hence carries a totally disconnected topology. Let $L$ be a finite separable extension of $k$. The set $\Hom_k(L, k_s)$ is finite has cardinality $[L:k]$. This set is endowed with a left action of $\Gal(k_s/k)$ given by $\varphi \to g \circ \varphi$ for $g \in \Gal(k)$ and $\varphi \in \Hom_k(L, k_s)$. The action of $\Gal(k)$ is continuous if $\Hom(L, k_s)$ is given the discrete topology. In this case, we can verify continuity by checking that each stabilizer 
+  \[G_x = \{ g \in G \mid g \circ \varphi =  \varphi\ \forall\varphi \in \Hom_k(L, k_s)\}, \]
   which is easy to check.
 \end{construction}
 
 \begin{proposition}
-  The action of $\Gal(k)$ on $\Hom_k(L, k_s)$ is continuous and transitive and $\Hom_k(L, k_s)$ is isomorphic as a left $\Gal(k)$-set to the $\Gal(k)$-set $G/U$ for some open subgroup $U \subseteq \Gal(k)$
+  The action of $\Gal(k)$ on $\Hom_k(L, k_s)$ is continuous and transitive and $\Hom_k(L, k_s)$ is isomorphic as a left $\Gal(k)$-set to the $\Gal(k)$-set $\Gal(k)/U$ for some open subgroup $U \subseteq \Gal(k)$
 \end{proposition}
 
 \begin{theorem}[Main Theorem of Galois Theory, Grothendieck's version]
@@ -174,22 +175,35 @@ We recall some basic facts about flat maps and
 \end{theorem}
 \begin{proof}
   $(\implies)$
-  We first show that $\varphi$ is finite and locally free. Since $f$ is locally free, each point of $X$ has an affine open neighborhood $U = \Spec(R)$ such that $f$ restricts to a morphism $\Spec(A) \to \Spec(R)$ where $A$ is a finitely generated and free $R$-module. Since $\varphi$ is affine, it restricts to $\Spec(B) \to \Spec(R)$ over $U$ and the basechange $S \times_X Y$ restricts to $\Spec(A \otimes_R B)$ over $\Spec(R)$. By assumption $A \otimes_R B$ is a finitely generated and free $A$-module, so it is also fnitely generated and free as an $R$-module. It is also isomorphic to a finite direct sum of copies of $A$. This can only happen if $B$ is finitely generated and free over $R$.
-    \[
-    % https://q.uiver.app/?q=WzAsOCxbMCwxLCJTIl0sWzEsMCwiWSJdLFsxLDEsIlgiXSxbMCwwLCJTIFxcdGltZXNfWCBZIl0sWzIsMCwiXFxTcGVjKEEgXFxvdGltZXNfUkIpIl0sWzIsMSwiXFxTcGVjKEEpIl0sWzMsMSwiXFxTcGVjKFIpIl0sWzMsMCwiXFxTcGVjKEIpIl0sWzEsMiwiXFx2YXJwaGkiXSxbMCwyLCJmIiwyXSxbMywxXSxbMywwXSxbNCw1XSxbNSw2XSxbNCw3XSxbNyw2XV0=
+  We first show that $\varphi$ is finite and locally free. Since $f$ is locally free, each point of $X$ has an affine open neighborhood $U = \Spec(R)$ such that $f$ restricts to a morphism $\Spec(A) \to \Spec(R)$ where $A$ is a finitely generated and free $R$-module. Since $\varphi$ is affine, it restricts to $\Spec(B) \to \Spec(R)$ over $U$ for some $R$-algebra $B$. The basechange $S \times_X Y$ restricts to $\Spec(A \otimes_R B)$ over $\Spec(R)$ and we have the following commutative diagrams:
+    \begin{figure}
+    \centering
+    \begin{minipage}{0.4\textwidth}
+      \begin{tikzcd}
+        % https://q.uiver.app/?q=WzAsNCxbMCwxLCJTIl0sWzEsMCwiWSJdLFsxLDEsIlgiXSxbMCwwLCJTIFxcdGltZXNfWCBZIl0sWzEsMiwiXFx2YXJwaGkiXSxbMCwyLCJmIiwyXSxbMywxXSxbMywwXV0=
+  	   {S \times_X Y} & Y \\
+  	   S & X
+  	   \arrow["\varphi", from=1-2, to=2-2]
+  	   \arrow["f"', from=2-1, to=2-2]
+  	   \arrow[from=1-1, to=1-2]
+  	   \arrow[from=1-1, to=2-1]
+      \end{tikzcd}
+    \end{minipage}
+    \begin{minipage}{0.4\textwidth}
+    % https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXFNwZWMoQSBcXG90aW1lc19SQikiXSxbMCwxLCJcXFNwZWMoQSkiXSxbMSwxLCJcXFNwZWMoUikiXSxbMSwwLCJcXFNwZWMoQikiXSxbMCwxXSxbMCwzXSxbMSwyXSxbMywyXV0=
     \begin{tikzcd}
-    	{S \times_X Y} & Y & {\Spec(A \otimes_RB)} & {\Spec(B)} \\
-    	S & X & {\Spec(A)} & {\Spec(R)}
-    	\arrow["\varphi", from=1-2, to=2-2]
-    	\arrow["f"', from=2-1, to=2-2]
-    	\arrow[from=1-1, to=1-2]
+    	{\Spec(A \otimes_RB)} & {\Spec(B)} \\
+    	{\Spec(A)} & {\Spec(R)}
     	\arrow[from=1-1, to=2-1]
-    	\arrow[from=1-3, to=2-3]
-    	\arrow[from=2-3, to=2-4]
-    	\arrow[from=1-3, to=1-4]
-    	\arrow[from=1-4, to=2-4]
-    \end{tikzcd}
-    \]
+    	\arrow[from=1-1, to=1-2]
+    	\arrow[from=2-1, to=2-2]
+    	\arrow[from=1-2, to=2-2]
+    \end{tikzcd}    
+    \end{minipage}
+  \end{figure}
+
+  By assumption $A \otimes_R B$ is a finitely generated and free $A$-module, so it is also fnitely generated and free as an $R$-module. It is also isomorphic to a finite direct sum of copies of $A$. This can only happen if $B$ is finitely generated and free over $R$. \par
+
   Now let $\overline{x} : \Spec(\overline{k}) \to S$ be a geometric point of $S$. By composition with $f$ we get a geometric point of $X$. Now the geometric fibers $Y_{(f \circ \overline{x})}$ and $(S \times_X Y)_{\overline{x}}$  are isomorphic by the universal property of pullbacks. 
   \[
   % https://q.uiver.app/?q=WzAsOSxbMiwxLCJYIl0sWzIsMCwiWSJdLFsxLDAsIllfeyhmIFxcY2lyYyBcXG92ZXJsaW5le3h9KX0iXSxbMSwxLCJcXG92ZXJsaW5le2t9Il0sWzMsMCwiKFMgXFx0aW1lc19YIFkpX3tcXG92ZXJsaW5le3h9fSJdLFszLDEsIlxcb3ZlcmxpbmV7a30iXSxbNCwwLCJTIFxcdGltZXNfWCBZIl0sWzQsMSwiUyJdLFswLDJdLFsxLDBdLFsyLDFdLFszLDAsImYgXFxjaXJjIFxcb3ZlcmxpbmV7eH0iLDJdLFsyLDNdLFs0LDVdLFs0LDZdLFs2LDddLFs1LDcsIlxcb3ZlcmxpbmV7eH0iLDJdXQ==

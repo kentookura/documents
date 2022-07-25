@@ -26,11 +26,17 @@ Since $f(p) \neq 0$ for all $p \in D_f$, we view the the ring $A[1/f]$ as the ri
 \[
   \biggl\{ \frac{g}{f^k} \mid g \in A, k \in \N \biggr\}.
 \]
-The assingment $D_f \to A[1/f]$ extends to a sheaf $\Sh{O}_{\Spec{A}}: \Spec(A) \to \mathsf{Ring}$, called the \textit{structure sheaf of $\Spec(A)$}. This sheaf is again in analogy with the sheaf We obtain a fully faithful functor
+The assingment $D_f \to A[1/f]$ extends to a sheaf $\Sh{O}_{\Spec{A}}: \Spec(A) \to \mathsf{Ring}$, called the \textit{structure sheaf of $\Spec(A)$}. This sheaf has the property that the ring of global sections, denoted by $\Gamma(\Spec(A), \Sh{O})$ is isomorphic to $A$. We obtain a pair of functors
 \[
-\Spec : \text{CRing}^{op} \to LRS
+\Spec : \text{CRing}^{op} \to \text{LRS}
 \]
-from the category of commutative rings to the category of locally ringed spaces. An affine schemes is a locally ringed space isomorphic to $\Spec(R)$ for some ring $R$. Basic examples of affine schemes arise from polynomial rings: scheme-theoretically, the zero locus of a polynomial $f \in k[x_1, \dots, x_n]$ is the spectrum $\Spec(k[x_1, \dots, x_n]/(f))$, for instance the parabola is the locally ringed space $\Spec(k[x,y]/(x^2-y))$.
+from the category of commutative rings to the category of locally ringed spaces. An affine schemes is a locally ringed space isomorphic to $\Spec(R)$ for some ring $R$. A scheme is a locally ringed space with a covering by affine schemes. The functor seding an affine scheme $\Spec(A)$ to the ring of global sections of the structure sheaf $\Sh{O}_{\Spec(A)}$ is fully faithful and induces a bijection
+
+\[
+  \Hom_{\text{CRing}}(R, \Gamma_Y \Sh{O}_Y) \cong \Hom_{\text{Sch}}(Y, \Spec(R))
+\]
+
+Basic examples of affine schemes arise from polynomial rings: scheme-theoretically, the zero locus of a polynomial $f \in k[x_1, \dots, x_n]$ is the spectrum $\Spec(k[x_1, \dots, x_n]/(f))$, for instance the parabola is the locally ringed space $\Spec(k[x,y]/(x^2-y))$.
 
 \begin{definition}
   A \textit{scheme} is a locally ringed space $X$ such that there is a covering $\{U_i\}_{i \in I}$ of $X$ such that each $U_i$ is isomorphic to an affine scheme $\Spec(A_i)$ for some ring $A_i$.
