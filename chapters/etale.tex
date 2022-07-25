@@ -8,10 +8,10 @@ The issues we encountered in the introduction all stem from the fact that the Za
 In this section we will define and study \'etale morphisms.  Because \'etale morphisms behave like local homeomorphisms, it is possible to realise the theory of covering spaces for schemes. In particular this means that we get a good notion the fundamental groups $\pi_1(X)$. The definition of a sheaf carries over seamlessly from the classical case of topological spaces to the case of sheaves on sites. The \'etale topos $\mathsf{Sh}(X)$ of a scheme $X$ is the category of sheaves on the \'etale site of $X$.  The \'etale topos of $X$ may be thought of as a generalised space, locally modeled on $X$, with a close relation to the geometric properties of $X$.  Furthermore, the \'etale topos $\mathsf{Sh}(X)$ also allows us to compute cohomology for sheaves which have vanishing cohomology in the Zariski setting. In this sense the \'etale site of a scheme is a much finer topology than the Zariski topology.
 
 \subsection{\'Etale Algebras}
-We begin our discussion with the simple case of \'etale covers of $X = \Spec(k)$, where $k$ is a field. In order to model the notion of local homeomorphism, it is reasonable to demand that for $f: Y \to \Spec(k)$ to be a local homeomorphism,  the underlying topological space of $Y$ should consist of a finite number of disjoint points. If we restrict our attention to the case that $Y$ is affine, it follows that $Y = \Spec(\prod L_i)$ where each $L_i$ is a field extension of $k$. 
+We begin our discussion with the simple case of \'etale covers of $X = \Spec(k)$, where $k$ is a field. In order to model the notion of local homeomorphism, it is reasonable to demand that for $f: Y \to \Spec(k)$ to be a local homeomorphism, the underlying topological space of $Y$ should consist of a finite number of disjoint points, so $Y = \Spec(\prod L_i)$ where each $L_i$ is a field extension of $k$. 
 
 \begin{definition}[finite \'etale algebras]
-  A finite dimensional $k$-algebra $A$ is \'etale over $k$ if it is isomorphic to a product of separable extensions of $k$. We define $\Spec(A) \to \Spec(k)$ to be \'etale if $A$ is an \'etale algebra over $k$.
+  A $k$-algebra $A$ is \'etale over $k$ if it is isomorphic to a product of separable extensions of $k$. If $A$ is finite dimensional over $k$ we say that $A$ is \'etale over $k$. We define $\Spec(A) \to \Spec(k)$ to be \'etale (resp. finite \'etale) if $A$ is a (finite) \'etale algebra over $k$.
 \end{definition}
 
 Recall that an extension $L/k$ is separable if its minimal polynomial $p(x)$ has no multiple roots (in a splitting field of $p(x)$). It follows from basic algebra that a polynomial $p(x)$ is separable if and only if it is coprime to its derivative $p'(x)$. This means that $p'(x)$ gets mapped to a unit under the canonical map $k[x] \to k[x]/(p(x)) \simeq L$. This is in effect a smoothness condition, reminiscent of the conditions under which the inverse mapping theorem from analysis holds. This idea will reappear when we define \'etale morphisms in a more general condition.
@@ -30,10 +30,18 @@ We recall the basics of Galois theory as Grothendieck formulated them.
 \end{proposition}
 
 \begin{theorem}[Main Theorem of Galois Theory, Grothendieck's version]
-  Let $k$ be a field. The functor mapping a finite \'etale $k$-algebra $A$ to the finite set $\Hom_k(A, k_s)$ induces an equivalence of categories between the cateogry of finite \'etale $k$-algebras and the category of finite sets with a continous left $\text{Gal}(k)$-action.
+  Let $k$ be a field. The functor mapping a finite \'etale $k$-algebra $A$ to the finite set $\Hom_k(A, k_s)$ induces an equivalence of categories between the cateogry of \'etale $k$-algebras and the category of sets with a continous left $\text{Gal}(k)$-action
 \end{theorem}
 
-This theorem is strongly reminiscent of the following theorem from algebraic topology:
+\begin{proof}
+  A scheme $X$ is \'etale over $k$ if and only if it is isomorphic to to $\coprod \Spec(L_i)$ where each $L_i$ is a finite separable extension of $k$. Each element of the $\Gal(k)$-set $\coprod_i \Hom_k(L_i, k_s)$ has an open stabilizer by definition of the profinite topology on $\Gal(k)$. Conversely consider a $\Gal(k)$ set $T$ and write it as a disjoint union of orbits $\coprod T_i$. Pick an element $t_i \in T_i$ and let $G_i \subset \Gal(k)$ be its open stabilizer. Then the scheme 
+  \[
+    \coprod_i \Spec(k_s^{G_i})
+  \]
+  is \'etale over $k$ because by Galois theory each $k_s^{G_i}$ is a finite separable extension of $k$. This gives an inverse to the functor.
+\end{proof}
+
+The following theorem is strongly reminiscent of the following theorem from algebraic topology:
 
 \begin{theorem}
   Let $(X,x)$ be a pointed, connected and locally simply connected topological space. The fiber functor $\text{Fib}_x$ induces an equivalence of categories between the category of covers of $X$ with the category of left $\pi_1(X,x)$-sets.
@@ -110,12 +118,32 @@ We generalise the notion of \'etale algebra to algebras over a ring.
 
 \subsection{\'Etale morphisms of schemes}
 \begin{definition}
-A morphism of schemes $f: X \to Y$ is called \textit{affine} if there is an open affine cover by subsets $U_i$ such that $f^{-1}(U_i)$ is affine for each $i$.  A morphism of schemes $f: X \to Y$ is called \textit{finite} if there is an affine cover by subsets $U_i = \Spec(A)$ such that $f^{-1}(U_i) = \Spec(B_i)$ is a finitely generated $A_i$-module.  If moreover each $B_i$ is a fee separable $A_i$-algebra, it is said to be \'etale.
-%We say that $f: X \to S$ is finite locally free if $f$ is affine and $f_* \Sh{O}_X$ is locally free and of finite rank.
-%If each fibre $X_p$ of $f$ is the spectrum of a finite \'etale $\kappa(p)$-algebra, then we say $f$ is an \'etale morphism.
+A morphism of schemes $f: X \to Y$ is called \textit{affine} if there is an open affine cover by subsets $U_i$ such that $f^{-1}(U_i)$ is affine for each $i$.  A morphism of schemes $f: X \to Y$ is called \textit{finite} if there is an affine cover by subsets $U_i = \Spec(A)$ such that $f^{-1}(U_i) = \Spec(B_i)$ is a finitely generated $A_i$-module.  If moreover each $B_i$ is a free separable $A_i$-algebra, it is said to be \'etale.
 \end{definition}
 It follows that $f: \Spec(B) \to \Spec(A)$ is an \'etale morphism if and only if $B$ is an \'etale $A$-algebra.
 
+\begin{definition}\label{def:flatness}
+  A ring homomorphism $f: A \to B$ is flat if the functor $- \otimes_A B$ is exact. A morphism $f: Y \to X$ of schemes is flat if for all afffine subsets $U \subset Y$ and $V \subset X$ with $f(V) \subset U$, the map $\Gamma(U, \mathcal{O}_X) \to \Gamma(V, \mathcal{O}_Y)$ is flat.
+\end{definition}
+
+\textbf{Examples of flat maps}
+  \begin{itemize}
+    \item Open immersions are flat
+    \item The composite of flat morphisms is flat
+    \item Any base extension a flat morphism is flat
+  \end{itemize}
+
+\begin{theorem}
+  Let $M$ be a finitely generated $A$-module. The following are equivalent:
+  \begin{itemize}
+    \item $M$ is flat.
+    \item $M_m$ is a free $A_m$-module for all maximal ideals $m$ of $A$.
+    \item $\widetilde{M}$ is a locally free sheaf on $\Spec(A)$.
+    \item $M$ is projective as an $A$-module.
+  \end{itemize}
+\end{theorem}
+
+We recall some basic facts about flat maps and 
 \begin{lemma}
   \begin{enumerate}
     \item The composition of affine morphisms is affine.
@@ -123,16 +151,21 @@ It follows that $f: \Spec(B) \to \Spec(A)$ is an \'etale morphism if and only if
     \item The composition of \'etale morphisms is \'etale.
   \end{enumerate}
 \end{lemma}
+
 \begin{proof}
   The first statement follows immediately from the fact that a morphism $f: X \to Y$ is affine if and only if for \textit{every} affine open $V \subseteq X$, $f^{-1}(V)$ is affine, see\cite{Hartshorne}.
 \end{proof}
 
-
 \begin{lemma}
   If $f: Y \to X$ is \'etale, then the base change $U \times_X Y$ along any morphism $U \to X$ is \'etale.
 \end{lemma}
+
+\begin{proof}
+  
+\end{proof}
+
 \begin{definition}
-  A surjective finite \'etale morphism is called an \'etale cover. An \'etale cover $\varphi : Y \to X$ is claled trivial if $Y$ is isomorphic do a finite disjoint union of copies of $X$ $Y \cong \coprod X$ and $\varphi$ restricts to the identity on each component.
+  A surjective finite \'etale morphism is called an \'etale cover. An \'etale cover $\varphi : Y \to X$ is called trivial if $Y$ is isomorphic do a finite disjoint union of copies of $X$ $Y \cong \coprod X$ and $\varphi$ restricts to the identity on each component.
 \end{definition}
 
 \begin{theorem} 
