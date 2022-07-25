@@ -21,7 +21,6 @@
 	A topological space $X$ may be equipped with the structure of a site by declaring the coverings of open sets $U \subseteq X$ to be those families of open sets $\{U_i\}$ contained in $U$ such that $\bigcup U_i = U$. 
 \end{example}
 
-
 \begin{example}
 	The category of sets may be equipped with a topology where coverings consist of families of set maps $\{f_i : X_i \to X\}$ such that $\bigcup_i f_i(X_i) = X$.
 \end{example}
@@ -39,11 +38,10 @@
 	\end{tikzcd}
 	\]
 	such that $f = f' \circ \varphi$. 
-	From (...) it follows that the set of families jointly surjective \'etale morphisms form a site. Note that a key difference to the example from classical topology is that there may be more than one morphism between ``opens''! The \'etale topology topology is finer than the Zariski topology in the sense that an open immersion $U \to X$ is always \'etale, so each open set $U \in X$ may be thought of as an \'etale open set.
-
-\begin{theorem}
-  
-\end{theorem}
+	From (...) it follows that the set of families jointly surjective \'etale morphisms form a site. Note that a key difference to the example from classical topology is that there may be more than one morphism between ``opens''! The \'etale topology topology is finer than the Zariski topology in the sense that an open immersion $U \to X$ is always \'etale, so each open set $U \in X$ may be thought of as an \'etale open set. There are a couple of variations on this notion:
+	\begin{enumerate}
+		\item The previous site is sometimes called the \textit{small \'etale site of $X$}, dentoed by $\Et/X$. We can also consider the site of finite \'etale morphisms, whose objects are finite \'etael schemes over $X$.
+	\end{enumerate}
 
 \end{example}
 
@@ -110,6 +108,25 @@ When taking the product in the middle row of~\ref{restriction}, we obtain the di
 
 Given two section $s_1 \in \Sh{F}(U_1)$ and $s_2 \in \Sh{F}(U_2)$, the two parallel arrows map $(s_1, s_2)$ to $s_1|_{U_{12}}$ and $s_2|_{U_{12}}$. To say that $\Sh{F}(X)$ is an equalizer in the above diagram amounts to saying that the sections of $\Sh{F}(X)$ are recoverable from those sections on the sets $U_1$ and $U_2$ which agree on the overlap $U_{12}$. The diagram\eqref{equalizer:1} is the straightforward generalisation of the preceding discussion for a cover consisting of more than 2 open sets.
 
+\subsection{The category of $G$-sets}
+In Chapter 1, we fully described the \'etale site of $\Spec(k)$ for $k$ a field. A presheaf $F$ on $\Et/k$ is a sheaf if and only if 
+\begin{enumerate}
+	\item $F(\prod A_i) = \oplus F(A_i)$ for every finite family $\{A_i\}$ of \'etale algebra
+	\item $F(L) \xrightarrow{\sim} F(K)^{\Gal(K/k)}$ for finite Galois extensions $K/L/k$
+\end{enumerate}
+For $F$ a sheaf on $\Et/k$ define $M_F = \varprojlim F(K)$, where the colimit runs over all finite Galois extensions over $k$. Then $M_F$ is a discrete $\Gal(k)$-module. Converseley, if $M$ is a discrete $G$-module, define $F_m(A) = \Hom_{\Gal(k)}(F(A),M)$, where $F(A) = \Hom(A, k_s)$. Then $F_M$ is a sheaf on $\Spec(k)$. This defines an equivalence of categories between the \'etale topos $\sh(\Et/k)$ of $k$ and the category of discrete $G$-modules. 
+
+\begin{construction}
+	Let $G$ be a topological group. Denote by $BG$ the category of \textit{right $G$-sets} whose objects are sets $X$ equipped with a right $G$-action $X \times G \to X$ which is continuous when $X$ is given the discrete topology and the morphisms are $G$-equivariant functions. Let $\Hom_G(X,Y)$ denote the set of morphisms in $BG$. 
+	Let $S(G)$ be the full subcategory of $BG$ whose  objects are $G$-sets of the form $G/U$ for an open subgroup $U \subset G$.
+\end{construction}
+
+\begin{theorem}
+	Let $G$ be a topological group. Then the category of $G$-sets is equivalent to the topos of sheaves on the atomic site, whose objects are open subgroups of $G$ and morphisms $H \to K$ are the left cosets $aK$ such that $H \subseteq aKa^{-1}$.\\
+	For a proof and definitions, see \cite{MacLane/Moerdijk:1994}, Chapter 3.9
+\end{theorem}
+
+
 \subsection{Maps of Sheaves and Sheaves with Algebraic Structure}
 Since sheaves are presheaves, we define a map of sheaves $\varphi: \Sh{F} \to \Sh{G}$ as a natural transformation $\Sh{F} \to \Sh{G}$ between functors. Explicitly this natural transformation consists of a map of sets $\varphi_U: \Sh{F}(U) \to \Sh{G}(U)$ for each $U \in X$ such that the following diagram commutes:
 
@@ -127,17 +144,25 @@ Since sheaves are presheaves, we define a map of sheaves $\varphi: \Sh{F} \to \S
 
 We obtain the category $\mathsf{Sh}(C,J)$ of sheaves on $C$ with respect to the topology $J$. This is in fact a full subcategory of presheaves $\Set^{C^{op}}$. We call categories equivalent to categories of sheaves on a site Grothendieck toposes.\par
 
+Recall that a category $\mathcal{C}$ is \textit{cofiltered} if the following holds:
+\begin{enumerate}
+	\item For any pair of objects $a_1$ and $a_2$, there is an object $b$ with maps $b \to a_1$ and $b \to a_2$.
+	\item Every pair of morphisms $f,g: a \to b$, there is an equalizer $h: c \to a$. This means that $f \circ h = g \circ h$.
+\end{enumerate} 
+
+\begin{example}
+	The subcategory of $\Op(X)$ consisting of all open sets containing $x$ is cofiltered because $\Op(X)$ has all finite pullbacks. The second condition does not need to be verified, since there is at most one morphism between any two open sets.
+\end{example}
 
 \begin{definition}[Stalks]
-	Let $X$ be a topological space and $x \in X$ a point. Let $F$ be a presheaf of sets on $X$. The stalk of $F$ at $x$ is the set $F_x = \varprojlim_{U \ni x} F(U)$, where the colimit runs over the set of open neighborhoods of $x$.
-	Recall that a category $\mathcal{C}$ is \textit{cofiltered} if the following holds:
-	\begin{enumerate}
-		\item For any pair of objects $a_1$ and $a_2$, there is an object $b$ with maps $b \to a_1$ and $b \to a_2$.
-		\item Every pair of morphisms $f,g: a \to b$, there is an equalizer $h: c \to a$. This means that $f \circ h = g \circ h$.
-	\end{enumerate} 
-  The subcategory of $\Op(X)$ consisting of all open sets containing $x$ is cofiltered because $\Op(X)$ has all finite pullbacks. The second condition does not need to be verified, since there is at most one morphism between any two open sets. \\
-  We can also form the stalk of sheaves on the \'etale toplogy. Let $X$ be a scheme and $x$ a point of $X$. An \'etale neighborhood of $x$ is defined to be a pair $(U, u)$ together with an \'etale morphism $\varphi: U \to X$ such that $\varphi(u) = x$. A morphism of \'etale neighborhoods $f: (V,v) \to (U,u)$ is a morphism of $X$-schemes $f: V \to U$ such that $f(v) = u$. The 
+	Let $X$ be a topological space and $x \in X$ a point. Let $F$ be a presheaf of sets on $X$. The stalk of $F$ at $x$ is the set $F_x = \varprojlim_{U \ni x} F(U)$, where the colimit runs over the set of open neighborhoods of $x$.\\
+	We can also form stalks of sheaves on the \'etale toplogy. Let $X$ be a scheme and $x$ a point of $X$. An \'etale neighborhood of $x$ is defined to be a pair $(U, y)$ together with an \'etale morphism $\varphi: U \to X$ such that $\varphi(y) = x$. A morphism of \'etale neighborhoods $f: (V,z) \to (U,y)$ is a morphism of $X$-schemes $f: V \to U$ such that $f(v) = u$. The stalks of sheaves are defined as a colimit over all \'etale neighborhoods.
 \end{definition}
+
+\begin{example}
+	Let $X$ be a scheme and consider the structure sheaf $\mathcal{O}_X$ in the Zariski topology. The stalks of this sheaf, written $\mathcal{O}_{X,x}$ for $x \in X$ are local rings.\par
+	In the \'Etale topology, the limits $\varprojlim_{U \ni x} \mathcal{O}(U)$ turn out to be the strictly henselizations of the local rings $\mathcal{O}_{X,x}$.
+\end{example}
 
 \begin{lemma}\label{sheaf:disjoint}
 	Let $F$ be a sheaf on the Zariski topology on a scheme $X = \coprod U_i$ which is the disjoint union of subschemes $U_i$. Then $F(X) = \prod F(U_i)$.
@@ -197,9 +222,10 @@ For a locally small category $C$, we write $\widehat{c}$ for the functor from $C
 	\yo : C & \to [C^{\op}, \Set]\\
 	     c  & \to \widehat{c}
 \end{align*}
+We will also write $\widehat{C}$ instead of $[C^{\op}, \Set]$ for the functor category. In algebraic geometry the approach to studying schemes via the Yoneda lemma bears a special name. It is the ``functor of points approach'': Let $\widehat{Z}$ be the set-valued functor represented by the scheme $Z$. We call the functor $\widehat{Z}: \text{Sch} \to \Set,\ X \to \Hom(X,Z)$ the functor of points of $Z$. Set $\widehat{Z}(Y)$ the $Y$-valued points of $Z$. If the scheme $Z = \Spec(A)$ is affine, we also call them the $A$-valued points of $Z$.
 
 \begin{corollary}
-  Every presheaf $\widehat{Z}$ represented by an $X$-scheme $Z$ given by $U \to \Hom_X(U,Z)$ is a sheaf. 
+  Every presheaf $\widehat{Z}$ represented by an $X$-scheme $Z$ given by $U \to \Hom_X(U,Z)$ is a sheaf. We will often omit the notation and simply write $Z(U)$ instead of $\widehat{Z}(U)$.
 \end{corollary}
 
 \begin{proof}
@@ -225,34 +251,68 @@ Recall the statement of the Yoneda lemma:
 		\Hom_{[C^{\op}, \Set]}(\widehat{c}, F) \simeq F(c)
 	\] between natural transformations from $\widehat{c}$ to $F$ and the elements of $F(c)$
 \end{theorem}
-In algebraic geometry the approach to studying schemes via the Yoneda lemma bears a special name. It is the ``functor of points approach'': Let $\widehat{Z}$ be the set-valued functor represented by the scheme $Z$. We call the functor $\widehat{Z}: \text{Sch} \to \Set,\ X \to \Hom(X,Z)$ the functor of points of $Z$. Set $\widehat{Z}(Y)$ the $Y$-valued points of $Z$. If the scheme $Z = \Spec(A)$ is affine, we also call them the $A$-valued points of $Z$.
 
 \begin{example}
-	Let $R=\Z[x_z, \dots, x_n]/(f_1, \dots , f_m)$ and $X = \Spec(R)$. What are the $\Z$-valued points of $R$? Specifying a morphism from $\Spec(\Z)$ to $X$ is equivalent to specifying a morphism $\varphi: R \to \Z$, which is equivalent to specifying images $a_i$ of the generators $x_i$ of $R$ such that $f_j(a_1, \dots, a_n) = 0$ for all $j$. In other words, the $\Z$-valued points are the integral solutions to the equatiosn $f_j = 0$
+	Consider the scheme $\Ga = \Spec(\Z[x])$. It has morphisms $\Gm \times \Gm \to \Gm$ induced by the maps
+	\[
+		\begin{array}{c @{{}\to{}} c @{{}{}} c}
+		\Z[x]  & \centermathcell{\Z[x]\otimes_\Z \Z[x]}\\
+		x       & \centermathcell{x\otimes 1 + 1 \otimes x}.
+		\end{array}
+	\]
+	Evaluating the base change of $\Ga$ along any scheme $S$
+	\[
+	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXG1hdGhiZntHfV97bSxTfSJdLFsxLDAsIlxcR2EiXSxbMSwxLCJcXFNwZWMoXFxaKSJdLFswLDEsIlMiXSxbMCwxXSxbMSwyXSxbMywyXSxbMCwzXV0=
+	\begin{tikzcd}
+		{\mathbf{G}_{a,S}} & \Ga \\
+		S & {\Spec(\Z)}
+		\arrow[from=1-1, to=1-2]
+		\arrow[from=1-2, to=2-2]
+		\arrow[from=2-1, to=2-2]
+		\arrow[from=1-1, to=2-1]
+	\end{tikzcd},
+	\]
+
+	we obtain the functor which sends an $S$-scheme $X$ to $\mathbf{G}_{a,S}(X)=\Gamma(X, \mathcal{O}_X)$. Consider the case when $S = \Spec(A)$ is affine. The above diagram becomes equivalent to
+
+	\[
+	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXFoiXSxbMCwxLCJcXFpbeF0iXSxbMSwwLCJBIl0sWzEsMSwiQSBcXG90aW1lcyBcXFpbeF0iXSxbMCwxXSxbMCwyXSxbMiwzXSxbMSwzXV0=
+		\begin{tikzcd}
+			\Z & A \\
+			{\Z[x]} & {A \otimes \Z[x]}
+			\arrow[from=1-1, to=2-1]
+			\arrow[from=1-1, to=1-2]
+			\arrow[from=1-2, to=2-2]
+			\arrow[from=2-1, to=2-2]
+		\end{tikzcd},
+	\]
+	but $A \otimes \Z[x]$ is just $A[x]$, so $\mathbf{G}_{a,S}$ is just $\Spec(A[x])$.
+\end{example}
+
+
+\begin{example}
+	Let $R=\Z[x_z, \dots, x_n]/(f_1, \dots , f_m)$ and $X = \Spec(R)$. What are the $\Z$-valued points of $R$? Specifying a morphism from $\Spec(\Z)$ to $X$ is equivalent to specifying a morphism $\varphi: R \to \Z$, which is equivalent to specifying images $a_i$ of the generators $x_i$ of $R$ such that $f_j(a_1, \dots, a_n) = 0$ for all $j$. In other words, the $\Z$-valued points are the integral solutions to the equation $f_j = 0$
 \end{example}
 
 \begin{example}
-	Consider the scheme $\mu_n = \Spec(\Z[x]/(x^n-1))$. \end{example}
+	Consider the scheme $\mu_n = \Spec(\Z[x]/(x^n-1))$. 
+\end{example}
+
 \begin{example}
 	The sheaf represented by the scheme $\mathbf{G}_m \coloneqq \Spec(\Z[x, x^{-1}])$ is a group scheme over $\Z$, with the multiplication given by the algebra map
 
 	\[
 		\begin{array}{c @{{}\to{}} c @{{}{}} c}
-		\Z[x,x^{-1}]  & \centermathcell{Z[x,x^{-1}]\otimes_\Z \Z[x,x^{-1}]}\\
+		\Z[x,x^{-1}]  & \centermathcell{\Z[x,x^{-1}]\otimes_\Z \Z[x,x^{-1}]}\\
 		x   	      & \centermathcell{x\otimes x}.
 		\end{array}
 	\]
 	The functor of points is 
-
-
 \end{example}
 
-\subsection{The category $BG$}
-We now come to important and simple examples of Grothendieck toposes.
-\begin{construction}
-	Let $G$ be a topological group. Denote by $BG$ the category of \textit{right $G$-sets} whose objects are sets $X$ equipped with a right $G$-action $X \times G \to X$ which is continuous when $X$ is given the discrete topology and the morphisms are $G$-equivariant functions. Let $\Hom_G(X,Y)$ denote the set of morphisms in $BG$. 
-	Let $S(G)$ be the full subcategory of $BG$ whose  objects are $G$-sets of the form $G/U$ for an open subgroup $U \subset G$.
-\end{construction}
+\begin{definition}
+	Let $S$ be a scheme. An $S$-group scheme is a scheme $G$ over $S$ together with a morphism $\widehat{G}(T) \to \widehat{G}$
+\end{definition}
 
 \begin{definition}
 Algebraic structures like groups and rings may be described in terms commutative diagrams. Let $\mathcal{C}$ be a category with finite products and a terminal object $1$. A \textit{group object} in $\mathcal{C}$ consists of an object $A$ of $\mathcal{C}$ together with morphisms
@@ -283,7 +343,7 @@ such that the following diagrams commute:
 \]
 \end{definition}
 
-The category of sheaves $\Sh(X, \et_X)$ on the \'etale toplogy of a scheme $X$ bears a special name: it is the \'etale topos of $X$. We have seen that a number of geometric constructions from algebraic topology fail in the Zariski topology. The \'etale topology captures these phenomena. In this sense the \'etale topos topos enables us to reason about schemes more geometrically. So if we want to understand the geometry a scheme $X$, we should also study the \'etale topos of $X$.
+The category of sheaves $\sh(X, \et_X)$ on the \'etale toplogy of a scheme $X$ bears a special name: it is the \'etale topos of $X$. We have seen that a number of geometric constructions from algebraic topology fail in the Zariski topology. The \'etale topology captures these phenomena. In this sense the \'etale topos topos enables us to reason about schemes more geometrically. So if we want to understand the geometry a scheme $X$, we should also study the \'etale topos of $X$.
 
 \section{Some categories and functors related to sheaves}
 
