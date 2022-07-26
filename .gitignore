@@ -3,5 +3,6 @@ sources/
 .DS_Store
 .obsidian/
 main.*
+result/
 .latexrun*
 latex.out
