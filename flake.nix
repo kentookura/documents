@@ -23,13 +23,12 @@
             mkdir -p .cache/texmf-var
             env TEXMFHOME=.cache TEXMFVAR=.cache/texmf-var \
               SOURCE_DATE_EPOCH=${toString self.lastModified} \
-              latexmk -interaction=nonstopmode -pdf -lualatex \
-              pretex="\pdfvariable suppressoptionalinfo 512\relax" \
+              latexmk -synctex=1 -interaction=nonstopmode -pdf -lualatex \
               -usepretex main.tex
           '';
           installPhase = ''
             mkdir -p $out
-            cp main.pdf $out/Okura_Bsc.pdf
+            mv main.pdf $out/Okura_BSc.pdf
           '';
         };
       };

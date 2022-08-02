@@ -3,6 +3,8 @@ sources/
 .DS_Store
 .obsidian/
 main.*
-result/
+result*
 .latexrun*
 latex.out
+glossary*
+front*
