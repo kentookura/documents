@@ -29,33 +29,32 @@
 
 \usetikzlibrary{decorations.pathreplacing}
 
-\usetikzlibrary{patterns} 
+\usetikzlibrary{patterns}
 
 \setlength{\abovedisplayskip}{0pt}
 \setlength{\belowdisplayskip}{0pt}
 \setlength{\abovedisplayshortskip}{0pt}
 \setlength{\belowdisplayshortskip}{0pt}
-
 \setlength{\parindent}{0pt}
 
+\setcounter{tocdepth}{2}
+
 \hypersetup{
-    colorlinks,
-    citecolor=black,
-    filecolor=black,
-    linkcolor=black,
-    urlcolor=black
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black
 }
 
 \newextarrow{\xbigtoto}{{20}{20}{20}{20}}
-   {\bigRelbar\bigRelbar{\bigtwoarrowsleft\rightarrow\rightarrow}}
+{\bigRelbar\bigRelbar{\bigtwoarrowsleft\rightarrow\rightarrow}}
 
 \makeatletter
 
 \newcommand{\colim}{%
-  \mathop{\mathpalette\varlim@{\rightarrowfill@\scriptscriptstyle}}\nmlimits@
+	\mathop{\mathpalette\varlim@{\rightarrowfill@\scriptscriptstyle}}\nmlimits@
 }
-\newcommand{\op}{op}
-\newcommand{\Op}{Op}
 \newcommand{\Ext}{E\kern-0.06em x\kern-0.02em t}
 \newcommand{\indexset}[2]{ \, #1\, \in \, #2 }
 \newcommand*\centermathcell[1]{\omit\hfil$\displaystyle#1$\hfil\ignorespaces}
@@ -74,10 +73,10 @@
 \newtheorem{remark}[theorem]{Remark}
 
 \newenvironment{delayedproof}[1]
- {\begin{proof}[\raisedtarget{#1}Proof of \Cref{#1}]}
- {\end{proof}}
+{\begin{proof}[\raisedtarget{#1}Proof of \Cref{#1}]}
+		{\end{proof}}
 \newcommand{\raisedtarget}[1]{%
-  \raisebox{\fontcharht\font`P}[0pt][0pt]{\hypertarget{#1}{}}%
+	\raisebox{\fontcharht\font`P}[0pt][0pt]{\hypertarget{#1}{}}%
 }
 
 \newcommand{\proofref}[1]{\hyperlink{#1}{proof}}

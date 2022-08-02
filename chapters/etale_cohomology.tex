@@ -1,25 +1,27 @@
-\subsection{Sheaf Cohomology}
+\section{Sheaf Cohomology}
+
+\subsection{Exact sequences and Cohomology}
 
 In linear algebra the notions of kernel and cokernel quantify the failure of a map to be injective or surjective. If a map has trivial kernel, it is injectve, if it has trivial cokernel, it is surjective. Cohomology plays a similar role in homological algebra, where we are often faced with the following situation:
-Let 
+Let
 \[
 	0 \to A \to B \to C \to 0
 \]
-be an exact sequence in an abelian category $C$ and $F$ a left exact functor to abelian groups. This means that 
+be an exact sequence in an abelian category $C$ and $F$ a left exact functor to abelian groups. This means that
 \[
 	0 \to F(A) \to F(B) \to F(C)
 \]
 is exact. We  would like to fill in this exact sequence on the right with functors $H^i(-): C \to \Ab$ for $i \ge 0$ with the following properties:
 \begin{enumerate}
 	\item The cohomology $H^0(A)$ in degree 0 should be $F(A)$
-	\item Given a short exact sequence as above, there should be a long exact sequence 
-	\[ 
-		\cdots H^i(A) \to H^i(B) \to H^i(C) \to H^{i+1}(A) \to H^{i+1}(B) \to H^{i+1}(C) \to \cdots
-	\]
- \end{enumerate}
+	\item Given a short exact sequence as above, there should be a long exact sequence
+	      \[
+		      \cdots H^i(A) \to H^i(B) \to H^i(C) \to H^{i+1}(A) \to H^{i+1}(B) \to H^{i+1}(C) \to \cdots
+	      \]
+\end{enumerate}
 
- We have seen that both the global sections functor $\Gamma(X,-): \Ab(X) \to \Set$ and the ``$G$-invariant functor'' is left exact. The theory of derived functors allows us to define cohomology for left (or right) exact functors quite generally, as long as the domain of the functor has enough injectives. We will 
- not go into the homological algbera behind derived functors (Find a good reference)
+
+We have seen that both the global sections functor $\Gamma(X,-): \Ab(X) \to \Set$ and the ``$G$-invariant functor'' is left exact. The theory of derived functors allows us to define cohomology for left (or right) exact functors quite generally, as long as the domain of the functor has enough injectives. We will not go into the homological algbera behind derived functors (Find a good reference)
 
 \subsection{Galois cohomology}
 The simplest case of \'etale cohomology is the case of fields. In this case, \'etale cohomology is equivalent to Galois cohomology.
@@ -33,26 +35,26 @@ Let $M$ be a $G$ module for $G$ a finite group, meaning that $M$ is an abelian g
 	\end{itemize}
 \end{example}
 
-Let $P, M$, and $N$ be $G$-modules fitting into an exact sequence 
+Let $P, M$, and $N$ be $G$-modules fitting into an exact sequence
 \[
 	0 \to P \xrightarrow{\alpha} M \xrightarrow{\beta} N \to 0
 \]
-and let 
+and let
 \[
 	P^G \xrightarrow{\alpha'} M^G \xrightarrow{\beta'} N^G
 \]
-be the resulting sequence. The map $\alpha'$ is just the restriction of an injective map, so $\alpha$ is injective. 
+be the resulting sequence. The map $\alpha'$ is just the restriction of an injective map, so $\alpha$ is injective.
 Note:
 $\ker(\beta') = \ker \beta \cap M^G$
 
 We will show that $im(\alpha') = im(\alpha) \cap M^G$.
-Note that $im(\alpha') \subset im(\alpha) \cap M^G$. 
-For the other inclusion let $m \in im(\alpha) \cap m^G$. There exists a $p \in P$ such that $\alpha(p)=m$. Now let $\sigma \in G,\ \sigma(\alpha(p)) = \sigma(m) = m$, 
-Since $\alpha(\sigma(p)) = \alpha(p) = m$ and $\alpha$ is injective, $p = \sigma(p)$ so $p$ is fixed under the $G$-action. $im(\alpha) = \ker(\beta) \implies im(\alpha) \cap M^G = \ker(\beta) \cap M^G$. 
+Note that $im(\alpha') \subset im(\alpha) \cap M^G$.
+For the other inclusion let $m \in im(\alpha) \cap m^G$. There exists a $p \in P$ such that $\alpha(p)=m$. Now let $\sigma \in G,\ \sigma(\alpha(p)) = \sigma(m) = m$,
+Since $\alpha(\sigma(p)) = \alpha(p) = m$ and $\alpha$ is injective, $p = \sigma(p)$ so $p$ is fixed under the $G$-action. $im(\alpha) = \ker(\beta) \implies im(\alpha) \cap M^G = \ker(\beta) \cap M^G$.
 However, the functor is not right exact:
 \begin{example}
 	\[1 \to \{\pm 1\} \to \C^\times \to \C^\times \to 1\]
-	is exact but 
+	is exact but
 	\[1 \to\{\pm 1\} \to \R^\times \xrightarrow{x \mapsto x^2} \R^\times\]
 	is not surjective on the right.
 \end{example}
@@ -65,7 +67,7 @@ We have shown that the functor $M \to M^G$ is left exact.
 	Let $M$ be a $G$-module. The group of $1$-cochains from $G$ to $M$ is defined to be  $C^1(G, M) = \{\varphi: G \to M\}$
 \end{definition}
 
-	
+
 \subsection{Homological algebra in $\mathsf{Ab}(X)$}
 
 We will now define the notion of injectivity and surjectivity for maps of sheaves. The categorification of injective mpas are monomorphisms, while surjective maps correspond to epimorphisms. Epimorphisms of sheaves are tricky and the reason why sheaf cohomology is a non-trivial invariant. The general frameworks in which to study (co-)homology are abelian categories. The notion of an abelian category is an abstraction of the category of abelian groups. Abelian categories are the general settings in which to do homological algebra.
@@ -84,7 +86,7 @@ We will now define the notion of injectivity and surjectivity for maps of sheave
 \end{proposition}
 
 \begin{proof}
-	$(\implies)$ Suppose that $\varphi$ is locally surjective. For any object $U$ of $C$ and any $s \in G(U)$ choose a cover $\{f_i: U_i \to U\}$ as stated in the proposition. Let $\alpha_1, \alpha_2: G \to H$ be morphisms such that $\alpha_1 \circ \varphi = \alpha_2 \circ \varphi$. 
+	$(\implies)$ Suppose that $\varphi$ is locally surjective. For any object $U$ of $C$ and any $s \in G(U)$ choose a cover $\{f_i: U_i \to U\}$ as stated in the proposition. Let $\alpha_1, \alpha_2: G \to H$ be morphisms such that $\alpha_1 \circ \varphi = \alpha_2 \circ \varphi$.
 	\[
 		% https://q.uiver.app/?q=WzAsMyxbMCwwLCJGIl0sWzEsMCwiRyJdLFsyLDAsIkgiXSxbMCwxLCJcXHZhcnBoaSJdLFsxLDIsIlxcYWxwaGFfMiIsMix7Im9mZnNldCI6MX1dLFsxLDIsIlxcYWxwaGFfMSIsMCx7Im9mZnNldCI6LTF9XV0=
 		\begin{tikzcd}
@@ -94,11 +96,11 @@ We will now define the notion of injectivity and surjectivity for maps of sheave
 			\arrow["{\alpha_1}", shift left=1, from=1-2, to=1-3]
 		\end{tikzcd}\]
 	We need to show that $\alpha_1 = \alpha_2$.  Now for each $f_i: U_i \to U$ and each section $s \in F(U)$ we have $(\alpha_1 \circ f_i)(s) = (\alpha_2 \circ f_i)(s)$ or equivalently  $\alpha_1(s)|_{U_i} = \alpha_2(s)|_{U_i}$. This means that $\alpha_1$ agrees with $\alpha_2$ for the cover $\{U_i\}$. Since $H$ is a sheaf it follows that $\alpha_1 = \alpha_2$.\par
-	$(\impliedby)$ 
+	$(\impliedby)$
 \end{proof}
 
 \begin{definition}[Additive categories]
-	An \textit{additive category} is a category $C$ with finite direct sums such that the sets $\Hom(A,B)$ have the structure of an abelian group 
+	An \textit{additive category} is a category $C$ with finite direct sums such that the sets $\Hom(A,B)$ have the structure of an abelian group
 \end{definition}
 
 \begin{definition}[Kernels]
@@ -121,12 +123,12 @@ We will now define the notion of injectivity and surjectivity for maps of sheave
 			A & B
 			\arrow["f"', shift right=1, from=1-1, to=1-2]
 			\arrow["{0_{A,B}}", shift left=1, from=1-1, to=1-2]
-		\end{tikzcd}		
+		\end{tikzcd}
 	\]
 \end{definition}
 
 \begin{definition}[Exact sequences]
-	Fix an abelian category $C$.  A sequence 
+	Fix an abelian category $C$.  A sequence
 	\[ \cdots \xrightarrow{\varphi_{i-1}} A_{i-1} \xrightarrow{\varphi_{i}} A_{i} \xrightarrow{\varphi_{i+1}} A_{i+1} \to \cdots\]
 	in $C$ is called \textit{exact} if the map from $A \to B$ is a monomorphism
 \end{definition}
@@ -150,16 +152,16 @@ We will now define the notion of injectivity and surjectivity for maps of sheave
 \end{remark}
 
 \begin{definition}
-  A sequence of sheaves $\to \Sh{F}_{i-1} \to \Sh{F}_{i} \to \Sh{F}_{i+1} \to$
+	A sequence of sheaves $\to \Sh{F}_{i-1} \to \Sh{F}_{i} \to \Sh{F}_{i+1} \to$
 	is exact if for each $i$, $\ker \varphi_i = im \varphi_{i-1}$.
 \end{definition}
 
 \begin{definition}[Constant sheaves]
-  Let $X$ be a quasi-compact scheme. The sheafification of the presheaf $U \to S$ for a set $X$ is called the \textit{constant sheaf on $S$}.
+	Let $X$ be a quasi-compact scheme. The sheafification of the presheaf $U \to S$ for a set $X$ is called the \textit{constant sheaf on $S$}.
 \end{definition}
 
 \begin{definition}[Locally constant sheaves]
-  A sheaf $F$ on $X$ is locally constant if there is an \'etale covering $\{U_i\}$ of $X$ such that $F|_{U_i}$ is a constant sheaf for each $U_i$. If in addition the associated set for each $U_i$ is finite, we say that $F$ is \textit{locally constant constructible}.
+	A sheaf $F$ on $X$ is locally constant if there is an \'etale covering $\{U_i\}$ of $X$ such that $F|_{U_i}$ is a constant sheaf for each $U_i$. If in addition the associated set for each $U_i$ is finite, we say that $F$ is \textit{locally constant constructible}.
 \end{definition}
 
 \begin{theorem}
@@ -167,26 +169,26 @@ We will now define the notion of injectivity and surjectivity for maps of sheave
 \end{theorem}
 
 \begin{proposition}
-  Let $X$ be a connected scheme and $x$ a geometric point of $X$. The functor $F \to F_{\overline{x}}$ induces an equivalence between the category of locally constant sheaves of sets with finite stalks on $X$ and the category of finite $\pi_1^{\et}(X,\overline{x})$-sets.
+	Let $X$ be a connected scheme and $x$ a geometric point of $X$. The functor $F \to F_{\overline{x}}$ induces an equivalence between the category of locally constant sheaves of sets with finite stalks on $X$ and the category of finite $\pi_1^{\et}(X,\overline{x})$-sets.
 \end{proposition}
 \begin{proof}
-  
+
 \end{proof}
 
 \subsection{Galois theory for \'etale covers}
 \begin{definition}[The fiber functor $F_x$]
-  Let $x: \Spec(\Omega) \to X$ be a geometric point, where $\Omega$ is an algebraically field. The fiber functor at $x$ associates to each \'etale cover $f: Y \to X$ the underlying set of $\Spec(\Omega) \times_X Y$.
+	Let $x: \Spec(\Omega) \to X$ be a geometric point, where $\Omega$ is an algebraically field. The fiber functor at $x$ associates to each \'etale cover $f: Y \to X$ the underlying set of $\Spec(\Omega) \times_X Y$.
 \end{definition}
 
 \begin{definition}[Galois covers]
-  A connected finite \'etale cover $Y \to X$ is \textit{Galois} if its group of $X$-automorphism acts transitively on geometric fibers.
+	A connected finite \'etale cover $Y \to X$ is \textit{Galois} if its group of $X$-automorphism acts transitively on geometric fibers.
 \end{definition}
 
 \begin{theorem}
-  If $X$ is an irreducible topological space and $\Sh{F}$ is a constant sheaf, then $H^r(X, \Sh{F})$ for all $r>0$.
+	If $X$ is an irreducible topological space and $\Sh{F}$ is a constant sheaf, then $H^r(X, \Sh{F})$ for all $r>0$.
 \end{theorem}
 \begin{proof}
-  Since any open set $U \subseteq X$ is connected, $\Sh{F}(U) = G$ if $\Sh{F}$ is the constant sheaf defined by the group $G$ and $U$ is nonempty. This means that $\Sh{F}$ is flasque, hence $H^r(X, \Sh{F})$ for all $r>0$.
+	Since any open set $U \subseteq X$ is connected, $\Sh{F}(U) = G$ if $\Sh{F}$ is the constant sheaf defined by the group $G$ and $U$ is nonempty. This means that $\Sh{F}$ is flasque, hence $H^r(X, \Sh{F})$ for all $r>0$.
 \end{proof}
 It follows that constant sheaves on varieties have no higher cohomology. The reason ist that there are not enough open sets in the Zariski topology. This was the reason for defining the \'etale topology. We will now see how the \'etale topology yields good cohomological results
 

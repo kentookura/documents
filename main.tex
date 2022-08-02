@@ -2,12 +2,11 @@
 \usepackage{operators}
 \usepackage{preamble}
 
-\title{Galois Representations from \'Etale Cohomlogy}
+\title{Galois Representations from \'Etale Cohomology}
 \author{Kento Okura}
 
-\definecolor{gray75}{gray}{0.75}
-\titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter\hspace{20pt}\textcolor{gray75}{|}\hspace{20pt}}{0pt}{\Huge\bfseries}
-\titlespacing*{\chapter}{0pt}{-2\baselineskip}{1em}
+
+\titleformat{\chapter}[hang]{\huge\bfseries}{\thechapter. \hspace{20pt}{\newline}\hspace{20pt}}{0pt}{\huge\bfseries} \titlespacing*{\chapter}{0pt}{-2\baselineskip}{1em}
 
 \patchcmd{\chapter}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}
 
@@ -20,27 +19,35 @@
 \DeclareMathOperator{\Tr}{Tr}
 \DeclareMathOperator{\Norm}{Norm}
 \DeclareMathOperator{\sh}{\mathsf{Sh}}
+\DeclareMathOperator{\Op}{Op}
+\DeclareMathOperator{\G}{G}
 
-\makeglossaries
-\input{glossary.tex}
+%\makeglossaries
+%\input{glossary.tex}
 
 \begin{document}
-  \frontmatter
-  \import{./}{front.tex}
+\frontmatter
+\import{./}{front.tex}
 
-  \mainmatter
-  \chapter{Introduction}
-  \import{chapters/}{introduction.tex}
+\mainmatter
+\chapter{Introduction}
+\import{chapters/}{introduction.tex}
 
-  \chapter{\'Etale Morphisms}
-  \import{chapters/}{etale.tex}
+\chapter{\'Etale Morphisms}
+\import{chapters/}{etale.tex}
 
-  \chapter{Sheaves}
-  \import{chapters/}{sheaves.tex}
+\chapter{Sheaves}
+\import{chapters/}{sheaves.tex}
 
-  \chapter{\'Etale Cohomology}
-  \import{chapters/}{etale_cohomology.tex}
+\chapter{$G$-Sets and $G$-torsors}
+\import{chapters}{torsors.tex}
 
-  \bibliographystyle{plain}
-  \bibliography{refs}
+\chapter{Galois Cohomolgoy}
+\import{chapters/}{galois_cohomology.tex}
+
+\chapter{\'Etale Cohomology}
+\import{chapters/}{etale_cohomology.tex}
+
+\bibliographystyle{plain}
+\bibliography{refs}
 \end{document}
