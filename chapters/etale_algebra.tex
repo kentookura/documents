@@ -1,7 +1,8 @@
 \section{\'Etale Algebras}
 We will first consider the case of \'etale algebras over a field $k$. Under the $\Spec$ functor, a finite \'etale algebra $k \to A$ gets mapped to to a disjoint union of points lying ``smoothly'' over $\Spec(k)$. This should be expected, as a space locally isomorphic to a point should just be a disjoint union of points.
 
-\begin{construction}[Reminder on field extensions]
+\subsection{Reminder on field extensions and Galois theory}
+\begin{construction}
 	Let $k$ be a field and fix once and for all separable and algebraic closures $k_s \subset \overline{k}$ of $k$. Recall that an extension $L/k$ is separable if its minimal polynomial $p(x)$ has no multiple roots (in a splitting field of $p(x)$). It follows from basic algebra that a polynomial $p(x)$ is separable if and only if it is coprime to its derivative $p'(x)$. This means that $p'(x)$ gets mapped to a unit under the canonical map $k[x] \to k[x]/(p(x)) \simeq L$. An algebraic extension $L$ of $k$ is a \textit{Galois extension} if the elements of $L$ that are fixed under the automorphism group $\Aut_k(L)$ are precisely the elements of $k$.A separable extension $L/k$ is Galois if and only if the minimal polynomial of each element $a \in L$ splits into linear factors in $L$. If $L$ is Galois, we call $\Aut_k(L)$ the \textit{Galois group} of $L$ over $k$ and denote it by $\Gal(L/k)$. In particular $k_s$ is a Galois extension. We call its Galois group the \textit{absolute Galois group of $k$} and denote it by $\Gal(k)$.
 \end{construction}
 
@@ -9,11 +10,10 @@ We will first consider the case of \'etale algebras over a field $k$. Under the 
 	Separability of an extension $L/k$ is in effect a smoothness condition, reminiscent of the conditions under which the inverse mapping theorem from analysis holds
 \end{remark}
 
-
 \begin{theorem}[Main theorem of Galois theory]
 	Let $K$ be a Galois extension of $k$ and $L$ a subextension. Then $\Gal(K/L)$ is a closed subgroup of $\Gal(K/k)$. Moreover, there is an inclusion reversing bijection between subfields of $K$ and closed subgroups $H \subset G$, given by the maps
 	\[
-		L \to H \coloneqq \Gal(K/L) \ \text{and} \ H \to L \coloneqq K^H,
+		L \to H \coloneqq \Gal(K/L) \quad \text{ and } \quad H \to L \coloneqq K^H,
 	\]
 	where $K^H$ denotes the subfield of $K$ fixed by $H$. A subextension $L/k$ is Galois over $k$ if and only if $\Gal(K/L)$ is normal in $\Gal(K/k)$.
 \end{theorem}
@@ -22,13 +22,20 @@ We will first consider the case of \'etale algebras over a field $k$. Under the 
 	See \cite{Szamuely}, Theorem 1.3.11.
 \end{proof}
 
-\begin{definition}[Finite \'etale algebras]
-	A $k$-algebra $A$ is \'etale over $k$ if it is isomorphic to a product of separable extensions of $k$. If $A$ is finite dimensional over $k$ we say that $A$ is finite \'etale over $k$. We define $\Spec(A) \to \Spec(k)$ to be \'etale (resp. finite \'etale) if $A$ is an \'etale  (resp. finite \;etale) algebra over $k$.
+\begin{definition}
+	A $k$-algebra $A$ is \'etale over $k$ if it is isomorphic to a product of separable extensions of $k$. If $A$ is finite dimensional over $k$ we say that $A$ is finite \'etale over $k$. We define $\Spec(A) \to \Spec(k)$ to be \'etale (respectively finite \'etale) if $A$ is an \'etale (respectively finite \'etale) algebra over $k$.
 \end{definition}
 
-\subsubsection{Interlude on discrete $G$-modules}
+\begin{construction}
+	Consider the category $\Sepk$ of \'etale algebras over $k$ and fix separable and algebraic closures $k^\sep \subset \overline{k}$. The initial object of this category is $k$ itself. Consider the representable functor
+	\[
+		\Hom(-, k^\sep) \colon \Sepk \to \Gal(k)\text{-Set}.
+	\]
+	For a finite separable extension $L$ of $k$, the number of homomorphisms from $L$ into $k^\sep$ is $[L:k] = n$, so the cardinality of $\Hom(L, k^\sep)$ is $n$. This is indeed a $\Gal(k)$-Set, with the action given by $(g, \varphi) \to g \circ \varphi$ for $g \in \Gal(k)$ and $\varphi \in \Hom_k(L, k^\sep)$. More generally, consider an \'etale $k$-algebra $A \simeq \prod L_i$. Then the number of homomorphisms from $A$ to $k^\sep$ are $\prod n_i$
+\end{construction}
 
-Our goal is now to construct an equivalence of categories between the category of finite \'etale $k$-algebras and the category of finite sets with continuous let $\Gal(k)$-action. In general, sets with a continuous $G$-action for a fixed group $G$ will be relevant to us, so we make some preliminary definitions.
+\subsection{Interlude ondiscrete \texorpdfstring{$G$}{G}-modules}
+The ultimate goal of this section is now to construct an equivalence of categories between the category of finite \'etale $k$-algebras and the category of finite sets with continuous let $\Gal(k)$-action. In general, sets with a continuous $G$-action for a fixed group $G$ will be relevant to us, so we construct some examples and make some preliminary definitions.
 
 \begin{definition}[Discrete $G$-modules]
 	A discrete $G$-module is an abelian group $M$ endowed with a left action $a: G \times M \to M$ such that $a$ is continuous if $M$ is given the discrete topology.
@@ -47,22 +54,25 @@ Our goal is now to construct an equivalence of categories between the category o
 \end{lemma}
 
 \begin{proof}
-	Consider the preimage $\{ (g,y) \in G \times X \colon gy = x\} \eqqcolon U_x$ of a point $x \in X$. We can write $U_x$ as a disjoint union of sets $\{(g,y) \in G \times \{y\} \colon gy = x\}$. These sets are either empty or homeomorphic to $G_x$ under the map $g \to (gh, y)$, where $h$ is such that $hy = x$, which implies that $ghy = gx = x$, so we have that the openness of $G_x$ implies the continuity of $m$. Conversely, $G_x$ is the preimage of $x$ under the composition $G \xrightarrow{i_x} G \times X \xrightarrow{m} X$, where $i_x(g) = (g,x)$, so $G_x$ is open if $m$ is continuous.
+	Consider the preimage $U_x \eqqcolon \{ (g,y) \in G \times X \colon gy = x\}$ of a point $x \in X$ under the map $m: G \times X \to X$. We can write $U_x$ as a disjoint union of sets $\{(g,y) \in G \times \{y\} \colon gy = x\}$. These sets are either empty or homeomorphic to $G_x$ under the map $g \to (gh, y)$, where $h$ is such that $hy = x$, which implies that $ghy = gx = x$, so we have that the openness of $G_x$ implies the continuity of $m$. Conversely, $G_x$ is the preimage of $x$ under the composition $G \xrightarrow{i_x} G \times X \xrightarrow{m} X$, where $i_x(g) = (g,x)$, so $G_x$ is open if $m$ is continuous.
 \end{proof}
 
+\subsection{Classification theorems for \'etale algebras}
+Here we ``completely'' a number of categories.
 \begin{proposition}
-	The action of $\Gal(k)$ on $\Hom_k(L, k_s)$ is continuous and transitive
+	The action of $\Gal(k)$ on $\Hom_k(L, k_s)$ is continuous and transitive. Furthermore, the functor mapping an \'etale algebra to a $\Gal(k)$-set restricts to an equivalence between the category of finite separable extensions of $k$ and the category of finite sets with a continuous and transitive left $\Gal(k)$-action.
 \end{proposition}
-
-\begin{proof}
-	By theorem \ref{lemma:stabilizer}, the stabilzer $U_\varphi$ is open in $\Gal(k)$, so the action is continuous. By the theorem of the primitive elements, $L$ is generated by some $\alpha$ with minimal polynomial $f$ and each $\varphi \in \Hom_k(L,k_s)$ is given by mapping $\alpha$ to a root of $f$ in $k_s$, and $\Gal(k)$ permutes these roots transitively, and the statement follows.
-\end{proof}
-
-We obtain a map $\Hom_k(L,k_s) \to U\\ \Gal(k)$, which is in fact an isomorphism of $\Gal(k)$-sets. Now if $U$ is normal we obtain the quotient $\Gal(k)/U$, which happens if and only if $L$ is Galois over $k$.
 
 \begin{corollary}
 	If $L$ is Galois over $k$, then $\Hom_k(L,k_s) \cong \Gal(k)/\Gal(L)$.
 \end{corollary}
+
+\begin{proof}
+	By theorem \ref{lemma:stabilizer}, the stabilizer $U_\varphi$ is open in $\Gal(k)$, so the action is continuous. By the theorem of the primitive elements, $L$ is generated by some $\alpha$ with minimal polynomial $f$ and each $\varphi \in \Hom_k(L,k_s)$ is given by mapping $\alpha$ to a root of $f$ in $k_s$, and $\Gal(k)$ permutes these roots transitively, and the statement follows.
+\end{proof}\\
+
+We obtain a map $\Hom_k(L,k_s) \to U \Gal(k)$, which is in fact an isomorphism of $\Gal(k)$-sets. Now if $U$ is normal we obtain the quotient $\Gal(k)/U$, which happens if and only if $L$ is Galois over $k$.
+
 
 \begin{construction}
 	Let $F$ be a presheaf on $\Et/\Spec(k)$. By abuse of notation we write $F(K)$ instad of $F(\Spec(K))$. We define a descrete $G$-module $M_F$ as follows: If $L/k$ is a finite separable extension, then $G = \Gal(k)$ acts on $F(L)$ by functoriality of $F$. Define $M_F = \colim F(L)$ where $L$ runs over all subfields $L$ of $k_s$ that are finite over $k$. Then $M_F$ is a discrete $G$-module. Conversely, for a discrete $G$-module $M$ we define a sheaf $F_M$ by setting $F_M(A) = \Hom_G(F(A),M)$ where $F(A) = \Hom_k(A,k_s)$. By Theorem \ref{thm:sheaf_condition}, presheaf $F$ on $\Et/k$ is a sheaf if and only if \ref{diagram:equalizer} is exact for a single affine cover $\Spec(A) \to \Spec(B)$, but affine \'etale covers in $\Et/k$ are precisely of the form $\displaystyle \coprod \Spec(L_i) \to \displaystyle \coprod \Spec(K_j)$ where each $L_i$ and $K_j$ is separable over $k$, so the sequence \[ F(\Spec(L)) \to \prod_{i} F(\Spec(L_i)) \xbigtoto{} \prod_{i,j} F(\Spec(L_i \otimes_L L_j)) \] needs to be exact.
@@ -158,7 +168,7 @@ are well defined.
 	Suppose that $L$ is a finite separable extension of $k$. This means that $L = k[x]/(f)$, where $f$ is a polynomial of degree $n$ which splits into $n$ distinct factors, say $(x-\alpha_i)$ in $\overline{k}$. By the chinese remainder theorem we have
 	\[L \otimes_k \overline{k} \cong \overline{k}[x]/(f) = \overline{k}[x]/(x-\alpha_1)\cdots(x-\alpha_n) \cong \prod_{i=1}^n \overline{k}[x] / (x-\alpha_i) \cong \prod_{i=1}^n \overline{k},\] from which the first direction follows.\\
 	(\Implies{etale}{trace}):
-	If $A = \prod k_i$  where each $k_i$ is a separable field extension of $k$, then $\text{disc}(A) = \prod \text{disc}(k_i)$ which is nonzero by the fact that $\text{disc}(k_i) \neq 0$ if $k_i$ is a separable extension.
+	If $A = \prod k_i$ where each $k_i$ is a separable field extension of $k$, then $\text{disc}(A) = \prod \text{disc}(k_i)$ which is nonzero by the fact that $\text{disc}(k_i) \neq 0$ if $k_i$ is a separable extension.
 	%TODO finish the proof
 \end{proof}
 

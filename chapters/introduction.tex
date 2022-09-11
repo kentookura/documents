@@ -1,5 +1,18 @@
-\section{Overview}
-Topos theory arose in the 1960s as a geometric concept in the work of Grothendieck. He defined a topos as a category equivalent to the category of sheaves $\sh(C,J)$ on some site $(C,J)$. Sites axiomatize and generalize the notion of open covering from topology, where the objects of $C$ are the generalized opens and $J$ is a Grothendieck topology, which will be defined later. Grothendieck toposes a special case of the more general notion of elementary toposes, which were introduced by Lawvere and Tierney. While Grothendieck's school sought to construct a general framework for doing geometry in an effort to construct a suitable cohomology theory for schemes, Lawvere and Tierney emphasize the role of the subobject classifiers. Let $\Omega$ be the subobject classifier for some (elementary) topos $\mathcal{E}$. This object allows us to construct subobjects $\{x \mid \varphi(x)\} \subset X$ for each object $X$ of $\mathcal{E}$ in much the same way as in the category of sets. There is an internal logic to each topos, which has a nice semantic interpretation in the case of Grothendieck toposes $\sh(C,J)$, where we may speak of local truth. More precisely, there is the \textit{forcing relation} $\Vdash$ which is defined for an object $U \to X$ over $X$ in the over-category $C/X$ and $\varphi(x)$ is a term in a suitable type theory with a free variable of type $X$. We define $U \Vdash \varphi(x)$ if there is a map
+Topos theory arose in the 1960s as a geometric concept in the work of Grothendieck and others in algebraic geometry. They defined a topos as a category equivalent to the category of sheaves $\sh(C,J)$ on some site $(C,J)$. Sites axiomatize and generalize the notion of open covering from topology, where the objects of $C$ are the generalized open sets and $J$ is a Grothendieck topology, which will be defined later. Suffice it to say that for each topological space $X$, the poset of open subsets of $X$ considered as a category gives rise to a site. Grothendieck toposes a special case of the more general notion of elementary toposes, which were introduced by Lawvere and Tierney. While Grothendieck's school sought to construct a general framework for doing geometry in an effort to construct a suitable cohomology theory for schemes, Lawvere and Tierney emphasize the role of the subobject classifiers for working in the internal logic of a topos. The subobject classifier $\Omega$ for some (elementary) topos $\mathcal{E}$ is a generisation of the following situation:
+For a subset $S \subset X$, there is a characteristic function $\char \colon X \to \{0, 1\}$ of $S$ given by
+\[ \char_S(x) =
+	\begin{cases}
+		\ 1,\ x \in S, \\
+		\ 0,\ x \not \in S,
+	\end{cases}
+\]
+where $0$ is interpreted as the truth value \textbf{false} and $1$ is interpreted as \textbf{true}. Each subset $S$ of $X$ can be recovered by its characteristic function by pulling back \textbf{true} along $\char_s$. This means that the subobject functor $\text{sub} \colon \Set \to Set$ which sends a set $S$  to its powerset $\mathcal{P}(S)$ is representable.
+
+\begin{construction}[Subobjects]
+	Recall that a morphism $f \colon A \to B$ in any category is called a monomorphism if for any object $C$ and parallel arrows $g, h \colon C \xbigtoto{} A$ with $fg = fh$ implies $g = h$. We consider two monomorphisms $f \colon A \to B$ and $f' \colon A' \to B$ to be equivalent if there is an isomophism $A \simeq A'$ with $f'h = f$
+\end{construction}
+
+Every Grothendieck topos posesses such an a subobject classifier $\Omega$. This object allows us to construct subobjects $\{x \mid \varphi(x)\} \subset X$ for each object $X$ of $\mathcal{E}$ in much the same way as in the category of sets by using a language $\mathcal{L}$ constructed from the objects of the topos $\mathcal{E}$. This language has a nice semantic interpretation in the case of Grothendieck toposes $\sh(C,J)$. There is the \textit{forcing relation} $\Vdash$ which is defined for an object $U \to X$ over $X$ in the over-category $C/X$ and $\varphi(x)$ is a term in a suitable type theory with a free variable of type $X$. We define $U \Vdash \varphi(x)$ to hold if $U \to X$ factors through a map $U \to \{x \mid \varphi(x)\}$ as indicated in the diagram below:
 \[
 	% https://q.uiver.app/?q=WzAsNSxbMCwxLCJVIl0sWzEsMSwiWCJdLFsxLDAsIlxce3ggXFxtaWQgXFx2YXJwaGkoeClcXH0iXSxbMiwwLCJcXG1hdGhiZnsxfSJdLFsyLDEsIlxcT21lZ2EiXSxbMCwxXSxbMCwyLCIiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMiwzXSxbMyw0LCJcXHRleHR7dHJ1ZX0iLDJdLFsyLDFdLFsxLDRdXQ==
 	\begin{tikzcd}
@@ -13,30 +26,20 @@ Topos theory arose in the 1960s as a geometric concept in the work of Grothendie
 		\arrow[from=2-2, to=2-3]
 	\end{tikzcd}
 \]
+Here $\{ x \mid \varphi(x)\}$ is defined as the subobject arising from the map $\varphi(x) \colon X \to \Omega$. In chapter TODO we will see how this map arises when $\varphi(x)$ is a term of the internal language $\mathcal{L}$. If the dotted map exists, interpret this as saying that $\varphi(x)$ holds locally on $U$. This leads naturally to the notion of cohomology, which measures the obstruction from constructing global solutions from local solutions.\par
 
+We will take an in depth look at a particular example: The \'etale topos of a scheme. We first develop the theory of \'etale maps and their Galois theory. This theory generalises classical Galois theory from fields to schemes and will allow us to define the fundamental group $\pi_1^{\et}(X)$ of a connected scheme $X$. Then we introduce the notion of site and define sheaves on sites, directly generalizing sheaves on topological spaces. We then take a closer look at sheaves on the \'etale site of a scheme and study their cohomology. We also give an introduction to the internal logic of the \'etale topos, which will allow us to speak of sentences being true locally on an \'etale open $U \to X$.\par
 
-
-If this is the case, we think of $\varphi(x)$ holding locally on $U$. We will take an in depth look at a particular example: The \'etale topos of a scheme. We first develop the theory of \'etale maps and their Galois theory. This theory generalises classical Galois theory from fields to schemes and will allow us to define the fundamental group $\pi_1^{\et}(X)$ of a connected scheme $X$. Then we introduce the notion of site and define sheaves on sites, directly generalizing sheaves on topological spaces. We then take a closer look at sheaves on the \'etale site of a scheme and study their cohomology. We also give an introduction to the internal logic of the \'etale topos, which will allow us to speak of sentences being true ``locally'' on an \'etale open $U \to X$.
-
-There are multiple good reasons to consider \'etale morphisms. One is that \'etale maps behave much like local homeomorphisms in topology and yield a good covering theory, which allows us to define fundamental groups of schemes. Another reason is that in a certain sense the \'etale topology is much finer that the Zariski topology, allowing us to trivialize bundles and coverings over \'etale open covers $\coprod U_i \to U$.
-\'Etale cohomology for fields is the same as Galois cohomology for Galois modules. In a certain sense
+There are multiple good reasons to consider \'etale morphisms. One is that \'etale maps behave much like local homeomorphisms in topology and yield a good covering theory, which allows us to define fundamental groups of schemes. Another reason is that in a certain sense the \'etale topology is much finer that the Zariski topology, allowing us to trivialize bundles and coverings over \'etale open covers $\coprod U_i \to U$.\par
 
 The absolute Galois group $\Gal(\Q) = \G_\Q$ of the rational numbers is one of the most important but also one of the most intractable objects in number theory. It is conjectured that every finite group arises as a subgroup of $\G_\Q$. In order to understand this large profinite group, we could study the representations of $\G_\Q$, which are homomorphisms $\G_\Q \to \GL_n(V)$, where $V$ is a finite dimensional $\Q$-vector space. It is not at all clear how to obtain such representations. Galois representations of $G_\Q$ arise from \'etale cohomology of varieties over $\Q$
 
 \section{Prerequisites}
 We assume aqcuaintance with the basics of category theory including limits and adjoint functors. This text contains a brief reminder of the Yoneda lemma. We will make free use of results from commutative algebra and field theory but will provide definitions and references wherever needed. We will also use basic notions of scheme theory and homological algebra.
 
-%$G_Q = \pi(Q)$ may be interpreted as the etale fundamental group of $Q$. definition of etale yields covering theory, analogous to galois theory\\
-%zariski too coarse for locally trivial \\
-%etale morphism also implies locally trivial \\
-%etale covering yields good cohomology, etale cohomology \\
-%
-%Key point: $CRing \to \Spec$ so called spectral spaces
-%
-We emphasize from the beggining that will often interpret topological spaces as bounded distributive lattice whose elements are the open sets. Here are some remarks on this choice:
-\begin{itemize}
-	\item It places focus on the open sets of a space instead of its points
-\end{itemize}
+\section{Conventions}
+We denote the Yoneda embedding by $\yo \colon C \to \Set^{C^{op}} = \widehat{C}$
+
 
 \section{Reminder on Schemes and the Zariski Topology}
 The basic building blocks of algebraic geometry are affine schemes. An affine scheme $\Spec(A)$ is a geometric object constructed out of the prime spectrum
@@ -59,7 +62,7 @@ for a manifold $M$. As a notational trick we write $f(p)$ for the image of $f$ u
 	the \textit{vanishing set} or \textit{zero locus} of $f$.
 \end{definition}
 
-Since $f(p) \neq 0$ for all $p \in D_f$, we view the the ring $A[1/f]$ as the ring of rational functions defined on $D_f$. It consists of elements of the form
+Since $f(p) \neq 0$ for all $p \in D_f$, we view the ring $A[1/f]$ as the ring of rational functions defined on $D_f$. It consists of elements of the form
 \[
 	\biggl\{ \frac{g}{f^k} \mid g \in A, k \in \N \biggr\}.
 \]
@@ -198,25 +201,3 @@ We would like to have a notion of fundamental group for schemes. As before, ther
 \end{itemize}
 
 The \'etale topology will provide a solution for the problems we have with both cohomology and fundamental groups. The \'etale topology is not a topology in the classical sense, but a category equipped with a notion of covering (in the sense of point-set topology). The analog of open sets of a scheme $X$ will be so called \'etale morphisms $U \to X$. \'Etale morphisms are the natural analogs of local homeomorphisms in scheme theory, so they provide a finer topology than the Zarisiki topology, giving rise to a better sheaf theory. Furthermore, surjective \'etale morphisms share a lot of formal properties with covering spaces, allowing us to define the \'etale fundamental group $\pi_1^{\et}$.
-
-
-
-Riemann Hypothesis:
-\begin{align}
-	\zeta(s) = \sum_{n \ge 0} \frac{1}{n^s} \\
-	\zeta(\lambda) = 0 nontrivial \implies Re(\lambda) = \frac{1}{2}
-\end{align}
-
-Dedekind, Artin, Hasse:
-$R$ dedekind domain:
-\[
-	\zeta_R(s) = \sum_{I \subset R} \frac{1}{N(I)^s}, N(I) =\#R/I
-\]
-
-Special case:
-\begin{align}
-	R = \F_p[T] \iff \mathbb{A}_{\F_p}^1 = \Spec\F_p[T] \\
-	\zeta_R(s) = \prod_{\pi irred}(\frac{1}{1-N\pi^{-s}} = \exp(\sum_{n \ge 1} \# X(\F_{p^n})\frac{T^n}{n}
-\end{align}
-
-Weil studies: $Z(X,T)$, $X/F$

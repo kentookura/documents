@@ -1,13 +1,11 @@
-We have seen strong analogies in the behavior of \'etale maps and open sets. Specifically, \'etale maps allow us to trivialize certain geometric constructions as if we were working in a finer topology than the Zariski topology. Furthermore, the theory of surjective\'etale maps should be interpreted as the theory of covering spaces for schemes. We will now further develop some topological analogies, equipping the category $\Et/X$ with a Grothendieck topology.
+We have seen strong analogies in the behavior of \'etale maps and open sets. \'Etale maps allow us to trivialize certain geometric constructions as if we were working in a finer topology than the Zariski topology. Furthermore, the theory of surjective\'etale maps should be interpreted as the theory of covering spaces for schemes. We will now further develop some topological analogies, equipping the category $\Et/X$ with a Grothendieck topology.
 
-\section{Topological Spaces, Sites and Locales}
+\section{Topological Spaces and Locales}
 
-Now that we have gotten to know the category $\Et/X$ for $X$ a scheme, we will equip this category with a Grothendieck topology. This structure allows us to cover schemes using a finer topology than the Zariski topology. In topology we can trivialize a fiber bundle
-\[
-	F \to E \stackrel{p}{\to} B
-\]
-over an open cover $\coprod U_i \to B$ such that each pullback $p^*\ U_i $ becomes isomorphic to a trivial bundle $\Delta(S) \times U_i$, where we view a cover as a disjoint union of open subsets $U_i \subset B$. In algebraic geometry we need a finer topology than the Zariski topology to do this. This is why we introduced the notion of \'etale morphism.
-In this section we introduce two notions related to topology. The first notion, which is central to topos theory is the notion of site. The definition of sites will allow us to speak of sheaves on categories equipped with a so-called Grothendieck topology. Taking the category of sheaves on a site yields a rich category to do geometry in. We will in particular be interested in the \'etale topology on schemes. As we have seen, \'etale morphisms of schemes are the correct formulation of local homeomorphisms for schemes as we are able to trivialize geometric information (in the sense of covering spaces and fiber bundles) over \'etale morphisms $S \to X$ which is not always possible over the open sets of $X$. The second notion we introduce is that of locales, which are a formulation of topological spaces without referencing points. Locales are important in topos theory because there is an adjunction
+In this section we introduce two notions related to topology. The first notion, which is central to topos theory is the notion of site. The definition of sites will allow us to speak of sheaves on categories equipped with a so-called Grothendieck topology. Taking the category of sheaves on a site yields a rich category to do geometry in. We will in particular be interested in the \'etale topology on schemes. As we have seen, \'etale morphisms of schemes are the correct formulation of local homeomorphisms for schemes as we are able to trivialize geometric information (in the sense of covering spaces and fiber bundles) over \'etale morphisms $S \to X$ which is not always possible over the open sets of $X$.
+
+\subsection{Locales}
+Locales are important in topos theory because there is an adjunction
 
 % https://q.uiver.app/?q=WzAsMixbMCwwLCJcXG1hdGhzZntUb3BvaX0iXSxbMSwwLCJcXG1hdGhzZntMb2NhbGVzfSJdLFswLDEsInN1Yl97KC0pfVxcbWF0aGJmezF9IiwwLHsib2Zmc2V0IjotMX1dLFsxLDAsIlxcbWF0aHNme1NofSIsMCx7Im9mZnNldCI6LTF9XV0=
 \[\begin{tikzcd}
@@ -197,7 +195,7 @@ If we consider sheaves of groups, this means that the restriction are group homo
 
 We obtain the category $\sh(C,J)$ of sheaves on $C$ with respect to the topology $J$. This is in fact a full subcategory of presheaves $\Set^{C^{op}}$. We call categories equivalent to categories of sheaves on a site Grothendieck toposes. The category of sheaves $\sh(X, \et_X)$ on the \'etale toplogy of a scheme $X$ is called the \textit{\'etale topos of $X$}. We have seen that a number of geometric constructions from algebraic topology fail in the Zariski topology. The \'etale topology captures these phenomena, in essence because we may speak of ``local triviality'' in the \'etale setting. In this sense the \'etale topos enables us to reason about schemes more geometrically. So if we want to understand the geometry a scheme $X$, we should also study the \'etale topos of $X$.
 
-\section{Representables}
+\section{Representables and the Yoneda Lemma}
 In this section we will now prove the important fact that all representable presheaves are sheaves in the \'etale topology. This gives us a rich supply of sheaves on $\Et/X$ to study.
 
 \begin{lemma}\label{sheaf:disjoint}

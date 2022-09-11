@@ -19,6 +19,7 @@ There is the following structure theorem:
 	A ring homomorphism $f: A \to B$ is flat if the functor $- \otimes_A B$ is exact. A morphism $f: Y \to X$ of schemes is flat if for all afffine subsets $U \subset Y$ and $V \subset X$ with $f(V) \subset U$, the map $\Gamma(U, \mathcal{O}_X) \to \Gamma(V, \mathcal{O}_Y)$ is flat.
 \end{definition}
 
+In the technical proofs one finds in the literature, the following definitions are frequently used:
 \textbf{Examples of flat maps}
 \begin{itemize}
 	\item Open immersions are flat
@@ -26,17 +27,14 @@ There is the following structure theorem:
 	\item Any base extension a flat morphism is flat
 \end{itemize}
 
-\begin{theorem}
-	Let $M$ be a finitely generated $A$-module. The following are equivalent:
-	\begin{itemize}
-		\item $M$ is flat.
-		\item $M_m$ is a free $A_m$-module for all maximal ideals $m$ of $A$.
-		\item $\widetilde{M}$ is a locally free sheaf on $\Spec(A)$.
-		\item $M$ is projective as an $A$-module.
-	\end{itemize}
-\end{theorem}
+Let $M$ be a finitely generated $A$-module. The following are equivalent:
+\begin{itemize}
+	\item $M$ is flat.
+	\item $M_m$ is a free $A_m$-module for all maximal ideals $m$ of $A$.
+	\item $\widetilde{M}$ is a locally free sheaf on $\Spec(A)$.
+	\item $M$ is projective as an $A$-module.
+\end{itemize}
 
-We recall some basic facts about flat maps and
 \begin{lemma}
 	\begin{enumerate}
 		\item The composition of affine morphisms is affine.
@@ -57,6 +55,10 @@ We recall some basic facts about flat maps and
 
 \end{proof}
 
+\begin{remark}
+	\'Etale maps satisfy the 2 out of 3 property. This means that for morphisms of schemes $f \colon X \to Y$ and $g \colon Y \to Z$, if any 2 of $f, g$ and $f \circ g$ are \'etale, then so is the third.
+\end{remark}
+
 \begin{definition}
 	A surjective finite \'etale morphism is called an \'etale cover. An \'etale cover $\varphi : Y \to X$ is called trivial if $Y$ is isomorphic do a finite disjoint union of copies of $X$ $Y \cong \coprod X$ and $\varphi$ restricts to the identity on each component.
 \end{definition}
@@ -65,6 +67,15 @@ We recall some basic facts about flat maps and
 	\label{locallyTrivial}
 	Let $X$ be a connected scheme and $\varphi : Y \to X$ an affine surjective morphism. Then $\varphi$ is finite \'etale if and only if there is a finite, locally free and surjective morphism $f: S \to X$ such that $Y \times_X S$ is a trivial cover of $S$.
 \end{theorem}
+
+\begin{remark}
+	This structure allows us to cover schemes using a finer topology than the Zariski topology. In topology we can trivialize a fiber bundle
+	\[
+		F \to E \stackrel{p}{\to} B
+	\]
+	over an open cover $\coprod U_i \to B$ such that each pullback $p^*\ U_i $ becomes isomorphic to a trivial bundle $\Delta(S) \times U_i$, where we view a cover as a disjoint union of open subsets $U_i \subset B$. In algebraic geometry we need a generalized open set $U \to X$ to do this.
+\end{remark}
+
 \begin{proof}
 	$(\implies)$
 	We first show that $\varphi$ is finite and locally free. Since $f$ is locally free, each point of $X$ has an affine open neighborhood $U = \Spec(R)$ such that $f$ restricts to a morphism $\Spec(A) \to \Spec(R)$ where $A$ is a finitely generated and free $R$-module. Since $\varphi$ is affine, it restricts to $\Spec(B) \to \Spec(R)$ over $U$ for some $R$-algebra $B$. The basechange $S \times_X Y$ restricts to $\Spec(A \otimes_R B)$ over $\Spec(R)$ and we have the following commutative diagrams:
