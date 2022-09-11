@@ -2,8 +2,8 @@ out/
 sources/
 .DS_Store
 .obsidian/
-main.*
 result*
+main.pdf
 .latexrun*
 latex.out
 glossary*

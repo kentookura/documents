@@ -1,24 +1,44 @@
-\subsection{Overview}
-We first develop the theory of \'etale maps and their Galois theory. This theory generalises classical Galois theory from fields to schemes and will allow us to define the fundamental group $\pi_1^{\et}(X)$ of a connected scheme $X$. Then we introduce the notion of site and define sheaves on sites as a direct generalisation of sheaves on a topological space. We then take a closer look at sheaves on the \'etale site of a scheme and study their cohomology.
+\section{Overview}
+Topos theory arose in the 1960s as a geometric concept in the work of Grothendieck. He defined a topos as a category equivalent to the category of sheaves $\sh(C,J)$ on some site $(C,J)$. Sites axiomatize and generalize the notion of open covering from topology, where the objects of $C$ are the generalized opens and $J$ is a Grothendieck topology, which will be defined later. Grothendieck toposes a special case of the more general notion of elementary toposes, which were introduced by Lawvere and Tierney. While Grothendieck's school sought to construct a general framework for doing geometry in an effort to construct a suitable cohomology theory for schemes, Lawvere and Tierney emphasize the role of the subobject classifiers. Let $\Omega$ be the subobject classifier for some (elementary) topos $\mathcal{E}$. This object allows us to construct subobjects $\{x \mid \varphi(x)\} \subset X$ for each object $X$ of $\mathcal{E}$ in much the same way as in the category of sets. There is an internal logic to each topos, which has a nice semantic interpretation in the case of Grothendieck toposes $\sh(C,J)$, where we may speak of local truth. More precisely, there is the \textit{forcing relation} $\Vdash$ which is defined for an object $U \to X$ over $X$ in the over-category $C/X$ and $\varphi(x)$ is a term in a suitable type theory with a free variable of type $X$. We define $U \Vdash \varphi(x)$ if there is a map
+\[
+	% https://q.uiver.app/?q=WzAsNSxbMCwxLCJVIl0sWzEsMSwiWCJdLFsxLDAsIlxce3ggXFxtaWQgXFx2YXJwaGkoeClcXH0iXSxbMiwwLCJcXG1hdGhiZnsxfSJdLFsyLDEsIlxcT21lZ2EiXSxbMCwxXSxbMCwyLCIiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMiwzXSxbMyw0LCJcXHRleHR7dHJ1ZX0iLDJdLFsyLDFdLFsxLDRdXQ==
+	\begin{tikzcd}
+		& {\{x \mid \varphi(x)\}} & {\mathbf{1}} \\
+		U & X & \Omega
+		\arrow[from=2-1, to=2-2]
+		\arrow[dashed, from=2-1, to=1-2]
+		\arrow[from=1-2, to=1-3]
+		\arrow["{\text{true}}"', from=1-3, to=2-3]
+		\arrow[from=1-2, to=2-2]
+		\arrow[from=2-2, to=2-3]
+	\end{tikzcd}
+\]
 
-\begin{itemize}
-	\item Show problems with Zariski
-	\item Etale morphism yields fundamental group
-	\item geometry behind etale cohomology
-	\item equivalence with Galois cohomology in case of fields
-	\item show how Galois representations arise from cohomolog.
-\end{itemize}
 
-\subsection{Prerequisites}
+
+If this is the case, we think of $\varphi(x)$ holding locally on $U$. We will take an in depth look at a particular example: The \'etale topos of a scheme. We first develop the theory of \'etale maps and their Galois theory. This theory generalises classical Galois theory from fields to schemes and will allow us to define the fundamental group $\pi_1^{\et}(X)$ of a connected scheme $X$. Then we introduce the notion of site and define sheaves on sites, directly generalizing sheaves on topological spaces. We then take a closer look at sheaves on the \'etale site of a scheme and study their cohomology. We also give an introduction to the internal logic of the \'etale topos, which will allow us to speak of sentences being true ``locally'' on an \'etale open $U \to X$.
+
+There are multiple good reasons to consider \'etale morphisms. One is that \'etale maps behave much like local homeomorphisms in topology and yield a good covering theory, which allows us to define fundamental groups of schemes. Another reason is that in a certain sense the \'etale topology is much finer that the Zariski topology, allowing us to trivialize bundles and coverings over \'etale open covers $\coprod U_i \to U$.
+\'Etale cohomology for fields is the same as Galois cohomology for Galois modules. In a certain sense
+
+The absolute Galois group $\Gal(\Q) = \G_\Q$ of the rational numbers is one of the most important but also one of the most intractable objects in number theory. It is conjectured that every finite group arises as a subgroup of $\G_\Q$. In order to understand this large profinite group, we could study the representations of $\G_\Q$, which are homomorphisms $\G_\Q \to \GL_n(V)$, where $V$ is a finite dimensional $\Q$-vector space. It is not at all clear how to obtain such representations. Galois representations of $G_\Q$ arise from \'etale cohomology of varieties over $\Q$
+
+\section{Prerequisites}
 We assume aqcuaintance with the basics of category theory including limits and adjoint functors. This text contains a brief reminder of the Yoneda lemma. We will make free use of results from commutative algebra and field theory but will provide definitions and references wherever needed. We will also use basic notions of scheme theory and homological algebra.
 
-$G_Q = \pi(Q)$ may be interpreted as the etale fundamental group of $Q$. definition of etale yields covering theory, analogous to galois theory\\
-zariski too coarse for locally trivial \\
-etale morphism also implies locally trivial \\
-etale covering yields good cohomology, etale cohomology \\
+%$G_Q = \pi(Q)$ may be interpreted as the etale fundamental group of $Q$. definition of etale yields covering theory, analogous to galois theory\\
+%zariski too coarse for locally trivial \\
+%etale morphism also implies locally trivial \\
+%etale covering yields good cohomology, etale cohomology \\
+%
+%Key point: $CRing \to \Spec$ so called spectral spaces
+%
+We emphasize from the beggining that will often interpret topological spaces as bounded distributive lattice whose elements are the open sets. Here are some remarks on this choice:
+\begin{itemize}
+	\item It places focus on the open sets of a space instead of its points
+\end{itemize}
 
-
-\section{Reminder on Schemes}
+\section{Reminder on Schemes and the Zariski Topology}
 The basic building blocks of algebraic geometry are affine schemes. An affine scheme $\Spec(A)$ is a geometric object constructed out of the prime spectrum
 \[
 	\Spec(A) = \{p \subseteq A \mid p \text{ prime ideal}\}
@@ -43,7 +63,7 @@ Since $f(p) \neq 0$ for all $p \in D_f$, we view the the ring $A[1/f]$ as the ri
 \[
 	\biggl\{ \frac{g}{f^k} \mid g \in A, k \in \N \biggr\}.
 \]
-The assingment $D_f \to A[1/f]$ extends to a sheaf $\Sh{O}_{\Spec{A}}: \Spec(A) \to \mathsf{Ring}$, called the \textit{structure sheaf of $\Spec(A)$}. This sheaf has the property that the ring of global sections, denoted by $\Gamma(\Spec(A), \Sh{O}_\Spec(A))$ is isomorphic to $A$. We obtain a pair of functors
+The assingment $D_f \to A[1/f]$ extends to a sheaf $\Sh{O}_{\Spec(A)}: \Spec(A) \to \mathsf{Ring}$, called the \textit{structure sheaf of $\Spec(A)$}. This sheaf has the property that the ring of global sections, denoted by $\Gamma(\Spec(A), \Sh(O)_{\Spec(A)}$ is isomorphic to $A$. We obtain a pair of functors
 \begin{align*}
 	\Spec :  \text{CRing}^{op} & \to \text{LRS} \\
 	A                          & \to \Spec(A)
@@ -54,18 +74,34 @@ from the category of commutative rings to the category of locally ringed spaces.
 	\Hom_{\text{CRing}}(R, \Gamma(Y,\Sh{O}_Y)) \cong \Hom_{\text{Sch}}(Y, \Spec(R))
 \]
 
-Basic examples of affine schemes arise from polynomial rings: scheme-theoretically, the zero locus of a polynomial $f \in k[x_1, \dots, x_n]$ is the spectrum $\Spec(k[x_1, \dots, x_n]/(f))$, for instance the parabola is the locally ringed space $\Spec(k[x,y]/(x^2-y))$.
+Basic examples of affine schemes arise from polynomial rings: scheme-theoretically, the zero locus of a polynomial $f \in k[x_1, \dots, x_n]$ is given by the affine scheme $\Spec(k[x_1, \dots, x_n]/(f))$, for instance the parabola is $\Spec(k[x,y]/(x^2-y))$.
 
 \begin{proposition}
-	For a commutative ring $
+	For a commutative ring $R$,
 \end{proposition}
 
 \begin{definition}
 	A \textit{scheme} is a locally ringed space $X$ such that there is a covering $\{U_i\}_{i \in I}$ of $X$ such that each $U_i$ is isomorphic to an affine scheme $\Spec(A_i)$ for some ring $A_i$.
 \end{definition}
 
+Suppose $X = \Spec(A)$ is an affine scheme. If $\mathfrak{p} \subset \mathfrak{q}$ are two prime ideals of $A$, one contained in the other, then the neighborhood filter of $\mathfrak{p}$ is contained in the neighborhood filter of $\mathfrak{q}$. This induces a binary relation and in fact a partial order on the points of $X$. We say that $x$ \textit{is a specialization of} $y$ if $x \in \overline{y}$.
+
+\begin{example}
+	Let $A$ be a valuation ring of a field $K$, which means that for all $x \in K$ one has $x \in A$ of $x^{-1} \in A$. Then the ideals of $A$ are totally ordered by inclusion: We have a unique maximal ideal which consists of those $x \in K$ for which $v(x) \ge 0$, where , which corresponds to a uniqe closed point in $\Spec(A)$
+
+	\begin{lemma}
+		Let $R$ be a valuation ring of with fraction field $K$. The ideals of $R$ are totally ordered by inclusion.
+	\end{lemma}
+
+	\begin{proof}
+		Let $I$ and $J$ be two ideals of $A$ with $I$ not contained in $J$, pick $a \in I \setminus J$. If $b \in J$, we must show that $b \in I$. If $b = 0$ we are done. Now let $b \neq 0$. We have $b/a \in R$, because otherwise $a/b$ in $R$ which would imply $a = (a/b)b \in J$, which is a contradiction. Therefore $b = (b/a)a \in I$.
+	\end{proof}
+\end{example}
+
+We view elements of a ring $R$ as functions defined on $\Spec(R)$. If we have two subsets $A \subset B$ of $R$, then $V(B) \subset V(A)$, so $V(B)$ is a \textit{special subset of $V(A)$}, satisfying more conditions than $V(B)$.
+
 \section{Motivation for Cohomology}
-One of the most important invariants of schemes is \'etale cohomology.  Cohomology is an important invariant in geometry and topology which associates to each space $X$ a sequence of abelian groups $H^i(X)$, $i \ge 0$, the so-called cohomology groups of $X$. For each map $f: X \to Y$ of spaces there are homomorphisms $f^*: H^i(Y) \to H^i(X)$. Moreover there are so called coboundary morphisms $\partial^i : H^i \to H^{i+1}$ for each $i \ge 0$.
+One of the most important invariants of schemes is \'etale cohomology.  Cohomology is an important invariant in geometry and topology which associates to each space $X$ a sequence of abelian groups $H^i(X)$, $i \ge 0$, the cohomology groups of $X$. For each map $f: X \to Y$ of spaces there are homomorphisms $f^*: H^i(Y) \to H^i(X)$. Moreover there are so called coboundary morphisms $\partial^i : H^i \to H^{i+1}$ for each $i \ge 0$.
 \begin{definition}
 	A \textit{cohomology theory} for
 \end{definition}
@@ -114,7 +150,7 @@ It is clear that this construction yields a group structure on the set
 \]
 of homotopy classes of loops at $x$.
 
-\subsubsection{The monodromy action}
+\subsection{The monodromy action}
 
 \begin{construction}[Covering spaces]
 	Let $X$ be a topological space. A \textit{space over $X$ } is a topological space $Y$ together with a continuous map $Y \to X$. A morphis between two spaces $Y_1, Y_2$ over $X$ is a continuous map $f: Y_1 \to Y_2$ such that the diagram
@@ -135,13 +171,15 @@ of homotopy classes of loops at $x$.
 	Let $p: Y \to X$ be a cover, $y \in Y$ and $x = p(y) \in X$.
 	\begin{enumerate}
 		\item If $f: [0,1] \to X$ is a path in $X$ with $f(0) = x$, then there is a unique path $\tilde{f}: [0,1] \to Y$ with $\tilde{f}(0) = y$ and $p \circ \tilde{f} = f$
-		\item Assume we have a second path $g: [0,1] \to X$ homotopic to $f$ with the same endpoints. Then the unique lift $\tilde{g}$ of $g$ to $Y$ is homotopic to $\tilde{f}$ with the same endpoints.
+		\item Assume we have a second path $g \colon [0,1] \to X$ homotopic to $f$ with the same endpoints. Then the unique lift $\tilde{g}$ of $g$ to $Y$ is homotopic to $\tilde{f}$ with the same endpoints.
 	\end{enumerate}
 \end{lemma}
+
 \begin{proof}
 	See \cite{Szamuely}, Lemma 2.3.2.
 \end{proof}
-\begin{construction}(The monodromy action)
+
+\begin{construction}[The monodromy action]
 	Let $p(y)=x$ and let $\alpha \in \pi_1(X,x)$ be represented by a path $f: [0,1] \to X$. By the previous lemma, there is a unique lift $\tilde{f}$ with $\tilde{f}(0) = y$. Since $p \circ \tilde{f} = f$, we have $(p \circ \tilde{f})(1) = x$, so the fundamental group $\pi_1(X, x)$ acts on $F_x(Y)$. This action is called the \textit{monodromy action}.
 \end{construction}
 
@@ -154,8 +192,31 @@ We would like to have a notion of fundamental group for schemes. As before, ther
 	\item There is no universal covering space.
 	      For instance, the algebra homomorphism given by $x^n \to x^n, k[x^n] \to k[x]$ corresponds to a map $x \to x^n, \mathbb{A}^1_k \to \mathbb{A}^1_k$. Depicted is the map from $\mathbb{A}^1_\C$ to $\mathbb{A}^1_\C$ for the case $n=2$
 
-	      \input{chapters/introduction/logarithm.tex}
+	      %\input{chapters/introduction/logarithm.tex}
+
 	      This map \textit{should} be local homeomorphism, but this is false in the Zariski topology. There do not exist nonempty open subsets $V$ and $U$ such that $x \to x^n$ maps $V$ isomorphically onto $U$. The theory of \'etale coverings will give us a good notion of covering which we will use to define the analog of universal coverings
 \end{itemize}
 
 The \'etale topology will provide a solution for the problems we have with both cohomology and fundamental groups. The \'etale topology is not a topology in the classical sense, but a category equipped with a notion of covering (in the sense of point-set topology). The analog of open sets of a scheme $X$ will be so called \'etale morphisms $U \to X$. \'Etale morphisms are the natural analogs of local homeomorphisms in scheme theory, so they provide a finer topology than the Zarisiki topology, giving rise to a better sheaf theory. Furthermore, surjective \'etale morphisms share a lot of formal properties with covering spaces, allowing us to define the \'etale fundamental group $\pi_1^{\et}$.
+
+
+
+Riemann Hypothesis:
+\begin{align}
+	\zeta(s) = \sum_{n \ge 0} \frac{1}{n^s} \\
+	\zeta(\lambda) = 0 nontrivial \implies Re(\lambda) = \frac{1}{2}
+\end{align}
+
+Dedekind, Artin, Hasse:
+$R$ dedekind domain:
+\[
+	\zeta_R(s) = \sum_{I \subset R} \frac{1}{N(I)^s}, N(I) =\#R/I
+\]
+
+Special case:
+\begin{align}
+	R = \F_p[T] \iff \mathbb{A}_{\F_p}^1 = \Spec\F_p[T] \\
+	\zeta_R(s) = \prod_{\pi irred}(\frac{1}{1-N\pi^{-s}} = \exp(\sum_{n \ge 1} \# X(\F_{p^n})\frac{T^n}{n}
+\end{align}
+
+Weil studies: $Z(X,T)$, $X/F$
