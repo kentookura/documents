@@ -1,4 +1,5 @@
 \section{Sheaf Cohomology}
+Sheaf cohomology measures the obstruction to extending local solutions to certain geometric problems
 
 \subsection{Exact sequences and Cohomology}
 
@@ -29,6 +30,8 @@ where each $I^k$ is an injective object. Given a left exact functor $F$ from $C$
 	R^i F(A) \coloneqq H^i(F(I^\bullet)).
 \]
 One needs to show that these functors do not depend on the choice of injective resolution. While very general, the formalism of derived functors is unintuitive and in practice we will compute cohomology using different methods.
+
+Another functor whose derived functors are of interest is the direct image functor.
 
 \subsection{Homological algebra in \texorpdfstring{$\mathsf{Ab}(X)$}{Ab(X)}}
 
@@ -155,29 +158,6 @@ We will now define the notion of injectivity and surjectivity for maps of sheave
 It follows that constant sheaves on varieties have no higher cohomology. The reason ist that there are not enough open sets in the Zariski topology. This was the reason for defining the \'etale topology. We will now see how the \'etale topology yields good cohomological results
 
 As we have seen, sheaves relate the local and global information one has on a given topological space $X$. In a sense sheaf cohomology measures how much more information we gain when we go from global to local. For example, consider the sheaf of local sections of the covering space $\pi : X \to S^1$.
-%
-%\begin{tikzpicture}[declare function={f(\x)=0.2*sin(\x)+\x/1000;},
-%  rubout/.style={/utils/exec=\tikzset{rubout/.cd,#1},
-%  decoration={show path construction,
-%       curveto code={
-%        \draw [white,line width=\pgfkeysvalueof{/tikz/rubout/line width}+2*\pgfkeysvalueof{/tikz/rubout/halo}] 
-%         (\tikzinputsegmentfirst) .. controls
-%         (\tikzinputsegmentsupporta) and (\tikzinputsegmentsupportb)  ..(\tikzinputsegmentlast); 
-%        \draw [line width=\pgfkeysvalueof{/tikz/rubout/line width},shorten <=-0.1pt,shorten >=-0.1pt] (\tikzinputsegmentfirst) .. controls
-%         (\tikzinputsegmentsupporta) and (\tikzinputsegmentsupportb) ..(\tikzinputsegmentlast);  
-%       }}},rubout/.cd,line width/.initial=2pt,halo/.initial=0.5pt]
-%  \draw[rubout={line width=2pt,halo=0.5pt},decorate] 
-%    plot[variable=\x,domain=-50:970,samples=55,smooth] ({cos(\x)},{f(\x)}) to[out=0,in=195] cycle;
-%  \draw[line width=2pt] (0,-2) arc(-90:270:1cm and 0.2cm);
-%  \draw[thick,-stealth]  (0,-0.4) -- (0,-1.4) node[midway,right]{$\pi$};
-% \end{tikzpicture} 
-%
-%There is no global section $s: S^1 \to X$ but locally, the set of sections $\{s: U \to \pi^{-1}(U) | \pi \circ s = id\}$ is a set with three elements.
-%
-%Let $X$ be a topological space. A theorem of algebraic topology says that for any abelian group $A$, the cohomology group $H^1(X,A)$ with coefficients in $A$ is isomorphic to the abelianisation of the fundamental group $\pi_1(X)$
-
-
-
 
 Simple Examples:
 Brauer group of a dedekind ring or something
