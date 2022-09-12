@@ -86,3 +86,19 @@
 
 \newcommand{\proofref}[1]{\hyperlink{#1}{proof}}
 \pagestyle{plain}
+
+
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Norm}{Norm}
+\DeclareMathOperator{\sh}{\mathsf{Sh}}
+\DeclareMathOperator{\Op}{Op}
+\DeclareMathOperator{\G}{G}
+
+\titleformat{\chapter}[hang]{\huge\bfseries}{\thechapter. \hspace{20pt}{\newline}\hspace{20pt}}{0pt}{\huge\bfseries} \titlespacing*{\chapter}{0pt}{-2\baselineskip}{1em}
+\patchcmd{\chapter}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}
+
+\renewenvironment{proof}{{\bfseries Proof:}}{}
