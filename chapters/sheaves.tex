@@ -439,7 +439,7 @@ Recall the statement of the Yoneda lemma:
 	Let $R=\Z[x_z, \dots, x_n]/(f_1, \dots , f_m)$ and $X = \Spec(R)$. What are the $\Z$-valued points of $X$? Specifying a morphism from $X$ to $\Spec(\Z)$ is equivalent to specifying a morphism $\varphi\colon R \to \Z$, which is equivalent to specifying images $a_i$ of the generators $x_i$ of $R$ such that $f_j(a_1, \dots, a_n) = 0$ for all $j$. In other words, the $\Z$-valued points are the integral solutions to the equation $f_j = 0$
 \end{example}
 
-\subsection{Local Rings and Stalks}
+\section{Local Rings and Stalks}
 %ROUGH
 Local rings are rings with a unique maximal ideal. A ring is local if and only if a sum of any two non-units is again a non-unit. To motivate the name, consider the following example:
 
@@ -524,7 +524,7 @@ Recall that a category $\mathcal{C}$ is \textit{cofiltered} if the following hol
 %\end{example}
 
 
-\subsection{Sheafification}
+\section{Sheafification}
 In this section we will characterise Grothendieck toposes as left exact reflective subcategories $\mathcal{E} \to \widehat{C}$ of presheaf categories. More precisely, given a small category $C$ there is a bijection between
 \begin{itemize}
 	\item Equivalence classes of left exact reflective subcategories $\mathcal{E} \to \widehat{C}$
@@ -569,7 +569,7 @@ Thus, sheafification proceeds in two steps. The first step removes sections that
 	See~\cite{Borceux3}, Proposition 3.5.4 and Corollary 3.5.5.
 \end{proof}
 
-\subsection{The global sections functor}
+\section{The global sections functor}
 Let $X$ be a topological space and $F$ a sheaf on $X$. The elements of $F(X)$ are called \textit{global sections of $F$}. It is convenient to view $F$ as a variable and to write $\Gamma(X,-)$ as the functor which sends a sheaf $F$ to the set of its global section $\Gamma(X, F)$. Note that a sheaf may not have global sections. For example, the sheaf of sections of the double cover of a circle has no global sections, but locally  there are 3. Sheaf cohomology is all about applying the techniques from homological algebra to study the global sections of sheaves. Note that $X$ is the terminal object in both $\Op(X)$ and in $\Et/X$, so a global section for an \'etale sheaf is defined in the same way.
 
 Consider the terminal object $1$ in the category $\Set^{C^{op}}$. It is the presheaf defined by $1(X) = \{*\}$ for all $X \in C$. A morphism of presheaves $\gamma: 1 \to P$ picks an element $\gamma_U$ for each object $U$ of $C$ such that the following diagram commutes for each $f: U \to U'$:
@@ -647,3 +647,16 @@ In our context we view $U$ as an \'etale open of some scheme $X$ and $F$ is some
 \begin{proposition}
 	Let $\coprod U_i \to U$ be a cover of $U$ and $\varphi$ a formula over $U$
 \end{proposition}
+
+
+
+\begin{construction}
+	Let $F$ be a presheaf on $\Et/\Spec(k)$. By abuse of notation we write $F(K)$ instad of $F(\Spec(K))$. We define a descrete $G$-module $M_F$ as follows: If $L/k$ is a finite separable extension, then $G = \Gal(k)$ acts on $F(L)$ by functoriality of $F$. Define $M_F = \colim F(L)$ where $L$ runs over all subfields $L$ of $k_s$ that are finite over $k$. Then $M_F$ is a discrete $G$-module. Conversely, for a discrete $G$-module $M$ we define a sheaf $F_M$ by setting $F_M(A) = \Hom_G(F(A),M)$ where $F(A) = \Hom_k(A,k_s)$. By Theorem \ref{thm:sheaf_condition}, presheaf $F$ on $\Et/k$ is a sheaf if and only if \ref{diagram:equalizer} is exact for a single affine cover $\Spec(A) \to \Spec(B)$, but affine \'etale covers in $\Et/k$ are precisely of the form $\displaystyle \coprod \Spec(L_i) \to \displaystyle \coprod \Spec(K_j)$ where each $L_i$ and $K_j$ is separable over $k$, so the sequence \[ F(\Spec(L)) \to \prod_{i} F(\Spec(L_i)) \xbigtoto{} \prod_{i,j} F(\Spec(L_i \otimes_L L_j)) \] needs to be exact.
+\end{construction}
+
+\begin{enumerate}
+	\item $F(\prod A_i) = \bigoplus F(A_i)$ for every finite family $\{A_i\}$ of \'etale algebra
+	\item $F(L) \xrightarrow{\sim} F(K)^{\Gal(K/k)}$ for finite Galois extensions $K/L/k$
+\end{enumerate}
+
+For $F$ a sheaf on $\Et/k$ define $M_F = \varinjlim F(K)$, where the colimit runs over all finite Galois extensions over $k$. Then $M_F$ is a discrete $\Gal(k)$-module. Converseley, if $M$ is a discrete $G$-module, define $F_m(A) = \Hom_{\Gal(k)}(F(A),M)$, where $F(A) = \Hom(A, k_s)$. Then $F_M$ is a sheaf on $\Spec(k)$. This defines an equivalence of categories between the \'etale topos $\sh(\Et/\Spec(k))$ of $k$ and the category of discrete $G$-modules.

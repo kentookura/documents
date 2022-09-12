@@ -1,3 +1,4 @@
+\section{Historical Context}
 Topos theory arose in the 1960s as a geometric concept in the work of Grothendieck and others in algebraic geometry. They defined a topos as a category equivalent to the category of sheaves $\sh(C,J)$ on some site $(C,J)$. Sites axiomatize and generalize the notion of open covering from topology, where the objects of $C$ are the generalized open sets and $J$ is a Grothendieck topology, which will be defined later. Suffice it to say that for each topological space $X$, the poset of open subsets of $X$ considered as a category gives rise to a site. Grothendieck toposes a special case of the more general notion of elementary toposes, which were introduced by Lawvere and Tierney. While Grothendieck's school sought to construct a general framework for doing geometry in an effort to construct a suitable cohomology theory for schemes, Lawvere and Tierney emphasize the role of the subobject classifiers for working in the internal logic of a topos. The subobject classifier $\Omega$ for some (elementary) topos $\mathcal{E}$ is a generisation of the following situation:
 For a subset $S \subset X$, there is a characteristic function $\char \colon X \to \{0, 1\}$ of $S$ given by
 \[ \char_S(x) =
@@ -9,10 +10,10 @@ For a subset $S \subset X$, there is a characteristic function $\char \colon X \
 where $0$ is interpreted as the truth value \textbf{false} and $1$ is interpreted as \textbf{true}. Each subset $S$ of $X$ can be recovered by its characteristic function by pulling back \textbf{true} along $\char_s$. This means that the subobject functor $\text{sub} \colon \Set \to Set$ which sends a set $S$  to its powerset $\mathcal{P}(S)$ is representable.
 
 \begin{construction}[Subobjects]
-	Recall that a morphism $f \colon A \to B$ in any category is called a monomorphism if for any object $C$ and parallel arrows $g, h \colon C \xbigtoto{} A$ with $fg = fh$ implies $g = h$. We consider two monomorphisms $f \colon A \to B$ and $f' \colon A' \to B$ to be equivalent if there is an isomophism $A \simeq A'$ with $f'h = f$
+	Recall that a morphism $f \colon A \to B$ in some category $C$ is called a monomorphism if for any object $C$ and parallel arrows $g, h \colon C \xbigtoto{} A$ with $fg = fh$ implies $g = h$. We consider two monomorphisms $f \colon A \to B$ and $f' \colon A' \to B$ to be equivalent if there is an isomophism $A \simeq A'$ with $f'h = f$
 \end{construction}
 
-Every Grothendieck topos posesses such an a subobject classifier $\Omega$. This object allows us to construct subobjects $\{x \mid \varphi(x)\} \subset X$ for each object $X$ of $\mathcal{E}$ in much the same way as in the category of sets by using a language $\mathcal{L}$ constructed from the objects of the topos $\mathcal{E}$. This language has a nice semantic interpretation in the case of Grothendieck toposes $\sh(C,J)$. There is the \textit{forcing relation} $\Vdash$ which is defined for an object $U \to X$ over $X$ in the over-category $C/X$ and $\varphi(x)$ is a term in a suitable type theory with a free variable of type $X$. We define $U \Vdash \varphi(x)$ to hold if $U \to X$ factors through a map $U \to \{x \mid \varphi(x)\}$ as indicated in the diagram below:
+Every Grothendieck topos posesses such an a subobject classifier $\Omega$. In $\Set$, the subobject classifier has two elements This object allows us to construct subobjects $\{x \mid \varphi(x)\} \subset X$ for each object $X$ of $\mathcal{E}$ in much the same way as in the category of sets by using a language $\mathcal{L}$ constructed from the objects of the topos $\mathcal{E}$. This language has a nice semantic interpretation in the case of Grothendieck toposes $\sh(C,J)$. There is the \textit{forcing relation} $\Vdash$ which is defined for an object $U \to X$ over $X$ in the over-category $C/X$ and $\varphi(x)$ is a term in a suitable type theory with a free variable of type $X$. We define $U \Vdash \varphi(x)$ to hold if $U \to X$ factors through a map $U \to \{x \mid \varphi(x)\}$ as indicated in the diagram below:
 \[
 	% https://q.uiver.app/?q=WzAsNSxbMCwxLCJVIl0sWzEsMSwiWCJdLFsxLDAsIlxce3ggXFxtaWQgXFx2YXJwaGkoeClcXH0iXSxbMiwwLCJcXG1hdGhiZnsxfSJdLFsyLDEsIlxcT21lZ2EiXSxbMCwxXSxbMCwyLCIiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMiwzXSxbMyw0LCJcXHRleHR7dHJ1ZX0iLDJdLFsyLDFdLFsxLDRdXQ==
 	\begin{tikzcd}
@@ -102,37 +103,6 @@ Suppose $X = \Spec(A)$ is an affine scheme. If $\mathfrak{p} \subset \mathfrak{q
 \end{example}
 
 We view elements of a ring $R$ as functions defined on $\Spec(R)$. If we have two subsets $A \subset B$ of $R$, then $V(B) \subset V(A)$, so $V(B)$ is a \textit{special subset of $V(A)$}, satisfying more conditions than $V(B)$.
-
-\section{Motivation for Cohomology}
-One of the most important invariants of schemes is \'etale cohomology.  Cohomology is an important invariant in geometry and topology which associates to each space $X$ a sequence of abelian groups $H^i(X)$, $i \ge 0$, the cohomology groups of $X$. For each map $f: X \to Y$ of spaces there are homomorphisms $f^*: H^i(Y) \to H^i(X)$. Moreover there are so called coboundary morphisms $\partial^i : H^i \to H^{i+1}$ for each $i \ge 0$.
-\begin{definition}
-	A \textit{cohomology theory} for
-\end{definition}
-We can deduce many interesting properties of spaces from their cohomology groups and the associated homomorphisms.
-
-An important and intuitive cohomology is \textit{singular cohomology}. It provides a rigorous way for counting ``holes'' in a topological space. For instance, the circle $S^1$ has 1 one-dimensional hole while the torus $T^2$ has 2. The sphere $S^2$ has 1 two-dimensional hole but no one-dimensional holes, in symbols\footnote{$\Z$ appears here because it is the free group on one generator.}
-\begin{align*}
-	H^1_{sing}(S^1) \simeq \Z,\quad & H^1_{sing}(T^2) \simeq \Z \oplus \Z, \\
-	H^1_{sing}(S^2) \simeq  0,\quad & H^2_{sing}(S^2) \simeq \Z.
-\end{align*}
-A general approach to cohomology is to use sheaves on a topological space as ``coefficients''. Sheaves consist of local data on a space that is glueable. A basic example consists of functions on a space: If we have an open cover $\{ U_i\}$ for a manifold $M$ and functions $f_i: M \to \R$ that agree on all intersections $U_i \cap U_j$ we may patch it together to a function $f: M \to \R$.
-For any space $X$ and any sheaf $\Sh{F}$ on $X$ we can define $H^i(X, \Sh{F})$. Many examples of cohomology theories turn out to stem from the cohomology of a particular sheaf. For example, if $X$ is a locally contractible space, the singular cohomology $H_{\text{sing}}^i(X)$ of $X$ is isomorphic to the sheaf cohomology $H^i(X, \Z_X)$ of the constant sheaf $\Z_X$ on $X$.
-
-One of the main motivations for \'etale cohomology is that one would like a replacment for singular cohomology for schemes. There are a number of obstacles:
-\begin{proposition}\label{scheme_contractible}
-	An irreducible scheme is contractible.
-\end{proposition}
-\begin{proof}
-	Define a map $f: X \times I \to X$  by $f(x,0) = x$ and $f(x,t) = \eta$ for $t > 0$. This is a contraction of $X$ onto the point $\eta$, so the singular cohomology of $X$ is identically 0.
-\end{proof}
-
-\begin{proposition}
-	$H^i(X, \Sh{F})$ is 0 for any sheaf on an irreducible topological space.
-\end{proposition}
-\begin{proof}
-	See section TODO.
-\end{proof}
-This is a strong indication that the traditional tools of cohomology are inadequate to analyse the geometry of schemes.
 
 
 \section{Fundamental groups}
