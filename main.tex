@@ -2,10 +2,11 @@
 \usepackage{operators}
 \usepackage{preamble}
 
-\title{Sheaf Semantics over the \'Etale Site}
+\title{Sheaves on the \'Etale Site}
 \author{Kento Okura}
 
 \begin{document}
+
 \frontmatter
 \import{./}{front.tex}
 
@@ -20,9 +21,74 @@
 \chapter{Sheaves}
 \import{chapters/}{sheaves.tex}
 
-\chapter{Cohomolgoy}
+\chapter{Cohomology}
 \import{chapters/}{cohomology.tex}
 
 \bibliographystyle{plain}
 \bibliography{refs}
+
 \end{document}
+
+
+%\section{Topological Spaces and Locales}
+%In this section we introduce two notions related to topology. The first notion, which is central to topos theory is the notion of site. The definition of sites will allow us to speak of sheaves on categories equipped with a so-called Grothendieck topology. Taking the category of sheaves on a site yields a rich category to do geometry in. We will in particular be interested in the \'etale topology on schemes. As we have seen, \'etale morphisms of schemes are the correct formulation of local homeomorphisms for schemes as we are able to trivialize geometric information (in the sense of covering spaces and fiber bundles) over \'etale morphisms $S \to X$ which is not always possible over the open sets of $X$.
+%
+%\subsection{Locales}
+%Locales are important in topos theory because there is an adjunction
+%
+%% https://q.uiver.app/?q=WzAsMixbMCwwLCJcXG1hdGhzZntUb3BvaX0iXSxbMSwwLCJcXG1hdGhzZntMb2NhbGVzfSJdLFswLDEsInN1Yl97KC0pfVxcbWF0aGJmezF9IiwwLHsib2Zmc2V0IjotMX1dLFsxLDAsIlxcbWF0aHNme1NofSIsMCx7Im9mZnNldCI6LTF9XV0=
+%\[\begin{tikzcd}
+%		{\Topos} & {\Loc}
+%		\arrow["{\mathsf{sub}_{(-)} \mathbf{1}} ", shift left=1, from=1-1, to=1-2]
+%		\arrow["{\sh}", shift left=1, from=1-2, to=1-1]
+%	\end{tikzcd}
+%\]
+%
+%which exhibits $\Loc$ as a reflective subcategory of $\Topos$, and every topos $\mathcal{E}$ has a so-called \textit{localic reflection}. Here the functor $\mathsf{sub}_{(-)}\mathbf{1}$ takes a topos $\mathcal{E}$ and returns $\mathsf{sub}_{\mathcal{E}}(\mathbf{1})$, the subobjects of the final object $\mathbf{1}$ of $\mathcal{E}$, which is the localic reflection of $\mathcal{E}$. The functor $\sh$ simply takes a locale $L$ to its category of sheaves. Here $\sh$ is the right adjoint. The following definition is based on the algebraic behavior of open sets of a topological space: Viewing a space $X$ as a poset, the intersection and union satisfy a distributivity law.
+%
+%\begin{definition}
+%	A frame $\mathcal{O}$ is a partially ordered set $(U, \le)$ with all coproducts $\bigvee U_i$ and all finite products $U_i \land U_j$ which satisfies the distributive law
+%	\[
+%		U \land (\bigvee U_i) = \bigvee (U \land U_i).
+%	\]
+%	A \textit{frame homomorphism} is a homomorphism of posets preserving finite products and arbitrary coproducts. Any topological space $X$ gives rise to a frame by considering the poset of opens $\mathcal{O}(X)$. A continuous map $f: X \to Y$ between spaces gives rise to a frame homomorphism $f^*: \mathcal{O}(Y) \to \mathcal{O}(X)$, so there is a contravariant functor from topological spaces to frames. We define the category of locales to be the opposite category of the category of frames. A (continuous) map of locales $f: X \to Y$ is then nothing but a map between frames from $Y$ to $X$.
+%\end{definition}
+%
+%\begin{construction}\label{def:opens}
+%	Let $X$ be a topological space. The open sets of $X$ are partially ordered by inclusion: $V \le W \quad \text{when} \quad V \subseteq W$. We may thus, as with any poset, consider the category of open sets of $X$, sometimes denoted by $\mathcal{O}(X)$. By abuse of notation, we will often write $X$ instead of $\mathcal{O}(X)$.
+%\end{construction}
+%
+%\begin{remark}
+%	In the category $\mathcal{O}(X)$ pullbacks correspond to intersections and pushouts correspond to unions. By the definition of topological space, this means that $\mathcal{O}p(X)$ has finite pullbacks and arbitrary pushouts.
+%\end{remark}
+%
+%\begin{example}
+%	The frame structure on the lattice of open sets for the Zariski topology is given by
+%	\begin{align*}
+%		\Big( \bigvee D_{f_i}\Big) \wedge D_g & = D(\Sigma f_i) \wedge D_g     \\
+%		                                      & = D(\Sigma f_i \, g)           \\
+%		                                      & = \bigvee (D_{f_i} \wedge D_g)
+%	\end{align*}
+%\end{example}
+%
+%\begin{remark}
+%	A topos equivalent to the category of sheaves on a locale is called a \textit{localic topos}. Note that for a topos $\mathcal{E}$, there may be many sites which give rise to a sheaf topos equivalent to $\mathcal{E}$. In our case, the sheaf topos $\sh_{\et}(X)$ for a scheme $X$ is a priori not localic, as the presence of automorphisms implies that the underlying category for $\Et/X$ is not a poset. By \cite{SIGL}, \textbf{IX}. 5. Theorem 1, A topos $\mathcal{E}$ is localic if and only if there exists a site for $\mathcal{E}$ with a poset as underlying category.
+%\end{remark}
+%
+%% https://q.uiver.app/?q=WzAsMyxbMCwxLCJcXGJ1bGxldCJdLFsxLDEsIlxcYnVsbGV0Il0sWzEsMCwiXFxidWxsZXQiXSxbMCwxLCIiLDAseyJvZmZzZXQiOjF9XSxbMSwwLCIiLDAseyJvZmZzZXQiOjF9XSxbMiwwLCIiLDAseyJvZmZzZXQiOi0xfV0sWzIsMSwiIiwwLHsib2Zmc2V0IjotMX1dLFswLDIsIiIsMCx7Im9mZnNldCI6LTF9XSxbMSwyLCIiLDAseyJvZmZzZXQiOi0xfV1d
+%\[\begin{tikzcd}
+%		& \Topos \\
+%		\Top & \Loc
+%		\arrow[shift right=1, from=2-1, to=2-2]
+%		\arrow[shift right=1, from=2-2, to=2-1]
+%		\arrow[shift left=1, from=1-2, to=2-1]
+%		\arrow[shift left=1, from=1-2, to=2-2]
+%		\arrow[shift left=1, from=2-1, to=1-2]
+%		\arrow[shift left=1, from=2-2, to=1-2]
+%	\end{tikzcd}\]
+%
+%There is also an adjunction between topological spaces and locales, which restricts to an quivalence between so-called sober topological spaces and spatial locales.
+%
+%We want to transfer topological notions and intuitions to work for sites. Some definitions are obvious: For a point $x \in X$, w
+%
+%

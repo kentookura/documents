@@ -1,0 +1,389 @@
+\begin{definition}[Sheaves on Sites]
+	Let $(C,J)$ be a site. A presheaf $F$ on $C$ is a \textit{sheaf}, if for any covering $\{U_i\}$ of $U$, the following diagram is an equalizer:
+	\begin{equation} \label{diagram:equalizer}
+		F(U) \to \prod_{i} F(U_i) \xbigtoto{} \prod_{i,j} F(U_i \times_U U_j)
+	\end{equation}
+	If the map $F(U) \to \displaystyle\prod F(U_i)$ is injective, then we say that $F$ is a \textit{separated presheaf}. If the reference to the site $J$ is clear from context, we will also say that $F$ is a sheaf on $C$.
+\end{definition}
+
+We need to explain the above diagram. In the case that $X$ is covered by two objects $U_1$ and $U_2$, there are the morphisms $U_{12} \to U_1 \to X$ and $U_{12} \to U_2 \to X$, fitting into  where $U_{12}$ is shorthand for $U_1 \times_X U_2$ or $U_1 \cap U_2$. By the contravariance of $F$, we obtain the two diagrams below.
+
+\[
+	\centering
+	\begin{minipage}{0.4\textwidth}
+		\begin{tikzcd}
+			& {U_{12}} \\
+			{U_1} & & {U_2} \\
+			& X
+			\arrow[from=1-2, to=2-1]
+			\arrow[from=1-2, to=2-3]
+			\arrow[from=2-1, to=3-2]
+			\arrow[from=2-3, to=3-2]
+		\end{tikzcd}
+	\end{minipage}
+	\begin{minipage}{0.4\textwidth}
+		\begin{tikzcd}
+			& {F (U_{12})} \\
+			{F (U_1)} & & {F (U_2)} \\
+			& {F (X)}.
+			\arrow[from=2-1, to=1-2]
+			\arrow[from=2-3, to=1-2]
+			\arrow[from=3-2, to=2-1]
+			\arrow[from=3-2, to=2-3]
+		\end{tikzcd}
+	\end{minipage}
+\]
+
+When taking the product of $F(U_1)$ and $F(U_2)$, we obtain the diagram
+% https://q.uiver.app/?q=WzAsMyxbMiwwLCJcXG1hdGhjYWx7Rn0oVV97MTJ9KSJdLFswLDAsIlxcbWF0aGNhbHtGfShYKSJdLFsxLDAsIlxcbWF0aGNhbHtGfShVXzEpXFx0aW1lc1xcbWF0aGNhbHtGfShVXzIpIl0sWzEsMl0sWzIsMCwiIiwwLHsib2Zmc2V0IjoxfV0sWzIsMCwiIiwwLHsib2Zmc2V0IjotMX1dXQ==
+\[
+	\begin{tikzcd}
+		{F(X)} & {F(U_1)\times F(U_2)} & {F(U_{12})}.
+		\arrow[from=1-1, to=1-2]
+		\arrow[shift right=1, from=1-2, to=1-3]
+		\arrow[shift left=1, from=1-2, to=1-3]
+	\end{tikzcd}
+\]
+
+Given two section $s_1 \in F(U_1)$ and $s_2 \in F(U_2)$, the two parallel arrows map $(s_1, s_2)$ to $s_1|_{U_{12}}$ and $s_2|_{U_{12}}$. To say that $F(X)$ is an equalizer in the above diagram amounts to saying that the sections of $F(X)$ are recoverable from those sections on the sets $U_1$ and $U_2$ which agree on the overlap $U_{12}$. The diagram~\eqref{diagram:equalizer} is the straightforward generalisation of this situation for a cover consisting of more than 2 open sets. For topological spaces, this is an equivalent reformulation of the condition given in \ref{def:sheaves}.
+
+A map of sheaves $\varphi \colon F \to G$ is simply a natural transformation $F \to G$.
+We obtain the category $\sh(C,J)$ of sheaves on $C$ with respect to the topology $J$. This is in fact a full subcategory of presheaves $\Set^{C^{op}}$. We call categories equivalent to categories of sheaves on a site Grothendieck toposes. The category of sheaves $\sh(X, \et_X)$ on the \'etale toplogy of a scheme $X$ is called the \textit{\'etale topos of $X$}.
+
+\section{Sheafification}
+In this section we see that Grothendieck toposes are left exact reflective subcategories $\mathcal{E} \to \widehat{C}$ of presheaf categories. More precisely, given a small category $C$ there is a bijection between
+\begin{itemize}
+	\item Equivalence classes of left exact reflective subcategories $\mathcal{E} \to \widehat{C}$
+	\item Grothendieck topologies $J$ on $C$ such that $\mathcal{E} \simeq \sh(C,J)$.
+\end{itemize}
+
+We first show that any Grothendieck topos $\sh(C,J)$ on $C$ is indeed a left exact reflective subcategory of $\widehat{C}$. Recall that a full subcategory $i \colon D \to C$ reflective if the inclusion functor $i$ admits a left adjoint $a \colon C \to D$. We already know that $\sh(C,J)$ is a full subcategory of $\widehat{C}$.
+
+\begin{proposition}\label{thm:associated_sheaf}
+	The forgetful functor $\mathsf{Sh}(C,J) \to \Set^{C^{op}}$ admits a limit-preserving left adjoint
+	\[a : \Set^{C^{op}} \to \mathsf{Sh}(C,J).\]
+\end{proposition}
+
+\begin{corollary}
+	The cateogry of sheaves on $X$ is a full reflective subcategory of the category of presheaves on $X$.
+\end{corollary}
+
+The functor $a$ is the \textit{associated sheaf functor}, also called \textit{sheafification}. As the name suggests, it provides universal way to turn a presheaf into a sheaf.
+Note that there are two ways a presheaf can fail to be a sheaf:
+\begin{itemize}
+	\item
+	      Local sections may fail to patch to a global section. An example of a presheaf whose local sections fail to patch is the presheaf of bounded continuous functions on $\R$. If we cover $\R$ by bounded intervals $\{U_i\}$, the identity function is bounded on each $U_i$ but is obviously not globally bounded.
+	\item
+	      Sections that agree locally may not agree globally. We construct an example. $S$ be the a discrete topological space with two points $0$ and $1$. We define a presheaf $\Sh{F}$ by setting $\Sh{F}(\varnothing) = \{*\}$ and $\Sh{F}(U) = \R^U$. We define the restriction maps to send a section $s \in \Sh{F}(U)$ to the constant function $s|_V \equiv 0$ when $V \subseteq U$ is nonempty. Now let $s,t \in \Sh{F}(S)$ be defined by $s \equiv 1$ and $t \equiv -1$. Then $\{\{0\}, \{1\}\}$ is an open cover of $S$ and $s|_{0} = t|_{0}$ and $s|_{1} = t|_{1}$, but $s \neq t$.
+	      This cannot happen if the map
+	      \[
+		      i: \Sh{F}(U) \to \mathsf{eq}(\prod_{i} \Sh{F}(U_i) \xbigtoto{} \prod_{i,j} \Sh{F}(U_i \cap U_j))
+	      \]
+	      is injective. A presheaf for which $i$ is injective is called separated.
+\end{itemize}
+
+Thus, sheafification proceeds in two steps. The first step removes sections that agree locally but not globally, making a presheaf into a separated presheaf. The second step adds the sections of matching local sections.
+
+\begin{proof}[Proof of Theorem~\ref{thm:associated_sheaf}]
+	See~\cite{SIGL}.
+\end{proof}
+
+\begin{theorem}
+	A category is a Grothendieck topos if and only if it is a localization of $\widehat{C}$ for some small category $C$.
+\end{theorem}
+
+\begin{proof}
+	See~\cite{Borceux3}, Proposition 3.5.4 and Corollary 3.5.5.
+\end{proof}
+
+\section{Sheaves on the \'Etale Site}
+In this section we will now prove the important fact that all representable presheaves are sheaves in the \'etale topology. This gives us a rich supply of sheaves on $\Et/X$ to study.
+
+\begin{lemma}\label{sheaf:disjoint}
+	Let $F$ be a sheaf on the Zariski topology on a scheme $X = \coprod U_i$ which is the disjoint union of subschemes $U_i$. Then $F(X) = \prod F(U_i)$.
+\end{lemma}
+
+\begin{proof}
+	The pullback $U_i \times_X U_j$ is empty for $i \neq j$. Evaluating a sheaf on the empty set yields the terminal object $\{*\}$, so the sheaf condition becomes
+	\[
+		F(X) \to \prod_i F(U_i) \xbigtoto{} \prod_{i,j} \{*\} \simeq \{*\},
+	\]
+	which yields the required isomorphism.
+\end{proof}
+
+\begin{theorem}\label{thm:sheaf_condition}
+	A presheaf $F$ on $\Et/X$ is a sheaf if and only if $F$ satisfies the sheaf condition for Zariski open coverings and for \'etale coverings consisting of a single map $V \to U$, where $V$ and $U$ are affine.
+\end{theorem}
+
+The idea of the proof is to rewrite coverings $\{ U_i \to U\}$ as a single morphism $\coprod U_i \to U$ and to use the fact that schemes are locally affine.
+
+\begin{proof}
+	Let $F$ be a presheaf satisfying the condition of the theorem. Because of the previous lemma and because of the equality
+	\[
+		\Bigl(\coprod U_i \Bigr) \times_U \Bigl( \coprod U_j \Bigr) = \coprod_{i,j} U_i \times_U U_j,
+	\] the sheaf condition for the covering $\{U_i \to U\}$ is equivalent to the sheaf condition for the covering $\coprod_i U_i \to U$. If the indexing set $I$ is affine each $U_i$ is affine, $\coprod U_i$ is again affine and the sheaf condition holds.
+
+	Now let $\{U_i \to U\}$ be an arbitrary cover and let $f: \mathcal{U} \to U$ the corresponding morphism from the coproduct $\mathcal{U} = \coprod U_i$. Let $\{V_i \to U\}$ be a covering of $U$ by affine open sets. Then $f^{-1}(V_i)$ is a union of open affines, say
+	\[
+		f^{-1}(V_i) = \bigcup_j V_{ij}
+	\]
+	Each $f(V_{ij})$ is open in $V_i$ and $U_i$ is quasi-compact. Therefore there is a finite set $K_i$ of indices such that $\{V_{ik} \to V_i\}_{k \in K_i}$ is a covering. We obtain a finite affine cover $\{V_{ik} \to U_i\}_{k \in K_i}$ for each $V_i$. Consider the diagram:
+
+	\[
+		% https://q.uiver.app/?q=WzAsOCxbMCwwLCJGKFUpIl0sWzEsMCwiRihVJykiXSxbMiwwLCJGKFUnIFxcdGltZXNfVSBVJykiXSxbMSwxLCJcXHByb2RfaSBcXHByb2RfaiBGKFZfe2lqfSkiXSxbMCwxLCJcXHByb2QgRihVX2kpIl0sWzAsMiwiXFxwcm9kX3tpLGp9IEYoVV9pICBcXGNhcCBVX2opIl0sWzEsMiwiXFxwcm9kX3tpLGp9XFxwcm9kX3trLGx9IEYoVl97aWt9IFxcY2FwIFZfe2psfSkiXSxbMiwxLCJcXHByb2RfaSBcXHByb2Rfe2osbH0gRihWX3tpan0gXFx0aW1lc19VIFZfe2lsfSkiXSxbMCwxXSxbMSwyLCIiLDAseyJvZmZzZXQiOjF9XSxbMSwyLCIiLDAseyJvZmZzZXQiOi0xfV0sWzEsM10sWzAsNF0sWzQsM10sWzQsNSwiIiwyLHsib2Zmc2V0IjoxfV0sWzQsNSwiIiwyLHsib2Zmc2V0IjotMX1dLFs1LDZdLFszLDYsIiIsMix7Im9mZnNldCI6LTF9XSxbMyw2LCIiLDIseyJvZmZzZXQiOjF9XSxbMyw3LCIiLDIseyJvZmZzZXQiOjF9XSxbMyw3LCIiLDIseyJvZmZzZXQiOi0xfV0sWzIsN11d
+		\begin{tikzcd}
+			{F(U)} & {F(\mathcal{U})} & {F(\mathcal{U} \times_U \mathcal{U})} \\
+			{\displaystyle \prod F(V_i)} & {\displaystyle \prod_i \displaystyle \prod_k F(V_{ik})} & {\displaystyle \prod_i \displaystyle \prod_{k,l} F(V_{ik} \times_U V_{il})} \\
+			{\displaystyle \prod_{i,j} F(V_i  \cap V_j)} & {\displaystyle \prod_{i,j} \displaystyle \prod_{k,l} F(V_{ik} \cap V_{jl})}
+			\arrow[from=1-1, to=1-2]
+			\arrow[shift right=1, from=1-2, to=1-3]
+			\arrow[shift left=1, from=1-2, to=1-3]
+			\arrow[from=1-2, to=2-2]
+			\arrow[from=1-1, to=2-1]
+			\arrow[from=2-1, to=2-2]
+			\arrow[shift right=1, from=2-1, to=3-1]
+			\arrow[shift left=1, from=2-1, to=3-1]
+			\arrow[from=3-1, to=3-2]
+			\arrow[shift left=1, from=2-2, to=3-2]
+			\arrow[shift right=1, from=2-2, to=3-2]
+			\arrow[shift right=1, from=2-2, to=2-3]
+			\arrow[shift left=1, from=2-2, to=2-3]
+			\arrow[from=1-3, to=2-3]
+		\end{tikzcd}
+	\]
+
+	We need to verify that the top row is exact. The columns are because the $V_i$ are open subsets of $X$ and $F$ is a sheaf for the Zariski topology by assumption. The middle row is a product of exact sequences and hence exact. It follows that the map $F(U) \to F(\mathcal{U})$ is injective and that $F$ is a separated presheaf. Thus the bottom arrow is injective. It follows by a diagram chase that the top row is exact, so $F$ is a sheaf.
+\end{proof}
+
+\begin{theorem}
+	Every presheaf $\widehat{Z}$ represented by an $X$-scheme $Z$ given by $U \to \Hom_X(U,Z)$ is a sheaf. We will often omit the notation and simply write $Z(U)$ instead of $\widehat{Z}(U)$.
+\end{theorem}
+
+\begin{proof}
+	It is obviously a sheaf for the Zariski topology. By the previous theorem, it is sufficient to show exactness of the sequence
+	\[
+		\widehat{Z}(\Spec(A)) \to \widehat{Z}(\Spec(B)) \xbigtoto{} \widehat{Z}(\Spec(B \otimes_A B)).
+	\]
+	But if $\Spec(A) \to \Spec(B)$ is surjective and \'etale, then $B \to A$ is faithfully flat and of finite type. This implies that $B \to A$ is a strict epimorphism, which means that
+	\[
+		\Hom(A,Z) \to \Hom(B,Z) \xbigtoto[p_2^*]{p_1^*}\Hom(B \otimes_A B, Z)
+	\]
+	is exact for all $Z$ (for a proof of this fact, see \cite{milneLEC}, Theorem 2.17.) and the statement follows.
+\end{proof}
+
+\begin{corollary}
+	The yoneda embedding $\yo\colon \Et/X \to \widehat{\Et/X}$ factors through the inclusion $\sh(\Et/X) \to \Set$.
+\end{corollary}
+
+\begin{construction}[Sheaves of abelian groups on $\Spec(k)$]
+	Let $F$ be a presheaf on $\Et/\Spec(k)$. By abuse of notation we write $F(A)$ instad of $F(\Spec(A))$ for $A$ an \'etale $k$-algebra. We define a discrete $\Gal(k)$-module $M_F$ as follows: If $L/k$ is a finite separable extension, then $G = \Gal(k)$ acts on $F(L)$ by functoriality of $F$. Define $M_F = \colim F(L)$ where $L$ runs over all subfields $L$ of $k_s$ that are finite over $k$. Then $M_F$ is a discrete $G$-module. Conversely, for a discrete $G$-module $M$ we define a sheaf $F_M$ by setting $F_M(A) = \Hom_G(F(A),M)$ where $F(A) = \Hom_k(A,k_s)$. By Theorem \ref{thm:sheaf_condition}, presheaf $F$ on $\Et/k$ is a sheaf if and only if \ref{diagram:equalizer} is exact for a single affine cover $\Spec(A) \to \Spec(B)$, but affine \'etale covers in $\Et/k$ are precisely of the form $\displaystyle \coprod \Spec(L_i) \to \displaystyle \coprod \Spec(K_j)$ where each $L_i$ and $K_j$ is separable over $k$, so the sequence \[ F(\Spec(L)) \to \prod_{i} F(\Spec(L_i)) \xbigtoto{} \prod_{i,j} F(\Spec(L_i \otimes_L L_j)) \] needs to be exact.
+\end{construction}
+
+\begin{enumerate}
+	\item $F(\prod A_i) = \bigoplus F(A_i)$ for every finite family $\{A_i\}$ of \'etale algebra
+	\item $F(L) \xrightarrow{\sim} F(K)^{\Gal(K/k)}$ for finite Galois extensions $K/L/k$
+\end{enumerate}
+
+For $F$ a sheaf on $\Et/k$ define $M_F = \varinjlim F(K)$, where the colimit runs over all finite Galois extensions over $k$. Then $M_F$ is a discrete $\Gal(k)$-module. Converseley, if $M$ is a discrete $G$-module, define $F_m(A) = \Hom_{\Gal(k)}(F(A),M)$, where $F(A) = \Hom(A, k_s)$. Then $F_M$ is a sheaf on $\Spec(k)$. This defines an equivalence of categories between abelian sheaves $\Ab_{\et}(\Spec(k))$ of $k$ and the category of discrete $G$-modules.
+
+Let $F$ be a sheaf of groups on $C$. For each object $X$ of $C$ there are morphisms
+\[
+	m \colon F(X) \times F(X) \to F(X),\ i \colon F(X) \to F(X),\ e \colon 1 \to F(X)
+\]
+induced by the group operation on $F(X)$. These morphisms assemble into morphisms of sheaves
+\[
+	m \colon F \times F \to F,\ i \colon F \to F,\ e \colon 1 \to F
+\]
+This is the description ``internal'' to the category $\sh(C,J)$. The external description demands that $F$ carries the structure of a group locally, meaning that $F(U)$ is a group for each $U$. From the internal point of view, a homomorphism $\varphi\colon F \to G$ of sheaves of groups is just a homomorphism of \textit{group objects} in $\sh(C,J)$.
+
+\begin{definition}
+	Let $\mathcal{C}$ be a category with finite products and a terminal object $1$. A \textit{group object} in $\mathcal{C}$ consists of an object $A$ of $\mathcal{C}$ together with morphisms
+	\[e\colon * \to A,\ m \colon A \times A \to A,\ \iota\colon A \to A \]
+	such that the following diagrams commute:
+	\[
+		% https://q.uiver.app/?q=WzAsNCxbMCwwLCJBIl0sWzAsMSwiQSBcXHRpbWVzIEEiXSxbMSwwLCJBIFxcdGltZXMgQSJdLFsxLDEsIkEiXSxbMCwxLCJcXGlvdGEgXFx0aW1lcyBpZCIsMl0sWzAsMiwiaWQgXFx0aW1lcyBcXGlvdGEiXSxbMiwzLCJtIl0sWzEsMywibSIsMl0sWzAsMywiXFxpZCIsMV1d
+		\begin{tikzcd}
+			A & {A \times A} \\
+			{A \times A} & A
+			\arrow["{\iota \times id}"', from=1-1, to=2-1]
+			\arrow["{id \times \iota}", from=1-1, to=1-2]
+			\arrow["m", from=1-2, to=2-2]
+			\arrow["m"', from=2-1, to=2-2]
+			\arrow["id", from=1-1, to=2-2]
+		\end{tikzcd}
+	\]
+	\[
+		% https://q.uiver.app/?q=WzAsNCxbMCwwLCJBIFxcdGltZXMgQSBcXHRpbWVzIEEiXSxbMSwwLCJBIl0sWzEsMSwiQSJdLFswLDEsIkEiXSxbMCwxLCJpZCBcXHRpbWVzIG0iLDJdLFsxLDIsIm0iLDJdLFswLDMsIm0gXFx0aW1lcyBpZCJdLFszLDIsIm0iXV0=
+		\begin{tikzcd}
+			{A \times A \times A} & A \\
+			A & A
+			\arrow["{id \times m}"', from=1-1, to=1-2]
+			\arrow["m"', from=1-2, to=2-2]
+			\arrow["{m \times id}", from=1-1, to=2-1]
+			\arrow["m", from=2-1, to=2-2]
+		\end{tikzcd}
+	\]
+	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJBIl0sWzEsMCwiQSBcXHRpbWVzIEEiXSxbMSwxLCJBIl0sWzAsMSwiQSBcXHRpbWVzIEEiXSxbMCwxLCIoZSxpZCkiXSxbMSwyLCJtIl0sWzAsMywiKGlkLGUpIiwyXSxbMywyLCJtIiwyXV0=
+	\[
+		\begin{tikzcd}
+			A & {A \times A} \\
+			{A \times A} & A
+			\arrow["{(e,id)}", from=1-1, to=1-2]
+			\arrow["m", from=1-2, to=2-2]
+			\arrow["{(id,e)}"', from=1-1, to=2-1]
+			\arrow["m"', from=2-1, to=2-2]
+		\end{tikzcd}
+	\]
+\end{definition}
+
+There are obvious analogues for other notions of algebraic structure. Particularly important examples for algebraic geometry are given by $\mathcal{O}_X$-modules. Omitting some details, a sheaf of groups $M$ on $X$ is an $\mathcal{O}_X$-module if each $M(U)$ carries the structure of an $\mathcal{O}_X(U)$-module that is compatible with restriction, so the following diagram commutes:
+
+\[
+	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXG1hdGhjYWx7T31fWChVKSBcXHRpbWVzIE0oVSkiXSxbMCwxLCJcXG1hdGhjYWx7T31fWChWKSBcXHRpbWVzIE0oVikiXSxbMSwwLCJNKFUpIl0sWzEsMSwiTShWKSJdLFswLDFdLFswLDJdLFsyLDNdLFsxLDNdXQ==
+	\begin{tikzcd}
+		{\mathcal{O}_X(U) \times M(U)} & {M(U)} \\
+		{\mathcal{O}_X(V) \times M(V)} & {M(V)}.
+		\arrow[from=1-1, to=2-1]
+		\arrow[from=1-1, to=1-2]
+		\arrow[from=1-2, to=2-2]
+		\arrow[from=2-1, to=2-2]
+	\end{tikzcd}
+\]
+
+
+\begin{definition}
+	The \textit{category of abelian sheaves on $\Et/X$} is defined to be the category of abelian group objects in $\sh_{\Et}(X)$
+\end{definition}
+
+
+\begin{corollary}
+	A group object internal to $\Et/X$ is a scheme $S$ over $X$ with maps $\circ \colon S \times_X S \to S$, $e \colon X \to S$ and $\iota \colon S \to S$ subject to the conditions of the previous definition.
+\end{corollary}
+
+%\subsection{Abelian Sheaves and Group Schemes}
+%
+%\section{Local Rings and Stalks}
+%%ROUGH
+%Local rings are rings with a unique maximal ideal. A ring is local if and only if a sum of any two non-units is again a non-unit. To motivate the name, consider the following example:
+%
+%Let $C[-1,1]$ be the ring of continuous real valued functions on the interval $[-1,1]$ and consider the equivalence relation $\sim$ which identifies two function $f$ and $g$ if there is an open neighborhood $U$ of $0 \in [-1,1]$ such that $f_U = g_U$. The equivalence classes defined by this relation are called the germs of $C[-1,1]$ at $0$ and in fact form a ring, since we may add and multiply two germs. This ring is called the \textit{stalk} of $C[-1,1]$ at $0$. It is clear that a germ is invertible if and only if $f(0) \neq 0$ and it follows that the sum of two non-units is again a non-unit, so $C[-1,1]$ is local.
+%
+%More generally we can define the stalk for presheaves on an arbitrary topological space: If $F$ is a presheaf on a space $X$ and $x \in X$ is a point, we define the stalk $F_x$ of $F$ at $x$ as the colimit $\colim_{U \ni x}F(U)$ over all neighborhoods of $x$. If $X = \Spec(A)$ is an affine scheme,
+%%ROUGH%
+%
+%We can also form stalks of sheaves on the \'etale toplogy. Let $X$ be a scheme and $x$ a point of $X$. An \'etale neighborhood of $x$ is defined to be a pair $(U, y)$ together with an \'etale morphism $\varphi\colon U \to X$ such that $\varphi(y) = x$. A morphism of \'etale neighborhoods $f\colon (V,z) \to (U,y)$ is a morphism of $X$-schemes $f\colon V \to U$ such that $f(v) = u$. The stalks of sheaves are defined as a colimit over all \'etale neighborhoods.
+%
+%
+%We will show that for each $x \in X$, the functor $F \to F_x$ is exact. This provides us with a way to check exactness locally: An exact sequence of abelian sheaves
+%\[
+%	0 \to F \to G \to H \to 0
+%\]
+%is exact if and only if the seqence
+%\[
+%	0 \to F_x \to G_x \to H_x \to 0
+%\]
+%is exact for each $x \in X$.
+%Recall that a category $\mathcal{C}$ is \textit{cofiltered} if the following holds:
+%\begin{enumerate}
+%	\item For any pair of objects $a_1$ and $a_2$, there is an object $b$ with maps $b \to a_1$ and $b \to a_2$.
+%	\item Every pair of morphisms $f,g\colon a \to b$, there is an equalizer $h\colon c \to a$. This means that $f \circ h = g \circ h$.
+%\end{enumerate}
+%
+%\begin{example}
+%	The subcategory of $\Op(X)$ consisting of all open sets containing $x$ is cofiltered because $\Op(X)$ has all finite pullbacks. The second condition does not need to be verified, since there is at most one morphism between any two open sets.
+%\end{example}
+%
+%\begin{example}
+%	Let $X$ be a scheme and consider the structure sheaf $\mathcal{O}_X$ in the Zariski topology. The stalks of this sheaf, written $\mathcal{O}_{X,x}$ for $x \in X$ are local rings: By definition each point $x \in X$ is contained in an affine neighorhood $\Spec(A) \subset X$. We define a map from the stalk $\Sh{O}_p$ to the ring $A_p$, where $p$ is the localisation of $A$ at the the multiplicative subset $A\setminus (p)$ by sending a section of .
+%	In the \'Etale topology, the limits $\varprojlim_{U \ni x} \mathcal{O}(U)$ turn out to be the strict henselizations of the local rings $\mathcal{O}_{X,x}$.
+%\end{example}
+%
+
+
+
+
+
+%\section{Some categories and functors related to sheaves}
+%
+%Rough draft \par
+%Sheaves are closely related to bundles. Because bundles are not locally trivial, we define vector bundles on schemes via sheaves. We prove that there is the sheaf-bundle adjunction and hopefully apply it.
+%
+%\subsection{Bundles and sheaves}
+%
+%A map $f: Y \to X$ of topological spaces is also called a bundle over $X$. Every bundle gives rise to the sheaf $Gamma_f$, defined by
+%\[
+%	\Gamma_f(U)	= \{ s : U \to f^{-1}(U) \mid f \circ s = id \}.
+%\]
+%This sheaf is called the \textit{sheaf of sections of $f$}. Each map $f \to g$ of bundles over $X$ induces a map of sheaves.
+%\begin{remark}
+%	It is not the case that the \'espace \'etale of an \'etale sheaf is again a scheme. I have heard this is a reason to consider algebraic spaces
+%\end{remark}
+%
+%\begin{proposition}
+%	Let $f: X \to Y$ be a morphism of schemes. The presheaf $\Gamma_f$ is a sheaf in the \'etale topology.
+%\end{proposition}
+%\begin{proof}
+%
+%\end{proof}
+%
+%\begin{definition}[Fiber bundles]
+%	Let $X$ be a topological space. A \textit{fiber bundle over $X$ with fiber $F$} is a space $p: B \to X$ over $X$ such that for each point $x \in X$ there is an open neighborhood $U$ of $x$ such that $p^{-1}(U) \cong U \times F$. A cover $\{U_i\}$ is called \textit{a trivialization of $B$} if $p^{-1}(U_i) \cong U_i \times F$ for each $i$. We will write $U_{ij}$ instead of $U_i \cap U_j$ and similarly for $U_i \cap U_j \cap U_k$.
+%\end{definition}
+%\begin{remark}
+%	Suppose we are given a cover $\{U_i\}$ of $X$. Under which conditions can we construct a fiber bundle $p: B \to X$ with fiber $F$ such that $\{U_i\}$ is a trivialization of $B$? We know that we want $B_i \coloneqq p^{-1}(U_i)\cong U_i \times F $, so $B$ should be glued together from the $B_i$. In order to do this we need to specify isomorphisms $\phi_{ij} : U_i \to U_j$ subject to the \textit{cocycle condition}:
+%	\[(...)\]
+%	.
+%\end{remark}
+%
+%\begin{construction}
+%	Each fiber bundle $B$ over $X$ with projection $p$ gives rise to a sheaf. For each open set $U$ of $X$ we can consider the set of sections
+%	\[
+%		\{s \in \mathcal{M}(U) \mid p \circ s = \text{id}\}.
+%	\]
+%	This forms a sheaf on $X$. We have seen (...) that fibre bundles are not locally trivial in the Zariski topology. For this reason the analogs of fibre bundles in algebraic geometry are defined using sheaves with a local triviality condition.
+%\end{construction}
+%\begin{example}
+%	Let $p : M \to S^1$ be the M\"obius strip with fiber $[-1,1]$ from the introduction. Let $\mathcal{M}$ be the sheaf of sections of this bundle. There is a subsheaf $\mathcal{N}$ which consists of those sections which vanish nowhere:
+%	\[
+%		\mathcal{N}(U) = \{s : U \to U \times [-1,1] \mid \pi_1(s) \neq 0 \text{ for all } s \in U\}.
+%	\]
+%	This subsheaf has no global sections. This is because of the non-orientability of the M\"obius strip. We may choose a trivialisation $\{U_1, U_2, U_3\}$ of $M$ such that each $U_i$ is connected. Then the sign of sections $s_i: U_i \to U_i \times [-1,1]$ must be constant.
+%\end{example}
+
+
+\section{The global sections functor}
+Let $X$ be a topological space and $F$ a sheaf on $X$. The elements of $F(X)$ are called \textit{global sections of $F$}. It is convenient to view $F$ as a variable and to write $\Gamma(X,-)$ as the functor which sends a sheaf $F$ to the set of its global section $\Gamma(X, F)$. Note that a sheaf may not have global sections. For example, the sheaf of sections of the double cover of a circle has no global sections, but locally  there are 3. Sheaf cohomology is all about applying the techniques from homological algebra to study the global sections of sheaves. Note that $X$ is the terminal object in both $\Op(X)$ and in $\Et/X$, so a global section for an \'etale sheaf is defined in the same way.
+
+Consider the terminal object $1$ in the category $\Set^{C^{op}}$. It is the presheaf defined by $1(X) = \{*\}$ for all $X \in C$. A morphism of presheaves $\gamma: 1 \to P$ picks an element $\gamma_U$ for each object $U$ of $C$ such that the following diagram commutes for each $f: U \to U'$:
+\[
+	% https://q.uiver.app/?q=WzAsMyxbMSwwLCJcXHsqXFx9Il0sWzAsMSwiXFxTaHtGfShVJykiXSxbMiwxLCJcXFNoe0Z9KFUpIl0sWzAsMV0sWzEsMiwiZl8qIl0sWzAsMl1d
+	\begin{tikzcd}
+		& {\{*\}} \\
+		{\Sh{F}(U')} && {\Sh{F}(U)}
+		\arrow[from=1-2, to=2-1]
+		\arrow["{f_*}", from=2-1, to=2-3]
+		\arrow[from=1-2, to=2-3]
+	\end{tikzcd}
+\]
+We obtain a functor $\Gamma: \Set^{C^{op}} \to \Set, \Gamma(P) = \Hom(1, P)$. Conversely, we can assign to each set $S$ the constant presheaf $\Delta C$ by setting $\Delta C(U) = S$ and letting all restrictions be identities. There are natural isomorphisms
+\[
+	\Hom_{\widehat{C}}(\Delta C, P) \cong \Hom(S, \Gamma P),
+\]
+so the global sections functor is left adjoint to the constant presheaf functor.
+Since the inclusion of sheaves into presheaves has a left adjoint it preserves limits. In particular, terminal object $1$ is also a sheaf. Since adjoint functors compose, it follows that the functor $\Gamma : \mathsf{Sh}(C,J) \to \Set$ is right adjoint to the composition $a \circ \Delta: \Set \to \mathsf{Sh}(C,J)$.
+
+
+For example, when $X$ is a topological space, $\Hom(1,F)(X)$ consists of all global sections of the sheaf $\Sh{F}$. Here $\Hom(1,F)$ is in the category $\mathsf{Sh}(C,J)$
+
+\begin{theorem}
+	There is an adjoint pair of functors
+	% https://q.uiver.app/?q=WzAsMixbMCwwLCJcXG1hdGhzZntTaH0oQyxKKSJdLFsxLDAsIlxcU2V0Il0sWzEsMCwiXFxEZWx0YSIsMCx7Im9mZnNldCI6LTF9XSxbMCwxLCJcXEdhbW1hIiwwLHsib2Zmc2V0IjotMX1dXQ==
+	\[
+		\begin{tikzcd}
+			{\mathsf{Sh}(C,J)} & \Set
+			\arrow["\Delta", shift left=1, from=1-2, to=1-1]
+			\arrow["\Gamma", shift left=1, from=1-1, to=1-2]
+		\end{tikzcd}
+	\]
+	The global sections functor $\Gamma: \mathsf{Sh}(C,J) \to \Set,\ \Gamma(F) = \Hom(1,F)$ is right adjoint to the constant sheaf functor $\Delta: \Set \to \Sh(C,J)$.
+\end{theorem}

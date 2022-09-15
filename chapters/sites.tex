@@ -1,0 +1,87 @@
+\section{Sites}
+We have seen strong analogies between \'etale maps and open sets. Specifically, \'etale maps allow us to trivialize certain geometric constructions as if we were working in a finer topology than the Zariski topology. Furthermore, the theory of surjective \'etale maps should be interpreted as the theory of covering spaces for schemes. We will now develop some more topological analogies, equipping the category $\Et/X$ with a Grothendieck topology. The definition of Grothendieck topology is based on the observation that the definition sheaves makes no reference to points, only the (category of) open sets of $X$. Even so, one does not need the structure of the topology, just the notion of open covering. Because there is no natural object in $\Op(X)$ describing a cover $\{U_i\}$, one is lead to consider the free cocompletion $\yo \colon C \to \widehat{C}$ because it contains the coproduct $\coprod \yo(U_i)$.
+
+Let $S \subset \yo(A)$ be a subfunctor and $f \colon B \to A$ a morphism. We can construct a subfunctor $f^*S \subset \yo(B)$ by defining
+\[
+	f^*S = S \times_{\yo(A)} \yo(B),
+\]
+which, when applied to an object $X$ gives
+\[
+	(f^*S)(X) = \{g \in \Hom(X,B) \mid f \circ g \in S(X)\}.
+\]
+This is a subsheaf of $\yo(B)$ because pullbacks of monics are monics. We have
+\[
+	fg \in S(C) \iff g \in (f^*S)(C)
+\]
+for all composable morphisms $f \colon  B \to A$ and $g \colon C \to B$. Setting $g = id_B$ we have
+\[
+	f \in S(B) \iff f^*S(B) = \Hom(B,A).
+\]
+Define a relation $S \covers f$, read ``$S$ covers $f$'' whenever $S \subset \yo(U)$ is a subfunctor and $f \colon V \to U$ is a morphism with $f^*S \in J(V)$. Thus we may write $S \covers f \circ g \iff f^*S \covers g$.
+
+\begin{definition}[Grothendieck Topologies]
+	A Grothendieck topology on a category $C$ is a function $J$ which assings to each object $U$ of $C$ a collection of subfunctors $J(A)$ of $\yo(A)$ subject to the following conditions:
+	\begin{itemize}
+		\item For every object we have $\yo(A) \in J(A)$.
+		\item
+		      Given a subfunctor $S \subset \yo(A)$ and a morphism $f \colon B \to A$ such that the diagram
+		      \[
+			      \begin{tikzcd}
+				      f^*S       & S \\
+				      {\yo(B)} & {\yo(A)}
+				      \arrow["f_S"    ,       from=1-1, to=1-2]
+				      \arrow["r"      , tail, from=1-2, to=2-2]
+				      \arrow["r_f"    , tail, from=1-1, to=2-1]
+				      \arrow["\yo(f)"',       from=2-1, to=2-2]
+			      \end{tikzcd},
+		      \]
+		      is a pullback, we have $R_f \in J(B)$.
+		\item Given an arbitrary subfunctor $R \subset \yo(A)$ and a subfunctor $S \in J(A)$ of $\yo(A)$ such that $f^*R \in J(B)$ for all $f \colon B \to A$, then $R \in J(A)$.
+	\end{itemize}
+
+	There is an ``elementwise'' formulation of these conditions which resembles the topological picture more:
+
+	\begin{definition}[Grothendieck Pretopologies]
+		Let $C$ be a category. A Grothendieck pretopology or a basis for a topology on $C$ is given by a function $\text{Cov}$ which assigns to each object $U$ of $C$ a collection of families of morphisms $\text{Cov}(U)$ with codomain $U$ with the following properties:
+		\begin{enumerate}
+			\item If $V \to U$ is an isomorphism, then $\{V \to U\} \in C$
+			\item If $\{U_i \to U\} \in \text{Cov}(C)$, and $V \to U$ is a morphism, then $U_i \times_U V$ exists and $\{U_i \times_U V \to V\}$ is in $\text{Cov}(C)$.
+			\item If $\{U_i \to U\} \in \text{Cov}(C)$, and for each $U_i$ we have $\{V_{ij} \to U_i\}$, the composition $\{V_{ij} \to U\}$ is in $\text{Cov}(C)$.
+		\end{enumerate}
+	\end{definition}
+\end{definition}
+
+
+Let $K$ be a Grothendieck pretopology on $C$. Then $K$ generates a Grothendieck topology by defining for each $A$ a set $J(A)$ consisting of those subfunctors of $\yo(A)$ which contain a covering family $\{U_i \to U\}_{i \in I}$. Note that for a topology $J$ on $C$ there is a maximal basis which generates $J$, see~\cite{SIGL}, III.2.2. While Grothendieck topologies are more ``functorial'', the pretopology viewpoint is geometrically intuitive. We will make use of both, depending on the situation.
+
+\begin{example}
+	A topological space $X$ may be equipped with the structure of a pretopology by declaring the coverings of open sets $U \subseteq X$ to be those families of open sets $\{U_i\}$ contained in $U$ such that $\displaystyle\bigcup U_i = U$. The pullback $U_i \times_U U_j$ is then simply the intersection $U_i \cap U_j$. Recall that a subfunctor $S \subset \Hom(-,A)$ may be described by a set $\{V_i\}$ of subsets of $A$ such that $S(V) \simeq \{*\}$. Thus $S$  is then a cover if $\bigcup V_i = A$.
+	%Let $\mathcal{O}(X)$ be the corresponding locale. A family of morphisms $\{U_i \to U\}$ is a cover if $U = \bigvee U_i$
+\end{example}
+
+\begin{example}[The Atomic Topology]
+	Let $C$ be a category and define $\text{At}(A)$ to consist of all nonempty subfunctors of $\yo(A)$ for all objects $A$ of $C$. In order for this to define a topology on $C$, it must be possible to complete any two morphisms $f \colon  B \to A$ and $g \colon B' \to A$ to a commutative square
+	\[
+		\begin{tikzcd}
+			X & B \\
+			B' & A
+			\arrow[from=1-1, to=2-1]
+			\arrow[from=1-1, to=1-2]
+			\arrow[from=1-2, to=2-2]
+			\arrow[from=2-1, to=2-2]
+		\end{tikzcd}
+	\]
+	for some object $X$. In particular, the atomic topology is well defined for any category with pullbacks.
+\end{example}
+
+\begin{example}[The \'Etale Site of a Scheme]
+	The main site we will consider is the \'etale site of a scheme $X$. The underlying category is the subcategory of schemes over $X$ which are finite \'etale over $X$. From \ref{} it follows that the set of families jointly surjective \'etale morphisms form a site. The \'etale topology topology is finer than the Zariski topology in the sense that an open immersions $U \to X$ are \'etale, so each open set $U \subset X$ may be thought of as an \'etale open. From now on we write $\Et/X$ for this site, omitting the topology from the notation.
+\end{example}
+
+\begin{example}[The \'Etale Site of $\Spec(k)$]
+	Let $A$ be an finite \'etale $k$-algebra. Recall that $\Spec(A)$ is isomorphic to a disjoint union of points $\coprod \Spec(L_i)$ where the $L_i$ are finite separable extensions of $k$. Then an \'etale cover of $A$ is given by choosing a finite \'etale algebra $A_i$ for each $L_i$ and taking spectra:
+	\[
+		\coprod \Spec(A_i) \to \coprod \Spec(L_i) \simeq \Spec(A).
+	\]
+	Let $L$ be a finite separable extension of $k$ A sieve on $\Spec(L)$ is a covering if it is nonempty. More generally, a sieve on $\Spec(A)$ is a covering if it is nonempty, hence the \'etale topology on $\Et/\Spec(k)$ coincides with the atomic topology.
+\end{example}

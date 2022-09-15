@@ -1,0 +1,165 @@
+\subsection{Presheaves}
+Recall that a presheaf $P$ of sets on a category $C$ is simply a functor $P \colon C^{\op} \to \Set$. For an object $A$ of $C$, we call the elements $s \in P(A)$ the sections of $P$ over $A$. The functor category $\Set^{C^{\op}} = \widehat{C}$ has as objects presheaves $P \colon C^{\op} \to \Set$ and as morphisms natrual transformations $P \to P'$. For each object $X$ of $C$ there is a presheaf $\yo(X) = \Hom_C(-,X)$, which is defined on an object by $\yo(X)(Y) = \Hom_C(Y,X)$ and for morphisms $f \colon Y' \to Y$ and $u \in \Hom_C(Y,X)$ by
+\begin{gather*}
+	\yo(X)(f) \colon \Hom_C(Y,X) \to \Hom_C(Y', X)\\
+	\yo(X)(f)(u) = u \circ f
+\end{gather*}
+A presheaf isomorphic to one of the form $\yo(A)$ is called representable, with $A$ being the representing o bject. The Yoneda lemma implies that this object is unique up to isomprhism. Recall that the Yoneda lemma says that there is a bijectivetion between natural transformations $\yo(A) \to P$ and elements of $P(A)$, where $P$ is an arbitrary presheaf. If $f \colon A \to B$ is a morphism in $C$, then there is a natural transformation $\yo(A) \to \yo(B)$ given by composing with $f$. We obtain a fully faithful functor
+\[\yo \colon C \to \Set^{C^{\op}},\quad A \to \Hom_C(-,A)\]
+called the yoneda embedding.
+
+\begin{construction}[Subobjects]
+	Recall that a morphism $f \colon A \to B$ in some category $C$ is called a monomorphism if for any object $C$ and parallel arrows $g, h \colon C \xbigtoto{} A$ with $fg = fh$ implies $g = h$. We consider two monomorphisms $f \colon A \to B$ and $f' \colon A' \to B$ to be equivalent if there is an isomophism $A \simeq A'$ with $f'h = f$. A subobject of an object $A$ of $C$ is an equivalence class of monomorphisms with codomain $A$. The collection of subobjects of $A$, denoted by $\mathbf{Sub}_C(A)$ is partially ordered, where $[f] \le [g]$ if and only if there is a morphism $k \colon S \to T$ such that $f = gk$, where $[f]$ and $[g]$ are the classes of $f$ and $g$.
+\end{construction}
+
+\begin{example}[Subfunctors]
+	Let $P$ be a presheaf on $C$. A subfunctor $S$ of $P$ is defined to be a presheaf such that for each object $A$, the set $S(A)$ is a subset of $P(A)$ and each map $S(f): S(B) \to S(A)$ is a restriction of $P(f)$ for all morphisms $f \colon A \to B$.
+\end{example}
+
+\begin{definition}
+	In a category $C$ with finite limits a \textit{subobject classifier} is a monic $\true \colon 1 \to \Omega$ such that for every monic $S \to X$ there is a unique morphism $\phi$ such that diagram below is a pullback square.
+	\[
+		\begin{tikzcd}
+			S & 1 \\
+			A & \Omega
+			\arrow[tail, from=1-1, to=2-1]
+			\arrow[from=1-1, to=1-2]
+			\arrow["{\true}", from=1-2, to=2-2]
+			\arrow["\phi"', from=2-1, to=2-2]
+		\end{tikzcd}
+	\]
+\end{definition}
+
+\begin{proposition}
+	In a category with a subobject classifier, the object $\Omega$ is a representing object for the functor $A \to \mathbf{sub}_C(A)$ and we have an isomoprhism
+	\[ \mathbf{sub}_C(A) \simeq \Hom_C(A,\Omega).\]
+	Furthermore, the object $\mathbf{1}$ is the final object in $C$.
+\end{proposition}
+
+\begin{proof}
+	See \cite{SIGL}, I.3.1.
+\end{proof}
+
+\subsection{Subobjects in Presheaf Categories}\label{section:presheaf_subobjects}
+
+\begin{construction}
+	Let $\widehat{C}$ be a presheaf category. Suppose $\widehat{C}$ has a subobject classifier $\Omega$. The subobjects of a representable $\yo(A)$ must be given by
+	\[
+		\sub_{\widehat{C}}(\yo(A)) \simeq \Hom_{\widehat{C}}(\yo(A), \Omega) \simeq \Omega(A)
+	\]
+	Thus the subobject classifier of $\widehat{C}$ is given by the presheaf $A \to \Omega(A)$ where we have the chain of equalities:
+	\[
+		\Omega(A)  = \sub_{\widehat{C}}(\Hom_C(-,A))  = \{S \mid S \text{ is a subfunctor of $\yo(A)$}\}.
+	\]
+\end{construction}
+
+%There is an alternative description of subfunctors which we will make use of in sheaf theory.
+
+%\begin{definition}[Sieves]
+%	Let $C$ be a category and $A$ an object of $C$. A \textit{sieve} on $A$ is a set $S$ of morphisms with codomain $A$ such that $fh \in S$ whenever $f \in S$ and $fh$ is defined.
+%\end{definition}
+%
+%\begin{remark}
+%	If $S$ is a subfunctor $\yo(U)$ and $f \colon V \to U$ is a morphism, then the set
+%	\[
+%		f^*(S) = \{ g \mid g \text{ has codomain } V \text{ and the composite }fg \text{ is in } S\}
+%	\]
+%	is a defines a subfunctor of $\yo(V)$.
+%\end{remark}
+%
+\begin{example}
+	Let $\Op(X)$ be the poset of opens of a topological space $X$. Consider the representable functor $\yo(U) = \Hom(-,U)$. If $V \subset U$, then $\Hom(V,U)$ is the one element set, as $\Op(X)$ is a poset. If $V \not\subset U$, then $\Hom(V,U) = \varnothing$. Now let $S$ be a subfunctor of $\Hom(-,U)$. Then $S$ may be equivalently described as the set of all those $V \subset U$ with $S(V) = 1$ or as the subset $T \subset \Op(U)$ of those open sets such that $W \subset V \in T$ implies $W \in S$.
+\end{example}
+
+Every sieve $S$ on $A$ determines a subfunctor of $\yo(A)$ and conversely, every subfunctor of $\yo(A)$ determins a sieve on $A$. Given a subfunctor $T \subset \yo(A)$, the set
+\[
+	S = \{f \mid f \in S(B) \text{ for some object } B\}
+\]
+is a sieve on $A$. Conversely a sieve $S$ on $A$ determines a subfunctor $T$  of $\yo(A)$ by defining
+\[
+	T(B) = \{ f \mid f \in S \text{ and } f \text{ has domain } B\} \subset \yo(A)(B).
+\]
+Since these associations are inverses to each other, we can equivalently define the subobject classifier of a presheaf category $\Set^{C^{\op}}$ as the presheaf which to an object $A$ the set of sieves on $A$.
+
+\begin{remark}
+	Returning to the example of the category of opens $\Op(X)$, we can define a covering sieve for $U$ to be a sieve $S$ on $U$ such that $U$ is the union of all the open sets $V \in S$.
+\end{remark}
+
+\begin{definition}[Sheaves on Topological Spaces]\label{def:sheaves}
+	Let $X$ be a topological space. A presheaf $F$ on $X$ is a \textit{sheaf}, if for any open covering $\{U_i\}$ of $U$ and any family of section $x_i \in F(U_i)$ such that $x_i|_{U_i \cap U_j} = x_j|_{U_i \cap U_j}$ there is a unique $x \in U = \bigcup U_i$ such that $x|_{U_i} = x_i$. A subsheaf of $F$ is simply a subfunctor of $F$ which is also a sheaf.
+\end{definition}
+
+\begin{proposition}\label{prop:classifier}
+	The subobject classifier $\Omega$ for the category of sheaves $\sh(X)$ on a space $X$ is given on objects $U \subset X$ by
+	\[
+		\Omega(U) = \{ V \mid V \text{ is an open subset of } U \}
+	\]
+	and on morphisms $V \subset U$ by
+	\[
+		\Omega(U) \to \Omega(V),\quad W \to W \cap V.
+	\]
+\end{proposition}
+
+\begin{proof}
+	We first show that $\Omega$ is indeed a sheaf. Let $\{U_i\}$ be an open cover of $U$ and let $V_i \in \Omega(U_i)$ be sections with $V_i \cap U_j = V_j \cap U_i \subset U_i \cap U_j$. Then the union of the $V_i$ is a section of $\Omega$ over $U$ with the property that $V \cap U_i = V_i$. To show that $\Omega$ is a subobject classifier for $\sh(X)$, consider a subobject $S \subset F$. By the definition of subobject classifier, this subobject should arise from a characteristic natural transformation $\phi \colon F \to \Omega$. Define this function elementwise by the function
+	\begin{gather*}
+		\phi \colon F(U) \to \Omega(U)\\
+		\quad x \to \bigcup W_i
+	\end{gather*}
+	where the $W_i$ are the open subsets of $U$ such that the restriction of $x$ to $W_i$ lies inside of $S(W_i)$. This map is natural in $U$ and because $S$ is a subsheaf, $x|_W$ lies in $S(W)$. Now for each $U$  we can pull back the map $\phi_U$ along the map $\true \colon 1 \to \Omega(U)$ which picks out $U \in \Omega(U)$:
+	\[
+		\begin{tikzcd}
+			P(U) & 1 \\
+			F(U) & \Omega(U)
+			\arrow[from=1-1, to=2-1]
+			\arrow[from=1-1, to=1-2]
+			\arrow["\true", from=1-2, to=2-2]
+			\arrow["\phi_U"', from=2-1, to=2-2].
+		\end{tikzcd}
+	\]
+	The constructed pullback $P(U)$ is equal to $\{x \in F(U) \mid \phi_U x = U\} \subset F(U)$, and since limits and in particular pullbacks are constructed pointwise in presheaves the ``total'' pullback
+	\[
+		\begin{tikzcd}
+			P & 1 \\
+			F & \Omega
+			\arrow[from=1-1, to=2-1]
+			\arrow[from=1-1, to=1-2]
+			\arrow["{\true}", from=1-2, to=2-2]
+			\arrow["\phi"', from=2-1, to=2-2]
+		\end{tikzcd}
+	\]
+	is indeed the subsheaf $S$. The map $\phi$ is also unique, so the map $\true: 1 \to \Omega$ is a subobject classifier.
+\end{proof}
+
+\subsection{Subobject Classifiers for \'Etale Sites}
+In proposition~\ref{prop:classifier} we showed that for a topological space $X$, the category $\sh(X)$ of sheaves on $X$ has a subobject classifier. In this section we construct a subobject classifier for categories of sheaves on an arbitrary site.
+
+\begin{definition}
+	Let $(C,J)$ be a site. We define a subfunctor $S \subset \yo(A)$ to be \textit{closed for $J$} if for all morphisms $f \colon B \to A$
+	\[
+		\{h \colon D \to B \mid fh \in S(D) \} \in J(D) \implies f \in S(B).
+	\]
+\end{definition}
+
+The property of being closed in stable under pullback. Indeed, let $S$ be a subfunctor of $\yo(A)$ and $g \colon B \to A$ an arbitrary morphism. Suppose that $h^*(S) \covers f$ for a morphism $f \colon C \to B$. By definition $S \covers hf$. Since $S$ is closed, we have $hf \in S(C)$. Since $S$ is closed, $hf \in S(C)$ or $f \in h^*S(B)$. Thus $h^*S$ is closed and the definition \[\Omega(A) = \{S \subset \yo(A) \mid S \text{ is close }\}\] defines a presheaf on $C$, with the restriction along a morphism $h \colon B \to C$ given by $S \to h^*S$.
+
+\begin{proposition}
+	The presheaf $\Omega \colon C^{\op} \to \Set$ is a sheaf and in fact a subobject classifier for $\sh(C,J)$ when taken together with the map
+	\[\true \colon 1 \to \Omega \] where $\true$ is the natural transformation given on objects by $A \to \yo(A)$.
+\end{proposition}
+
+\begin{proof}
+	See \cite{SIGL}, III.7. Lemma 1.
+\end{proof}
+
+\begin{example}
+	Let $(C,J) = \Et/X$ be the \'etale site of a scheme $X$ and suppose we have a covering $\{U_i\}$.
+\end{example}
+
+\begin{lemma}
+	The presheaf $\Omega$ defined on objects by
+	\[
+		\Omega(A) = \{S \mid S \text{ is a closed sieve}\}
+	\]
+	and on morphisms by $\Omega(f) = f^*$ is a sheaf. Here $f^*$ is defined as in the previous definition.
+\end{lemma}

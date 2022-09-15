@@ -3,7 +3,7 @@ We will first consider the case of \'etale algebras over a field $k$. Under the 
 
 \subsection{Reminder on field extensions and Galois theory}
 \begin{construction}
-	Let $k$ be a field and fix once and for all separable and algebraic closures $k_s \subset \overline{k}$ of $k$. Recall that an extension $L/k$ is separable if its minimal polynomial $p(x)$ has no multiple roots (in a splitting field of $p(x)$). It follows from basic algebra that a polynomial $p(x)$ is separable if and only if it is coprime to its derivative $p'(x)$. This means that $p'(x)$ gets mapped to a unit under the canonical map $k[x] \to k[x]/(p(x)) \simeq L$. An algebraic extension $L$ of $k$ is a \textit{Galois extension} if the elements of $L$ that are fixed under the automorphism group $\Aut_k(L)$ are precisely the elements of $k$.A separable extension $L/k$ is Galois if and only if the minimal polynomial of each element $a \in L$ splits into linear factors in $L$. If $L$ is Galois, we call $\Aut_k(L)$ the \textit{Galois group} of $L$ over $k$ and denote it by $\Gal(L/k)$. In particular $k_s$ is a Galois extension. We call its Galois group the \textit{absolute Galois group of $k$} and denote it by $\Gal(k)$.
+	Let $k$ be a field and fix once and for all separable and algebraic closures $k_s \subset \overline{k}$ of $k$. Recall that an extension $L/k$ is separable if its minimal polynomial $p(x)$ has no multiple roots (in a splitting field of $p(x)$). It follows from basic algebra that a polynomial $p(x)$ is separable if and only if it is coprime to its derivative $p'(x)$. This means that $p'(x)$ gets mapped to a unit under the canonical map $k[x] \to k[x]/(p(x)) \simeq L$. An algebraic extension $L$ of $k$ is a \textit{Galois extension} if the elements of $L$ that are fixed under the automorphism group $\Aut_k(L)$ are precisely the elements of $k$. A separable extension $L/k$ is Galois if and only if the minimal polynomial of each element $a \in L$ splits into linear factors in $L$. If $L$ is Galois, we call $\Aut_k(L)$ the \textit{Galois group} of $L$ over $k$ and denote it by $\Gal(L/k)$. In particular $k_s$ is a Galois extension. We call its Galois group the \textit{absolute Galois group of $k$} and denote it by $\Gal(k)$.
 \end{construction}
 
 
@@ -23,8 +23,8 @@ We will first consider the case of \'etale algebras over a field $k$. Under the 
 	See \cite{Szamuely}, Theorem 1.3.11.
 \end{proof}
 
-\begin{definition}
-	A $k$-algebra $A$ is \'etale over $k$ if it is isomorphic to a product of separable extensions of $k$. If $A$ is finite dimensional over $k$ we say that $A$ is finite \'etale over $k$. We define $\Spec(A) \to \Spec(k)$ to be \'etale (respectively finite \'etale) if $A$ is an \'etale (respectively finite \'etale) algebra over $k$.
+\begin{definition}[\'Etale Algebras and Schemes \'etale over a Point]
+	A $k$-algebra $A$ is said to be \'etale over $k$ if it is isomorphic to a product of separable extensions of $k$. If $A$ is finite dimensional over $k$ we say that $A$ is finite \'etale over $k$. We define $\Spec(A) \to \Spec(k)$ to be \'etale (respectively finite \'etale) if $A$ is an \'etale (respectively finite \'etale) algebra over $k$.
 \end{definition}
 
 \begin{construction}\label{construction:separable_category}
@@ -36,10 +36,10 @@ We will first consider the case of \'etale algebras over a field $k$. Under the 
 \end{construction}
 
 \subsection{Discrete \texorpdfstring{$G$}{G}-modules}
-The ultimate goal of this section is now to construct an equivalence of categories between the category of finite \'etale $k$-algebras and the category of finite sets with continuous let $\Gal(k)$-action. In general, sets with a continuous $G$-action for a fixed group $G$ will be relevant to us, so we construct some examples and make some preliminary definitions.
+The ultimate goal of this section is now to construct an equivalence of categories between the category of finite \'etale $k$-algebras and the category of finite sets with continuous let $\Gal(k)$-action. In general, sets with a continuous $G$-action for a fixed group $G$ will be relevant to us, so we make some preliminary definitions and construct some examples.
 
-\begin{definition}
-	Let $(I, \le)$ be a poset such that for all $i, j \in I$ there exists some $k \in I$ such that $i \le k$ and $j \le k$. Let $\Gamma \colon I \to \text{Groups}$ be a diagram in groups, with homomorphisms between the groups denoted by $\psi_{ij}: Gj \to G_i$. If each $G_i \coloneqq \Gamma(i)$ is finite, the inverse limit of this system is said to be a \textit{profinite group}.
+\begin{definition}[Profinite Groups]
+	Let $(I, \le)$ be a poset such that for all $i, j \in I$ there exists some $k \in I$ such that $i \le k$ and $j \le k$. Let $\Gamma \colon I \to \text{Groups}$ be a diagram in groups, with homomorphisms between the groups denoted by $\psi_{ij} \colon G_j \to G_i$. If each $G_i \coloneqq \Gamma(i)$ is finite, the inverse limit of this system is said to be a \textit{profinite group}.
 \end{definition}
 
 \begin{remark}
@@ -54,9 +54,9 @@ The ultimate goal of this section is now to construct an equivalence of categori
 	Take an element $g = (g_i) \in \big(\prod G_i \setminus \varprojlim G_i \big)$. We will show that $g$ is contained in an open neighborhood $U$ with $\varprojlim G_i \cap U  = \varnothing$. By assumption, there are some $i$ and $j$ such that $\psi_{ij}(g_j) \neq g_i$. Define $U$ to be the subset of $\prod G_i$ consisting of all elements with $i$-th component $g_i$ and $j$-th component $g_j$. By the fact that each $G_i$ is discrete and by the definition of the product topology, this set contains $g$ and has empty intersection with $\varprojlim G_i$.
 \end{proof}
 
-\begin{lemma}
+\begin{corollary}
 	A profinite group is compact.
-\end{lemma}
+\end{corollary}
 
 \begin{proof}
 	Finite discrete groups are compact and by Tychonoff's theorem the product of compact groups is compact as well. Thus the statement follows from the fact that $\varprojlim G_i$ is closed in $\prod G_i$.
@@ -77,7 +77,7 @@ The ultimate goal of this section is now to construct an equivalence of categori
 \begin{definition}[Discrete $G$-modules]
 	For a topological group $G$, a discrete $G$-module is a set $X$ endowed with a left action
 	\[
-		m: G \times M \to M
+		m \colon G \times M \to M
 	\]
 	such that $a$ is continuous if $X$ is given the discrete topology. Denote by $BG$ the category of \textit{right $G$-sets} whose objects are sets $X$ equipped with a right $G$-action $X \times G \to X$ which is continuous when $X$ is given the discrete topology. Let $\Hom_G(X,Y)$ denote the set of morphisms in $BG$, which consists $G$-equivariant functions.
 \end{definition}
@@ -92,7 +92,7 @@ The ultimate goal of this section is now to construct an equivalence of categori
 \end{lemma}
 
 \begin{proof}
-	Consider the preimage $U_x \coloneqq \{ (g,y) \in G \times X \colon gy = x\}$ of a point $x \in X$ under the map $m: G \times X \to X$. We can write $U_x$ as a disjoint union of sets $\{(g,y) \in G \times \{y\} \colon gy = x\}$. These sets are either empty or homeomorphic to $G_x$ under the map $g \to (gh, y)$, where $h$ is such that $hy = x$, which implies that $ghy = gx = x$, so we have that the openness of $G_x$ implies the continuity of $m$. Conversely, $G_x$ is the preimage of $x$ under the composition $G \xrightarrow{i_x} G \times X \xrightarrow{m} X$, where $i_x(g) = (g,x)$, so $G_x$ is open if $m$ is continuous.
+	Consider the preimage $U_x \coloneqq \{ (g,y) \in G \times X \colon gy = x\}$ of a point $x \in X$ under the map $m \colon G \times X \to X$. We can write $U_x$ as a disjoint union of sets $\{(g,y) \in G \times \{y\} \colon gy = x\}$. These sets are either empty or homeomorphic to $G_x$ under the map $g \to (gh, y)$, where $h$ is such that $hy = x$, which implies that $ghy = gx = x$, so we have that the openness of $G_x$ implies the continuity of $m$. Conversely, $G_x$ is the preimage of $x$ under the composition $G \xrightarrow{i_x} G \times X \xrightarrow{m} X$, where $i_x(g) = (g,x)$, so $G_x$ is open if $m$ is continuous.
 \end{proof}
 
 \subsection{Classification theorems for \'etale algebras}
@@ -124,16 +124,16 @@ Let $U_f$ be the open stabilizer of some element $f \in \Hom_k(L, k^\sep)$ and s
 	between them is determened by the image of a fixed $f \in \Hom_k(K, k^\sep)$. Because $\varphi$ is $\Gal(k)$-equivariant, the elements of the stabilizer $U_f \subseteq \Gal(k)$ fix $\varphi(f)$ as well. We obtain an inclusion $U_f \subset U_{\varphi(f)}$ of open subgroups of $\Gal(k)$, hence an inclusion of subfields $\varphi(f)(L) \subset f(K)$. The map $f(K) \to K$ is an isomorphism, and composing with the inverse $f^{-1} \circ \varphi(f)$ yields the unique element of $\Hom_k(L,M)$ inducing $\varphi$. The last statement follows from the previous
 \end{proof}
 
-\begin{theorem}[Main Theorem of Galois Theory, Grothendieck's version]\label{theorem:galois}
+\begin{theorem}[Main Theorem of Galois Theory, Grothendieck's version]\label{theorem:galois_grothendieck}
 	Let $k$ be a field. The functor mapping a finite \'etale $k$-algebra $A$ to the finite set $\Hom_k(A, k_s)$ induces an equivalence of categories between the cateogry of \'etale $k$-algebras and the category of sets with a continous left $\text{Gal}(k)$-action
 \end{theorem}
 
 \begin{proof}
 	$A$ is isomorphic to a product of finite separable extension $\prod L_i$.Each element of the $\Gal(k)$-set $\coprod_i \Hom_k(L_i, k_s)$ has an open stabilizer by definition of the profinite topology on $\Gal(k)$. Conversely consider a $\Gal(k)$ set $T$ and write it as a disjoint union of orbits $\coprod T_i$. Pick an element $t_i \in T_i$ and let $G_i \subset \Gal(k)$ be its open stabilizer. Then the scheme
 	\[
-		\coprod_i \Spec(k_s^{G_i})
+		\coprod_i \Spec(k_\sep^{G_i}) = \Spec\big(\prod(k^{G_i}_\sep)\big)
 	\]
-	is \'etale over $k$ because by Galois theory each $k_s^{G_i}$ is a finite separable extension of $k$. This gives an inverse to the functor.
+	is \'etale over $k$ because by Galois theory each $k_\sep^{G_i}$ is a finite separable extension of $k$. This gives an inverse to the functor.
 \end{proof}\\
 
 The previous theorem is strongly reminiscent of the following theorem from algebraic topology:
@@ -165,44 +165,24 @@ See Chapter (...) for the definitions used in the statement.
 	%%TODO finish the proof
 \end{proof}
 
-
-\section{\'Etale Algebras over Rings}
+\subsection{\'Etale Algebras over Rings}
 We will now generalize the previous section to algebras over an arbitrary commutative ring $R$. Let $L/K$ be a finite field extension of degree $n$. Each element $a$ of $L$ induces a $K$-linear map
 \[
 	m_a: L \to L,\ b \to ab.
 \]
-Since $L \cong K^{\oplus n}$ as a $K$-module, we may choose a basis of $L$ over $K$ and represent the map $m_a$ as an $n \times n$ matrix with entries in $K$. We may take the trace and determinant of this matrix. But the trace and determinant are independent of the choice of the choice of basis, so the trace map
-\[
-	\Tr_{L/K}(a) = \Tr(\text{matrix of }m_a)
-\]
-and the norm map
-\[
+Since $L \cong K^{\oplus n}$ as a $K$-module, we may choose a basis of $L$ over $K$ and represent the map $m_a$ as an $n \times n$ matrix with entries in $K$. We may take the trace and determinant of this matrix. But the trace and determinant are independent of the choice of the choice of basis, so the trace map and the norm map
+\begin{gather*}
+	\Tr_{L/K}(a) = \Tr(\text{matrix of }m_a)\\
 	\Norm_{L/K}(a) = \text{det}(\text{matrix of }m_a)
-\]
-are well defined.
+\end{gather*}
 
-\begin{definition}
-	Let $L/K$ be a finite field extension. The \textit{trace pairing for $L/K$} is the symmetric $K$-bilinear form
-	\[
-		Q_{L/K} : L \times L \to K,\ (a,b) \to \Tr_{L/K}(ab)
-	\]
-\end{definition}
+are well defined. Let $L/K$ be a finite field extension. We define the \textit{trace pairing for $L/K$} to be the symmetric $K$-bilinear form
+\begin{gather*}
+	Q_{L/K} : L \times L \to K\\
+	(a,b) \to \Tr_{L/K}(ab)
+\end{gather*}
 
-\begin{lemma}
-	Let $L/K$ be a finite field extension. The following are equivalent:
-	\begin{enumerate}
-		\item $L/K$ is separable.
-		\item $\Tr_{L/K}$ is not identically zero.
-		\item $Q_{L/K}$ is nondegenerate.
-	\end{enumerate}
-\end{lemma}
-
-\begin{proof}
-	The equivalence of (2.) and (3.) are clear.
-	For the equivalence of (1.) and (2.) see (Keith Conrad, separability)
-	%The trace map is $K$-linear with target $K$ so it is either identically 0 or surjective. We only have to consider the case where $K$ has characteristic $p \neq 0$, since finite extensions in characteristic 0 are always separable and $\Tr_{L/K}(1) = [L:K] \neq 0$ in characteristic 0.\par
-	%Let $L/K$ be separable. By the primitive element theorem we can write $L = K(\alpha)$, where $\alpha$ is separable over $K$.
-\end{proof}
+It is well known that a field extension $L/K$ is separable if and only if $Q_{L/K}$ is nondegenerate. (See \cite{konradSep}). This leads naturally to the notion of an \'etale algebra $A$ over an arbitrary commutative ring $R$.
 
 \begin{definition}
 	Let $R$ be a ring, $A$ a free $R$-algebra of finite rank. As before, every $a \in A$ defines an $R$-linear map by multiplication and the trace map $A \to R$ is well defined. We say that $A$ is a \textit{separable} or \textit{\'etale} algebra if the $R$-bilinear mapping
@@ -211,3 +191,18 @@ are well defined.
 	\]
 	is nondegenerate.
 \end{definition}
+
+\begin{lemma}
+	Let $M/L/k$ be a tower of finite extensions of fields. Then
+	\[
+		\Tr_{M/K} = \Tr_{L/k} \circ \Tr_{M/L}
+	\]
+\end{lemma}
+
+%$\Tr_{L/K}$ is not identically zero.
+%\begin{proof}
+%The equivalence of (2.) and (3.) are clear.
+%For the equivalence of (1.) and (2.) see (Keith Conrad, separability)
+%The trace map is $K$-linear with target $K$ so it is either identically 0 or surjective. We only have to consider the case where $K$ has characteristic $p \neq 0$, since finite extensions in characteristic 0 are always separable and $\Tr_{L/K}(1) = [L:K] \neq 0$ in characteristic 0.\par
+%Let $L/K$ be separable. By the primitive element theorem we can write $L = K(\alpha)$, where $\alpha$ is separable over $K$.
+%\end{proof}

@@ -1,6 +1,3 @@
-\section{Sheaf Cohomology}
-Sheaf cohomology measures the obstruction to extending local solutions to certain geometric problems
-
 \subsection{Exact sequences and Cohomology}
 
 In linear algebra the notions of kernel and cokernel quantify the failure of a map to be injective or surjective. If a map has trivial kernel, it is injectve, if it has trivial cokernel, it is surjective. Cohomology plays a similar role in homological algebra, where we are often faced with the following situation:
@@ -51,7 +48,7 @@ We will now define the notion of injectivity and surjectivity for maps of sheave
 \end{proposition}
 
 \begin{proof}
-	$(\implies)$ Suppose that $\varphi$ is locally surjective. For any object $U$ of $C$ and any $s \in G(U)$ choose a cover $\{f_i: U_i \to U\}$ as stated in the proposition. Let $\alpha_1, \alpha_2: G \to H$ be morphisms such that $\alpha_1 \circ \varphi = \alpha_2 \circ \varphi$.
+	$\implies:$ Suppose that $\varphi$ is locally surjective. For any object $U$ of $C$ and any $s \in G(U)$ choose a cover $\{f_i: U_i \to U\}$ as stated in the proposition. Let $\alpha_1, \alpha_2: G \to H$ be morphisms such that $\alpha_1 \circ \varphi = \alpha_2 \circ \varphi$.
 	\[
 		% https://q.uiver.app/?q=WzAsMyxbMCwwLCJGIl0sWzEsMCwiRyJdLFsyLDAsIkgiXSxbMCwxLCJcXHZhcnBoaSJdLFsxLDIsIlxcYWxwaGFfMiIsMix7Im9mZnNldCI6MX1dLFsxLDIsIlxcYWxwaGFfMSIsMCx7Im9mZnNldCI6LTF9XV0=
 		\begin{tikzcd}
@@ -61,66 +58,66 @@ We will now define the notion of injectivity and surjectivity for maps of sheave
 			\arrow["{\alpha_1}", shift left=1, from=1-2, to=1-3]
 		\end{tikzcd}\]
 	We need to show that $\alpha_1 = \alpha_2$.  Now for each $f_i: U_i \to U$ and each section $s \in F(U)$ we have $(\alpha_1 \circ f_i)(s) = (\alpha_2 \circ f_i)(s)$ or equivalently  $\alpha_1(s)|_{U_i} = \alpha_2(s)|_{U_i}$. This means that $\alpha_1$ agrees with $\alpha_2$ for the cover $\{U_i\}$. Since $H$ is a sheaf it follows that $\alpha_1 = \alpha_2$.\par
-	$(\impliedby)$
+	$\impliedby:$ Suppose $f \colon F \to G$ is epic.
 \end{proof}
 
-\begin{definition}[Additive categories]
-	An \textit{additive category} is a category $C$ with finite direct sums such that the sets $\Hom(A,B)$ have the structure of an abelian group
-\end{definition}
+%\begin{definition}[Additive categories]
+%	An \textit{additive category} is a category $C$ with finite direct sums such that the sets $\Hom(A,B)$ have the structure of an abelian group
+%\end{definition}
+%
+%\begin{definition}[Kernels]
+%	Let $C$ be a category with an initial object $0$ and pullbacks. The kernel of a morphism $f: A \to B$ is the pullback
+%	\[
+%		% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXGtlciBmIl0sWzAsMSwiQSJdLFsxLDAsIjAiXSxbMSwxLCJCIl0sWzAsMV0sWzAsMl0sWzEsMywiZiIsMl0sWzIsM11d
+%		\begin{tikzcd}
+%			{\ker f} & 0 \\
+%			A & B
+%			\arrow[from=1-1, to=2-1]
+%			\arrow[from=1-1, to=1-2]
+%			\arrow["f"', from=2-1, to=2-2]
+%			\arrow[from=1-2, to=2-2]
+%		\end{tikzcd}.
+%	\]
+%	If $C$ is enriched over abelian groups, meaning that $\Hom(A,B)$ has the structure of an abelian group for all objects $A,B \in C$, there is a distinguished morphism $0_{A,B} : A \to B$. This morphism factors through the initial object $0$. In this case, the kernel of $f$ may be realized as the equalizer of the diagram
+%	\[
+%		% https://q.uiver.app/?q=WzAsMixbMCwwLCJBIl0sWzEsMCwiQiJdLFswLDEsImYiLDIseyJvZmZzZXQiOjF9XSxbMCwxLCIwX3tBLEJ9IiwwLHsib2Zmc2V0IjotMX1dXQ==
+%		\begin{tikzcd}
+%			A & B
+%			\arrow["f"', shift right=1, from=1-1, to=1-2]
+%			\arrow["{0_{A,B}}", shift left=1, from=1-1, to=1-2]
+%		\end{tikzcd}
+%	\]
+%\end{definition}
+%
+%\begin{definition}[Exact sequences]
+%	Fix an abelian category $C$.  A sequence
+%	\[ \cdots \xrightarrow{\varphi_{i-1}} A_{i-1} \xrightarrow{\varphi_{i}} A_{i} \xrightarrow{\varphi_{i+1}} A_{i+1} \to \cdots\]
+%	in $C$ is called \textit{exact} if the map from $A \to B$ is a monomorphism
+%\end{definition}
+%
+%\begin{example}
+%	There is a short exact sequence in $\Ab(X)$ for a scheme $X$, given By
+%	\[
+%		0 \to \mu_{n,X} \to \Gm \xrightarrow{x \to x^n} \Gm \to 0.
+%	\]
+%	The fact that it is left exact is clear.
+%\end{example}
 
-\begin{definition}[Kernels]
-	Let $C$ be a category with an initial object $0$ and pullbacks. The kernel of a morphism $f: A \to B$ is the pullback
-	\[
-		% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXGtlciBmIl0sWzAsMSwiQSJdLFsxLDAsIjAiXSxbMSwxLCJCIl0sWzAsMV0sWzAsMl0sWzEsMywiZiIsMl0sWzIsM11d
-		\begin{tikzcd}
-			{\ker f} & 0 \\
-			A & B
-			\arrow[from=1-1, to=2-1]
-			\arrow[from=1-1, to=1-2]
-			\arrow["f"', from=2-1, to=2-2]
-			\arrow[from=1-2, to=2-2]
-		\end{tikzcd}.
-	\]
-	If $C$ is enriched over abelian groups, meaning that $\Hom(A,B)$ has the structure of an abelian group for all objects $A,B \in C$, there is a distinguished morphism $0_{A,B} : A \to B$. This morphism factors through the initial object $0$. In this case, the kernel of $f$ may be realized as the equalizer of the diagram
-	\[
-		% https://q.uiver.app/?q=WzAsMixbMCwwLCJBIl0sWzEsMCwiQiJdLFswLDEsImYiLDIseyJvZmZzZXQiOjF9XSxbMCwxLCIwX3tBLEJ9IiwwLHsib2Zmc2V0IjotMX1dXQ==
-		\begin{tikzcd}
-			A & B
-			\arrow["f"', shift right=1, from=1-1, to=1-2]
-			\arrow["{0_{A,B}}", shift left=1, from=1-1, to=1-2]
-		\end{tikzcd}
-	\]
-\end{definition}
-
-\begin{definition}[Exact sequences]
-	Fix an abelian category $C$.  A sequence
-	\[ \cdots \xrightarrow{\varphi_{i-1}} A_{i-1} \xrightarrow{\varphi_{i}} A_{i} \xrightarrow{\varphi_{i+1}} A_{i+1} \to \cdots\]
-	in $C$ is called \textit{exact} if the map from $A \to B$ is a monomorphism
-\end{definition}
-
-\begin{example}
-	There is a short exact sequence in $\Ab(X)$ for a scheme $X$, given By
-	\[
-		0 \to \mu_{n,X} \to \Gm \xrightarrow{x \to x^n} \Gm \to 0.
-	\]
-	The fact that it is left exact is clear.
-\end{example}
-
-\begin{remark}
-	An \textit{abelian category} is a category $\mathcal{A}$ such that
-	\begin{enumerate}
-		\item for any two objects $A,B$ of $\mathcal{A}$, $\Hom(A,B)$ is an abelian group,
-		\item every morphism has a kernel and cokernel,
-		\item every monomorphism is a kernel,
-		\item every epimorphism is a cokernel.
-	\end{enumerate}
-\end{remark}
-
-\begin{definition}
-	A sequence of sheaves $\to \Sh{F}_{i-1} \to \Sh{F}_{i} \to \Sh{F}_{i+1} \to$
-	is exact if for each $i$, $\ker \varphi_i = im \varphi_{i-1}$.
-\end{definition}
-
+%\begin{remark}
+%	An \textit{abelian category} is a category $\mathcal{A}$ such that
+%	\begin{enumerate}
+%		\item for any two objects $A,B$ of $\mathcal{A}$, $\Hom(A,B)$ is an abelian group,
+%		\item every morphism has a kernel and cokernel,
+%		\item every monomorphism is a kernel,
+%		\item every epimorphism is a cokernel.
+%	\end{enumerate}
+%\end{remark}
+%
+%\begin{definition}
+%	A sequence of sheaves $\to \Sh{F}_{i-1} \to \Sh{F}_{i} \to \Sh{F}_{i+1} \to$
+%	is exact if for each $i$, $\ker \varphi_i = im \varphi_{i-1}$.
+%\end{definition}
+%
 \begin{definition}[Constant sheaves]
 	Let $X$ be a quasi-compact scheme. The sheafification of the presheaf $U \to S$ for a set $X$ is called the \textit{constant sheaf on $S$}.
 \end{definition}
@@ -130,32 +127,106 @@ We will now define the notion of injectivity and surjectivity for maps of sheave
 \end{definition}
 
 \begin{theorem}
-	The functor
-\end{theorem}
-
-\begin{proposition}
-	Let $X$ be a connected scheme and $x$ a geometric point of $X$. The functor $F \to F_{\overline{x}}$ induces an equivalence between the category of locally constant sheaves of sets with finite stalks on $X$ and the category of finite $\pi_1^{\et}(X,\overline{x})$-sets.
-\end{proposition}
-\begin{proof}
-
-\end{proof}
-
-\subsection{Galois theory for \'etale covers}
-\begin{definition}[The fiber functor $F_x$]
-	Let $x: \Spec(\Omega) \to X$ be a geometric point, where $\Omega$ is an algebraically field. The fiber functor at $x$ associates to each \'etale cover $f: Y \to X$ the underlying set of $\Spec(\Omega) \times_X Y$.
-\end{definition}
-
-\begin{definition}[Galois covers]
-	A connected finite \'etale cover $Y \to X$ is \textit{Galois} if its group of $X$-automorphism acts transitively on geometric fibers.
-\end{definition}
-
-\begin{theorem}
 	If $X$ is an irreducible topological space and $\Sh{F}$ is a constant sheaf, then $H^r(X, \Sh{F})$ for all $r>0$.
 \end{theorem}
 \begin{proof}
 	Since any open set $U \subseteq X$ is connected, $\Sh{F}(U) = G$ if $\Sh{F}$ is the constant sheaf defined by the group $G$ and $U$ is nonempty. This means that $\Sh{F}$ is flasque, hence $H^r(X, \Sh{F})$ for all $r>0$.
 \end{proof}
-It follows that constant sheaves on varieties have no higher cohomology. The reason ist that there are not enough open sets in the Zariski topology. This was the reason for defining the \'etale topology. We will now see how the \'etale topology yields good cohomological results
+It follows that constant sheaves on varieties have no higher cohomology. This was the reason for defining the \'etale topology. We will now see how the \'etale topology yields good cohomological results
+
+\section{Invertible sheaves and first cohomology}
+The \'etale site of a scheme $X$ may be equipped with a structure sheaf $\mathcal{O}$ completely analogous to the structure sheaf on $X$.
+
+\begin{construction}
+	Consider the ring $\Z[x]$. Defining a ring homomorphism from $\Z[x]$ to $R$ is the same as choosing an image for $x$ in $R$, so $\Z[x]$ is the representing object for the functor which sends a ring $R$ to its underlying additive group.
+	The scheme $\Ga = \Spec(\Z[x])$ is an \'etale group scheme over $\Z$, with multiplication $\Ga \times \Ga \to \Ga$ induced by the maps
+	\[
+		\begin{array}{c @{{}\to{}} c @{{}{}} c}
+			\Z[x] & \centermathcell{\Z[x]\otimes_\Z \Z[x]}     \\
+			x     & \centermathcell{x\otimes 1 + 1 \otimes x}.
+		\end{array}
+	\]
+	The sheaf $\mathbf{G}_{a,X}$ sends each \'etale scheme $U$ over $X$ to the underlying additve group of $\mathcal{O}_X(U)$ as the following calculation shows:
+	\[
+		\Ga(u) = \Hom(X, \Spec(\Z[x])) \cong \Hom(\Z[x], \Gamma(Y, \Sh{O}_Y)) \cong \Sh{O}_Y
+	\]
+\end{construction}
+
+
+\begin{definition}[Ringed Sites, Locally Free and Invertible Sheaves]
+	A ringed site is a site equipped with a sheaf of rings. A locally free sheaf is a sheaf $F$ of $\mathcal{O}_X$-modules such that there is an \'etale covering $\{U_i \to X\}$ such that $F|_U \simeq \bigoplus \mathcal{O}_X|_U$ as an $\mathcal{O}_X$-module. An invertible sheaf $\mathcal{L}$ is a locally free sheaf of rank 1. These are the natural analogues of line bundles in algebraic geometry.
+\end{definition}
+
+\begin{proposition}
+	If $\mathcal{L}$ and $\mathcal{M}$ are invertible sheaves on a ringed site, then so is $\mathcal{L} \otimes \mathcal{M}$. If $\mathcal{L}$ is an invertible sheaf, then there exists another invertible sheaf $\mathcal{L}^{-1}$ such that $\mathcal{L} \otimes \mathcal{L}^{-1} \simeq \mathcal{O}_X$.
+\end{proposition}
+
+\begin{proof}
+	See \cite{Hartshorne}, Proposition 6.12 for a proof for ringed spaces. The proof for ringed sites is analogous.
+\end{proof}
+
+\begin{proposition}
+	The Picard group $\Pic(X)$ for a ringed site $(X, \mathcal{O}_X)$ defined to be the group of isomorphism classes of invertible sheaves on $(X, \mathcal{O}_X)$.
+\end{proposition}
+
+\subsection{Sheaves with algebraic structure}
+We construct some basic examples of sheaves of groups. In particular, we will show that there is an exact sequence of sheaves
+
+\begin{example}
+	The functor $(-)^\times\colon \Rng \to \Ab$ that sends a ring $R$ to its set of units $R^\times$ is represented by the ring $\Z[x,x^{-1}]$ of Laurent polynomials. This means that a ring homomorphism $\Z[x,x^{-1}] \to R$ may be defined by sending $x$ to any unit of $R$, and this morphism is completeley determined by this choice, so we have
+	\[
+		R^\times \cong \Hom(\Z[x,x^{-1}], R).
+	\]
+	The scheme $\Gm \coloneqq \Spec(\Z[x, x^{-1}])$ is a group scheme over $\Z$. By contravarince, the multiplication $\Gm \times \Gm \to \Gm$ is given by the algebra map
+	\[
+		\begin{array}{c @{{}\to{}} c @{{}{}} c}
+			\Z[x,x^{-1}] & \centermathcell{\Z[x,x^{-1}]\otimes_\Z \Z[x,x^{-1}]} \\
+			x            & \centermathcell{\, x\otimes x}.
+		\end{array}
+	\]
+	Note that $\Spec(\Z[x,x^{-1}])$ is \'etale over $\Spec(\Z)$ because $\Z[x,x^{-1}] = \Z[x][y]/(xy-1)$ and the Jacobian determinant of $(xy-1)$ is $x$, which is invertible in $\Z[x,x^{-1}]$. In order to consider $\Gm$ as a sheaf on the \'etale site of an arbitrary scheme $X$, we consider the base change $\mathbf{G}_{m,S}$ of $\Gm$ along $X \to \Spec(\Z)$:
+	\[
+		%https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXG1hdGhiZntHfV97bSxTfSJdLFsxLDAsIlxcR20iXSxbMSwxLCJcXFNwZWMoXFxaKSJdLFswLDEsIlMiXSxbMCwxXSxbMSwyXSxbMywyXSxbMCwzXV0=
+		\begin{tikzcd}
+			{\mathbf{G}_{m,S}} & \Gm \\
+			S & {\Spec(\Z)}.
+			\arrow[from=1-1, to=1-2]
+			\arrow[from=1-2, to=2-2]
+			\arrow[from=2-1, to=2-2]
+			\arrow[from=1-1, to=2-1]
+		\end{tikzcd}.
+	\]
+	By the universal property of pullbacks and the fact that $\Spec(\Z)$ is the final object in schemes we have
+	\[
+		\mathbf{G}_{m,X} = \Hom_X(U, \mathbf{G}_{m,X}) = \Hom_{\Spec(\Z)}(U, \Spec(\Z[x,x^{-1}])) = \Gm(U),
+	\]
+	By abuse of notation we will write $\Gm$ for $\mathbf{G}_{m,X}$. It follows that evaluating the sheaf represented by $\Gm$ on a scheme $X$ yields
+	\[
+		\Gm(X) = \Hom(X, \Spec(\Z[x,x^{-1}])) \cong \Hom(\Z[x,x^{-1}], \Gamma(Y, \Sh{O}_Y)) \cong \Sh{O}_Y^\times.
+	\]
+	so $\Gm$ defines a sheaf of groups on $\Et/X$.
+
+	%Let $S = \Spec(A)$ be an affine scheme. The base change of $\Gm$ along $S \to \Z$ is $\Spec(A \otimes \Z[x,x^{-1}]) = \Spec(A[x,x^{-1}])$
+	%If $X = \Spec(A)$ is affine, then $\mathbf{G}_{m,X} = \Spec(A[x,x^{-1}])$.
+\end{example}
+
+\begin{example}
+	The functor sending a ring $R$ to the set of its roots of unity
+	\[
+		\mu_n(R) = \{f \in R \mid f^n = 1\}
+	\]
+	is represented by the ring $\Z[x]/(x^n-1)$, so we have $\Hom(\Z[x]/(x^n-1),R) \cong \mu_n(R)$. Using similar arguments as before we obtain the sheaf of roots of unity $\mu_n$ on the \'etale site $\Et/X$ by base changing $\mu_n = \Spec(\Z[x]/(x^n-1))$ along $X \to \Spec(\Z)$. The sheaf is the kernel of$\mu_n$ is a subsheaf of $\Gm$. Our first important computation in cohomology will be the cohomology of the sheaf $\mu_n$.
+\end{example}
+
+\begin{example}
+	Let $R=\Z[x_z, \dots, x_n]/(f_1, \dots , f_m)$ and $X = \Spec(R)$. What are the $\Z$-valued points of $X$? Specifying a morphism from $X$ to $\Spec(\Z)$ is equivalent to specifying a morphism $\varphi\colon R \to \Z$, which is equivalent to specifying images $a_i$ of the generators $x_i$ of $R$ such that $f_j(a_1, \dots, a_n) = 0$ for all $j$. In other words, the $\Z$-valued points are the integral solutions to the equation $f_j = 0$
+\end{example}
+
+
+
+
+
+
 
 As we have seen, sheaves relate the local and global information one has on a given topological space $X$. In a sense sheaf cohomology measures how much more information we gain when we go from global to local. For example, consider the sheaf of local sections of the covering space $\pi : X \to S^1$.
 
@@ -166,3 +237,16 @@ Serres theorem: there d
 	There does not exist a cohomology theory for schemes over $\overline{\mathbb{F}}_q$ which satisfiex the Kunneth formula and $H^1(E) = \Q^2$ for $E$ an elliptic curve.
 \end{theorem}
 The reason we should expect the fact about elliptic curves to hold is because of the often heard slogan that elliptic curves are complex tori, which have singular cohomology $\Z^2$.
+
+
+\begin{definition}
+	Let $G$ be a sheaf of abelian groups on $\Et/X$. A \textit{$G$-torsor} is a sheaf of sets $F$ on with an action of $G$ such that there exists an \'etale covering $\{U_i \to X\}$ such that
+	\begin{itemize}
+		\item For each $i$, $F(U_i) \neq \varnothing$.
+		\item For every $U \to X$ \'etale and $s \in F(U)$ the map $g \to sg \colon G|_U \to F|_U$ is an isomorphism of sheaves.
+	\end{itemize}
+	This is analogous to a set $S$ equipped with a free and transitive $G$-action.
+\end{definition}
+
+\begin{theorem}
+\end{theorem}

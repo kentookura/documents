@@ -1,32 +1,50 @@
 \section{Motivation for Cohomology}
-One of the most important invariants of schemes is \'etale cohomology.  Cohomology is an important invariant in geometry and topology which associates to each space $X$ a sequence of abelian groups $H^i(X)$, $i \ge 0$, the cohomology groups of $X$. For each map $f: X \to Y$ of spaces there are homomorphisms $f^*: H^i(Y) \to H^i(X)$. Moreover there are so called coboundary morphisms $\partial^i : H^i \to H^{i+1}$ for each $i \ge 0$.
+Cohomology is an important invariant in geometry and topology which associates to each space $X$ a sequence of abelian groups $H^i(X)$, $i \ge 0$, the cohomology groups of $X$. For each map $f: X \to Y$ of spaces there are homomorphisms $f^*: H^i(Y) \to H^i(X)$. Moreover there are so called coboundary morphisms $\partial^i : H^i \to H^{i+1}$ for each $i \ge 0$. The theory of Grothendieck toposes and sites was originally developed in search of a cohomology theory  from which the Weil conjectures could be deduced.
 \begin{definition}
-	A \textit{cohomology theory} for
+	A \textit{Weil cohomology theory} is a contravariant functor
+	\[H^* \colon \{ \text{ smooth projective variteis over } k \to \{\text{ graded $K$-algebras}\}\]
+	satisfying the following axioms: If the grading of $H^*(X)$ is given by $\displaystyle \bigoplus_i H^i(X)$ and $X$ is of dimension $n$, then
+	\begin{enumerate}
+		\item $H^i(X)$ is a finite dimensional $K$-vector space for each $i$.
+		\item $H^i(X) = 0$ for $i<0$ and $i>2n$.
+		\item There is a linear trace map $\Tr \colon H^{2n}(X) \to K$
+		\item There is a perfect pairing
+		      \[ H^i(X) \times H^{2n-i}(X) \to H^{2n}(X) \simeq K\]
+		\item There is an isomorphism
+		      \[H^*(X) \otimes H^*(Y) \simeq H^*(X \times Y)\]
+		\item For each integer $j$, there is there is a map $\gamma_X \colon Z^j(X) \to H^{2j}(X)$ where $Z^j$ is the group of algebraic cycles of codimension $j$ on $X$ which is compatible with the previously defined structures.
+		\item For a smooth hyperplane section $j \colon W \to X$, where $W = X \cap H$ with $H$ a hyperplane in projective space, the maps $j^* \colon H^i (X) \to H^i(W)$ are isomorphisms for $i \le n-2$ and injective for $i \le n-1$.
+		\item For $W$ an arbitrary hyperplane section and $w = \gamma_X(W) \in H^2(X)$ its image under the cycle class map let the Lefschets operator be defined by
+		      \begin{gather*}
+			      L \colon H^i(X) \to H^{i+2}(X)\\
+			      x \to x \cdot w
+		      \end{gather*}
+		      Then $L^i \colon H^{n-i}(X) \to H^{n+i}(X)$ are isomorphisms for $i \in {1, \dots, n}$.
+	\end{enumerate}
 \end{definition}
-We can deduce many interesting properties of spaces from their cohomology groups and the associated homomorphisms.
 
 An important and intuitive cohomology is \textit{singular cohomology}. It provides a rigorous way for counting ``holes'' in a topological space. For instance, the circle $S^1$ has 1 one-dimensional hole while the torus $T^2$ has 2. The sphere $S^2$ has 1 two-dimensional hole but no one-dimensional holes, in symbols\footnote{$\Z$ appears here because it is the free group on one generator.}
+
 \begin{align*}
 	H^1_{sing}(S^1) \simeq \Z,\quad & H^1_{sing}(T^2) \simeq \Z \oplus \Z, \\
 	H^1_{sing}(S^2) \simeq  0,\quad & H^2_{sing}(S^2) \simeq \Z.
 \end{align*}
+
+In fact, singular cohomology is a Weil cohomology theory for Varieties over $\C$ if we consider them using the analytic topology.
+
 A general approach to cohomology is to use sheaves on a topological space as ``coefficients''. Sheaves consist of local data on a space that is glueable. A basic example consists of functions on a space: If we have an open cover $\{ U_i\}$ for a manifold $M$ and functions $f_i: M \to \R$ that agree on all intersections $U_i \cap U_j$ we may patch it together to a function $f: M \to \R$.
 For any space $X$ and any sheaf $\Sh{F}$ on $X$ we can define $H^i(X, \Sh{F})$. Many examples of cohomology theories turn out to stem from the cohomology of a particular sheaf. For example, if $X$ is a locally contractible space, the singular cohomology $H_{\text{sing}}^i(X)$ of $X$ is isomorphic to the sheaf cohomology $H^i(X, \Z_X)$ of the constant sheaf $\Z_X$ on $X$.
 
-One of the main motivations for \'etale cohomology is that one would like a replacment for singular cohomology for schemes. There are a number of obstacles:
-\begin{proposition}\label{scheme_contractible}
-	An irreducible scheme is contractible.
-\end{proposition}
-\begin{proof}
-	Define a map $f: X \times I \to X$  by $f(x,0) = x$ and $f(x,t) = \eta$ for $t > 0$. This is a contraction of $X$ onto the point $\eta$, so the singular cohomology of $X$ is identically 0.
-\end{proof}
+One of the main motivations for \'etale cohomology is that one would like a replacment for singular cohomology for schemes, in particular for varieties over finite fields. There are a number of obstacles:
 
 \begin{proposition}
 	$H^i(X, \Sh{F})$ is 0 for any sheaf on an irreducible topological space.
 \end{proposition}
+
 \begin{proof}
-	See section TODO.
+	Because every open susbset $U$ of an irreducible topological space is connected, the constant sheaf $F$ defined by a group $G$ takes talue $F(U) = G$ for each nonempty $U$, so $F$ is flasque, hence $H^i(X,F) = 0$ for $r>0$.
 \end{proof}
+
 This is a strong indication that the traditional tools of cohomology are inadequate to analyse the geometry of schemes.
 
 \input{chapters/etale_cohomology.tex}
