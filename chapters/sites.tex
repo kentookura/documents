@@ -17,7 +17,7 @@ for all composable morphisms $f \colon  B \to A$ and $g \colon C \to B$. Setting
 \[
 	f \in S(B) \iff f^*S(B) = \Hom(B,A).
 \]
-Define a relation $S \covers f$, read ``$S$ covers $f$'' whenever $S \subset \yo(U)$ is a subfunctor and $f \colon V \to U$ is a morphism with $f^*S \in J(V)$. Thus we may write $S \covers f \circ g \iff f^*S \covers g$.
+Define a relation ``$S$ covers $f$'' whenever $S \subset \yo(U)$ is a subfunctor and $f \colon V \to U$ is a morphism with $f^*S \in J(V)$. Thus $S$ covers $f \circ g \iff f^*S$ covers $g$.
 
 \begin{definition}[Grothendieck Topologies]
 	A Grothendieck topology on a category $C$ is a function $J$ which assings to each object $U$ of $C$ a collection of subfunctors $J(A)$ of $\yo(A)$ subject to the following conditions:
@@ -42,11 +42,11 @@ Define a relation $S \covers f$, read ``$S$ covers $f$'' whenever $S \subset \yo
 	There is an ``elementwise'' formulation of these conditions which resembles the topological picture more:
 
 	\begin{definition}[Grothendieck Pretopologies]
-		Let $C$ be a category. A Grothendieck pretopology or a basis for a topology on $C$ is given by a function $\text{Cov}$ which assigns to each object $U$ of $C$ a collection of families of morphisms $\text{Cov}(U)$ with codomain $U$ with the following properties:
+		Let $C$ be a category. A Grothendieck pretopology or a basis for a topology on $C$ is given by a function $\Cov$ which assigns to each object $U$ of $C$ a collection of families of morphisms $\Cov(U)$ with codomain $U$ with the following properties:
 		\begin{enumerate}
 			\item If $V \to U$ is an isomorphism, then $\{V \to U\} \in C$
-			\item If $\{U_i \to U\} \in \text{Cov}(C)$, and $V \to U$ is a morphism, then $U_i \times_U V$ exists and $\{U_i \times_U V \to V\}$ is in $\text{Cov}(C)$.
-			\item If $\{U_i \to U\} \in \text{Cov}(C)$, and for each $U_i$ we have $\{V_{ij} \to U_i\}$, the composition $\{V_{ij} \to U\}$ is in $\text{Cov}(C)$.
+			\item If $\{U_i \to U\} \in \Cov(C)$, and $V \to U$ is a morphism, then $U_i \times_U V$ exists and $\{U_i \times_U V \to V\}$ is in $\Cov(C)$.
+			\item If $\{U_i \to U\} \in \Cov(C)$, and for each $U_i$ we have $\{V_{ij} \to U_i\}$, the composition $\{V_{ij} \to U\}$ is in $\Cov(C)$.
 		\end{enumerate}
 	\end{definition}
 \end{definition}
@@ -75,7 +75,7 @@ Let $K$ be a Grothendieck pretopology on $C$. Then $K$ generates a Grothendieck 
 \end{example}
 
 \begin{example}[The \'Etale Site of a Scheme]
-	The main site we will consider is the \'etale site of a scheme $X$. The underlying category is the subcategory of schemes over $X$ which are finite \'etale over $X$. From \ref{} it follows that the set of families jointly surjective \'etale morphisms form a site. The \'etale topology topology is finer than the Zariski topology in the sense that an open immersions $U \to X$ are \'etale, so each open set $U \subset X$ may be thought of as an \'etale open. From now on we write $\Et/X$ for this site, omitting the topology from the notation.
+	The main site we will consider is the \'etale site of a scheme $X$. The underlying category is the subcategory of schemes over $X$ which are finite \'etale over $X$. From \ref{lemma:etale_site} it follows that the set of families jointly surjective \'etale morphisms form a site. The \'etale topology topology is finer than the Zariski topology in the sense that an open immersions $U \to X$ are \'etale, so each open set $U \subset X$ may be thought of as an \'etale open. From now on we write $\Et/X$ for this site, omitting the topology from the notation.
 \end{example}
 
 \begin{example}[The \'Etale Site of $\Spec(k)$]

@@ -20,7 +20,7 @@ We are looking for a morphism $f \colon X \to Y$ such that the diagram commutes.
 	\end{tikzcd}
 \]
 
-commutes. Furthermore, as we are considering continuous functions, if we can find lifts $\varphi_1  \colon U_1 \to Y$ and $\varphi_2 \colon U_2 \to Y$ such that $\varphi_1(U_1 \cap U_2) = \varphi_2(U_1 \cap U_2)$, there is a unique lift $\varphi \colon U_1 \cup U_2 \to Y$. However, given an open cover $\{U_i\}$ of $X$ it might be impossible to find morphisms $\varphi_i$ which are compatible on all intersections, so there might be no global solutions at all! Sheaf cohomology was designed to analyse the global sections of a sheaf using techniques from homological algebra. More precisely, it measures the obstruction to finding global sections of sheaves. kThe search for a suitable cohomology theory for (sheaves on) schemes led mathematicians in the 1960's to the notion of the \'etale site, a generalised topology on schemes. At the same time, Lawvere was interested in formulating mathematical foundations in purely categorical language and noticed that the category of sheaves on a space (or more generally a site) admits the basic operations of set theory. For example, set comprehension $\{x \in X \mid \varphi(x)\}$ and formation of powersets $P(X)$ have natural analogues in categories of sheaves. However, the internal logic of a sheaf topos $\sh(C,J)$ is no longer classical, two-valued logic. Instead, there is a whole sheaf of truth values $\Omega$ called the subobject classifier. The basic idea is that instead of a proposition $\varphi(x)$ simply being true or false, we think of truth as a local notion. For example, consider the open set $\text{Antarctica} \subset \text{Earth}$. Then the proposition $\text{``It~is~cold''}$ might be true on $\text{Antarctica}$, so
+commutes. Furthermore, as we are considering continuous functions, if we can find lifts $\varphi_1  \colon U_1 \to Y$ and $\varphi_2 \colon U_2 \to Y$ such that $\varphi_1(U_1 \cap U_2) = \varphi_2(U_1 \cap U_2)$, there is a unique lift $\varphi \colon U_1 \cup U_2 \to Y$. However, given an open cover $\{U_i\}$ of $X$ it might be impossible to find morphisms $\varphi_i$ which are compatible on all intersections, so there might be no global solutions at all! Sheaf cohomology was designed to analyse the global sections of a sheaf using techniques from homological algebra. More precisely, it measures the obstruction to finding global sections of sheaves. The search for a suitable cohomology theory for (sheaves on) schemes led mathematicians in the 1960's to the notion of the \'etale site, a generalised topology on schemes. At the same time, Lawvere was interested in formulating mathematical foundations in purely categorical language and noticed that the category of sheaves on a space (or more generally a site) admits the basic operations of set theory. For example, set comprehension $\{x \in X \mid \varphi(x)\}$ and formation of powersets $P(X)$ have natural analogues in categories of sheaves. However, the internal logic of a sheaf topos $\sh(C,J)$ is no longer classical, two-valued logic. Instead, there is a whole sheaf of truth values $\Omega$ called the subobject classifier. The basic idea is that instead of a proposition $\varphi(x)$ simply being true or false, we think of truth as a local notion. For example, consider the open set $\text{Antarctica} \subset \text{Earth}$. Then the proposition $\text{``It~is~cold''}$ might be true on $\text{Antarctica}$, so
 \[
 	\text{Antarctica} \Vdash \text{It is cold}
 \]
@@ -28,11 +28,9 @@ but
 \[
 	\text{Earth} \Vdash \text{It is cold}
 \]
-is probably not the case. The systematic use of the internal language of a sheaf topos allows us to treat classical objects such as sheaves of $\mathcal{O}_X$-modules simply as internal modules. The structure sheaf of a scheme becomes an internal local ring.
+is probably not the case. The systematic use of the internal language of a sheaf topos allows us to treat classical objects such as sheaves of $\mathcal{O}_X$-modules simply as (internal) modules. The structure sheaf of a scheme becomes an internal local ring. For a lengthy and very readable exposition on these methods see Ingo Blechschmidt's PhD thesis \cite{Blechschmidt}.
 
-For a lengthy and very readable exposition on these methods see Ingo Blechschmidt's PhD thesis \cite{Blechschmidt}.
-
-A common operation in geometry is \textit{trivialisation}. Fiber bundles are a common example of this. For example, the M\"obius strip $M$ viewed as a space over the circle $S^1$ locally has the structure of a product space, but globally is ``twisted''. In categorical approaches to geometry, we often have a collection of ``test spaces'' or ``affine pieces'' which we glue together to obtain a class of geometric objects. An intuitive example is the case of manifolds. A connected manifold may be constructed by gluing open balls of dimension $n$ together. The circle can be constructed by gluing two open intervals $(0,1)$ together with a small overlap on the ends. The approach to algebraic geometry using locally ringed spaces takes as affine pieces the spaces of the form $\Spec(A)$, where $A$ is a commutative ring. Furthermore, there is a functor mapping $A$-modules to sheaves on $\Spec(A)$, which induces an equivalence of categories between the category of $A$-modules and the category of quasi-coherent $\mathcal{O}_X$-modules. We have the following theorem:
+A common operation in geometry is \textit{trivialisation}. Fiber bundles are a common example of this. For example, the M\"obius strip $M$ viewed as a space over the circle $S^1$ locally has the structure of a product space, but globally is ``twisted''. In categorical approaches to geometry, we often have a collection of ``affine pieces'' or ``local models''which we glue together to obtain a class of geometric objects. An intuitive example is the case of manifolds. A connected manifold of dimension $n$ may be constructed by gluing open balls $B_i \subset \R^n$ together. For example, the circle can be constructed by gluing two open intervals $(0,1)$ together with a small overlap on the ends. The approach to algebraic geometry using locally ringed spaces takes as affine pieces the spaces of the form $\Spec(A)$, where $A$ is a commutative ring. Furthermore, there is a functor mapping $A$-modules to sheaves on $\Spec(A)$, which induces an equivalence of categories between the category of $A$-modules and the category of quasi-coherent $\mathcal{O}_X$-modules. We have the following theorem:
 
 \begin{theorem}
 	Let $X$ be an affine scheme. For every quasi-coherent $\mathcal{O}_X$-module $F$ we have $H^r(X,F)=0$ for all $r \ge 0$.
@@ -42,41 +40,34 @@ A common operation in geometry is \textit{trivialisation}. Fiber bundles are a c
 	See \cite{EGA3} 1.3.1.
 \end{proof}
 
-In fact, for a noetherian scheme $X$, being affine and having vanishing cohomology $H^i(X,F)$ for all quasi-coherent $F$ and $i \ge 0$ are equivalent. Now a general scheme $X$ admits a covering by open affine subschemes $U_i = \Spec(A_i)$, and the category of quasicoherent sheaves on $X$ is also ``glued'' from quasicoherent sheaves in a suitable sense, but these sheaves then no longer necessarily have vanishing cohomology. Much of algebraic geometry is formulated in terms of quasicoherent sheaves and their cohomology. Loosely speaking, cohomology should be a functor which associates to each space $X$ a sequence of abelian groups $H^i(X)$, $i \ge 0$, the cohomology groups of $X$. For each map $f: X \to Y$ of spaces there are homomorphisms $f^*: H^i(Y) \to H^i(X)$. Moreover there are so called coboundary morphisms $\partial^i : H^i \to H^{i+1}$ for each $i \ge 0$. The theory of Grothendieck toposes and sites was originally developed in search of a cohomology theory  from which the Weil conjectures could be deduced. For completeness, we state the conditions here:
+In fact, for a noetherian scheme $X$, being affine and having vanishing cohomology $H^i(X,F)$ for all quasi-coherent $F$ and $i \ge 0$ are equivalent. Now a general scheme $X$ admits a covering by open affine subschemes $U_i = \Spec(A_i)$, and the category of quasicoherent sheaves on $X$ is also ``glued'' from quasicoherent sheaves in a suitable sense, but these sheaves then no longer necessarily have vanishing cohomology. Much of algebraic geometry is formulated in terms of quasicoherent sheaves and their cohomology. The Zariski topology is suited to study coherent cohomology almost by definition. The theory of Grothendieck toposes and sites was originally developed in search of a cohomology theory for varieties over finite fields from which the Weil conjectures could be deduced. In this aspect \'etale cohomology has been an undeniable success. The $\ell$-adic cohomology is a Weil cohomology theory for varieties over $\F_q$, where $\ell \neq \text{char}(\F_q)$, which is constructed out of the \'etale cohomology of the constant sheaves $\Z/\ell^k \Z$. To obtain a Weil cohomology theory, one defines
 
-\begin{definition}
-	A \textit{Weil cohomology theory} is a contravariant functor
-	\[H^* \colon \{ \text{ smooth projective variteis over } k \} \to \{\text{ graded $K$-algebras}\}\]
-	satisfying the following axioms: If the grading of $H^*(X)$ is given by $\bigoplus_i H^i(X)$ and $X$ is of dimension $n$, then
-	\begin{enumerate}
-		\item $H^i(X)$ is a finite dimensional $K$-vector space for each $i$.
-		\item $H^i(X) = 0$ for $i<0$ and $i>2n$.
-		\item There is a linear trace map $\Tr \colon H^{2n}(X) \to K$
-		\item There is a perfect pairing $H^i(X) \times H^{2n-i}(X) \to H^{2n}(X) \simeq K$
-		\item There is an isomorphism $H^*(X) \otimes H^*(Y) \simeq H^*(X \times Y)$
-		\item For each integer $j$, there is there is a map $\gamma_X \colon Z^j(X) \to H^{2j}(X)$ where $Z^j$ is the group of algebraic cycles of codimension $j$ on $X$ which is compatible with the previously defined structures.
-		\item For a smooth hyperplane section $j \colon W \to X$, where $W = X \cap H$ with $H$ a hyperplane in projective space, the maps $j^* \colon H^i (X) \to H^i(W)$ are isomorphisms for $i \le n-2$ and injective for $i \le n-1$.
-		\item For $W$ an arbitrary hyperplane section and $w = \gamma_X(W) \in H^2(X)$ its image under the cycle class map let the Lefschets operator be defined by
-		      \begin{gather*}
-			      L \colon H^i(X) \to H^{i+2}(X)\\
-			      x \to x \cdot w
-		      \end{gather*}
-		      Then $L^i \colon H^{n-i}(X) \to H^{n+i}(X)$ are isomorphisms for $i = {1, \dots, n}$.
-	\end{enumerate}
-\end{definition}
+\[
+	H^i(X,\Q_\ell) \coloneqq \varprojlim H^i(X, \Z/\ell^k \Z) \otimes_{\Z_\ell} \Q_\ell,
+\]
+where $\Q_\ell$ is the quotient field of $\Z_\ell$. We list some of the properties that are fulfilled by this cohomology theory:
 
-An important and intuitive cohomology is \textit{singular cohomology}. It provides a rigorous way for counting ``holes'' in a topological space. For instance, the circle $S^1$ has 1 one-dimensional hole while the torus $T^2$ has 2. The sphere $S^2$ has 1 two-dimensional hole but no one-dimensional holes, in symbols\footnote{$\Z$ appears here because it is the free group on one generator.}
+\begin{itemize}
+	\item $H^*(-, \Q_\ell) \colon \{ \text{ smooth projective variteis over } k \} \to \{\text{ $\Q_\ell$-vector spaces}\}$
+	      is a contraviarant functor.
+	\item $H^i(X, \Q_\ell) = 0$ for $i<0$ and $i>2n$.
+	\item There is a linear trace map $\Tr \colon H^{2n}(X, \Q_\ell) \to \Q_\ell$
+	\item For all $i,j$ there is a cup product
+	      \[
+		      H^i(X, \Q_\ell) \times H^j(X, \Q_\ell) \to H^{i+j}(X, \Q_\ell)
+	      \]
+	\item If $X$ is smooth and proper over $\F_q$ and of dimension $n$, then $H^{2n}(X, \Q_\ell) \simeq \Q_\ell$ and the cup product
+	      \[ H^i(X, \Q_\ell) \times H^{2n-1}(X, \Q_\ell) \to H^{2n}(X, \Q_\ell)
+	      \]
+	      is a perfect pairing for $0 \le i \le 2n$.
+\end{itemize}
+
+Singular cohomology is a Weil cohomology theory for Varieties over $\C$ if we consider them using the analytic topology. This cohomology theory provides a rigorous way for counting ``holes'' in a topological space. For instance, the circle $S^1$ has 1 one-dimensional hole while the torus $T^2$ has 2. The sphere $S^2$ has 1 two-dimensional hole but no one-dimensional holes, in symbols\footnote{$\Z$ appears here because it is the free group on one generator.}
 
 \begin{align*}
 	H^1_{sing}(S^1) \simeq \Z,\quad & H^1_{sing}(T^2) \simeq \Z \oplus \Z, \\
 	H^1_{sing}(S^2) \simeq  0,\quad & H^2_{sing}(S^2) \simeq \Z.
 \end{align*}
-
-In fact, singular cohomology is a Weil cohomology theory for Varieties over $\C$ if we consider them using the analytic topology.
-
-For any space $X$ and any sheaf $\Sh{F}$ on $X$ we can define $H^i(X, \Sh{F})$. Many examples of cohomology theories turn out to stem from the cohomology of a particular sheaf. For example, if $X$ is a locally contractible space, the singular cohomology $H_{\text{sing}}^i(X)$ of $X$ is isomorphic to the sheaf cohomology $H^i(X, \Z_X)$ of the constant sheaf $\Z_X$ on $X$.
-
-One of the main motivations for \'etale cohomology is that one would like a replacment for singular cohomology for schemes, in particular for varieties over finite fields. There are a number of obstacles:
 
 \begin{proposition}
 	$H^i(X, \Sh{F})$ is 0 for any constant sheaf on an irreducible topological space.
@@ -88,16 +79,6 @@ One of the main motivations for \'etale cohomology is that one would like a repl
 
 This is a strong indication that the traditional tools of cohomology are inadequate to analyse the geometry of schemes.
 
-
-
-
-
-
-
-
-
-
 \input{chapters/sites.tex}
 \input{chapters/subobjects.tex}
 \input{chapters/etale_sheaves.tex}
-\input{chapters/semantics.tex}

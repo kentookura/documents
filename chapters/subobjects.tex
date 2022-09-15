@@ -130,36 +130,3 @@ Since these associations are inverses to each other, we can equivalently define 
 	\]
 	is indeed the subsheaf $S$. The map $\phi$ is also unique, so the map $\true: 1 \to \Omega$ is a subobject classifier.
 \end{proof}
-
-\subsection{Subobject Classifiers for \'Etale Sites}
-In proposition~\ref{prop:classifier} we showed that for a topological space $X$, the category $\sh(X)$ of sheaves on $X$ has a subobject classifier. In this section we construct a subobject classifier for categories of sheaves on an arbitrary site.
-
-\begin{definition}
-	Let $(C,J)$ be a site. We define a subfunctor $S \subset \yo(A)$ to be \textit{closed for $J$} if for all morphisms $f \colon B \to A$
-	\[
-		\{h \colon D \to B \mid fh \in S(D) \} \in J(D) \implies f \in S(B).
-	\]
-\end{definition}
-
-The property of being closed in stable under pullback. Indeed, let $S$ be a subfunctor of $\yo(A)$ and $g \colon B \to A$ an arbitrary morphism. Suppose that $h^*(S) \covers f$ for a morphism $f \colon C \to B$. By definition $S \covers hf$. Since $S$ is closed, we have $hf \in S(C)$. Since $S$ is closed, $hf \in S(C)$ or $f \in h^*S(B)$. Thus $h^*S$ is closed and the definition \[\Omega(A) = \{S \subset \yo(A) \mid S \text{ is close }\}\] defines a presheaf on $C$, with the restriction along a morphism $h \colon B \to C$ given by $S \to h^*S$.
-
-\begin{proposition}
-	The presheaf $\Omega \colon C^{\op} \to \Set$ is a sheaf and in fact a subobject classifier for $\sh(C,J)$ when taken together with the map
-	\[\true \colon 1 \to \Omega \] where $\true$ is the natural transformation given on objects by $A \to \yo(A)$.
-\end{proposition}
-
-\begin{proof}
-	See \cite{SIGL}, III.7. Lemma 1.
-\end{proof}
-
-\begin{example}
-	Let $(C,J) = \Et/X$ be the \'etale site of a scheme $X$ and suppose we have a covering $\{U_i\}$.
-\end{example}
-
-\begin{lemma}
-	The presheaf $\Omega$ defined on objects by
-	\[
-		\Omega(A) = \{S \mid S \text{ is a closed sieve}\}
-	\]
-	and on morphisms by $\Omega(f) = f^*$ is a sheaf. Here $f^*$ is defined as in the previous definition.
-\end{lemma}

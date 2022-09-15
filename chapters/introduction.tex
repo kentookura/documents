@@ -77,20 +77,20 @@ Basic examples of affine schemes arise from polynomial rings: scheme-theoretical
 	A scheme is a locally ringed space $X$ such that there is a covering $\{U_i\}_{i \in I}$ of $X$ such that each $U_i$ is isomorphic to an affine scheme $\Spec(A_i)$ for some ring $A_i$.
 \end{definition}
 
-Now the $\Spec$ functor maps rings to geometric objects, and there is a related functor which sends a module $M$ over a ring $R$ to a sheaf $\widetilde{M}$ on $\Spec(R)$. A quasicoherent sheaf $F$ is defined to be one for which there is a covering $\{U_i\}$ of $R$ by affine schemes $U_i = \Spec(R_i)$ such that the restriction of $F$ to each $U_i$ is isomorphic to $\widetilde{M_i}$ for some $R_i$-module $M_i$
-
-Suppose $X = \Spec(A)$ is an affine scheme. If $\mathfrak{p} \subset \mathfrak{q}$ are two prime ideals of $A$, one contained in the other, then the neighborhood filter of $\mathfrak{p}$ is contained in the neighborhood filter of $\mathfrak{q}$. This induces a binary relation and in fact a partial order on the points of $X$. We say that $x$ \textit{is a specialization of} $y$ if $x \in \overline{y}$.
-
-\begin{example}
-	Let $A$ be a valuation ring of a field $K$, which means that for all $x \in K$ one has $x \in A$ of $x^{-1} \in A$. Then the ideals of $A$ are totally ordered by inclusion: We have a unique maximal ideal which consists of those $x \in K$ for which $v(x) \ge 0$, where , which corresponds to a uniqe closed point in $\Spec(A)$
-
-	\begin{lemma}
-		Let $R$ be a valuation ring of with fraction field $K$. The ideals of $R$ are totally ordered by inclusion.
-	\end{lemma}
-
-	\begin{proof}
-		Let $I$ and $J$ be two ideals of $A$ with $I$ not contained in $J$, pick $a \in I \setminus J$. If $b \in J$, we must show that $b \in I$. If $b = 0$ we are done. Now let $b \neq 0$. We have $b/a \in R$, because otherwise $a/b$ in $R$ which would imply $a = (a/b)b \in J$, which is a contradiction. Therefore $b = (b/a)a \in I$.
-	\end{proof}
-\end{example}
-
-We view elements of a ring $R$ as functions defined on $\Spec(R)$. If we have two subsets $A \subset B$ of $R$, then $V(B) \subset V(A)$, so $V(B)$ is a \textit{special subset of $V(A)$}, satisfying more conditions than $V(B)$. The specialisation order is trivial for Hausdorff spaces.
+%Now the $\Spec$ functor maps rings to geometric objects, and there is a related functor which sends a module $M$ over a ring $R$ to a sheaf $\widetilde{M}$ on $\Spec(R)$. A quasicoherent sheaf $F$ is defined to be one for which there is a covering $\{U_i\}$ of $R$ by affine schemes $U_i = \Spec(R_i)$ such that the restriction of $F$ to each $U_i$ is isomorphic to $\widetilde{M_i}$ for some $R_i$-module $M_i$
+%
+%Suppose $X = \Spec(A)$ is an affine scheme. If $\mathfrak{p} \subset \mathfrak{q}$ are two prime ideals of $A$, one contained in the other, then the neighborhood filter of $\mathfrak{p}$ is contained in the neighborhood filter of $\mathfrak{q}$. This induces a binary relation and in fact a partial order on the points of $X$. We say that $x$ \textit{is a specialization of} $y$ if $x \in \overline{y}$.
+%
+%\begin{example}
+%	Let $A$ be a valuation ring of a field $K$, which means that for all $x \in K$ one has $x \in A$ of $x^{-1} \in A$. Then the ideals of $A$ are totally ordered by inclusion: We have a unique maximal ideal which consists of those $x \in K$ for which $v(x) \ge 0$, where , which corresponds to a uniqe closed point in $\Spec(A)$
+%
+%	\begin{lemma}
+%		Let $R$ be a valuation ring of with fraction field $K$. The ideals of $R$ are totally ordered by inclusion.
+%	\end{lemma}
+%
+%	\begin{proof}
+%		Let $I$ and $J$ be two ideals of $A$ with $I$ not contained in $J$, pick $a \in I \setminus J$. If $b \in J$, we must show that $b \in I$. If $b = 0$ we are done. Now let $b \neq 0$. We have $b/a \in R$, because otherwise $a/b$ in $R$ which would imply $a = (a/b)b \in J$, which is a contradiction. Therefore $b = (b/a)a \in I$.
+%	\end{proof}
+%\end{example}
+%
+%We view elements of a ring $R$ as functions defined on $\Spec(R)$. If we have two subsets $A \subset B$ of $R$, then $V(B) \subset V(A)$, so $V(B)$ is a \textit{special subset of $V(A)$}, satisfying more conditions than $V(B)$. The specialisation order is trivial for Hausdorff spaces.

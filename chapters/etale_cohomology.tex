@@ -1,5 +1,84 @@
-\subsection{Exact sequences and Cohomology}
+\subsection{Sheaves of Groups}
+We construct some basic examples of sheaves of groups. The big picture is that there is a bijection between $H^1(X,G)$ and $G$-torsors for all sheaves of abelian groups $G$.
 
+\begin{example}
+	The functor $(-)^\times\colon \Rng \to \Ab$ that sends a ring $R$ to its set of units $R^\times$ is represented by the ring $\Z[x,x^{-1}]$ of Laurent polynomials. This means that a ring homomorphism $\Z[x,x^{-1}] \to R$ may be defined by sending $x$ to any unit of $R$, and this morphism is completeley determined by this choice, so we have
+	\[
+		R^\times \cong \Hom(\Z[x,x^{-1}], R).
+	\]
+	The scheme $\Gm \coloneqq \Spec(\Z[x, x^{-1}])$ is a group scheme over $\Z$. By contravarince, the multiplication $\Gm \times \Gm \to \Gm$ is given by the algebra map
+	\[
+		\begin{array}{c @{{}\to{}} c @{{}{}} c}
+			\Z[x,x^{-1}] & \centermathcell{\Z[x,x^{-1}]\otimes_\Z \Z[x,x^{-1}]} \\
+			x            & \centermathcell{\, x\otimes x}.
+		\end{array}
+	\]
+	Note that $\Spec(\Z[x,x^{-1}])$ is \'etale over $\Spec(\Z)$ because $\Z[x,x^{-1}] = \Z[x][y]/(xy-1)$ and the Jacobian determinant of $(xy-1)$ is $x$, which is invertible in $\Z[x,x^{-1}]$. In order to consider $\Gm$ as a sheaf on the \'etale site of an arbitrary scheme $X$, we consider the base change $\mathbf{G}_{m,S}$ of $\Gm$ along $X \to \Spec(\Z)$:
+	\[
+		%https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXG1hdGhiZntHfV97bSxTfSJdLFsxLDAsIlxcR20iXSxbMSwxLCJcXFNwZWMoXFxaKSJdLFswLDEsIlMiXSxbMCwxXSxbMSwyXSxbMywyXSxbMCwzXV0=
+		\begin{tikzcd}
+			{\mathbf{G}_{m,S}} & \Gm \\
+			S & {\Spec(\Z)}.
+			\arrow[from=1-1, to=1-2]
+			\arrow[from=1-2, to=2-2]
+			\arrow[from=2-1, to=2-2]
+			\arrow[from=1-1, to=2-1]
+		\end{tikzcd}.
+	\]
+	By the universal property of pullbacks and the fact that $\Spec(\Z)$ is the final object in schemes we have
+	\begin{align*}
+		\mathbf{G}_{m,X} & = \Hom_X(U, \mathbf{G}_{m,X})                   \\
+		                 & \simeq \Hom_{\Spec(\Z)}(U, \Spec(\Z[x,x^{-1}])) \\
+		                 & \simeq \Gm(U),
+	\end{align*}
+
+	By abuse of notation we will write $\Gm$ for $\mathbf{G}_{m,X}$. It follows that evaluating the sheaf represented by $\Gm$ on a scheme $X$ yields
+	\begin{align*}
+		\Gm(X) & = \Hom(X, \Spec(\Z[x,x^{-1}]))                 \\
+		       & \simeq \Hom(\Z[x,x^{-1}], \Gamma(Y, \Sh{O}_Y)) \\
+		       & \simeq \Sh{O}_Y^\times.
+	\end{align*}
+	so $\Gm$ defines a sheaf of groups on $\Et/X$.
+\end{example}
+
+\begin{example}
+	Consider the ring $\Z[x]$. Defining a ring homomorphism from $\Z[x]$ to $R$ is the same as choosing an image for $x$ in $R$, so $\Z[x]$ is the representing object for the functor which sends a ring $R$ to its underlying additive group.
+	The scheme $\Ga = \Spec(\Z[x])$ is an \'etale group scheme over $\Z$, with multiplication $\Ga \times \Ga \to \Ga$ induced by the maps
+	\[
+		\begin{array}{c @{{}\to{}} c @{{}{}} c}
+			\Z[x] & \centermathcell{\Z[x]\otimes_\Z \Z[x]}     \\
+			x     & \centermathcell{x\otimes 1 + 1 \otimes x}.
+		\end{array}
+	\]
+	The sheaf $\mathbf{G}_{a,X}$ sends each \'etale scheme $U$ over $X$ to the underlying additve group of $\mathcal{O}_X(U)$ as the following calculation shows:
+	\begin{align*}
+		\Ga(u) & = \Hom(X, \Spec(\Z[x]))                 \\
+		       & \simeq \Hom(\Z[x], \Gamma(Y, \Sh{O}_Y)) \\
+		       & \simeq \Sh{O}_Y
+	\end{align*}
+\end{example}
+
+\begin{example}
+	For any $U \to X$ \'etale define $\mathcal{O}_{\Et/X}(U) = \Gamma(U, \mathcal{O}_U)$. This is a sheaf of rings on $\Et/X$.
+\end{example}
+
+\begin{remark}
+	This sheaf allows us to consider $\Et/X$ as a \textit{ringed site}, analogous to schemes being locally ringed spaces.
+\end{remark}
+
+\begin{example}
+	The functor sending a ring $R$ to the set of its roots of unity
+	\[
+		\mu_n(R) = \{f \in R \mid f^n = 1\}
+	\]
+	is represented by the ring $\Z[x]/(x^n-1)$, so we have $\Hom(\Z[x]/(x^n-1),R) \cong \mu_n(R)$. Using similar arguments as before we obtain the sheaf of roots of unity $\mu_n$ on the \'etale site $\Et/X$ by base changing $\mu_n = \Spec(\Z[x]/(x^n-1))$ along $X \to \Spec(\Z)$. The sheaf is the kernel of $\mu_n$ is a subsheaf of $\Gm$.
+\end{example}
+
+\begin{example}
+	Let $R=\Z[x_z, \dots, x_n]/(f_1, \dots , f_m)$ and $X = \Spec(R)$. What are the $\Z$-valued points of $X$? Specifying a morphism from $X$ to $\Spec(\Z)$ is equivalent to specifying a morphism $\varphi\colon R \to \Z$, which is equivalent to specifying images $a_i$ of the generators $x_i$ of $R$ such that $f_j(a_1, \dots, a_n) = 0$ for all $j$. In other words, the $\Z$-valued points are the integral solutions to the equation $f_j = 0$
+\end{example}
+
+\subsection{Exact sequences and Cohomology}
 In linear algebra the notions of kernel and cokernel quantify the failure of a map to be injective or surjective. If a map has trivial kernel, it is injectve, if it has trivial cokernel, it is surjective. Cohomology plays a similar role in homological algebra, where we are often faced with the following situation:
 Let
 \[
@@ -28,11 +107,8 @@ where each $I^k$ is an injective object. Given a left exact functor $F$ from $C$
 \]
 One needs to show that these functors do not depend on the choice of injective resolution. While very general, the formalism of derived functors is unintuitive and in practice we will compute cohomology using different methods.
 
-Another functor whose derived functors are of interest is the direct image functor.
-
 \subsection{Homological algebra in \texorpdfstring{$\mathsf{Ab}(X)$}{Ab(X)}}
-
-We will now define the notion of injectivity and surjectivity for maps of sheaves. The categorification of injective mpas are monomorphisms, while surjective maps correspond to epimorphisms. Epimorphisms of sheaves are tricky and the reason why sheaf cohomology is a non-trivial invariant. The general frameworks in which to study (co-)homology are abelian categories. The notion of an abelian category is an abstraction of the category of abelian groups. Abelian categories are the general setting in which to do homological algebra.
+We will now define the notion of injectivity and surjectivity for maps of sheaves. The categorification of injective mpas are monomorphisms, while surjective maps correspond to epimorphisms. Epimorphisms of sheaves are tricky and the reason why sheaf cohomology is a non-trivial invariant. The general frameworks in which to study (co-)homology are abelian categories. The notion of an abelian category is an abstraction of the category of abelian groups. Abelian categories are the general setting in which to do homological algebra. Grothendieck first showed that the category of sheaves of groups on a space or on a site is indeed an abelian category.
 
 \begin{definition}[Monomorphisms and Epimorphisms]
 	Let $f: X \to Y$ be a morphism (in any category). We say that $f$ is a \textit{monomorphism} if $f \circ g_1 = f \circ g_2 \implies g_1 = g_2$.
@@ -58,103 +134,18 @@ We will now define the notion of injectivity and surjectivity for maps of sheave
 			\arrow["{\alpha_1}", shift left=1, from=1-2, to=1-3]
 		\end{tikzcd}\]
 	We need to show that $\alpha_1 = \alpha_2$.  Now for each $f_i: U_i \to U$ and each section $s \in F(U)$ we have $(\alpha_1 \circ f_i)(s) = (\alpha_2 \circ f_i)(s)$ or equivalently  $\alpha_1(s)|_{U_i} = \alpha_2(s)|_{U_i}$. This means that $\alpha_1$ agrees with $\alpha_2$ for the cover $\{U_i\}$. Since $H$ is a sheaf it follows that $\alpha_1 = \alpha_2$.\par
-	$\impliedby:$ Suppose $f \colon F \to G$ is epic.
+	$\impliedby:$ See \cite{SIGL}, III.7. Corollary 5.
 \end{proof}
 
-%\begin{definition}[Additive categories]
-%	An \textit{additive category} is a category $C$ with finite direct sums such that the sets $\Hom(A,B)$ have the structure of an abelian group
-%\end{definition}
-%
-%\begin{definition}[Kernels]
-%	Let $C$ be a category with an initial object $0$ and pullbacks. The kernel of a morphism $f: A \to B$ is the pullback
-%	\[
-%		% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXGtlciBmIl0sWzAsMSwiQSJdLFsxLDAsIjAiXSxbMSwxLCJCIl0sWzAsMV0sWzAsMl0sWzEsMywiZiIsMl0sWzIsM11d
-%		\begin{tikzcd}
-%			{\ker f} & 0 \\
-%			A & B
-%			\arrow[from=1-1, to=2-1]
-%			\arrow[from=1-1, to=1-2]
-%			\arrow["f"', from=2-1, to=2-2]
-%			\arrow[from=1-2, to=2-2]
-%		\end{tikzcd}.
-%	\]
-%	If $C$ is enriched over abelian groups, meaning that $\Hom(A,B)$ has the structure of an abelian group for all objects $A,B \in C$, there is a distinguished morphism $0_{A,B} : A \to B$. This morphism factors through the initial object $0$. In this case, the kernel of $f$ may be realized as the equalizer of the diagram
-%	\[
-%		% https://q.uiver.app/?q=WzAsMixbMCwwLCJBIl0sWzEsMCwiQiJdLFswLDEsImYiLDIseyJvZmZzZXQiOjF9XSxbMCwxLCIwX3tBLEJ9IiwwLHsib2Zmc2V0IjotMX1dXQ==
-%		\begin{tikzcd}
-%			A & B
-%			\arrow["f"', shift right=1, from=1-1, to=1-2]
-%			\arrow["{0_{A,B}}", shift left=1, from=1-1, to=1-2]
-%		\end{tikzcd}
-%	\]
-%\end{definition}
-%
-%\begin{definition}[Exact sequences]
-%	Fix an abelian category $C$.  A sequence
-%	\[ \cdots \xrightarrow{\varphi_{i-1}} A_{i-1} \xrightarrow{\varphi_{i}} A_{i} \xrightarrow{\varphi_{i+1}} A_{i+1} \to \cdots\]
-%	in $C$ is called \textit{exact} if the map from $A \to B$ is a monomorphism
-%\end{definition}
-%
-%\begin{example}
-%	There is a short exact sequence in $\Ab(X)$ for a scheme $X$, given By
-%	\[
-%		0 \to \mu_{n,X} \to \Gm \xrightarrow{x \to x^n} \Gm \to 0.
-%	\]
-%	The fact that it is left exact is clear.
-%\end{example}
-
-%\begin{remark}
-%	An \textit{abelian category} is a category $\mathcal{A}$ such that
-%	\begin{enumerate}
-%		\item for any two objects $A,B$ of $\mathcal{A}$, $\Hom(A,B)$ is an abelian group,
-%		\item every morphism has a kernel and cokernel,
-%		\item every monomorphism is a kernel,
-%		\item every epimorphism is a cokernel.
-%	\end{enumerate}
-%\end{remark}
-%
-%\begin{definition}
-%	A sequence of sheaves $\to \Sh{F}_{i-1} \to \Sh{F}_{i} \to \Sh{F}_{i+1} \to$
-%	is exact if for each $i$, $\ker \varphi_i = im \varphi_{i-1}$.
-%\end{definition}
-%
-\begin{definition}[Constant sheaves]
-	Let $X$ be a quasi-compact scheme. The sheafification of the presheaf $U \to S$ for a set $X$ is called the \textit{constant sheaf on $S$}.
+\begin{definition}
+	An exact sequence of sheaves is a sequence of morphisms of sheaves
+	\[ 0 \to A \xrightarrow{i} B \xrightarrow{p} C \to 0\]
+	such that $i$ is a monomorphism, $p$ is an epimorphism and the image of $i$ is the kernel of $p$. In the category of sheaves, the image of a morphism of sheaves $\varphi \colon F \to G$ is given by the sheafification of the presheaf $U \to \text{im}\varphi(U)$.
 \end{definition}
-
-\begin{definition}[Locally constant sheaves]
-	A sheaf $F$ on $X$ is locally constant if there is an \'etale covering $\{U_i\}$ of $X$ such that $F|_{U_i}$ is a constant sheaf for each $U_i$. If in addition the associated set for each $U_i$ is finite, we say that $F$ is \textit{locally constant constructible}.
-\end{definition}
-
-\begin{theorem}
-	If $X$ is an irreducible topological space and $\Sh{F}$ is a constant sheaf, then $H^r(X, \Sh{F})$ for all $r>0$.
-\end{theorem}
-\begin{proof}
-	Since any open set $U \subseteq X$ is connected, $\Sh{F}(U) = G$ if $\Sh{F}$ is the constant sheaf defined by the group $G$ and $U$ is nonempty. This means that $\Sh{F}$ is flasque, hence $H^r(X, \Sh{F})$ for all $r>0$.
-\end{proof}
-It follows that constant sheaves on varieties have no higher cohomology. This was the reason for defining the \'etale topology. We will now see how the \'etale topology yields good cohomological results
 
 \section{Invertible sheaves and first cohomology}
-The \'etale site of a scheme $X$ may be equipped with a structure sheaf $\mathcal{O}$ completely analogous to the structure sheaf on $X$.
-
-\begin{construction}
-	Consider the ring $\Z[x]$. Defining a ring homomorphism from $\Z[x]$ to $R$ is the same as choosing an image for $x$ in $R$, so $\Z[x]$ is the representing object for the functor which sends a ring $R$ to its underlying additive group.
-	The scheme $\Ga = \Spec(\Z[x])$ is an \'etale group scheme over $\Z$, with multiplication $\Ga \times \Ga \to \Ga$ induced by the maps
-	\[
-		\begin{array}{c @{{}\to{}} c @{{}{}} c}
-			\Z[x] & \centermathcell{\Z[x]\otimes_\Z \Z[x]}     \\
-			x     & \centermathcell{x\otimes 1 + 1 \otimes x}.
-		\end{array}
-	\]
-	The sheaf $\mathbf{G}_{a,X}$ sends each \'etale scheme $U$ over $X$ to the underlying additve group of $\mathcal{O}_X(U)$ as the following calculation shows:
-	\[
-		\Ga(u) = \Hom(X, \Spec(\Z[x])) \cong \Hom(\Z[x], \Gamma(Y, \Sh{O}_Y)) \cong \Sh{O}_Y
-	\]
-\end{construction}
-
-
-\begin{definition}[Ringed Sites, Locally Free and Invertible Sheaves]
-	A ringed site is a site equipped with a sheaf of rings. A locally free sheaf is a sheaf $F$ of $\mathcal{O}_X$-modules such that there is an \'etale covering $\{U_i \to X\}$ such that $F|_U \simeq \bigoplus \mathcal{O}_X|_U$ as an $\mathcal{O}_X$-module. An invertible sheaf $\mathcal{L}$ is a locally free sheaf of rank 1. These are the natural analogues of line bundles in algebraic geometry.
+\begin{definition}[Locally Free and Invertible Sheaves]
+	A locally free sheaf is a sheaf $F$ of $\mathcal{O}_X$-modules such that there is an \'etale covering $\{U_i \to X\}$ such that $F|_U \simeq \bigoplus \mathcal{O}_X|_U$ as an $\mathcal{O}_X$-module. An invertible sheaf $\mathcal{L}$ is a locally free sheaf of rank 1. These are the natural analogues of line bundles in algebraic geometry.
 \end{definition}
 
 \begin{proposition}
@@ -169,84 +160,183 @@ The \'etale site of a scheme $X$ may be equipped with a structure sheaf $\mathca
 	The Picard group $\Pic(X)$ for a ringed site $(X, \mathcal{O}_X)$ defined to be the group of isomorphism classes of invertible sheaves on $(X, \mathcal{O}_X)$.
 \end{proposition}
 
-\subsection{Sheaves with algebraic structure}
-We construct some basic examples of sheaves of groups. In particular, we will show that there is an exact sequence of sheaves
-
-\begin{example}
-	The functor $(-)^\times\colon \Rng \to \Ab$ that sends a ring $R$ to its set of units $R^\times$ is represented by the ring $\Z[x,x^{-1}]$ of Laurent polynomials. This means that a ring homomorphism $\Z[x,x^{-1}] \to R$ may be defined by sending $x$ to any unit of $R$, and this morphism is completeley determined by this choice, so we have
-	\[
-		R^\times \cong \Hom(\Z[x,x^{-1}], R).
-	\]
-	The scheme $\Gm \coloneqq \Spec(\Z[x, x^{-1}])$ is a group scheme over $\Z$. By contravarince, the multiplication $\Gm \times \Gm \to \Gm$ is given by the algebra map
-	\[
-		\begin{array}{c @{{}\to{}} c @{{}{}} c}
-			\Z[x,x^{-1}] & \centermathcell{\Z[x,x^{-1}]\otimes_\Z \Z[x,x^{-1}]} \\
-			x            & \centermathcell{\, x\otimes x}.
-		\end{array}
-	\]
-	Note that $\Spec(\Z[x,x^{-1}])$ is \'etale over $\Spec(\Z)$ because $\Z[x,x^{-1}] = \Z[x][y]/(xy-1)$ and the Jacobian determinant of $(xy-1)$ is $x$, which is invertible in $\Z[x,x^{-1}]$. In order to consider $\Gm$ as a sheaf on the \'etale site of an arbitrary scheme $X$, we consider the base change $\mathbf{G}_{m,S}$ of $\Gm$ along $X \to \Spec(\Z)$:
-	\[
-		%https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXG1hdGhiZntHfV97bSxTfSJdLFsxLDAsIlxcR20iXSxbMSwxLCJcXFNwZWMoXFxaKSJdLFswLDEsIlMiXSxbMCwxXSxbMSwyXSxbMywyXSxbMCwzXV0=
-		\begin{tikzcd}
-			{\mathbf{G}_{m,S}} & \Gm \\
-			S & {\Spec(\Z)}.
-			\arrow[from=1-1, to=1-2]
-			\arrow[from=1-2, to=2-2]
-			\arrow[from=2-1, to=2-2]
-			\arrow[from=1-1, to=2-1]
-		\end{tikzcd}.
-	\]
-	By the universal property of pullbacks and the fact that $\Spec(\Z)$ is the final object in schemes we have
-	\[
-		\mathbf{G}_{m,X} = \Hom_X(U, \mathbf{G}_{m,X}) = \Hom_{\Spec(\Z)}(U, \Spec(\Z[x,x^{-1}])) = \Gm(U),
-	\]
-	By abuse of notation we will write $\Gm$ for $\mathbf{G}_{m,X}$. It follows that evaluating the sheaf represented by $\Gm$ on a scheme $X$ yields
-	\[
-		\Gm(X) = \Hom(X, \Spec(\Z[x,x^{-1}])) \cong \Hom(\Z[x,x^{-1}], \Gamma(Y, \Sh{O}_Y)) \cong \Sh{O}_Y^\times.
-	\]
-	so $\Gm$ defines a sheaf of groups on $\Et/X$.
-
-	%Let $S = \Spec(A)$ be an affine scheme. The base change of $\Gm$ along $S \to \Z$ is $\Spec(A \otimes \Z[x,x^{-1}]) = \Spec(A[x,x^{-1}])$
-	%If $X = \Spec(A)$ is affine, then $\mathbf{G}_{m,X} = \Spec(A[x,x^{-1}])$.
-\end{example}
-
-\begin{example}
-	The functor sending a ring $R$ to the set of its roots of unity
-	\[
-		\mu_n(R) = \{f \in R \mid f^n = 1\}
-	\]
-	is represented by the ring $\Z[x]/(x^n-1)$, so we have $\Hom(\Z[x]/(x^n-1),R) \cong \mu_n(R)$. Using similar arguments as before we obtain the sheaf of roots of unity $\mu_n$ on the \'etale site $\Et/X$ by base changing $\mu_n = \Spec(\Z[x]/(x^n-1))$ along $X \to \Spec(\Z)$. The sheaf is the kernel of$\mu_n$ is a subsheaf of $\Gm$. Our first important computation in cohomology will be the cohomology of the sheaf $\mu_n$.
-\end{example}
-
-\begin{example}
-	Let $R=\Z[x_z, \dots, x_n]/(f_1, \dots , f_m)$ and $X = \Spec(R)$. What are the $\Z$-valued points of $X$? Specifying a morphism from $X$ to $\Spec(\Z)$ is equivalent to specifying a morphism $\varphi\colon R \to \Z$, which is equivalent to specifying images $a_i$ of the generators $x_i$ of $R$ such that $f_j(a_1, \dots, a_n) = 0$ for all $j$. In other words, the $\Z$-valued points are the integral solutions to the equation $f_j = 0$
-\end{example}
-
-
-
-
-
-
-
-As we have seen, sheaves relate the local and global information one has on a given topological space $X$. In a sense sheaf cohomology measures how much more information we gain when we go from global to local. For example, consider the sheaf of local sections of the covering space $\pi : X \to S^1$.
-
-Simple Examples:
-Brauer group of a dedekind ring or something
-Serres theorem: there d
-\begin{theorem}
-	There does not exist a cohomology theory for schemes over $\overline{\mathbb{F}}_q$ which satisfiex the Kunneth formula and $H^1(E) = \Q^2$ for $E$ an elliptic curve.
-\end{theorem}
-The reason we should expect the fact about elliptic curves to hold is because of the often heard slogan that elliptic curves are complex tori, which have singular cohomology $\Z^2$.
-
+\begin{remark}
+	More generally the Picard group is defined for a symmetric monoidal category $M$, consisting of isomorphism classes of invertible objects with respect to the tensor product of $M$.
+\end{remark}
 
 \begin{definition}
 	Let $G$ be a sheaf of abelian groups on $\Et/X$. A \textit{$G$-torsor} is a sheaf of sets $F$ on with an action of $G$ such that there exists an \'etale covering $\{U_i \to X\}$ such that
 	\begin{itemize}
 		\item For each $i$, $F(U_i) \neq \varnothing$.
-		\item For every $U \to X$ \'etale and $s \in F(U)$ the map $g \to sg \colon G|_U \to F|_U$ is an isomorphism of sheaves.
+		\item For every $U \to X$ \'etale and $s \in F(U)$ the map $g \mapsto sg \colon G|_U \to F|_U$ is an isomorphism of sheaves.
 	\end{itemize}
 	This is analogous to a set $S$ equipped with a free and transitive $G$-action.
 \end{definition}
 
+\begin{remark}
+	An invertible sheaf $\mathcal{L}$ is the same thing as a $\mathbf{G}_m$-torsor.
+\end{remark}
+
 \begin{theorem}
+	There is a canonical isomorphism $H^1(X, \Gm) \simeq \Pic(X)$. More generally let $G$ be a sheaf of groups on $\Et/X$. There is a canonical bijection between isomorphism classes of $G$-torsors and $H^1(X,G)$.
 \end{theorem}
+
+\begin{proof}
+	Unfortunately it is beyond the scope of this thesis to develop the machinery one usually needs to prove these theorems. One usually proceeds by defining \v{C}ech cohomology for the \'etale site, which is a procedure to compute cohomology of abelian sheaves by using coverings. See \cite{milneLEC} Chapter 11 for proofs.
+\end{proof}
+
+\begin{remark}
+	Recall that the \'etale site $\Et/\Spec(k)$ over a field $k$ consists of all finite \'etale $k$-algebras. The sheaf condition on this site reduces to two conditions:
+	\begin{itemize}
+		\item $F(A) = \bigoplus F(L_i)$ where $A = \prod L_i$.
+		\item $F(L) \simeq F(M)^{\Gal(M/L)}$ for all finite Galois extensions $M/L$ with $L$ finite degree over $k$.
+	\end{itemize}
+	For each sheaf $F$ on $\Et/\Spec(k)$ we can define a discrete $\Gal(k)$-module $M_F = \varinjlim F(L)$ where the limit is over all finite Galois extension over $k$. This defines an equivalence of categories between Abelian sheaves $\Ab(\Spec(k))$ on $\Et/\Spec(k)$ and discrete $\Gal(k)$-modules. The global sections functor $\Gamma \colon \Ab(\Spec(k)) \to \Ab$ gets mapped to the $\Gal(k)$-invariants functor mapping a discrete $\Gal(k)$-module $M$ to its set of fixed points $M^{\Gal(k)}$. But by definition the cohomology of $(-)^{\Gal(k)}$ is Galois cohomology. Note that this suggests the famous Hilbert's Theorem 90:
+	\begin{theorem}
+		Let $L/k$ be a finite Galois extension with Galois group $\Gal(L/k)$. Then the first Galois cohomology group with coefficients in $L^\times$ is trivial:
+		\[
+			H^1(G,L^\times)= \{1\}
+		\]
+	\end{theorem}
+	In light of the equivalence above this should be an unsurprising result. It amounts to saying that there are no non-trivial line bundles on the point $\Spec(k)$.
+\end{remark}
+
+\section{Sheaf Semantics}
+We briefly discuss usuing the internal language of toposes. This is a rich topic and we cannot hope to do it justice here. Recall that we constructed the subobject classifier $\true \colon \mathbf{1} \to \Omega$ for the category $\sh_\Et(X)$.
+
+\begin{definition}
+	A Heyting algebra $H$ is a poset with finite products and coproducts in which there is a right adjoint to product map $\land x \colon H \to H$, usually written $x \implies y$. This means $z \le (x \implies y)$ if and only if $z \land x \le y$.
+\end{definition}
+
+\begin{theorem}
+	The subobject classifier $\Omega$ is an internal Heyting algebra.
+\end{theorem}
+
+\begin{proof}
+	See \cite{SIGL}, IV. Proposition 3.
+\end{proof}
+
+It is then possible to construct a type theory from the objects a topos $\mathcal{E}$. It has as types the objects of $\mathcal{E}$. Variables of type $X$, denoted by $x \colon X$ are interpreted by the identity morphism $1 \colon X \to X$. More generally, we might use variables of other types $y \colon Y, z \colon Z$ in the construction of a term $\sigma$ of type $X$. In type theoretic notation: $y \colon Y, z \colon Z \vdash \sigma \colon X$ The interpretation of $\sigma$ is then an arrow $\sigma \colon Y \times Z \to X$. We then proceed by induction to define the terms of this internal language:
+
+\begin{itemize}
+	\item
+	      \AxiomC{$X \vdash y \colon Y$}
+	      \AxiomC{$U \vdash x \colon X$}
+	      \BinaryInfC{$U \vdash x \circ y \colon Y$}
+	      \DisplayProof\\
+
+	\item
+	      \AxiomC{$U \vdash x \colon X$}
+	      \AxiomC{$V \vdash y \colon \Omega^X$}
+	      \BinaryInfC{$V \times U \vdash x \in y \colon \Omega$}
+	      \DisplayProof\\
+
+	\item
+	      \AxiomC{$U \vdash x \colon X$}
+	      \AxiomC{$V \vdash y \colon Y$}
+	      \BinaryInfC{$W \vdash \langle x\pi_1, y\pi_2 \rangle \colon X \times Y$}
+	      \DisplayProof
+	      \vspace{.5cm}\\
+	      Here $W = U \times V$ with the projections $\pi_1 \colon W \to U$ and $\pi_2 \colon W \to V$.
+	\item
+	      \AxiomC{$U \vdash x \colon X$}
+	      \AxiomC{$V \vdash y \colon X$}
+	      \BinaryInfC{$U \times V \vdash (x = y) \colon \Omega$}
+	      \DisplayProof
+	      \vspace{.5cm}\\
+	      Here the map from $U \times V$ to $\Omega$ is given by $\delta_X \circ (x \circ \pi_1, y \circ \pi_2)$ where $\delta_X$ is the characteristic map of the diagonal $X \to X \times X$.
+	\item
+	      \AxiomC{$U \vdash f \colon Y^X$}
+	      \AxiomC{$V \vdash x \colon X$}
+	      \BinaryInfC{$V \times U \vdash f(x) \colon Y$}
+	      \DisplayProof
+	      \vspace{.5cm}\\
+	      Here the map $f(x)$ is the map $e \circ (f \circ \pi_1, x \circ \pi_2) \colon U \times V \to Y^X \times X \to Y$ with $e \colon Y^X \times X \xrightarrow{e} Y$ being the counit of the exponential adjunction.
+	\item
+	      \AxiomC{$U \vdash x \colon X$}
+	      \AxiomC{$X \times U \vdash \sigma \colon Z$}
+	      \BinaryInfC{$U \vdash \lambda x. \sigma \colon Z^X$}
+	      \DisplayProof
+	      \vspace{.5cm}\\
+	      Here we have used notation from lambda calculus. The idea is this: If we can deduce $\sigma \colon Z$ by assuming we have a variable of type $X$, then we can bind this variable in the term $\sigma$ to obtain a function into which we can plug terms of type $X$ and obtain a term of type $Z$ by the previous rules
+\end{itemize}
+
+Terms of type $\Omega$ will be called formulas. One can then use the Heyting algebra structure to construct new formulas, for example if we have to formulas $\psi \colon X \to \Omega$ and $\varphi \colon X \to \Omega$ we obtain a new term $\land \circ \langle \psi, \varphi \rangle \colon X \to \Omega \times \Omega \to \Omega$.
+
+\begin{itemize}
+	\item
+	      \AxiomC{$U \vdash \psi \colon \Omega$}
+	      \AxiomC{$V \vdash \varphi \colon \Omega$}
+	      \BinaryInfC{$W \vdash \psi \land \varphi \colon \Omega$}
+	      \DisplayProof
+	      \vspace{.5cm}\\
+	      Here $\psi \land \varphi$  is the morphism $\land \circ \langle \psi \pi_1, \varphi \psi_2 \rangle \colon W \to \Omega$.
+	\item
+	      \AxiomC{$U \vdash \psi \colon \Omega$}
+	      \AxiomC{$V \vdash \varphi \colon \Omega$}
+	      \BinaryInfC{$W \vdash \psi \vee \varphi \colon \Omega$}
+	      \DisplayProof
+	      \vspace{.5cm}\\
+	      Here $\psi \vee \varphi$  is the morphism $\vee \circ \langle \psi \pi_1, \varphi \psi_2 \rangle \colon W \to \Omega$.
+	\item
+	      \AxiomC{$U \vdash \psi \colon \Omega$}
+	      \AxiomC{$V \vdash \varphi \colon \Omega$}
+	      \BinaryInfC{$W \vdash \psi \implies\varphi \colon \Omega$}
+	      \DisplayProof
+	      \vspace{.5cm}\\
+	      Here $\psi \implies \varphi$  is the morphism $\implies \circ \langle \psi \pi_1, \varphi \psi_2 \rangle \colon W \to \Omega$.
+	\item
+	      \AxiomC{$U \vdash \psi \colon \Omega$}
+	      \UnaryInfC{$W \vdash \neg \varphi \colon \Omega$}
+	      \DisplayProof
+	      \vspace{.5cm}\\
+	      Here $\psi \land \varphi$  is the morphism $\neg \circ \varphi \colon W \to \Omega$.
+\end{itemize}
+Note that it is also possible to interpret the quantifiers $\exists$ and $\forall$ inside of a topos, but we do not develop the theory here. See the table below for the semantic interpretation and \cite{SIGL}. VI. 5. for a discussion.
+
+\begin{construction}[Sheaf semantics]
+	The semantics of the type theory we just constructed is defined as follows: Let $\varphi(x)$ be a formula in the type theory of $\mathcal{E}$ with a free variable $x$ of type $F$ and let $\{x \mid \varphi(x)\}$ be the subobject of $F$ classified by $\varphi(x)$.
+
+	% https://q.uiver.app/?q=WzAsNSxbMSwwLCJcXHt4ICBcXG1pZCBcXHZhcnBoaSh4KVxcfSJdLFsyLDAsIjEiXSxbMSwxLCJYIl0sWzIsMSwiXFxPbWVnYSJdLFswLDEsIlUiXSxbMCwxXSxbMCwyXSxbMiwzLCJcXHZhcnBoaSh4KSIsMl0sWzEsMywidHJ1ZSIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1vbm8ifX19XSxbNCwwLCIiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNCwyLCJcXGFscGhhIl1d
+	\[\begin{tikzcd}
+			& {\{x  \mid \varphi(x)\}} & 1 \\
+			\yo(U) & F & \Omega
+			\arrow[from=1-2, to=1-3]
+			\arrow[from=1-2, to=2-2]
+			\arrow["{\varphi(x)}"', from=2-2, to=2-3]
+			\arrow["\text{true}", tail, from=1-3, to=2-3]
+			\arrow[dashed, from=2-1, to=1-2]
+			\arrow["\alpha", from=2-1, to=2-2]
+		\end{tikzcd}\]
+
+	For an \'etale open $U \to X$ consider the sheaf $\yo(U)$ represented by $U$\footnote{Since the \'etale topology is subcanoical we do not need to sheafify, so we suppres the notation.}. Now define $U \Vdash \varphi(\alpha)$ where $\alpha \in F(U)$ by
+
+	\begin{align*}
+		U \Vdash \varphi(\alpha) & \iff \alpha \in \{x \mid \varphi(x)\}(U)                                              \\
+		                         & \iff \alpha \colon \yo(U) \to F \text{ factors through } \{x \mid \varphi(x)\} \to F.
+	\end{align*}
+
+	We obtain the following table of rules:
+
+	\begin{center}
+		\def\arraystretch{1.5}%  1 is the default, change whatever you need
+
+		\begin{tabular}{|c|p{8cm}|}
+			\hline
+			Logic                               & Geometry                                                                                                             \\
+			\hline
+			$U \Vdash \top$                     & $U = U$.                                                                                                             \\
+			$U \Vdash \bot$                     & $U = \varnothing$.                                                                                                   \\
+			$U \Vdash s \colon F$               & $s(U) \in F(U)$.                                                                                                     \\
+			$U \Vdash s = t \colon F$           & $s(u) = t(u) \in F(U)$.                                                                                              \\
+			$U \Vdash \varphi \land \psi$       & $U \Vdash \varphi$ and $U \Vdash \psi$.                                                                              \\
+			$U \Vdash \bigwedge_{j} \varphi_j$  & $ U \Vdash \varphi_j $ for all $j$.                                                                                  \\
+			$U \Vdash \varphi \vee \psi$        & There is some covering $\coprod_i U_i \to U$ such that for all $i$ we have $U_i \Vdash \varphi$ or $U_i \Vdash \psi$ \\
+			$U \Vdash \bigvee_{j} \varphi_j$    & There is some covering $\coprod_i U_i \to U$ such that for all $i$ we have $U_i \Vdash \varphi_j$ for some $j \in J$ \\
+			$U \Vdash \varphi \Rightarrow \psi$ & For all  $V \to U$ we have $V \Vdash \varphi$ implies $V \Vdash \psi$                                                \\
+			\hline
+		\end{tabular}
+	\end{center}
+	The proof procedes by a combination of topos theoretic techniques the familiar induction on the structure of $\varphi$.
+\end{construction}
+It should be noted that the internal language has its limitations. Global properties such as $H^i(X,F) = 0$ are not expressible in the internal language. It does, however,  allow us to consider sheaves of groups, rings and modules simply as internal groups, rings and modules and any statement that one proves in intuitionistic logic about, say groups hold for internal groups as well.

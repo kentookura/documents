@@ -6,63 +6,26 @@
 	If the map $F(U) \to \displaystyle\prod F(U_i)$ is injective, then we say that $F$ is a \textit{separated presheaf}. If the reference to the site $J$ is clear from context, we will also say that $F$ is a sheaf on $C$.
 \end{definition}
 
-We need to explain the above diagram. In the case that $X$ is covered by two objects $U_1$ and $U_2$, there are the morphisms $U_{12} \to U_1 \to X$ and $U_{12} \to U_2 \to X$, fitting into  where $U_{12}$ is shorthand for $U_1 \times_X U_2$ or $U_1 \cap U_2$. By the contravariance of $F$, we obtain the two diagrams below.
-
-\[
-	\centering
-	\begin{minipage}{0.4\textwidth}
-		\begin{tikzcd}
-			& {U_{12}} \\
-			{U_1} & & {U_2} \\
-			& X
-			\arrow[from=1-2, to=2-1]
-			\arrow[from=1-2, to=2-3]
-			\arrow[from=2-1, to=3-2]
-			\arrow[from=2-3, to=3-2]
-		\end{tikzcd}
-	\end{minipage}
-	\begin{minipage}{0.4\textwidth}
-		\begin{tikzcd}
-			& {F (U_{12})} \\
-			{F (U_1)} & & {F (U_2)} \\
-			& {F (X)}.
-			\arrow[from=2-1, to=1-2]
-			\arrow[from=2-3, to=1-2]
-			\arrow[from=3-2, to=2-1]
-			\arrow[from=3-2, to=2-3]
-		\end{tikzcd}
-	\end{minipage}
-\]
-
-When taking the product of $F(U_1)$ and $F(U_2)$, we obtain the diagram
-% https://q.uiver.app/?q=WzAsMyxbMiwwLCJcXG1hdGhjYWx7Rn0oVV97MTJ9KSJdLFswLDAsIlxcbWF0aGNhbHtGfShYKSJdLFsxLDAsIlxcbWF0aGNhbHtGfShVXzEpXFx0aW1lc1xcbWF0aGNhbHtGfShVXzIpIl0sWzEsMl0sWzIsMCwiIiwwLHsib2Zmc2V0IjoxfV0sWzIsMCwiIiwwLHsib2Zmc2V0IjotMX1dXQ==
-\[
-	\begin{tikzcd}
-		{F(X)} & {F(U_1)\times F(U_2)} & {F(U_{12})}.
-		\arrow[from=1-1, to=1-2]
-		\arrow[shift right=1, from=1-2, to=1-3]
-		\arrow[shift left=1, from=1-2, to=1-3]
-	\end{tikzcd}
-\]
-
-Given two section $s_1 \in F(U_1)$ and $s_2 \in F(U_2)$, the two parallel arrows map $(s_1, s_2)$ to $s_1|_{U_{12}}$ and $s_2|_{U_{12}}$. To say that $F(X)$ is an equalizer in the above diagram amounts to saying that the sections of $F(X)$ are recoverable from those sections on the sets $U_1$ and $U_2$ which agree on the overlap $U_{12}$. The diagram~\eqref{diagram:equalizer} is the straightforward generalisation of this situation for a cover consisting of more than 2 open sets. For topological spaces, this is an equivalent reformulation of the condition given in \ref{def:sheaves}.
-
 A map of sheaves $\varphi \colon F \to G$ is simply a natural transformation $F \to G$.
 We obtain the category $\sh(C,J)$ of sheaves on $C$ with respect to the topology $J$. This is in fact a full subcategory of presheaves $\Set^{C^{op}}$. We call categories equivalent to categories of sheaves on a site Grothendieck toposes. The category of sheaves $\sh(X, \et_X)$ on the \'etale toplogy of a scheme $X$ is called the \textit{\'etale topos of $X$}.
 
 \section{Sheafification}
-In this section we see that Grothendieck toposes are left exact reflective subcategories $\mathcal{E} \to \widehat{C}$ of presheaf categories. More precisely, given a small category $C$ there is a bijection between
+In this section we will see that Grothendieck toposes are left exact reflective subcategories $\mathcal{E} \to \widehat{C}$ of presheaf categories. More precisely, given a small category $C$ there is a bijection between
 \begin{itemize}
 	\item Equivalence classes of left exact reflective subcategories $\mathcal{E} \to \widehat{C}$
 	\item Grothendieck topologies $J$ on $C$ such that $\mathcal{E} \simeq \sh(C,J)$.
 \end{itemize}
 
-We first show that any Grothendieck topos $\sh(C,J)$ on $C$ is indeed a left exact reflective subcategory of $\widehat{C}$. Recall that a full subcategory $i \colon D \to C$ reflective if the inclusion functor $i$ admits a left adjoint $a \colon C \to D$. We already know that $\sh(C,J)$ is a full subcategory of $\widehat{C}$.
+Recall that a full subcategory $i \colon D \to C$ reflective if the inclusion functor $i$ admits a left adjoint $a \colon C \to D$. We already know that $\sh(C,J)$ is a full subcategory of $\widehat{C}$.
 
 \begin{proposition}\label{thm:associated_sheaf}
 	The forgetful functor $\mathsf{Sh}(C,J) \to \Set^{C^{op}}$ admits a limit-preserving left adjoint
 	\[a : \Set^{C^{op}} \to \mathsf{Sh}(C,J).\]
 \end{proposition}
+
+\begin{proof}
+	See~\cite{SIGL}.
+\end{proof}
 
 \begin{corollary}
 	The cateogry of sheaves on $X$ is a full reflective subcategory of the category of presheaves on $X$.
@@ -83,10 +46,6 @@ Note that there are two ways a presheaf can fail to be a sheaf:
 \end{itemize}
 
 Thus, sheafification proceeds in two steps. The first step removes sections that agree locally but not globally, making a presheaf into a separated presheaf. The second step adds the sections of matching local sections.
-
-\begin{proof}[Proof of Theorem~\ref{thm:associated_sheaf}]
-	See~\cite{SIGL}.
-\end{proof}
 
 \begin{theorem}
 	A category is a Grothendieck topos if and only if it is a localization of $\widehat{C}$ for some small category $C$.
@@ -175,90 +134,25 @@ The idea of the proof is to rewrite coverings $\{ U_i \to U\}$ as a single morph
 	The yoneda embedding $\yo\colon \Et/X \to \widehat{\Et/X}$ factors through the inclusion $\sh(\Et/X) \to \Set$.
 \end{corollary}
 
-\begin{construction}[Sheaves of abelian groups on $\Spec(k)$]
-	Let $F$ be a presheaf on $\Et/\Spec(k)$. By abuse of notation we write $F(A)$ instad of $F(\Spec(A))$ for $A$ an \'etale $k$-algebra. We define a discrete $\Gal(k)$-module $M_F$ as follows: If $L/k$ is a finite separable extension, then $G = \Gal(k)$ acts on $F(L)$ by functoriality of $F$. Define $M_F = \colim F(L)$ where $L$ runs over all subfields $L$ of $k_s$ that are finite over $k$. Then $M_F$ is a discrete $G$-module. Conversely, for a discrete $G$-module $M$ we define a sheaf $F_M$ by setting $F_M(A) = \Hom_G(F(A),M)$ where $F(A) = \Hom_k(A,k_s)$. By Theorem \ref{thm:sheaf_condition}, presheaf $F$ on $\Et/k$ is a sheaf if and only if \ref{diagram:equalizer} is exact for a single affine cover $\Spec(A) \to \Spec(B)$, but affine \'etale covers in $\Et/k$ are precisely of the form $\displaystyle \coprod \Spec(L_i) \to \displaystyle \coprod \Spec(K_j)$ where each $L_i$ and $K_j$ is separable over $k$, so the sequence \[ F(\Spec(L)) \to \prod_{i} F(\Spec(L_i)) \xbigtoto{} \prod_{i,j} F(\Spec(L_i \otimes_L L_j)) \] needs to be exact.
-\end{construction}
+%\begin{construction}[Sheaves of abelian groups on $\Spec(k)$]
+%	Let $F$ be a presheaf on $\Et/\Spec(k)$. By abuse of notation we write $F(A)$ instad of $F(\Spec(A))$ for $A$ an \'etale $k$-algebra. We define a discrete $\Gal(k)$-module $M_F$ as follows: If $L/k$ is a finite separable extension, then $G = \Gal(k)$ acts on $F(L)$ by functoriality of $F$. Define $M_F = \colim F(L)$ where $L$ runs over all subfields $L$ of $k_s$ that are finite over $k$. Then $M_F$ is a discrete $G$-module. Conversely, for a discrete $G$-module $M$ we define a sheaf $F_M$ by setting $F_M(A) = \Hom_G(F(A),M)$ where $F(A) = \Hom_k(A,k_s)$. By Theorem \ref{thm:sheaf_condition}, presheaf $F$ on $\Et/k$ is a sheaf if and only if \ref{diagram:equalizer} is exact for a single affine cover $\Spec(A) \to \Spec(B)$, but affine \'etale covers in $\Et/k$ are precisely of the form $\displaystyle \coprod \Spec(L_i) \to \displaystyle \coprod \Spec(K_j)$ where each $L_i$ and $K_j$ is separable over $k$, so the sequence \[ F(\Spec(L)) \to \prod_{i} F(\Spec(L_i)) \xbigtoto{} \prod_{i,j} F(\Spec(L_i \otimes_L L_j)) \] needs to be exact.
+%\end{construction}
+%
+%\begin{enumerate}
+%	\item $F(\prod A_i) = \bigoplus F(A_i)$ for every finite family $\{A_i\}$ of \'etale algebra
+%	\item $F(L) \xrightarrow{\sim} F(K)^{\Gal(K/k)}$ for finite Galois extensions $K/L/k$
+%\end{enumerate}
+%
+%For $F$ a sheaf on $\Et/k$ define $M_F = \varinjlim F(K)$, where the colimit runs over all finite Galois extensions over $k$. Then $M_F$ is a discrete $\Gal(k)$-module. Converseley, if $M$ is a discrete $G$-module, define $F_m(A) = \Hom_{\Gal(k)}(F(A),M)$, where $F(A) = \Hom(A, k_s)$. Then $F_M$ is a sheaf on $\Spec(k)$. This defines an equivalence of categories between abelian sheaves $\Ab_{\et}(\Spec(k))$ of $k$ and the category of discrete $G$-modules.
+%
 
-\begin{enumerate}
-	\item $F(\prod A_i) = \bigoplus F(A_i)$ for every finite family $\{A_i\}$ of \'etale algebra
-	\item $F(L) \xrightarrow{\sim} F(K)^{\Gal(K/k)}$ for finite Galois extensions $K/L/k$
-\end{enumerate}
-
-For $F$ a sheaf on $\Et/k$ define $M_F = \varinjlim F(K)$, where the colimit runs over all finite Galois extensions over $k$. Then $M_F$ is a discrete $\Gal(k)$-module. Converseley, if $M$ is a discrete $G$-module, define $F_m(A) = \Hom_{\Gal(k)}(F(A),M)$, where $F(A) = \Hom(A, k_s)$. Then $F_M$ is a sheaf on $\Spec(k)$. This defines an equivalence of categories between abelian sheaves $\Ab_{\et}(\Spec(k))$ of $k$ and the category of discrete $G$-modules.
-
-Let $F$ be a sheaf of groups on $C$. For each object $X$ of $C$ there are morphisms
-\[
-	m \colon F(X) \times F(X) \to F(X),\ i \colon F(X) \to F(X),\ e \colon 1 \to F(X)
-\]
-induced by the group operation on $F(X)$. These morphisms assemble into morphisms of sheaves
-\[
-	m \colon F \times F \to F,\ i \colon F \to F,\ e \colon 1 \to F
-\]
-This is the description ``internal'' to the category $\sh(C,J)$. The external description demands that $F$ carries the structure of a group locally, meaning that $F(U)$ is a group for each $U$. From the internal point of view, a homomorphism $\varphi\colon F \to G$ of sheaves of groups is just a homomorphism of \textit{group objects} in $\sh(C,J)$.
-
-\begin{definition}
-	Let $\mathcal{C}$ be a category with finite products and a terminal object $1$. A \textit{group object} in $\mathcal{C}$ consists of an object $A$ of $\mathcal{C}$ together with morphisms
-	\[e\colon * \to A,\ m \colon A \times A \to A,\ \iota\colon A \to A \]
-	such that the following diagrams commute:
-	\[
-		% https://q.uiver.app/?q=WzAsNCxbMCwwLCJBIl0sWzAsMSwiQSBcXHRpbWVzIEEiXSxbMSwwLCJBIFxcdGltZXMgQSJdLFsxLDEsIkEiXSxbMCwxLCJcXGlvdGEgXFx0aW1lcyBpZCIsMl0sWzAsMiwiaWQgXFx0aW1lcyBcXGlvdGEiXSxbMiwzLCJtIl0sWzEsMywibSIsMl0sWzAsMywiXFxpZCIsMV1d
-		\begin{tikzcd}
-			A & {A \times A} \\
-			{A \times A} & A
-			\arrow["{\iota \times id}"', from=1-1, to=2-1]
-			\arrow["{id \times \iota}", from=1-1, to=1-2]
-			\arrow["m", from=1-2, to=2-2]
-			\arrow["m"', from=2-1, to=2-2]
-			\arrow["id", from=1-1, to=2-2]
-		\end{tikzcd}
-	\]
-	\[
-		% https://q.uiver.app/?q=WzAsNCxbMCwwLCJBIFxcdGltZXMgQSBcXHRpbWVzIEEiXSxbMSwwLCJBIl0sWzEsMSwiQSJdLFswLDEsIkEiXSxbMCwxLCJpZCBcXHRpbWVzIG0iLDJdLFsxLDIsIm0iLDJdLFswLDMsIm0gXFx0aW1lcyBpZCJdLFszLDIsIm0iXV0=
-		\begin{tikzcd}
-			{A \times A \times A} & A \\
-			A & A
-			\arrow["{id \times m}"', from=1-1, to=1-2]
-			\arrow["m"', from=1-2, to=2-2]
-			\arrow["{m \times id}", from=1-1, to=2-1]
-			\arrow["m", from=2-1, to=2-2]
-		\end{tikzcd}
-	\]
-	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJBIl0sWzEsMCwiQSBcXHRpbWVzIEEiXSxbMSwxLCJBIl0sWzAsMSwiQSBcXHRpbWVzIEEiXSxbMCwxLCIoZSxpZCkiXSxbMSwyLCJtIl0sWzAsMywiKGlkLGUpIiwyXSxbMywyLCJtIiwyXV0=
-	\[
-		\begin{tikzcd}
-			A & {A \times A} \\
-			{A \times A} & A
-			\arrow["{(e,id)}", from=1-1, to=1-2]
-			\arrow["m", from=1-2, to=2-2]
-			\arrow["{(id,e)}"', from=1-1, to=2-1]
-			\arrow["m"', from=2-1, to=2-2]
-		\end{tikzcd}
-	\]
-\end{definition}
-
-There are obvious analogues for other notions of algebraic structure. Particularly important examples for algebraic geometry are given by $\mathcal{O}_X$-modules. Omitting some details, a sheaf of groups $M$ on $X$ is an $\mathcal{O}_X$-module if each $M(U)$ carries the structure of an $\mathcal{O}_X(U)$-module that is compatible with restriction, so the following diagram commutes:
-
-\[
-	% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXG1hdGhjYWx7T31fWChVKSBcXHRpbWVzIE0oVSkiXSxbMCwxLCJcXG1hdGhjYWx7T31fWChWKSBcXHRpbWVzIE0oVikiXSxbMSwwLCJNKFUpIl0sWzEsMSwiTShWKSJdLFswLDFdLFswLDJdLFsyLDNdLFsxLDNdXQ==
-	\begin{tikzcd}
-		{\mathcal{O}_X(U) \times M(U)} & {M(U)} \\
-		{\mathcal{O}_X(V) \times M(V)} & {M(V)}.
-		\arrow[from=1-1, to=2-1]
-		\arrow[from=1-1, to=1-2]
-		\arrow[from=1-2, to=2-2]
-		\arrow[from=2-1, to=2-2]
-	\end{tikzcd}
-\]
-
-
-\begin{definition}
-	The \textit{category of abelian sheaves on $\Et/X$} is defined to be the category of abelian group objects in $\sh_{\Et}(X)$
-\end{definition}
-
-
-\begin{corollary}
-	A group object internal to $\Et/X$ is a scheme $S$ over $X$ with maps $\circ \colon S \times_X S \to S$, $e \colon X \to S$ and $\iota \colon S \to S$ subject to the conditions of the previous definition.
-\end{corollary}
+% \begin{definition}
+% 	The \textit{category of abelian sheaves on $\Et/X$} is defined to be the category of abelian group objects in $\sh_{\Et}(X)$
+% \end{definition}
+% 
+% \begin{corollary}
+% 	A group object internal to $\Et/X$ is a scheme $S$ over $X$ with maps $\circ \colon S \times_X S \to S$, $e \colon X \to S$ and $\iota \colon S \to S$ subject to the conditions of the previous definition.
+% \end{corollary}
 
 %\subsection{Abelian Sheaves and Group Schemes}
 %
@@ -298,11 +192,6 @@ There are obvious analogues for other notions of algebraic structure. Particular
 %	In the \'Etale topology, the limits $\varprojlim_{U \ni x} \mathcal{O}(U)$ turn out to be the strict henselizations of the local rings $\mathcal{O}_{X,x}$.
 %\end{example}
 %
-
-
-
-
-
 %\section{Some categories and functors related to sheaves}
 %
 %Rough draft \par
@@ -387,3 +276,24 @@ For example, when $X$ is a topological space, $\Hom(1,F)(X)$ consists of all glo
 	\]
 	The global sections functor $\Gamma: \mathsf{Sh}(C,J) \to \Set,\ \Gamma(F) = \Hom(1,F)$ is right adjoint to the constant sheaf functor $\Delta: \Set \to \Sh(C,J)$.
 \end{theorem}
+
+\subsection{Subobject Classifiers for \'Etale Toposes}
+In proposition~\ref{prop:classifier} we showed that for a topological space $X$, the category $\sh(X)$ of sheaves on $X$ has a subobject classifier. In this section we construct a subobject classifier for categories of sheaves on an arbitrary site.
+
+\begin{definition}
+	Let $(C,J)$ be a site. We define a subfunctor $S \subset \yo(A)$ to be \textit{closed for $J$} if for all morphisms $f \colon B \to A$
+	\[
+		\{h \colon D \to B \mid fh \in S(D) \} \in J(D) \implies f \in S(B).
+	\]
+\end{definition}
+
+The property of being closed in stable under pullback. Indeed, let $S$ be a subfunctor of $\yo(A)$ and $g \colon B \to A$ an arbitrary morphism. Suppose that $h^*(S)$ covers $f$ for a morphism $f \colon C \to B$. By definition $S$ covers $hf$. Since $S$ is closed, we have $hf \in S(C)$. Since $S$ is closed, $hf \in S(C)$ or $f \in h^*S(B)$. Thus $h^*S$ is closed and the definition \[\Omega(A) = \{S \subset \yo(A) \mid S \text{ is closed }\}\] defines a presheaf on $C$, with the restriction along a morphism $h \colon B \to C$ given by $S \to h^*S$.
+
+\begin{proposition}
+	The presheaf $\Omega \colon C^{\op} \to \Set$ is a sheaf and in fact a subobject classifier for $\sh(C,J)$ when taken together with the map
+	\[\true \colon 1 \to \Omega \] where $\true$ is the natural transformation given on objects by $A \to \yo(A)$.
+\end{proposition}
+
+\begin{proof}
+	See \cite{SIGL}, III.7. Lemma 1.
+\end{proof}
