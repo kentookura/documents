@@ -34,6 +34,5 @@
       date = "Wien, im Monat September 2022";
       field = "Mathematik";
     };
-    #packages.x86_64-linux.kento = document.build {inherit config;};
   };
 }
