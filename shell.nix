@@ -1,7 +1,4 @@
-{
-  pkgs ? import <nixpkgs> {},
-  config,
-}: let
+{pkgs ? import <nixpkgs> {}}: let
   watch = pkgs.writeShellScriptBin "watch" ''
     latexmk -pdf -pvc main.tex -outdir=result
   '';
@@ -22,9 +19,5 @@ in
       pandoc
     ];
     shellHook = ''
-      echo writing .latexmkrc ...
-      echo "${LATEXMKRC}" > .latexmkrc
-      echo done
-      echo "Welcome! Happy typing!"
     '';
   }
